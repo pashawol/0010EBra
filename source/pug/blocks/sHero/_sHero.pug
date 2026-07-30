@@ -1,0 +1,43 @@
+//- Section «Влюбиться в себя... навсегда» — фуллскрин-слайдер, node 161:134.
+//- Мобильного варианта в макете нет (692:1129 начинается сразу с «Кому помогает
+//- Esthetic Bra», хедер-нода 777:28 — пустой дубль): адаптация — моё решение,
+//- см. docs/coordination/sHero.md.
+//-
+//- Заголовок семантически один h1 («Влюбиться в себя... навсегда»), читается
+//- скринридером одной строкой через .visually-hidden; видимые обрывки —
+//- декоративные aria-hidden куски, повторяющие композицию макета (слово
+//- «навсегда» унесено в правый нижний угол).
+mixin sHero(data)
+	- data = data || sHero
+	// start sHero
+	+b.SECTION.sHero.eb-theme--dark.section#sHero&attributes(attributes)
+		+e.DIV.stage
+			+e.DIV.slider.swiper(data-swiper-options=`{"loop":true,"effect":"fade","speed":600,"fadeEffect":{"crossFade":true},"pagination":{"el":"#sHero .swiper-pagination","clickable":true},"navigation":{"nextEl":"#sHero .swiper-button-next","prevEl":"#sHero .swiper-button-prev"}}`)
+				//- Plain класс, не +e: "swiper-wrapper" — служебное имя Swiper,
+				//- не BEM-элемент; +e его бы превратил в "sHero__swiper-wrapper"
+				//- и слайдер терял высоту (см. docs/coordination/sHero.md).
+				.swiper-wrapper
+					each slide, i in data.slides
+						+e.DIV.slide.swiper-slide
+							img.sHero__img(
+								src=`img/sHero/${slide.image}`
+								alt=slide.alt
+								width="2400"
+								height="1659"
+								fetchpriority=(i === 0 ? "high" : null)
+								loading=(i === 0 ? null : "lazy")
+							)
+			+e.DIV.scrim(aria-hidden="true")
+			.container.sHero__container
+				+e.DIV.content
+					h1.sHero__title
+						span.visually-hidden!= data.titleAccessible
+						span.sHero__title-main(aria-hidden="true")!= data.titleMain
+					+e.P.text= data.text
+					+e.DIV.buttons
+						each btn in data.buttons
+							+ebBtn(btn.text, btn.mode)
+				span.sHero__decor(aria-hidden="true")= data.titleTail
+				+ebHotspot(data.hotspot.title, data.hotspot.text, data.hotspot.href).sHero__hotspot
+				+ebSliderNav().sHero__nav
+	// end sHero

@@ -1,0 +1,30 @@
+{
+	"sGifts": {
+		"title": "Подарочные<br>решения",
+		"cards": [
+			{
+				"mod": "lingerie",
+				"image": "img/sGifts/lingerie.webp",
+				"caption": "Белье для особого<br>случая"
+			},
+			{
+				"mod": "cert",
+				"image": "img/sGifts/cert.webp",
+				"caption": "Подарочный<br>сертификат"
+			},
+			{
+				"mod": "sets",
+				"image": "img/sGifts/sets.webp",
+				"caption": "Наборы"
+			}
+		],
+		"widget": {
+			"avatars": [
+				"img/sGifts/avatar-1.webp",
+				"img/sGifts/avatar-2.webp",
+				"img/sGifts/avatar-3.webp"
+			],
+			"text": "С Esthetic Bra вы получаете не просто вещь, а незабываемую эмоцию"
+		}
+	}
+}

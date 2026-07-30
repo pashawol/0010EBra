@@ -1,0 +1,238 @@
+// start .sPromo — node 385:1516 (desktop), mobile Banners 726:433 (692:1129)
+//
+// Карточка-баннер (.sPromo__card) — тот же компонент Figma Banner
+// (669:3449, 669:3523), что и в sGifts (.sGifts__card). Именование элементов
+// намеренно совпадает (__card, __card-img, ...) — заявка на общий
+// +ebBanner в docs/coordination/sPromo.md.
+//
+// Тема карточек — по факту скриншота, не по формулировке брифа: только
+// «week» реально тёмная (.eb-theme--dark, белый текст на бордовом фото).
+// «gift» и «outlet» — фото + белая frosted-панель, тёмный var(--eb-ink)
+// текст в обоих случаях (см. get_design_context(384:1409) в отчёте).
+.sPromo {
+	background-color: var(--eb-white);
+
+	&__grid {
+		display: flex;
+		flex-direction: column;
+		gap: rem(16);
+	}
+
+	&__row {
+		display: flex;
+		flex-direction: column;
+		gap: rem(16);
+	}
+
+	&__card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		border-radius: var(--eb-radius);
+		aspect-ratio: 345 / 275; // мобильный формат (726:433) — rem-высоты только на lg+
+		color: var(--eb-text);
+
+		&-img {
+			position: absolute;
+			inset: 0;
+			z-index: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		// Внешняя translucent-пилюля бейджа + внутренняя белая пилюля подписи.
+		// По умолчанию лежит поверх фото (week/gift); outlet ниже переводит её
+		// в поток панели.
+		&-badge {
+			position: absolute;
+			z-index: 2;
+			top: rem(16);
+			left: rem(16);
+			display: inline-flex;
+			flex-shrink: 0;
+			align-items: center;
+			gap: rem(10);
+			padding: rem(5) rem(5) rem(5) rem(10);
+			border-radius: var(--eb-radius-badge);
+			background-color: var(--eb-white-15);
+			backdrop-filter: blur(var(--eb-blur));
+			// По умолчанию — метка лежит прямо на фото (week/gift): белая иконка
+			// читается на фото лучше, чем currentColor карточки (ink у gift).
+			color: var(--eb-white);
+		}
+
+		&-badge-icon {
+			flex-shrink: 0;
+			width: rem(20);
+			height: rem(20);
+		}
+
+		&-badge-label {
+			display: inline-flex;
+			align-items: center;
+			height: rem(28);
+			padding-inline: rem(8);
+			border-radius: var(--eb-radius-check);
+			background-color: var(--eb-white);
+			color: var(--eb-ink);
+			font-size: var(--eb-caption);
+			line-height: 1;
+			white-space: nowrap;
+		}
+
+		&-body {
+			position: relative;
+			z-index: 1;
+			display: flex;
+			flex: 1 0 auto;
+			flex-direction: column;
+			justify-content: flex-end;
+			gap: rem(16);
+			padding: rem(24);
+		}
+
+		&-title {
+			display: flex;
+			flex-direction: column;
+			gap: rem(4);
+			font-family: $font-family-display;
+			line-height: 1;
+		}
+
+		// Лид «До» (week/outlet) — Headline 3; значение по умолчанию — Headline 2
+		// («Подарок», «40%»); у week значение крупнее (Headline 1, «20%») —
+		// переопределено в &--week ниже.
+		&-title-lead {
+			font-size: var(--eb-h3);
+		}
+
+		&-title-value {
+			font-size: var(--eb-h2);
+		}
+
+		&-text {
+			max-width: rem(320);
+			font-size: var(--eb-body);
+			line-height: 1.3;
+		}
+	}
+
+	// -------------------------------------------------------------------
+	// week — единственная реально тёмная карточка: бордовое фото уже несёт
+	// фон, текст читает var(--eb-text) через .eb-theme--dark на самой карточке
+	// (по прецеденту sGifts--cert / sExpertise).
+	// -------------------------------------------------------------------
+	&__card--week {
+		.sPromo__card-body {
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+		}
+
+		.sPromo__card-title {
+			align-items: center;
+		}
+
+		.sPromo__card-title-value {
+			font-size: var(--eb-h1);
+		}
+
+		.sPromo__card-text {
+			max-width: rem(420);
+		}
+	}
+
+	// gift — светлая, фото + нижний scrim-градиент для читаемости подписи.
+	// Токен --eb-white-35 — приближение (в макете реальный blur-градиент
+	// rgba(245,232,217,.75), бежевого scrim-токена в _root.scss нет, тот же
+	// компромисс уже принят в sGifts — см. docs/coordination/sGifts.md).
+	&__card--gift {
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			background: linear-gradient(to bottom, transparent 35%, var(--eb-white-35) 100%);
+			pointer-events: none;
+		}
+	}
+
+	// outlet — светлая, frosted-панель (реальный backdrop-blur, не градиент,
+	// т.к. в макете это ровный blur-прямоугольник, не растяжка). Бейдж лежит
+	// внутри панели, поэтому иконка тёмная (var(--eb-ink)), а не белая.
+	//
+	// Мобайл-ревью: get_design_context(726:316) показывает панель как
+	// компактный блок ~165px шириной (из 345 общей ширины карточки),
+	// прижатый к левому краю и центрированный по вертикали content-box'ом —
+	// НЕ растянутый на всю карточку. Раньше `.sPromo__card-body` наследовал
+	// базовый `flex: 1 0 auto` + 100% ширину колонки, из-за чего frosted-blur
+	// заливал всю карточку целиком (модель почти не видна на скриншоте —
+	// «есть в DOM, но не то, что на макете»). На lg+ полноразмерная панель
+	// (`height:100%`, `width: rem(320)`) — уже сознательное решение автора
+	// блока, там не трогаю.
+	&__card--outlet {
+		.sPromo__card-body {
+			flex: 0 0 auto;
+			align-self: flex-start;
+			width: rem(165);
+			max-width: calc(100% - #{rem(20)});
+			margin-block: auto;
+			padding: rem(15);
+			gap: rem(10);
+			justify-content: space-between;
+			border-radius: var(--eb-radius-badge);
+			background-color: var(--eb-white-15);
+			backdrop-filter: blur(var(--eb-blur));
+		}
+
+		.sPromo__card-badge {
+			position: static;
+			top: auto;
+			left: auto;
+			margin-top: auto;
+			color: var(--eb-ink);
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		&__grid {
+			gap: rem(10);
+		}
+
+		&__row--bottom {
+			flex-direction: row;
+			align-items: stretch;
+			gap: rem(10);
+
+			// Грабля: flex:1 0 0 без брейкпоинта схлопывает карточки на мобилке —
+			// значение только здесь, внутри lg+.
+			.sPromo__card {
+				flex: 1 0 0;
+				min-width: 0;
+			}
+		}
+
+		&__card {
+			aspect-ratio: auto;
+			height: rem(740);
+		}
+
+		&__card-body {
+			padding: rem(40);
+		}
+
+		&__card--outlet .sPromo__card-body {
+			flex: 1 0 auto;
+			align-self: stretch;
+			width: rem(320);
+			max-width: none;
+			height: 100%;
+			margin-block: 0;
+			padding: rem(40);
+			border-radius: var(--eb-radius-badge);
+		}
+	}
+}
+// end .sPromo

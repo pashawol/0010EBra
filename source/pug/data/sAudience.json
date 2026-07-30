@@ -1,0 +1,49 @@
+{
+	"sAudience": {
+		"title": "Кому помогает<br>Esthetic Bra",
+		"widgetText": "Делаем женщин счастливее каждый день",
+		"cards": [
+			{
+				"mod": "small-breast",
+				"text": "Маленькая<br>грудь",
+				"image": "card-small-breast.webp"
+			},
+			{
+				"mod": "sensitive-skin",
+				"text": "Чувствительная<br>кожа",
+				"image": "card-sensitive-skin.webp",
+				"arrow": true
+			},
+			{
+				"mod": "big-breast",
+				"text": "Большая<br>грудь",
+				"image": "card-big-breast.webp"
+			},
+			{
+				"mod": "postpartum",
+				"text": "После родов",
+				"image": "card-postpartum.webp"
+			},
+			{
+				"mod": "teens",
+				"text": "Подростки",
+				"image": "card-teens.webp"
+			},
+			{
+				"mod": "asymmetry",
+				"text": "Асимметрия<br>груди",
+				"image": "card-asymmetry.webp"
+			},
+			{
+				"mod": "sport",
+				"text": "Спорт и<br>активная жизнь",
+				"image": "card-sport.webp"
+			}
+		],
+		"avatars": [
+			"avatar-1.webp",
+			"avatar-2.webp",
+			"avatar-3.webp"
+		]
+	}
+}

@@ -1,0 +1,77 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sBooking block > matches HTML snapshot 1`] = `
+"
+<!-- start sBooking-->
+<section class="sBooking eb-theme eb-theme--dark section" id="sBooking">
+  <div class="sBooking__media" aria-hidden="true">
+    <picture>
+      <source media="(min-width: 992px)" srcset="img/sBooking/bg-desktop.webp"/><img class="sBooking__photo" src="img/sBooking/bg-mobile.webp" alt="" loading="lazy"/>
+    </picture>
+  </div>
+  <div class="sBooking__scrim" aria-hidden="true">
+  </div>
+  <svg class="icon icon-eb-monogram  sBooking__decor" aria-hidden="true">
+    <use xlink:href="img/svg/sprite.svg#eb-monogram"></use>
+  </svg>
+  <div class="container sBooking__inner">
+    <h2 class="sBooking__title"><span class="visually-hidden">Каждая женщина заслуживает идеального белья</span><span class="sBooking__title-main" aria-hidden="true">Каждая женщина<br>заслуживает...</span></h2><span class="sBooking__title-tail" aria-hidden="true">идеального<br>белья</span>
+    <div class="sBooking__card eb-theme eb-theme--light">
+      <svg class="icon icon-eb-monogram  sBooking__card-decor" aria-hidden="true">
+        <use xlink:href="img/svg/sprite.svg#eb-monogram"></use>
+      </svg>
+      <form class="sBooking__form" id="sBookingForm" novalidate="novalidate" onsubmit="return false" data-booking-form="data-booking-form">
+        <p class="sBooking__form-title">Записаться на брафиттинг</p>
+        <fieldset class="sBooking__step sBooking__step--contacts">
+          <legend class="sBooking__step-title">Контакты для связи</legend>
+          <div class="sBooking__field">
+            <input class="sBooking__field-input" id="sBookingName" type="text" name="name" placeholder=" " required="required" autocomplete="name" aria-describedby="sBookingNameError"/>
+            <label class="sBooking__field-label" for="sBookingName">Имя</label><span class="sBooking__field-error" id="sBookingNameError" role="alert">Введите имя</span>
+          </div>
+          <div class="sBooking__field">
+            <input class="sBooking__field-input" id="sBookingPhone" type="tel" name="phone" placeholder=" " required="required" autocomplete="tel" aria-describedby="sBookingPhoneError"/>
+            <label class="sBooking__field-label" for="sBookingPhone">Телефон</label><span class="sBooking__field-error" id="sBookingPhoneError" role="alert">Введите телефон в формате +7 (999) 999-99-99</span>
+          </div>
+        </fieldset>
+        <fieldset class="sBooking__step sBooking__step--time">
+          <legend class="sBooking__step-title"><span class="sBooking__step-title-text">Когда вам позвонить?</span><span class="sBooking__time-hint" id="sBookingTimeHint" role="status" hidden="hidden">Выберите время</span>
+          </legend>
+          <div class="sBooking__time" role="group" aria-describedby="sBookingTimeHint">
+            <div class="sBooking__time-row sBooking__time-row--asap">
+              <input class="sBooking__time-input" id="sBookingTime-asap" type="radio" name="timeSlot" value="asap" required="required"/>
+              <label class="sBooking__time-option sBooking__time-option--wide" for="sBookingTime-asap">В ближайшее время
+              </label>
+            </div>
+            <div class="sBooking__time-row sBooking__time-row--slots">
+              <div class="sBooking__time-cell">
+                <input class="sBooking__time-input" type="radio" name="timeSlot" id="sBookingTime-10-12" value="10-12" required="required"/>
+                <label class="sBooking__time-option" for="sBookingTime-10-12">10:00-12:00</label>
+              </div>
+              <div class="sBooking__time-cell">
+                <input class="sBooking__time-input" type="radio" name="timeSlot" id="sBookingTime-12-16" value="12-16" required="required"/>
+                <label class="sBooking__time-option" for="sBookingTime-12-16">12:00-16:00</label>
+              </div>
+              <div class="sBooking__time-cell">
+                <input class="sBooking__time-input" type="radio" name="timeSlot" id="sBookingTime-16-20" value="16-20" required="required"/>
+                <label class="sBooking__time-option" for="sBookingTime-16-20">16:00-20:00</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="sBooking__consent">
+          <input class="sBooking__consent-input" id="sBookingConsent" type="checkbox" name="consent" required="required" aria-describedby="sBookingConsentError"/>
+          <label class="sBooking__consent-label" for="sBookingConsent"><span class="sBooking__consent-box">
+            <svg class="icon icon-square-check-big  sBooking__consent-icon">
+              <use xlink:href="img/svg/sprite.svg#square-check-big"></use>
+            </svg></span><span class="sBooking__consent-text">Согласие на обработку 
+            <a class="sBooking__consent-link" href="#">персональных данных
+            </a></span>
+          </label><span class="sBooking__consent-error" id="sBookingConsentError" role="alert">Нужно согласие на обработку данных</span>
+        </div>
+        <button class="eb-btn eb-btn--primary sBooking__submit" type="submit"><span class="eb-btn__label">Записаться</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- end sBooking-->"
+`;

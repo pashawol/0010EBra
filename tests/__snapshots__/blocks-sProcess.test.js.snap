@@ -1,0 +1,57 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sProcess block > matches HTML snapshot 1`] = `
+"
+<!-- start sProcess-->
+<section class="sProcess section" id="sProcess">
+  <div class="container">
+    <div class="eb-title sProcess__title">
+      <h2>Что происходит на брафиттинге</h2>
+    </div>
+    <div class="sProcess__steps">
+      <div class="sProcess__step">
+        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-1-measure.webp" alt="Измерение" loading="lazy"/>
+        </div>
+        <div class="sProcess__step-content"><span class="sProcess__step-num">01</span>
+          <div class="sProcess__step-ruler" aria-hidden="true">
+          </div><span class="sProcess__step-label">Измерение</span>
+        </div>
+      </div>
+      <div class="sProcess__step">
+        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-2-fitting.webp" alt="Примерка" loading="lazy"/>
+        </div>
+        <div class="sProcess__step-content"><span class="sProcess__step-num">02</span>
+          <div class="sProcess__step-ruler" aria-hidden="true">
+          </div><span class="sProcess__step-label">Примерка</span>
+        </div>
+      </div>
+      <div class="sProcess__step">
+        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-3-selection.webp" alt="Подбор" loading="lazy"/>
+        </div>
+        <div class="sProcess__step-content"><span class="sProcess__step-num">03</span>
+          <div class="sProcess__step-ruler" aria-hidden="true">
+          </div><span class="sProcess__step-label">Подбор</span>
+        </div>
+      </div>
+      <div class="sProcess__step">
+        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-4-recommend.webp" alt="Рекомендации" loading="lazy"/>
+        </div>
+        <div class="sProcess__step-content"><span class="sProcess__step-num">04</span>
+          <div class="sProcess__step-ruler" aria-hidden="true">
+          </div><span class="sProcess__step-label">Рекомендации</span>
+        </div>
+      </div>
+    </div>
+    <div class="sProcess__widget">
+      <div class="sProcess__widget-text"><span class="sProcess__widget-label">Видео обзор</span><span class="sProcess__widget-title">О брафиттинге</span>
+      </div>
+      <button class="eb-icon-btn eb-icon-btn--solid" type="button" aria-label="О брафиттинге">
+        <svg class="icon icon-play ">
+          <use xlink:href="img/svg/sprite.svg#play"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+<!-- end sProcess-->"
+`;

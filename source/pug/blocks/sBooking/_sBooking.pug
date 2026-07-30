@@ -1,0 +1,131 @@
+//- Section «Каждая женщина заслуживает... идеального белья» — форма записи на
+//- брафиттинг. Node 497:931 (desktop 1920×1080), мобильный 692:1129 → 739:898
+//- (375×1080). Тёмная бордовая секция (.eb-theme--dark) на фото моделей,
+//- поверх — белая карточка формы (локально возвращает светлые контекстные
+//- роли, тот же приём, что и .footer__cta — см. _footer.scss).
+//-
+//- Заголовок семантически один h2 («Каждая женщина заслуживает идеального
+//- белья»), читается скринридером одной строкой через .visually-hidden;
+//- видимые половины — декоративные aria-hidden куски по композиции макета
+//- (тот же приём, что и sHero__title/sHero__decor).
+//-
+//- Решение заказчика (docs/PLAN.md §1.1): форма — только валидация и
+//- состояния (Constraint Validation API), БЕЗ реальной отправки. Кнопка —
+//- type="submit" (html-validate wcag/h32 требует submit-контрол у формы),
+//- а от реальной отправки страхует onsubmit="return false" инлайново —
+//- работает независимо от того, подключится ли booking.js (см. заявку в
+//- docs/coordination/sBooking.md про подключение source/js/booking.js в
+//- js-css.pug — layout/* вне зоны блока).
+//-
+//- Маска телефона — НЕ своя: input[type="tel"] уже попадает под глобальный
+//- JSCCommon.inputMask() (source/js/JSCCommon.js, вызывается из common.js на
+//- каждой странице через JSCCommon.init()) — Inputmask "+9(999)999-99-99"
+//- навешивается сама, без кода в booking.js.
+mixin sBooking(data)
+	- data = data || sBooking
+	// start sBooking
+	+b.SECTION.sBooking.eb-theme--dark.section#sBooking&attributes(attributes)
+		+e.DIV.media(aria-hidden="true")
+			picture
+				source(media="(min-width: 992px)" srcset=data.photo.desktop)
+				img.sBooking__photo(src=data.photo.mobile alt="" loading="lazy")
+		+e.DIV.scrim(aria-hidden="true")
+		+icon('eb-monogram').sBooking__decor(aria-hidden="true")
+		.container.sBooking__inner
+			h2.sBooking__title
+				span.visually-hidden= data.titleAccessible
+				span.sBooking__title-main(aria-hidden="true")!= data.titleMain
+			span.sBooking__title-tail(aria-hidden="true")!= data.titleTail
+			//- eb-theme--light: карточка светлая внутри тёмной секции. Без сброса
+			//- она наследует роли тёмной темы, и текст ошибки становится
+			//- светло-красным на белом (замерено: контраст 1.7 при норме 4.5).
+			+e.DIV.card.eb-theme--light
+				+icon('eb-monogram').sBooking__card-decor(aria-hidden="true")
+				//- novalidate — своя визуальная валидация через Constraint Validation
+				//- API (booking.js), не браузерные тултипы по умолчанию.
+				form.sBooking__form#sBookingForm(novalidate onsubmit="return false" data-booking-form)
+					p.sBooking__form-title= data.form.title
+
+					fieldset.sBooking__step.sBooking__step--contacts
+						legend.sBooking__step-title= data.form.step1Title
+
+						+e.DIV.field
+							//- input ПЕРЕД label намеренно: floating-label CSS держится на
+							//- селекторе input:not(:placeholder-shown) ~ label (сосед ПОСЛЕ
+							//- input), настоящий placeholder=" " (не пусто — иначе
+							//- :placeholder-shown не сработает в части браузеров).
+							input#sBookingName.sBooking__field-input(
+								type="text"
+								name="name"
+								placeholder=" "
+								required
+								autocomplete="name"
+								aria-describedby="sBookingNameError"
+							)
+							label.sBooking__field-label(for="sBookingName")= data.form.nameLabel
+							span.sBooking__field-error#sBookingNameError(role="alert")= data.form.errors.name
+
+						+e.DIV.field
+							input#sBookingPhone.sBooking__field-input(
+								type="tel"
+								name="phone"
+								placeholder=" "
+								required
+								autocomplete="tel"
+								aria-describedby="sBookingPhoneError"
+							)
+							label.sBooking__field-label(for="sBookingPhone")= data.form.phoneLabel
+							span.sBooking__field-error#sBookingPhoneError(role="alert")= data.form.errors.phone
+
+					fieldset.sBooking__step.sBooking__step--time
+						//- legend обязан быть ПЕРВЫМ прямым потомком fieldset (html-validate
+						//- wcag/h71) — чип-подсказка живёт ВНУТРИ legend как inline-контент
+						//- (legend допускает phrasing content), а не в обёртке рядом с ним;
+						//- раскладка «текст слева / чип справа» — flex прямо на legend.
+						legend.sBooking__step-title
+							+e.SPAN.step-title-text= data.form.step2Title
+							//- Чип-подсказка (652:1777) — видна, только пока шаг «время» не
+							//- заполнен И была попытка отправки (booking.js). hidden по
+							//- умолчанию — безопасный фолбэк без JS: чип не появляется, что
+							//- совпадает со скриншотом "Default" (652:1679), где его вообще нет.
+							span.sBooking__time-hint#sBookingTimeHint(role="status" hidden)= data.form.timeHint
+
+						+e.DIV.time(role="group" aria-describedby="sBookingTimeHint")
+							+e.DIV.time-row.--asap
+								input.sBooking__time-input#sBookingTime-asap(
+									type="radio"
+									name="timeSlot"
+									value=data.form.time.asap.id
+									required
+								)
+								+e.LABEL.time-option.--wide(for="sBookingTime-asap")= data.form.time.asap.label
+							+e.DIV.time-row.--slots
+								each opt in data.form.time.slots
+									- var optId = "sBookingTime-" + opt.id
+									+e.DIV.time-cell
+										input.sBooking__time-input(type="radio" name="timeSlot" id=optId value=opt.id required)
+										label.sBooking__time-option(for=optId)= opt.label
+
+					+e.DIV.consent
+						input#sBookingConsent.sBooking__consent-input(
+							type="checkbox"
+							name="consent"
+							required
+							aria-describedby="sBookingConsentError"
+						)
+						label.sBooking__consent-label(for="sBookingConsent")
+							+e.SPAN.consent-box
+								+icon('square-check-big').sBooking__consent-icon
+							+e.SPAN.consent-text
+								= data.form.consentPre
+								+e.A.consent-link(href=data.form.consentHref)= data.form.consentLink
+						span.sBooking__consent-error#sBookingConsentError(role="alert")= data.form.errors.consent
+
+					//- Литеральные, УЖЕ составленные классы (не "--primary" через bemto) —
+					//- этот button не проходит через +b/+e, а bemto-модификаторы
+					//- работают только внутри мixin-вызовов +b/+e (иначе получаем
+					//- баг footer.md §4: "--secondary" как отдельный литеральный класс,
+					//- не "eb-btn--secondary"; проверено рендером в этом же ревью).
+					button.eb-btn.eb-btn--primary.sBooking__submit(type="submit")
+						span.eb-btn__label= data.form.submit
+	// end sBooking

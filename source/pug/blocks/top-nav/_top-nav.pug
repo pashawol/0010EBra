@@ -1,0 +1,131 @@
+//- ---------------------------------------------------------------------------
+//- Фикс-хедер (318:527 desktop / 777:28 mobile) + попап каталога
+//- (607:2934 level1 / 607:3054 level2, hover-спека 609:4165).
+//- Данные: source/pug/data/header.json → global `header`.
+//-
+//- .top-nav — САМ фиксированный бар (не .header): триггеры внутри него
+//- ([data-catalog-open]) открывают попап через source/js/header.js, а по
+//- scroll его переключает уже готовый
+//- window→JSCCommon.setFixedNav() (source/js/JSCCommon.js, общий файл, не
+//- мой) — он ищет `.top-nav` и добавляет `.fixed` при scrollY>0.
+//- Переиспользуем готовый механизм вместо своего скролл-слушателя.
+//-
+//- Прозрачный поверх первого экрана = дефолт (.top-nav без .fixed): белый
+//- текст/иконки, фон transparent — первый экран (sHero) тёмный. При скролле
+//- `.fixed` включает светлый фон и тёмный текст.
+//-
+//- Своя интерактивность (открытие/закрытие попапа, hover/focus level2,
+//- мобильный drill-down, focus trap, Escape) — source/js/header.js,
+//- подключение общего js-css.pug — заявка в docs/coordination/header.md.
+//- ---------------------------------------------------------------------------
+
+//- Панель level2 (подменю) для категории с детьми. Рендерится один раз,
+//- порядковый index совпадает с индексом категории в level1-списке —
+//- это же значение читает header.js как data-catalog-panel/-trigger.
+mixin catalogPanel(item, index)
+	.catalog-modal__panel(data-catalog-panel=index class=index === 0 ? '--active' : null)
+		.catalog-modal__panel-head.d-lg-none
+			button.catalog-modal__back(type="button" data-catalog-back)
+				+icon('arrow-right', 'catalog-modal__back-icon')
+				span= item.title
+		ul.catalog-modal__panel-list
+			li.catalog-modal__panel-item
+				a.catalog-modal__panel-link(class="--all" href=item.children.viewAllHref || '#')= item.children.viewAllLabel || 'Смотреть все'
+			each sub in item.children.items
+				li.catalog-modal__panel-item
+					a.catalog-modal__panel-link(href=sub.href || '#')= sub.name
+		if item.children.image
+			.catalog-modal__panel-media
+				img(src=item.children.image.src alt=item.children.image.alt || '' loading="lazy")
+
+//- Строка level1-списка. Категории без `children` — обычные ссылки-заглушки
+//- (см. §1 плана — все ссылки меню это `#`), категории с `children` получают
+//- data-catalog-trigger, по которому header.js переключает level2-панель.
+mixin catalogItem(item, index)
+	li.catalog-modal__item(class=item.children ? '--has-children' : null)
+		a.catalog-modal__item-link(
+			href=item.href || '#'
+			class=(index === 0 && item.children) ? '--active' : null
+			data-catalog-trigger=item.children ? index : null
+			aria-haspopup=item.children ? 'true' : null
+			aria-expanded=item.children ? (index === 0 ? 'true' : 'false') : null
+		)
+			span.catalog-modal__item-title= item.title
+			if item.count
+				span.catalog-modal__item-count= item.count
+			if item.children
+				+icon('arrow-right', 'catalog-modal__item-arrow')
+
+mixin top-nav(data)
+	- data = data || header
+	// start top-nav
+	+b.top-nav&attributes(attributes)
+		//- НЕ Bootstrap .container — тот центрируется в узком max-width и уводит
+		//- burger+каталог группу от истинного левого края к центру, откуда она
+		//- налезает на абсолютно центрированное лого. В макете (499:1118) бар
+		//- почти во всю ширину (x=10 при 1920 канвасе) — свой паддинг через
+		//- var(--eb-gutter), не контейнер.
+		.top-nav__inner
+			//- burger+каталог сгруппированы в ОДИН flex-item: у .top-nav__inner
+			//- justify-content:space-between, и с 3 "плавающими" flex-элементами
+			//- (burger, catalog-btn, actions — лого position:absolute и в раскладке
+			//- не участвует) средний элемент (catalog-btn) уезжал на 50% ширины
+			//- бара, прямо под центрированное лого. Группировка оставляет ровно
+			//- 2 flex-item (start/end) — лого центрируется независимо, без коллизии.
+			.top-nav__start
+				//- Бургер. На мобилке — единственный триггер каталога (в 777:28 нет
+				//- отдельной кнопки «Каталог», см. docs/coordination/header.md):
+				//- открывает тот же #catalogModal, что и десктопная пилюля ниже.
+				button.top-nav__burger(
+					type="button"
+					aria-label=data.burgerLabel || 'Меню'
+					aria-haspopup="dialog"
+					aria-expanded="false"
+					aria-controls="catalogModal"
+					data-catalog-open
+				)
+					+icon('align-justify', 'top-nav__burger-icon')
+
+				//- Пилюля «Каталог» — только десктоп (d-none.d-lg-inline-flex),
+				//- на мобилке функцию берёт бургер (см. выше).
+				button.top-nav__catalog-btn.d-none.d-lg-inline-flex(
+					type="button"
+					aria-haspopup="dialog"
+					aria-expanded="false"
+					aria-controls="catalogModal"
+					data-catalog-open
+				)
+					+icon('gallery-horizontal-end', 'top-nav__catalog-btn-icon')
+					span.top-nav__catalog-btn-label= data.catalog.label
+
+			//- Лого только на десктопе — в мобильной ноде 777:28 логотипа в строке
+			//- хедера нет (metadata: Frame 816 несёт только burger + 4 иконки).
+			a.top-nav__logo.d-none.d-lg-block(href=data.logo.href || '#')= data.logo.text
+
+			nav.top-nav__actions(aria-label="Аккаунт и покупки")
+				each action in data.actions
+					a.top-nav__action(href=action.href || '#' aria-label=action.label data-action=action.action)
+						+icon(action.icon, 'top-nav__action-icon')
+
+		//- ------------------------------------------------------------------
+		//- Попап каталога. level1 — список категорий; level2 — панель подменю.
+		//- Десктоп: hover/focus по категории с детьми переключает панель
+		//- (609:4165). Мобилка: клик — drill-down (level2 наезжает справа,
+		//- заголовок "назад" ведёт на level1).
+		//- ------------------------------------------------------------------
+		#catalogModal.catalog-modal(role="dialog" aria-modal="true" aria-label=data.catalog.label tabindex="-1" hidden)
+			.catalog-modal__backdrop(data-catalog-close)
+			.catalog-modal__dialog
+				.catalog-modal__head
+					span.catalog-modal__title= data.catalog.label
+					button.catalog-modal__close(type="button" aria-label="Закрыть каталог" data-catalog-close)
+						+icon('x', 'catalog-modal__close-icon')
+				.catalog-modal__body
+					ul.catalog-modal__list
+						each item, index in data.catalog.categories
+							+catalogItem(item, index)
+					.catalog-modal__panels
+						each item, index in data.catalog.categories
+							if item.children
+								+catalogPanel(item, index)
+	// end top-nav

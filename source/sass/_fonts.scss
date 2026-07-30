@@ -1,0 +1,81 @@
+// Шрифты проекта: Inter (UI/текст) + Vetrino (заголовки).
+//
+// Vetrino — коммерческий, файлов пока нет. Стратегия подмены без перевёрстки:
+// 1. Объявлен @font-face "Vetrino" — как только woff2 положат в source/fonts/,
+//    он подхватится сам, править разметку и стили не придётся.
+// 2. Пока файла нет, браузер уходит на "VetrinoFallback" — тот же Georgia,
+//    но с метрик-дескрипторами, чтобы высота строки и переносы совпадали.
+//
+// ВАЖНО: значения size-adjust/ascent-override ниже — предварительные.
+// Когда приедет настоящий Vetrino, метрики надо снять с файла и подставить сюда
+// (иначе после подмены заголовки 124/76px поедут по высоте и переносам).
+
+// --- Inter -------------------------------------------------------------------
+@font-face {
+	font-family: "Inter";
+	src:
+		url("#{$addr}Inter-cyrillic-400.woff2") format("woff2"),
+		local("Inter");
+	unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Inter";
+	src:
+		url("#{$addr}Inter-cyrillic-500.woff2") format("woff2"),
+		local("Inter Medium");
+	unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+// --- Vetrino (заголовки) -----------------------------------------------------
+@font-face {
+	font-family: "Vetrino";
+	src:
+		local("Vetrino"),
+		url("#{$addr}Vetrino-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+// Метрик-совместимая заглушка до приезда Vetrino.
+@font-face {
+	font-family: "VetrinoFallback";
+	src: local("Georgia"), local("Times New Roman");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	size-adjust: 92%;
+	ascent-override: 88%;
+	descent-override: 22%;
+	line-gap-override: 0%;
+}
+
+// font-weight helper:
+// 400 Normal · 500 Medium
+
+// Латинские подмножества Inter — отдельными @font-face с unicode-range,
+// чтобы браузер не тянул кириллицу для латиницы и наоборот.
+@font-face {
+	font-family: "Inter";
+	src: url("#{$addr}Inter-latin-400.woff2") format("woff2"), local("Inter");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2212;
+}
+
+@font-face {
+	font-family: "Inter";
+	src: url("#{$addr}Inter-latin-500.woff2") format("woff2"), local("Inter Medium");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2212;
+}

@@ -1,0 +1,74 @@
+//- Section «Акции» — node 385:1516 (desktop, 1790×1490), мобильный набор
+//- баннеров «Banners» 726:433 внутри 692:1129 (345×835, 3 карточки в столбец).
+//-
+//- 3 карточки-баннера — тот же компонент Figma Banner (669:3449, 669:3523),
+//- что уже свёрстан в sGifts (см. взаимную заявку на общий +ebBanner в
+//- docs/coordination/sPromo.md и docs/coordination/sGifts.md). Структура и
+//- именование элементов (`__card`, `__card-img`, `-badge`) намеренно
+//- совпадают с sGifts, чтобы координатору было проще свести их в один атом.
+//-
+//- Верхняя карточка «week» («До 20%») — единственная реально тёмная
+//- (.eb-theme--dark, белый текст на бордовом фото). Нижние две («gift»,
+//- «outlet») визуально светлее (фото + белая frosted-панель, тёмный текст
+//- var(--eb-ink)) — по скриншоту Figma это НЕ тот же тёмный паттерн, что у
+//- «week», хотя бриф называл «outlet» тёмной карточкой; сверено по
+//- get_design_context(384:1409) — компромисс описан в coordination-файле.
+
+//- Локальные inline-иконки для меток («Комплект недели»/«Подарок»/«Outlet»).
+//- Не через общий svg-спрайт (source/svg/* — вне зоны блока, в спрайте таких
+//- иконок нет): это единственные три места их использования, инлайн exact
+//- Lucide-паттерн (Award/Gift/Percent), stroke=currentColor вместо literal
+//- white — цвет наследуется от контекста бейджа.
+mixin sPromoIcon(name)
+	svg(class="sPromo__icon sPromo__icon--" + name width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true")&attributes(attributes)
+		case name
+			when 'award'
+				path(d="M15.477 12.8896L16.992 21.4156C17.009 21.516 16.9949 21.6192 16.9516 21.7114C16.9084 21.8036 16.838 21.8803 16.7499 21.9314C16.6619 21.9825 16.5603 22.0055 16.4588 21.9974C16.3573 21.9892 16.2607 21.9502 16.182 21.8856L12.602 19.1986C12.4292 19.0695 12.2192 18.9998 12.0035 18.9998C11.7878 18.9998 11.5778 19.0695 11.405 19.1986L7.819 21.8846C7.74032 21.9491 7.64386 21.988 7.54249 21.9962C7.44113 22.0044 7.33967 21.9815 7.25166 21.9305C7.16365 21.8796 7.09328 21.803 7.04992 21.711C7.00656 21.619 6.99229 21.516 7.009 21.4156L8.523 12.8896" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+				path(d="M7.75736 12.2426C6.63214 11.1174 6 9.5913 6 8C6 6.4087 6.63214 4.88258 7.75736 3.75736C8.88258 2.63214 10.4087 2 12 2C13.5913 2 15.1174 2.63214 16.2426 3.75736C17.3679 4.88258 18 6.4087 18 8C18 9.5913 17.3679 11.1174 16.2426 12.2426C15.1174 13.3679 13.5913 14 12 14C10.4087 14 8.88258 13.3679 7.75736 12.2426Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+			when 'gift'
+				path(d="M4 8H20C20 8 21 8 21 9V11C21 11 21 12 20 12H4C4 12 3 12 3 11V9C3 9 3 8 4 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+				path(d="M12 8V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+				path(d="M19 12V19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+				path(d="M7.5 8.00044C6.83696 8.00044 6.20107 7.73705 5.73223 7.2682C5.26339 6.79936 5 6.16348 5 5.50044C5 4.8374 5.26339 4.20151 5.73223 3.73267C6.20107 3.26383 6.83696 3.00044 7.5 3.00044C8.46469 2.98363 9.41003 3.4517 10.2127 4.3436C11.0154 5.2355 11.6383 6.50984 12 8.00044C12.3617 6.50984 12.9846 5.2355 13.7873 4.3436C14.59 3.4517 15.5353 2.98363 16.5 3.00044C17.163 3.00044 17.7989 3.26383 18.2678 3.73267C18.7366 4.20151 19 4.8374 19 5.50044C19 6.16348 18.7366 6.79936 18.2678 7.2682C17.7989 7.73705 17.163 8.00044 16.5 8.00044" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+			when 'percent'
+				path(d="M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+				path(d="M4.73223 8.26777C4.26339 7.79893 4 7.16304 4 6.5C4 5.83696 4.26339 5.20107 4.73223 4.73223C5.20107 4.26339 5.83696 4 6.5 4C7.16304 4 7.79893 4.26339 8.26777 4.73223C8.73661 5.20107 9 5.83696 9 6.5C9 7.16304 8.73661 7.79893 8.26777 8.26777C7.79893 8.73661 7.16304 9 6.5 9C5.83696 9 5.20107 8.73661 4.73223 8.26777Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+				path(d="M15 17.5C15 18.163 15.2634 18.7989 15.7322 19.2678C16.2011 19.7366 16.837 20 17.5 20C18.163 20 18.7989 19.7366 19.2678 19.2678C19.7366 18.7989 20 18.163 20 17.5C20 16.837 19.7366 16.2011 19.2678 15.7322C18.7989 15.2634 18.163 15 17.5 15C16.837 15 16.2011 15.2634 15.7322 15.7322C15.2634 16.2011 15 16.837 15 17.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+
+//- Метка «Комплект недели»/«Подарок»/«Outlet»: внешняя translucent-пилюля
+//- (иконка) + внутренняя белая пилюля (подпись) — двухтоновый бейдж из
+//- макета, отличается от общего +ebTag (тот однотонный), поэтому локальный.
+mixin sPromoBadge(badge)
+	+e.DIV.card-badge&attributes(attributes)
+		+sPromoIcon(badge.icon).sPromo__card-badge-icon
+		+e.SPAN.card-badge-label= badge.text
+
+//- Карточка-баннер. badgeInBody: true у «outlet» — там метка лежит внутри
+//- frosted-панели (заполняет нижнюю кромку колонки), у «week»/«gift» метка —
+//- отдельный слой поверх фото в левом верхнем углу (см. get_design_context).
+mixin sPromoBanner(card)
+	+e.DIV(class="card--" + card.mod)&attributes(attributes)
+		+img(card.image).sPromo__card-img
+		if !card.badgeInBody
+			+sPromoBadge(card.badge)
+		+e.DIV.card-body
+			+e.DIV.card-title
+				if card.title.lead
+					+e.SPAN.card-title-lead= card.title.lead
+				+e.SPAN.card-title-value= card.title.value
+			+e.P.card-text= card.text
+			if card.badgeInBody
+				+sPromoBadge(card.badge)
+
+mixin sPromo(data)
+	- data = data || sPromo
+	// start sPromo
+	+b.SECTION.sPromo.section#sPromo&attributes(attributes)
+		.container
+			+e.DIV.grid
+				+e.DIV.row--top
+					+sPromoBanner(data.cards[0]).eb-theme--dark
+				+e.DIV.row--bottom
+					+sPromoBanner(data.cards[1])
+					+sPromoBanner(data.cards[2])
+	// end sPromo

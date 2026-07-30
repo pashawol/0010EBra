@@ -1,0 +1,39 @@
+{
+	"sTestimonials": {
+		"title": "Отзывы",
+		"videoLabel": "Видео отзывы",
+		"placeholderNote": "Сторонний модуль с отзывами",
+		"popupTitle": "Видео отзывы",
+		"slides": [
+			{
+				"poster": "img/sTestimonials/poster-1.webp",
+				"posterAlt": "Александра, 46 лет — кадр видео-отзыва",
+				"quote": "Нестандартная форма груди",
+				"person": { "name": "Александра", "age": "46 года" }
+			},
+			{
+				"poster": "img/sTestimonials/poster-2.webp",
+				"posterAlt": "Анна — кадр видео-отзыва",
+				"quote": "После беременности",
+				"person": { "name": "Анна", "age": "29 лет" }
+			},
+			{
+				"poster": "img/sTestimonials/poster-3.webp",
+				"posterAlt": "Марина в кафе — кадр видео-отзыва",
+				"quote": "Асимметрия груди",
+				"person": { "name": "Марина", "age": "27 лет" }
+			},
+			{
+				"poster": "img/sTestimonials/poster-4.webp",
+				"posterAlt": "Николь — кадр видео-отзыва",
+				"quote": "Сложно подобрать размер",
+				"person": { "name": "Николь", "age": "31 год" }
+			}
+		],
+		"popupPoster": {
+			"src": "img/sTestimonials/popup-poster.webp",
+			"alt": "Александра, крупный план — видео-отзыв"
+		},
+		"_note": "Все 4 слайда и попап — реальный контент из макета sTestimonials (495:336 / 682:238), не мок: имена, возраст и текст-проблема сняты с карточек 'Video (Preview)' в Figma, фото экспортированы через download_assets. Видеофайлов заказчик не предоставил (см. PLAN §1) — src у <source> пустой, см. docs/coordination/sTestimonials.md."
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"sFavorites": {
+		"title": "Самые любимые модели",
+		"products": [
+			{
+				"image": "img/sFavorites/fullcup.webp",
+				"imageAlt": "Full Cup Side Support Bra",
+				"badge": { "type": "new", "text": "New" },
+				"swatch": { "color": "#2C2B2B" },
+				"title": "Full Cup Side Support Bra",
+				"price": "7 400 ₽"
+			},
+			{
+				"image": "img/sFavorites/maribel.webp",
+				"imageAlt": "Maribel big soft",
+				"swatch": { "color": "#F5E8D9", "count": 3 },
+				"title": "Maribel big soft",
+				"price": "10 500 ₽"
+			},
+			{
+				"image": "img/sFavorites/sophia.webp",
+				"imageAlt": "Sophia Full Cup Bra",
+				"badge": { "type": "sale", "text": "-16%" },
+				"swatch": { "color": "#F5E8D9", "count": 2 },
+				"title": "Sophia Full Cup Bra",
+				"price": "11 200 ₽",
+				"oldPrice": "14 900 ₽"
+			},
+			{
+				"image": "img/sFavorites/linda.webp",
+				"imageAlt": "Бюстгальтер Linda big soft",
+				"badge": { "type": "new", "text": "New" },
+				"swatch": { "color": "#2C2B2B", "count": 4 },
+				"title": "Бюстгальтер Linda big soft",
+				"price": "8 400 ₽"
+			}
+		]
+	}
+}

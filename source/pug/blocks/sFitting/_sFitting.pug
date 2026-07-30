@@ -1,0 +1,65 @@
+//- Section «Подбор идеального варианта» — node 313:442 (desktop 1920×1080),
+//- мобильный вариант 692:1129 → 700:1316 (375×974, внутри полной мобильной страницы).
+//- Бежевая секция (--eb-beige): слева заголовок + абзац + факт «80%» (+ebFact),
+//- справа фото модели с 3 хотспотами (+ebHotspot) и двумя изогнутыми SVG-стрелками.
+mixin sFitting(data)
+	- data = data || sFitting
+	// start sFitting
+	+b.SECTION.sFitting.section#sFitting&attributes(attributes)
+		//- Full-bleed декоративный фон (только десктоп, 313:443/313:444 в макете) —
+		//- размытое фото модели + полупрозрачная белая вуаль поверх. На мобиле
+		//- в макете (700:1316) фона нет, только сплошной --eb-beige — скрыт медиа-запросом.
+		+e.DIV.bg
+			img.sFitting__bg-photo(src="img/sFitting/bg-desktop.webp" alt="" loading="lazy" aria-hidden="true")
+		.container
+			+e.DIV.grid
+				//- Три отдельных grid-item'а (не вложенных друг в друга): на мобиле
+				//- порядок сверху вниз — text → photo → fact (700:1327/700:1319/700:1331),
+				//- на десктопе fact уходит вниз левой колонки, а photo — во всю высоту
+				//- правой. Разной вложенностью не добиться обоих порядков одной разметкой,
+				//- поэтому раскладка — через grid-template-areas в _sFitting.scss.
+				+e.DIV.text
+					+ebTitle(data.title).sFitting__title
+					+e.P.lead= data.text
+
+				+e.DIV.photo-wrap
+					//- Мини-подписи «Цвет / Размер» — только десктоп (нет в мобильном узле 700:1316).
+					+e.DIV.meta
+						each info in data.miniInfo
+							+e.DIV.meta-item
+								+e.SPAN.meta-label= info.label
+								+e.SPAN.meta-value= info.value
+
+					//- Рамка фото — фиксированный aspect-ratio (не % от высоты секции),
+					//- чтобы хотспоты (позиционируются в % от ЭТОЙ рамки) не уезжали,
+					//- когда секция становится выше макета из-за переносов текста (грабля §3.1).
+					+e.DIV.photo-frame
+						picture
+							source(media="(min-width: 992px)" srcset=data.photo.desktop)
+							img.sFitting__photo(src=data.photo.mobile alt=data.photo.alt loading="lazy")
+
+						//- Изогнутые стрелки-указатели — инлайн SVG-путь, выгружен из Figma
+						//- (313:476/313:477, 700:1321/700:1322), НЕ растровая картинка.
+						+e.DIV.arrow.--straight
+							include arrow-straight.svg
+						+e.DIV.arrow.--curled
+							include arrow-curled.svg
+
+						each hotspot in data.hotspots
+							//- Модификаторы переданы ОТДЕЛЬНО от базового класса (только "--mod"),
+							//- как того требует bemto (грабля §3.1 из PLAN.md): передать в class
+							//- сразу полную строку "sFitting__hotspot sFitting__hotspot--mod"
+							//- давало дубль базового класса, html-validate валил сборку (no-dup-class).
+							//- Направление карточки (лево/право от точки) считается ОТДЕЛЬНО для
+							//- desktop и mobile — точка может быть у самого края фото на одной
+							//- ширине и по центру на другой (см. sFitting.json → _note), поэтому
+							//- одновременно могут быть заданы оба модификатора.
+							//- modDesktop/modMobile могут нести НЕСКОЛЬКО токенов через пробел
+							//- (напр. "left-m up-m" — своя карточка уезжает и по X, и по Y),
+							//- поэтому "--" достраивается к каждому токену отдельно.
+							- var hsRawMods = ((hotspot.modDesktop || "") + " " + (hotspot.modMobile || "")).trim().split(/\s+/).filter(Boolean)
+							- var hsMods = hsRawMods.map(function (m) { return "--" + m }).join(" ")
+							+ebHotspot(null, hotspot.text).sFitting__hotspot(class=hsMods || null style=`--hs-x-d: ${hotspot.x}%; --hs-y-d: ${hotspot.y}%; --hs-x-m: ${hotspot.xMobile}%; --hs-y-m: ${hotspot.yMobile}%;`)
+
+				+ebFact(data.fact.value, data.fact.caption, data.fact.tag).sFitting__fact
+	// end sFitting

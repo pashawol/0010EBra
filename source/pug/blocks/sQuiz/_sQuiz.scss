@@ -1,0 +1,304 @@
+// ---------------------------------------------------------------------------
+// sQuiz — «Интерактивный квиз на базе ИИ-ассистента», node 357:242 (desktop
+// 1920×1298) / 726:151 (mobile 375×995). Светлая секция, статичная вёрстка
+// чата (docs/PLAN.md §1.1) — без анимаций и без логики.
+//
+// Асимметрия из макета: реплика посетителя (справа) и колонка ответов
+// ИИ-ассистента (слева) — это ДВА независимых ряда разной ширины со сдвигом
+// друг относительно друга (515–1405 против 815–1405 на 1920), а не общая
+// сетка в две колонки. Ряды живут в одной обёртке `&__chat` с общим
+// max-width, сами выравниваются к своему краю — так сохраняется сдвиг без
+// абсолютного позиционирования (которое поехало бы при переносе текста).
+// ---------------------------------------------------------------------------
+.sQuiz {
+	--sPB: #{rem(60)};
+	position: relative;
+	background-color: var(--eb-white);
+	overflow: hidden;
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	&__bg-photo {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.container {
+		position: relative;
+		z-index: 1;
+	}
+
+	&__header {
+		margin-bottom: rem(32);
+		text-align: center;
+	}
+
+	&__eyebrow {
+		margin-bottom: rem(8);
+		color: var(--eb-text);
+		font-size: var(--eb-caption);
+	}
+
+	&__title {
+		margin-bottom: 0;
+	}
+
+	// ---------------------------------------------------------------------
+	// Чат
+	// ---------------------------------------------------------------------
+	&__chat {
+		display: flex;
+		flex-direction: column;
+		gap: rem(24);
+		margin-bottom: rem(32);
+	}
+
+	&__row {
+		width: 100%;
+	}
+
+	// Подпись всегда над строкой (не сбоку) — своя строка текста, выровненная
+	// к тому же краю, куда прижата реплика под ней.
+	&__row-label {
+		display: block;
+		margin-bottom: rem(8);
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1;
+
+		&--assistant {
+			color: var(--eb-accent);
+		}
+
+		&--visitor {
+			text-align: right;
+		}
+	}
+
+	&__line {
+		display: flex;
+		align-items: flex-start;
+		gap: rem(10);
+		width: 100%;
+
+		&--visitor {
+			justify-content: flex-end;
+		}
+	}
+
+	// Аватар: локальная геометрия (44 → 52), не завязана на общий
+	// --eb-control-size — он используется кнопками/иконками по всему
+	// проекту без брейкпоинта, менять его ради одного блока нельзя
+	// (см. заявку в docs/coordination/sQuiz.md).
+	&__avatar {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: rem(44);
+		height: rem(44);
+		border-radius: 50%;
+
+		&--assistant {
+			background-color: var(--eb-accent);
+		}
+
+		&--visitor {
+			background-color: var(--eb-white);
+		}
+	}
+
+	&__avatar-icon {
+		width: rem(20);
+		height: rem(20);
+		color: var(--eb-text);
+	}
+
+	&__avatar-mark {
+		width: rem(30);
+		height: rem(30);
+		color: var(--eb-on-accent);
+	}
+
+	&__bubble-col {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: rem(5);
+		min-width: 0;
+
+		&--visitor {
+			align-items: flex-end;
+		}
+
+		// Растягивается на всю оставшуюся ширину строки рядом с аватаром —
+		// реплики ИИ-ассистента полноширинные (bubble--assistant: width 100%).
+		&--assistant {
+			flex: 1 1 auto;
+		}
+	}
+
+	&__messages {
+		display: flex;
+		flex-direction: column;
+		gap: rem(5);
+	}
+
+	// Маленькая точка-коннектор у основания реплики (357:250/357:272 —
+	// декоративный акцент без графических деталей, воспроизведён CSS-кругом,
+	// а не растровым ассетом — см. docs/coordination/sQuiz.md).
+	&__dot {
+		position: absolute;
+		top: 0;
+		width: rem(6);
+		height: rem(6);
+		border-radius: 50%;
+		background-color: var(--eb-white);
+		opacity: 0.75;
+
+		&--assistant {
+			left: rem(-9);
+		}
+
+		&--visitor {
+			right: rem(-9);
+		}
+	}
+
+	&__bubble {
+		display: block;
+		max-width: max-content;
+		padding: rem(15);
+		color: var(--eb-text-muted);
+		font-size: var(--eb-body);
+		line-height: 1.4;
+
+		&--assistant {
+			width: 100%;
+			border-radius: rem(6) rem(18) rem(18) rem(18);
+			background-color: var(--eb-white);
+		}
+
+		&--visitor {
+			border: 1px solid var(--eb-white);
+			border-radius: rem(18) rem(6) rem(18) rem(18);
+			background-color: var(--eb-white-35);
+			backdrop-filter: blur(var(--eb-blur));
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// Нижняя панель: пилюля «N вопросов» + кнопка «Подобрать с ИИ»
+	// ---------------------------------------------------------------------
+	&__panel {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: rem(8);
+		padding: rem(10) rem(10) rem(10) rem(20);
+		border: 1px solid var(--eb-white);
+		border-radius: rem(20);
+		background-color: var(--eb-white-35);
+		backdrop-filter: blur(var(--eb-blur));
+	}
+
+	&__hint {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		gap: rem(5);
+		white-space: nowrap;
+	}
+
+	&__hint-icon {
+		width: rem(20);
+		height: rem(20);
+		color: var(--eb-text-muted);
+	}
+
+	&__hint-label {
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+	}
+
+	&__cta {
+		flex-shrink: 0;
+	}
+
+	@include media-breakpoint-up(md) {
+		&__avatar {
+			width: rem(52);
+			height: rem(52);
+		}
+
+		&__avatar-icon {
+			width: rem(24);
+			height: rem(24);
+		}
+
+		&__avatar-mark {
+			width: rem(36);
+			height: rem(36);
+		}
+
+		&__dot {
+			width: rem(12);
+			height: rem(12);
+
+			&--assistant {
+				left: rem(-18);
+			}
+
+			&--visitor {
+				right: rem(-18);
+			}
+		}
+
+		&__panel {
+			padding: rem(10) rem(10) rem(10) rem(20);
+			border-radius: rem(24);
+		}
+
+		&__hint-icon,
+		&__hint-label {
+			font-size: var(--eb-body);
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		&__header {
+			margin-bottom: rem(48);
+		}
+
+		// Обёртка чата — общий max-width под оба ряда, каждый ряд
+		// тянется к своему краю (см. комментарий в шапке файла).
+		&__chat {
+			max-width: rem(890);
+			margin-inline: auto;
+			gap: rem(28);
+		}
+
+		&__row {
+			max-width: rem(590);
+
+			&--assistant {
+				margin-right: auto;
+			}
+
+			&--visitor {
+				margin-left: auto;
+			}
+		}
+
+		&__bubble {
+			font-size: var(--eb-subtitle-2);
+		}
+	}
+} // end .sQuiz

@@ -1,0 +1,186 @@
+{
+	"sBestSets": {
+		"title": "Лучшие наборы белья",
+		"tabs": [
+			{ "id": "big-bust", "label": "Идеально для большой груди" },
+			{ "id": "invisible", "label": "Невидимое под одеждой" },
+			{ "id": "no-wire", "label": "Без косточек" },
+			{ "id": "sport", "label": "Для спорта" },
+			{ "id": "home", "label": "Для дома" }
+		],
+		"activeTab": "big-bust",
+		"_note": "Реальный контент карточек в макете (384:633) есть только для активного таба «Идеально для большой груди» — остальные 4 набора собраны из того же каталога (тот же subset из 4 товаров, порядок и бейджи перетасованы), чтобы переключение табов было проверяемо функционально, а не просто визуально. См. docs/coordination/products.md.",
+		"sets": {
+			"big-bust": [
+				{
+					"image": "img/sBestSets/linda.webp",
+					"imageAlt": "Бюстгальтер Linda big soft",
+					"badge": { "type": "new", "text": "New" },
+					"swatch": { "color": "#2C2B2B", "count": 6 },
+					"title": "Бюстгальтер Linda big soft",
+					"price": "8 400 ₽"
+				},
+				{
+					"image": "img/sBestSets/sophia.webp",
+					"imageAlt": "Sophia Full Cup Bra",
+					"badge": { "type": "sale", "text": "-16%" },
+					"swatch": { "color": "#2C2B2B", "count": 8 },
+					"title": "Sophia Full Cup Bra",
+					"price": "11 200 ₽",
+					"oldPrice": "14 900 ₽"
+				},
+				{
+					"image": "img/sBestSets/maribel.webp",
+					"imageAlt": "Maribel big soft",
+					"swatch": { "color": "#F5E8D9", "count": 4 },
+					"title": "Maribel big soft",
+					"price": "10 500 ₽"
+				},
+				{
+					"image": "img/sBestSets/fullcup.webp",
+					"imageAlt": "Full Cup Side Support Bra",
+					"badge": { "type": "new", "text": "New" },
+					"swatch": { "color": "#2C2B2B", "count": 2 },
+					"title": "Full Cup Side Support Bra",
+					"price": "7 400 ₽"
+				}
+			],
+			"invisible": [
+				{
+					"image": "img/sBestSets/maribel.webp",
+					"imageAlt": "Maribel big soft",
+					"swatch": { "color": "#F5E8D9", "count": 4 },
+					"title": "Maribel big soft",
+					"price": "10 500 ₽"
+				},
+				{
+					"image": "img/sBestSets/fullcup.webp",
+					"imageAlt": "Full Cup Side Support Bra",
+					"badge": { "type": "new", "text": "New" },
+					"swatch": { "color": "#2C2B2B", "count": 2 },
+					"title": "Full Cup Side Support Bra",
+					"price": "7 400 ₽"
+				},
+				{
+					"image": "img/sBestSets/linda.webp",
+					"imageAlt": "Бюстгальтер Linda big soft",
+					"badge": { "type": "new", "text": "New" },
+					"swatch": { "color": "#2C2B2B", "count": 6 },
+					"title": "Бюстгальтер Linda big soft",
+					"price": "8 400 ₽"
+				},
+				{
+					"image": "img/sBestSets/sophia.webp",
+					"imageAlt": "Sophia Full Cup Bra",
+					"badge": { "type": "sale", "text": "-16%" },
+					"swatch": { "color": "#2C2B2B", "count": 8 },
+					"title": "Sophia Full Cup Bra",
+					"price": "11 200 ₽",
+					"oldPrice": "14 900 ₽"
+				}
+			],
+			"no-wire": [
+				{
+					"image": "img/sBestSets/sophia.webp",
+					"imageAlt": "Sophia Full Cup Bra",
+					"badge": { "type": "sale", "text": "-16%" },
+					"swatch": { "color": "#2C2B2B", "count": 8 },
+					"title": "Sophia Full Cup Bra",
+					"price": "11 200 ₽",
+					"oldPrice": "14 900 ₽"
+				},
+				{
+					"image": "img/sBestSets/linda.webp",
+					"imageAlt": "Бюстгальтер Linda big soft",
+					"badge": { "type": "new", "text": "New" },
+					"swatch": { "color": "#2C2B2B", "count": 6 },
+					"title": "Бюстгальтер Linda big soft",
+					"price": "8 400 ₽"
+				},
+				{
+					"image": "img/sBestSets/fullcup.webp",
+					"imageAlt": "Full Cup Side Support Bra",
+					"badge": { "type": "new", "text": "New" },
+					"swatch": { "color": "#2C2B2B", "count": 2 },
+					"title": "Full Cup Side Support Bra",
+					"price": "7 400 ₽"
+				},
+				{
+					"image": "img/sBestSets/maribel.webp",
+					"imageAlt": "Maribel big soft",
+					"swatch": { "color": "#F5E8D9", "count": 4 },
+					"title": "Maribel big soft",
+					"price": "10 500 ₽"
+				}
+			],
+			"sport": [
+				{
+					"image": "img/sBestSets/fullcup.webp",
+					"imageAlt": "Full Cup Side Support Bra",
+					"badge": { "type": "new", "text": "New" },
+					"swatch": { "color": "#2C2B2B", "count": 2 },
+					"title": "Full Cup Side Support Bra",
+					"price": "7 400 ₽"
+				},
+				{
+					"image": "img/sBestSets/maribel.webp",
+					"imageAlt": "Maribel big soft",
+					"swatch": { "color": "#F5E8D9", "count": 4 },
+					"title": "Maribel big soft",
+					"price": "10 500 ₽"
+				},
+				{
+					"image": "img/sBestSets/sophia.webp",
+					"imageAlt": "Sophia Full Cup Bra",
+					"badge": { "type": "sale", "text": "-16%" },
+					"swatch": { "color": "#2C2B2B", "count": 8 },
+					"title": "Sophia Full Cup Bra",
+					"price": "11 200 ₽",
+					"oldPrice": "14 900 ₽"
+				},
+				{
+					"image": "img/sBestSets/linda.webp",
+					"imageAlt": "Бюстгальтер Linda big soft",
+					"badge": { "type": "new", "text": "New" },
+					"swatch": { "color": "#2C2B2B", "count": 6 },
+					"title": "Бюстгальтер Linda big soft",
+					"price": "8 400 ₽"
+				}
+			],
+			"home": [
+				{
+					"image": "img/sBestSets/linda.webp",
+					"imageAlt": "Бюстгальтер Linda big soft",
+					"badge": { "type": "new", "text": "New" },
+					"swatch": { "color": "#2C2B2B", "count": 6 },
+					"title": "Бюстгальтер Linda big soft",
+					"price": "8 400 ₽"
+				},
+				{
+					"image": "img/sBestSets/maribel.webp",
+					"imageAlt": "Maribel big soft",
+					"swatch": { "color": "#F5E8D9", "count": 4 },
+					"title": "Maribel big soft",
+					"price": "10 500 ₽"
+				},
+				{
+					"image": "img/sBestSets/fullcup.webp",
+					"imageAlt": "Full Cup Side Support Bra",
+					"badge": { "type": "new", "text": "New" },
+					"swatch": { "color": "#2C2B2B", "count": 2 },
+					"title": "Full Cup Side Support Bra",
+					"price": "7 400 ₽"
+				},
+				{
+					"image": "img/sBestSets/sophia.webp",
+					"imageAlt": "Sophia Full Cup Bra",
+					"badge": { "type": "sale", "text": "-16%" },
+					"swatch": { "color": "#2C2B2B", "count": 8 },
+					"title": "Sophia Full Cup Bra",
+					"price": "11 200 ₽",
+					"oldPrice": "14 900 ₽"
+				}
+			]
+		}
+	}
+}

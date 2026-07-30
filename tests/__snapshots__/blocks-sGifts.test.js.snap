@@ -1,0 +1,34 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sGifts block > matches HTML snapshot 1`] = `
+"
+<!-- start sGifts-->
+<section class="sGifts section" id="sGifts">
+  <div class="container">
+    <div class="sGifts__grid">
+      <div class="sGifts__col sGifts__col--start">
+        <div class="eb-title sGifts__title">
+          <h2>Подарочные<br>решения</h2>
+        </div>
+        <div class="sGifts__card sGifts__card--lingerie"><img class="sGifts__card-img" src="img/sGifts/lingerie.webp" alt="" loading="lazy"/><span class="sGifts__card-caption">Белье для особого<br>случая</span>
+        </div>
+      </div>
+      <div class="sGifts__col sGifts__col--full">
+        <div class="sGifts__card sGifts__card--cert eb-theme eb-theme--dark"><img class="sGifts__card-img" src="img/sGifts/cert.webp" alt="" loading="lazy"/><span class="sGifts__card-caption">Подарочный<br>сертификат</span>
+        </div>
+      </div>
+      <div class="sGifts__col sGifts__col--split">
+        <div class="sGifts__card sGifts__card--sets"><img class="sGifts__card-img" src="img/sGifts/sets.webp" alt="" loading="lazy"/><span class="sGifts__card-caption">Наборы</span>
+        </div>
+        <div class="sGifts__widget">
+          <div class="sGifts__avatars"><img class="sGifts__avatar" src="img/sGifts/avatar-1.webp" alt="" loading="lazy"/><img class="sGifts__avatar" src="img/sGifts/avatar-2.webp" alt="" loading="lazy"/><img class="sGifts__avatar" src="img/sGifts/avatar-3.webp" alt="" loading="lazy"/>
+          </div>
+          <p class="sGifts__widget-text">С Esthetic Bra вы получаете не просто вещь, а незабываемую эмоцию
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end sGifts-->"
+`;

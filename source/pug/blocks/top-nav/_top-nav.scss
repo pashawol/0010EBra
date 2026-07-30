@@ -1,0 +1,429 @@
+// ---------------------------------------------------------------------------
+// .top-nav — фикс-хедер (318:527 desktop / 777:28 mobile).
+// .catalog-modal — попап каталога (607:2934 level1 / 607:3054 level2,
+// hover-спека 609:4165). Оба на токенах, ни одного литерального цвета
+// (stylelint declaration-strict-value).
+// ---------------------------------------------------------------------------
+
+// start .top-nav
+.top-nav {
+	--top-nav-control: #{rem(44)};
+
+	position: fixed;
+	inset-block-start: 0;
+	inset-inline: 0;
+	// Выше базового z-index:1 у .swiper (см. грабля §3.1 / заметка sExpertise) —
+	// первый экран (sHero) full-bleed слайдер должен остаться ПОД хедером.
+	z-index: 40;
+	color: var(--eb-white);
+	background-color: transparent;
+	transition: background-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+
+	// Класс переключает готовый JSCCommon.setFixedNav() (source/js/JSCCommon.js,
+	// общий файл) по scroll — здесь только оформление состояния.
+	&.fixed {
+		background-color: var(--eb-white);
+		color: var(--eb-ink);
+		box-shadow: 0 rem(2) rem(20) 0 rgba(44, 43, 43, 0.08);
+	}
+
+	&__inner {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: rem(8);
+		padding-block: rem(10);
+		padding-inline: var(--eb-gutter);
+	}
+
+	&__start {
+		display: flex;
+		align-items: center;
+		gap: rem(8);
+	}
+
+	&__burger,
+	&__catalog-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		gap: rem(8);
+		height: var(--top-nav-control);
+		padding-inline: 0;
+		border: 0;
+		border-radius: var(--eb-radius);
+		background-color: transparent;
+		color: inherit;
+		cursor: pointer;
+		transition: background-color 0.25s ease, color 0.25s ease;
+	}
+
+	&__burger {
+		width: var(--top-nav-control);
+	}
+
+	&__burger-icon {
+		font-size: rem(20);
+	}
+
+	// Пилюля «Каталог» — всегда заливка акцентом, независимо от .fixed/темы:
+	// в макете она контрастная и на прозрачном, и на светлом фоне хедера.
+	&__catalog-btn {
+		padding-inline: rem(15);
+		background-color: var(--eb-accent);
+		color: var(--eb-on-accent);
+
+		&:hover {
+			background-color: var(--eb-burgundy);
+			color: var(--eb-white);
+		}
+	}
+
+	&__catalog-btn-icon {
+		font-size: rem(20);
+	}
+
+	&__catalog-btn-label {
+		font-size: var(--eb-subtitle-2);
+		font-weight: 500;
+		white-space: nowrap;
+	}
+
+	// Абсолютное центрирование — надёжнее, чем justify-content:space-between,
+	// т.к. левая (burger+каталог, 192px) и правая (4 иконки, 223px) группы в
+	// макете разной ширины (499:1119 / 499:1131): при space-between лого
+	// съедет от истинного центра пропорционально разнице групп.
+	&__logo {
+		position: absolute;
+		inset-inline-start: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		color: inherit;
+		font-family: $font-family-display;
+		font-size: var(--eb-subtitle-1);
+		line-height: 1;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: rem(4);
+	}
+
+	&__action {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--top-nav-control);
+		height: var(--top-nav-control);
+		border-radius: var(--eb-radius);
+		color: inherit;
+		transition: background-color 0.25s ease, color 0.25s ease;
+
+		&:hover {
+			background-color: var(--eb-surface);
+			color: var(--eb-accent);
+		}
+	}
+
+	&__action-icon {
+		font-size: rem(20);
+	}
+
+	@include media-breakpoint-up(lg) {
+		--top-nav-control: var(--eb-control-size);
+
+		&__inner {
+			gap: rem(20);
+		}
+	}
+}
+// end .top-nav
+
+// ---------------------------------------------------------------------------
+// .catalog-modal — попап каталога. Структура: backdrop (клик закрывает) +
+// dialog (level1 список слева, level2 панель справа на десктопе; на мобилке
+// panels наезжают поверх list по клику — drill-down).
+// ---------------------------------------------------------------------------
+.catalog-modal {
+	position: fixed;
+	inset: 0;
+	// Выше .top-nav (40): попап перекрывает и бар, и остальную страницу —
+	// открыт/закрыт триггерами внутри самого бара, конфликта кликов нет.
+	z-index: 45;
+	display: flex;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.25s ease, visibility 0.25s ease;
+
+	&.--open {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__backdrop {
+		position: absolute;
+		inset: 0;
+		background-color: var(--eb-ink-65);
+		backdrop-filter: blur(var(--eb-blur));
+		cursor: pointer;
+	}
+
+	&__dialog {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		max-height: 100%;
+		margin-block-start: auto;
+		overflow: hidden;
+		background-color: var(--eb-white);
+		color: var(--eb-ink);
+		// Мобилка — модалка снизу вверх (bottom sheet), десктоп её роняет CSS ниже.
+		transform: translateY(12%);
+		transition: transform 0.3s ease;
+	}
+
+	&.--open &__dialog {
+		transform: translateY(0);
+	}
+
+	&__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-shrink: 0;
+		padding: rem(16);
+		border-bottom: 1px solid var(--eb-hairline);
+	}
+
+	&__title {
+		font-family: $font-family-display;
+		font-size: var(--eb-h4);
+		line-height: 1;
+	}
+
+	&__close {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: rem(40);
+		height: rem(40);
+		border: 0;
+		border-radius: 50%;
+		background-color: var(--eb-surface);
+		color: var(--eb-ink);
+		cursor: pointer;
+
+		&:hover {
+			background-color: var(--eb-surface-hover);
+		}
+	}
+
+	&__close-icon {
+		font-size: rem(16);
+	}
+
+	&__body {
+		position: relative;
+		flex-grow: 1;
+		overflow: hidden;
+	}
+
+	&__list {
+		position: relative;
+		z-index: 1;
+		height: 100%;
+		margin: 0;
+		padding: rem(8) rem(16);
+		overflow-y: auto;
+		list-style: none;
+		transition: transform 0.3s ease;
+	}
+
+	&__item {
+		&:not(:last-child) {
+			border-bottom: 1px solid var(--eb-hairline);
+		}
+	}
+
+	&__item-link {
+		display: flex;
+		align-items: center;
+		gap: rem(8);
+		padding-block: rem(14);
+		color: var(--eb-ink);
+		font-family: $font-family-display;
+		font-size: var(--eb-subtitle-1);
+		text-decoration: none;
+		transition: color 0.2s ease, opacity 0.2s ease;
+
+		&:hover,
+		&.--active {
+			color: var(--eb-accent);
+		}
+	}
+
+	&__item-count {
+		color: var(--eb-text-faint);
+		font-family: $font-family-sans-serif;
+		font-size: var(--eb-caption);
+	}
+
+	&__item-arrow {
+		margin-inline-start: auto;
+		font-size: rem(16);
+		color: var(--eb-text-faint);
+	}
+
+	&__panels {
+		position: absolute;
+		inset-block: 0;
+		inset-inline-start: 0;
+		width: 100%;
+		height: 100%;
+		overflow-y: auto;
+		background-color: var(--eb-white);
+		// Мобилка: level2 живёт вне экрана справа, пока .--drilled не сдвинет list.
+		transform: translateX(100%);
+		transition: transform 0.3s ease;
+		pointer-events: none;
+	}
+
+	&.--drilled &__list {
+		transform: translateX(-100%);
+	}
+
+	&.--drilled &__panels {
+		transform: translateX(0);
+		pointer-events: auto;
+	}
+
+	&__panel {
+		display: none;
+		padding: rem(16);
+
+		&.--active {
+			display: block;
+		}
+	}
+
+	&__panel-head {
+		display: flex;
+		align-items: center;
+		gap: rem(8);
+		margin-bottom: rem(16);
+	}
+
+	&__back {
+		display: inline-flex;
+		align-items: center;
+		gap: rem(8);
+		border: 0;
+		background: transparent;
+		color: var(--eb-ink);
+		font-family: $font-family-display;
+		font-size: var(--eb-subtitle-1);
+		cursor: pointer;
+	}
+
+	&__back-icon {
+		font-size: rem(18);
+		transform: scaleX(-1);
+	}
+
+	&__panel-list {
+		margin: 0 0 rem(20);
+		padding: 0;
+		list-style: none;
+	}
+
+	&__panel-item:not(:last-child) {
+		margin-bottom: rem(4);
+	}
+
+	&__panel-link {
+		display: inline-block;
+		padding-block: rem(6);
+		color: var(--eb-text-muted);
+		font-size: var(--eb-body);
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: var(--eb-accent);
+		}
+
+		&.--all {
+			color: var(--eb-ink);
+			font-weight: 500;
+		}
+	}
+
+	&__panel-media {
+		border-radius: var(--eb-radius);
+		overflow: hidden;
+
+		img {
+			display: block;
+			width: 100%;
+			aspect-ratio: 4 / 5;
+			object-fit: cover;
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		align-items: flex-start;
+		justify-content: flex-start;
+		padding: rem(24);
+
+		&__dialog {
+			width: min(100%, #{rem(920)});
+			max-height: min(80vh, #{rem(720)});
+			border-radius: var(--eb-radius);
+			box-shadow: 0 rem(20) rem(60) 0 rgba(44, 43, 43, 0.16);
+			// Десктоп открывается по центру, не «снизу вверх».
+			transform: scale(0.97);
+		}
+
+		&.--open &__dialog {
+			transform: scale(1);
+		}
+
+		&__body {
+			display: flex;
+		}
+
+		&__list {
+			flex: 0 0 min(38%, #{rem(320)});
+			border-inline-end: 1px solid var(--eb-hairline);
+		}
+
+		// Десктоп: обе колонки видны одновременно, drill-down не нужен — только
+		// hover/focus level1 переключает активную панель (609:4165).
+		&__panels {
+			position: static;
+			flex: 1 1 auto;
+			transform: none;
+			pointer-events: auto;
+		}
+
+		&__panel-head {
+			display: none;
+		}
+	}
+}
+// end .catalog-modal
+
+// Пока попап открыт — страница за ним не скроллится (класс ставит header.js).
+body.catalog-modal-open {
+	overflow: hidden;
+}

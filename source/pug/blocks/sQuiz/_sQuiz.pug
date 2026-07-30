@@ -1,0 +1,57 @@
+//- Section «Интерактивный квиз на базе ИИ-ассистента» — node 357:242 (desktop
+//- 1920×1298), мобильный вариант 692:1129 → 726:151 (375×995).
+//- Решение заказчика (docs/PLAN.md §1.1): ТОЛЬКО статичная вёрстка чата —
+//- без логики квиза, без анимации появления сообщений, без имитации набора
+//- текста. Порядок реплик в разметке = порядок чтения: сначала вопрос
+//- посетителя, потом 4 ответа ИИ-ассистента снизу — как в макете.
+mixin sQuiz(data)
+	- data = data || sQuiz
+	// start sQuiz
+	+b.SECTION.sQuiz.section#sQuiz&attributes(attributes)
+		//- Full-bleed декоративный фон (точечный паттерн + мягкие блики из
+		//- макета) — растровый экспорт целого узла «img BG» (357:306 / 726:152),
+		//- desktop/mobile отличаются кадрированием, поэтому <picture> с брейкпоинтом,
+		//- как у фона sFitting.
+		+e.DIV.bg(aria-hidden="true")
+			picture
+				source(media="(min-width: 992px)" srcset="img/sQuiz/bg-desktop.webp")
+				img.sQuiz__bg-photo(src="img/sQuiz/bg-mobile.webp" alt="" loading="lazy")
+		.container
+			+e.DIV.header
+				+e.P.eyebrow= data.eyebrow
+				+ebTitle(data.title).sQuiz__title.text-center
+
+			+e.DIV.chat
+				//- Реплика посетителя — подпись над строкой, сама строка
+				//- выровнена вправо: сначала пузырь, потом аватар (тот же
+				//- порядок, что в макете).
+				+e.DIV.row.--visitor
+					+e.SPAN.row-label.--visitor= data.visitor.label
+					+e.DIV.line.--visitor
+						+e.DIV.bubble-col.--visitor
+							+e.SPAN.bubble.--visitor= data.visitor.message
+							+e.SPAN.dot.--visitor
+						+e.DIV.avatar.--visitor
+							+icon('user-round').sQuiz__avatar-icon
+
+				//- Ответы ИИ-ассистента — подпись над строкой, аватар слева
+				//- (бордовый круг с монограммой Esthetic Bra — тот же
+				//- +icon('eb-monogram'), что в футере/sTransformIntro, не
+				//- дублируем), справа колонка из 4 реплик.
+				+e.DIV.row.--assistant
+					+e.SPAN.row-label.--assistant= data.assistant.label
+					+e.DIV.line.--assistant
+						+e.DIV.avatar.--assistant
+							+icon('eb-monogram').sQuiz__avatar-mark
+						+e.DIV.bubble-col.--assistant
+							+e.SPAN.dot.--assistant
+							+e.DIV.messages
+								each message in data.assistant.messages
+									+e.SPAN.bubble.--assistant= message
+
+			+e.DIV.panel
+				+e.DIV.hint
+					+icon('message-circle-question').sQuiz__hint-icon
+					+e.SPAN.hint-label= data.questionsCount
+				+ebBtn(data.cta, 'primary', 'sparkles').sQuiz__cta
+	// end sQuiz

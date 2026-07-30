@@ -1,0 +1,71 @@
+{
+	"header": {
+		"logo": { "text": "Esthetic Bra", "href": "#" },
+		"burgerLabel": "Меню",
+		"catalog": {
+			"label": "Каталог",
+			"categories": [
+				{
+					"title": "Нижнее бельё",
+					"count": 654,
+					"href": "#",
+					"children": {
+						"viewAllLabel": "Смотреть все",
+						"viewAllHref": "#",
+						"items": [
+							{ "name": "Бюстгальтеры", "href": "#" },
+							{ "name": "Трусы", "href": "#" },
+							{ "name": "Комплекты", "href": "#" },
+							{ "name": "Корректирующее бельё", "href": "#" }
+						],
+						"image": { "src": "img/sAudience/card-asymmetry.webp", "alt": "Нижнее бельё Esthetic Bra" }
+					}
+				},
+				{ "title": "Спортивное бельё", "count": 32, "href": "#" },
+				{ "title": "Эротическое бельё", "count": 12, "href": "#" },
+				{
+					"title": "Купальники",
+					"count": 876,
+					"href": "#",
+					"children": {
+						"viewAllLabel": "Смотреть все",
+						"viewAllHref": "#",
+						"items": [
+							{ "name": "Купальник раздельный", "href": "#" },
+							{ "name": "Купальник слитный", "href": "#" },
+							{ "name": "Плавки", "href": "#" },
+							{ "name": "Танкини", "href": "#" }
+						],
+						"image": { "src": "img/sHero/hero-slide-1.webp", "alt": "Купальники Esthetic Bra" }
+					}
+				},
+				{
+					"title": "Домашняя одежда",
+					"count": 546,
+					"href": "#",
+					"children": {
+						"viewAllLabel": "Смотреть все",
+						"viewAllHref": "#",
+						"items": [
+							{ "name": "Халаты", "href": "#" },
+							{ "name": "Пижамы", "href": "#" },
+							{ "name": "Домашние комплекты", "href": "#" }
+						],
+						"image": { "src": "img/sGifts/lingerie.webp", "alt": "Домашняя одежда Esthetic Bra" }
+					}
+				},
+				{ "title": "Одежда для сна", "count": 45, "href": "#" },
+				{ "title": "Пляжная одежда", "count": 36, "href": "#" },
+				{ "title": "Аксессуары", "count": 11, "href": "#" },
+				{ "title": "По виду груди", "count": 943, "href": "#" }
+			]
+		},
+		"actions": [
+			{ "icon": "search", "label": "Поиск", "action": "search", "href": "#" },
+			{ "icon": "user-round", "label": "Профиль", "action": "profile", "href": "#" },
+			{ "icon": "heart", "label": "Избранное", "action": "favorites", "href": "#" },
+			{ "icon": "shopping-cart", "label": "Корзина", "action": "cart", "href": "#" }
+		],
+		"_note": "Категории и фото — из спеки 607:2934/607:3054 (694/876/546 — реальные счётчики макета). Фото трёх раскрывающихся категорий — плейсхолдеры из уже существующих ассетов других блоков (sAudience/sHero/sGifts), реальная предметная съёмка каталога придёт позже — см. docs/coordination/header.md."
+	}
+}

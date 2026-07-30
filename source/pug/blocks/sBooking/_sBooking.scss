@@ -1,0 +1,551 @@
+// start .sBooking — node 497:931 (desktop 1920×1080), 739:898 (mobile 375×1080,
+// внутри 692:1129 [Mobile] Home Page).
+//
+// Тёмная бордовая тема на корне (.eb-theme--dark) — фото моделей на бордовом
+// градиенте, поверх — заголовок в 2 половины (см. _sBooking.pug про приём
+// visually-hidden/aria-hidden, скопирован у sHero) и белая карточка формы.
+// Карточка ЛОКАЛЬНО возвращает светлые контекстные роли (тот же приём, что
+// .footer__cta в _footer.scss) — она светлая ВНУТРИ тёмной секции.
+.sBooking {
+	--sPT: 0;
+	--sPB: 0;
+
+	position: relative;
+	overflow: hidden; // клипает декоративную монограмму, торчащую за карточку/секцию
+	color: var(--eb-text);
+
+	// ---------------------------------------------------------------------
+	// Фон: фото моделей + бордовый градиент-скрим поверх (497:932/497:933,
+	// 739:899/739:900). Абсолютный слой на всю секцию — секция сама не имеет
+	// фиксированной высоты (растёт по контенту), фото просто накрывает её.
+	// ---------------------------------------------------------------------
+	&__media {
+		position: absolute;
+		z-index: 0;
+		inset: 0;
+		overflow: hidden;
+	}
+
+	&__photo {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__scrim {
+		position: absolute;
+		z-index: 1;
+		inset: 0;
+		background: linear-gradient(
+			to bottom,
+			rgba($eb-burgundy, 0.15) 50%,
+			rgba($eb-burgundy, 0.75) 100%
+		);
+		backdrop-filter: blur(rem(40));
+		pointer-events: none;
+	}
+
+	// Крупная декоративная монограмма на фоне, за карточкой (497:1064).
+	// Геометрия фиксированная (rem + a-cent1), НЕ % от высоты секции — секция
+	// становится выше макета из-за переносов текста, декор не должен уезжать
+	// (грабля §3.1 из PLAN.md).
+	&__decor {
+		position: absolute;
+		z-index: 1;
+		top: 50%;
+		left: 50%;
+		width: rem(420);
+		height: auto;
+		color: var(--eb-white-15);
+		translate: -50% -46%;
+		pointer-events: none;
+	}
+
+	.container {
+		position: relative;
+		z-index: 2;
+	}
+
+	&__inner {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: rem(32);
+		padding-block: rem(48);
+	}
+
+	// -----------------------------------------------------------------
+	// Заголовок — один h2 семантически, визуально разбит на 2 декоративных
+	// куска (см. .pug). На мобиле оба куска в обычном потоке над карточкой.
+	// -----------------------------------------------------------------
+	&__title {
+		margin: 0;
+	}
+
+	&__title-main,
+	&__title-tail {
+		display: block;
+		color: var(--eb-text);
+		font-family: $font-family-display;
+		font-size: var(--eb-h2);
+		line-height: 1;
+	}
+
+	&__title-tail {
+		text-align: right;
+	}
+
+	&__card {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: rem(40);
+		width: 100%;
+		max-width: rem(345);
+		margin-inline: auto;
+		padding: rem(15);
+		overflow: hidden;
+		border-radius: rem(20);
+		background-color: var(--eb-white);
+		// Карточка светлая ВНУТРИ тёмной секции — контекстные роли переопределены
+		// локально существующими базовыми токенами (тот же приём, что и
+		// .footer__cta), новых записей в _root.scss не потребовалось.
+		--eb-text: var(--eb-ink);
+		--eb-text-muted: var(--eb-ink-75);
+		--eb-text-soft: var(--eb-ink-65);
+		--eb-text-faint: var(--eb-ink-35);
+		--eb-surface: var(--eb-light-blue-50);
+		--eb-surface-hover: var(--eb-light-blue);
+		--eb-accent: var(--eb-burgundy);
+		--eb-on-accent: var(--eb-white);
+		--eb-hairline: var(--eb-ink-35);
+		color: var(--eb-text);
+	}
+
+	// Маленькая монограмма в верхнем правом углу карточки (497:1059/739:968) —
+	// клипается собственным overflow:hidden карточки, фиксированные rem-офсеты.
+	&__card-decor {
+		position: absolute;
+		top: rem(-40);
+		right: rem(-40);
+		z-index: 0;
+		width: rem(162);
+		height: auto;
+		color: var(--eb-surface);
+		pointer-events: none;
+	}
+
+	&__form {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: rem(40);
+		width: 100%;
+	}
+
+	&__form-title {
+		margin: 0;
+		color: var(--eb-text);
+		font-family: $font-family-display;
+		font-size: rem(22);
+		line-height: 1.1;
+	}
+
+	&__step {
+		display: flex;
+		flex-direction: column;
+		gap: rem(20);
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	// legend — прямой потомок fieldset (html-validate wcag/h71 запрещает
+	// оборачивать его в div), поэтому раскладка «текст слева / чип справа»
+	// задана прямо на legend через flex, а не на отдельной обёртке.
+	&__step-title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: rem(10);
+		width: 100%;
+		padding: 0;
+		color: var(--eb-text);
+		font-family: $font-family-display;
+		font-size: rem(18);
+		line-height: 1.1;
+	}
+
+	&__step-title-text {
+		display: block;
+	}
+
+	// -----------------------------------------------------------------
+	// Поля «Имя»/«Телефон» — floating label поверх подчёркивания.
+	// label дублирует placeholder визуально: по умолчанию лежит НА строке
+	// ввода (как плейсхолдер), а когда поле не пустое ИЛИ в фокусе — уезжает
+	// маленькой подписью наверх. Держится на :placeholder-shown, поэтому
+	// input ИДЁТ ПЕРЕД label в DOM (see .pug) — сосед "после" в CSS.
+	// placeholder=" " (не пустая строка) обязателен — иначе часть браузеров
+	// не триггерит :placeholder-shown.
+	// -----------------------------------------------------------------
+	&__field {
+		position: relative;
+		padding-top: rem(14);
+	}
+
+	&__field-input {
+		width: 100%;
+		padding: 0 0 rem(10);
+		border: 0;
+		border-bottom: 1px solid var(--eb-hairline);
+		background: transparent;
+		color: var(--eb-text);
+		font-family: $font-family-sans-serif;
+		font-size: rem(14);
+		line-height: 1.4;
+
+		&::placeholder {
+			color: transparent;
+		}
+
+		&:focus {
+			outline: none;
+			border-color: var(--eb-accent);
+		}
+	}
+
+	&__field-label {
+		position: absolute;
+		top: rem(14 + 11);
+		left: 0;
+		color: var(--eb-text-muted);
+		font-family: $font-family-sans-serif;
+		font-size: rem(14);
+		line-height: 1;
+		pointer-events: none;
+		transition: top 0.15s ease, font-size 0.15s ease, color 0.15s ease;
+	}
+
+	&__field-input:focus ~ &__field-label,
+	&__field-input:not(:placeholder-shown) ~ &__field-label {
+		top: 0;
+		color: var(--eb-text-faint);
+		font-size: rem(12);
+	}
+
+	&__field-error {
+		display: none;
+		margin-top: rem(6);
+		color: var(--eb-error-text);
+		font-size: rem(12);
+		line-height: 1.3;
+	}
+
+	// Ошибка — переключается booking.js через aria-invalid (Constraint
+	// Validation API), CSS :invalid — подстраховка, если JS не подключён
+	// (гэп сборки source/pug/blocks/**/*.js — см. docs/coordination/sBooking.md,
+	// у меня booking.js лежит в source/js/, копируется штатно, но <script>
+	// тег в js-css.pug должен добавить координатор).
+	&__field-input[aria-invalid="true"] {
+		border-color: var(--eb-error);
+	}
+
+	&__field-input[aria-invalid="true"] ~ &__field-error {
+		display: block;
+	}
+
+	// -----------------------------------------------------------------
+	// Когда позвонить — «В ближайшее время» (своя строка, на всю ширину) +
+	// 3 пилюли-слота в ряд. Каждая — visually-custom radio: инпут скрыт,
+	// label стилизован пилюлей (та же геометрия, что и eb-tag/eb-btn: 52px
+	// высота, radius 14 — переиспользовать нельзя буквально, оба компонента
+	// завязаны на свои базовые классы, поэтому геометрия скопирована).
+	// -----------------------------------------------------------------
+	&__time {
+		display: flex;
+		flex-direction: column;
+		gap: rem(5);
+	}
+
+	&__time-row {
+		display: flex;
+		gap: rem(5);
+
+		&--asap {
+			width: 100%;
+		}
+	}
+
+	&__time-input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+
+	&__time-cell {
+		position: relative;
+		flex: 1 1 0;
+		min-width: 0;
+	}
+
+	&__time-option {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		min-height: rem(44);
+		padding-inline: rem(10);
+		border-radius: rem(12);
+		background-color: var(--eb-surface);
+		color: var(--eb-text-muted);
+		font-family: $font-family-sans-serif;
+		font-size: rem(14);
+		font-weight: 500;
+		line-height: 1.2;
+		text-align: center;
+		white-space: nowrap;
+		cursor: pointer;
+		transition: background-color 0.2s ease, color 0.2s ease;
+
+		&--wide {
+			width: 100%;
+		}
+	}
+
+	&__time-input:checked + &__time-option {
+		background-color: var(--eb-accent);
+		color: var(--eb-on-accent);
+	}
+
+	&__time-input:focus-visible + &__time-option {
+		outline: 2px solid var(--eb-accent);
+		outline-offset: 2px;
+	}
+
+	// Чип-подсказка «Выберите время» (652:1777) — видна пока шаг не заполнен,
+	// booking.js прячет её после выбора слота через :checked. Без JS остаётся
+	// видимой (безопасный фолбэк: не прячет реальное незаполненное состояние).
+	&__time-hint {
+		display: inline-flex;
+		align-items: center;
+		padding: rem(6) rem(8);
+		border-radius: var(--eb-radius-badge);
+		background-color: var(--eb-error-15);
+		backdrop-filter: blur(var(--eb-blur));
+		color: var(--eb-error-text);
+		font-size: rem(12);
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	&__time-hint[hidden] {
+		display: none;
+	}
+
+	// -----------------------------------------------------------------
+	// Чекбокс согласия — своя визуальная реализация (square-check-big),
+	// нативный input скрыт визуально, доступен клавиатуре/скринридеру.
+	// -----------------------------------------------------------------
+	&__consent {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		gap: rem(10);
+	}
+
+	&__consent-input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+
+	&__consent-label {
+		display: flex;
+		align-items: flex-start;
+		gap: rem(10);
+		cursor: pointer;
+	}
+
+	&__consent-box {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: rem(24);
+		height: rem(24);
+		padding: rem(2);
+		border-radius: var(--eb-radius-check);
+		background-color: var(--eb-surface);
+	}
+
+	&__consent-icon {
+		width: 100%;
+		height: 100%;
+		color: transparent;
+		transition: color 0.15s ease;
+	}
+
+	&__consent-input:checked ~ &__consent-label &__consent-icon {
+		color: var(--eb-accent);
+	}
+
+	&__consent-input:focus-visible ~ &__consent-label &__consent-box {
+		outline: 2px solid var(--eb-accent);
+		outline-offset: 2px;
+	}
+
+	&__consent-text {
+		color: var(--eb-text-muted);
+		font-size: rem(14);
+		line-height: 1.4;
+	}
+
+	// Осознанное отступление от макета (там подчёркивания нет): ссылка внутри
+	// текста абзаца отличается от окружающего текста ТОЛЬКО цветом — бордовый
+	// на сером даёт контраст 2.18:1 при норме WCAG 1.4.1 "use of color" 3:1,
+	// axe валит как serious (link-in-text-block). Подчёркивание снимает
+	// зависимость от контраста цветов — тот же приём, что и с подписью
+	// хотспота (65% вместо 35% серого по той же причине, см. eb-ui.scss).
+	&__consent-link {
+		color: var(--eb-accent);
+		text-decoration: underline;
+		text-underline-offset: rem(2);
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__consent-error {
+		display: none;
+		width: 100%;
+		margin-top: rem(-6);
+		color: var(--eb-error-text);
+		font-size: rem(12);
+		line-height: 1.3;
+	}
+
+	&__consent-input[aria-invalid="true"] ~ &__consent-error {
+		display: block;
+	}
+
+	&__submit {
+		width: 100%;
+	}
+
+	// ---------------------------------------------------------------------
+	// Десктоп — снято с 497:931 (контейнер 1790 при gutter 65, но заголовок и
+	// карточка спозиционированы от краёв ВЬЮПОРТА в макете, не от контейнера —
+	// используем секцию как систему координат, не .container).
+	// ---------------------------------------------------------------------
+	@include media-breakpoint-up(lg) {
+		&__inner {
+			min-height: rem(1080);
+			padding-block: 0;
+		}
+
+		&__decor {
+			width: rem(1465);
+		}
+
+		&__title {
+			position: absolute;
+			top: rem(70);
+			left: var(--eb-gutter);
+			width: rem(590);
+		}
+
+		&__title-main {
+			font-size: var(--eb-h2);
+		}
+
+		&__title-tail {
+			position: absolute;
+			right: var(--eb-gutter);
+			bottom: rem(222);
+			width: rem(590);
+			font-size: var(--eb-h2);
+		}
+
+		&__card {
+			@include a-cent1(xy);
+
+			flex-direction: column;
+			align-items: flex-end;
+			gap: rem(60);
+			max-width: rem(590);
+			padding: rem(40);
+			border-radius: rem(24);
+		}
+
+		&__card-decor {
+			top: rem(-162);
+			right: rem(-161);
+			width: rem(334);
+		}
+
+		&__form {
+			gap: rem(60);
+		}
+
+		&__form-title {
+			font-size: rem(36);
+		}
+
+		&__step {
+			gap: rem(30);
+		}
+
+		&__step-title {
+			font-size: rem(24);
+		}
+
+		&__field {
+			padding-top: rem(18);
+		}
+
+		&__field-input {
+			padding-bottom: rem(14);
+			font-size: rem(18);
+		}
+
+		&__field-label {
+			top: rem(18 + 15);
+			font-size: rem(18);
+		}
+
+		&__field-input:focus ~ &__field-label,
+		&__field-input:not(:placeholder-shown) ~ &__field-label {
+			top: 0;
+			font-size: rem(16);
+		}
+
+		&__time-row {
+			gap: rem(10);
+		}
+
+		&__time-option {
+			min-height: rem(52);
+			padding-inline: rem(18);
+			border-radius: var(--eb-radius);
+			font-size: rem(18);
+		}
+
+		&__consent-text,
+		&__consent-error {
+			font-size: rem(18);
+		}
+	}
+} // end .sBooking

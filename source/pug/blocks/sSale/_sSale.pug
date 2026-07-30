@@ -1,0 +1,18 @@
+//- Section «Брафиттинг + 10% на первую покупку» — node 385:1481 (desktop),
+//- 726:251 (mobile). По координатам в макете стоит между квизом и акциями.
+//-
+//- Секцию не свёрстал никто из первой волны: на десктопе она лежит на канвасе
+//- отдельным фреймом, а не ребёнком Home Page, поэтому в инвентарь по детям
+//- 120:468 не попала. Нашлась при разборе раскадровки и подтвердилась мобильной
+//- ревизией — на мобильном это самостоятельная секция.
+mixin sSale(data)
+	- data = data || sSale
+	// start sSale
+	+b.SECTION.sSale.section#sSale&attributes(attributes)
+		.container
+			+e.DIV.inner
+				+e.P.eyebrow= data.eyebrow
+				+e.H2.title!= data.title
+				+e.P.text= data.text
+				+ebBtn(data.button.label, 'primary', null, data.button.href).sSale__btn
+	// end sSale

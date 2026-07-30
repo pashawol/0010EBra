@@ -1,0 +1,14 @@
+<!doctype html>
+<html><body>
+<form id="f" onsubmit="return false">
+  <input id="a" type="text">
+  <input id="b" type="text">
+  <button id="submit" type="submit">Go</button>
+</form>
+<script>
+document.getElementById('f').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('a').focus();
+});
+</script>
+</body></html>

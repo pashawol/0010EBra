@@ -1,0 +1,180 @@
+// start .sAudience — node 313:404, мобильный вариант 692:1129 (710:1466)
+//
+// Бежевый фон карточек не заведён общим токеном (в UI-Kit нет отдельной
+// переменной под фото-мозаику) — локальная SCSS-переменная здесь, заявка
+// на общий токен --eb-beige — в docs/coordination/sAudience.md.
+$sAudience-beige: #f5e8d9;
+
+.sAudience {
+	--sPT: #{rem(40)};
+	--sPB: #{rem(40)};
+
+	background-color: var(--eb-white);
+
+	// -------------------------------------------------------------------
+	// Мозаика: заголовок и 7 карточек — все элементы одной CSS Grid
+	// с явными grid-template-areas. Набор имён одинаковый на всех
+	// ширинах, меняется только сама карта областей + число колонок,
+	// поэтому разметка в pug общая для мобилки и десктопа.
+	// -------------------------------------------------------------------
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: auto rem(200) rem(170) rem(200) rem(200) rem(170) auto;
+		gap: rem(5);
+		grid-template-areas:
+			"title       title"
+			"small       afterbirth"
+			"sensitive   sensitive"
+			"big         asymmetry"
+			"big         teens"
+			"sport       sport"
+			"widget      widget";
+	}
+
+	&__title {
+		grid-area: title;
+		margin-bottom: rem(30);
+	}
+
+	&__card {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		overflow: hidden;
+		border-radius: rem(20);
+		background-color: $sAudience-beige;
+
+		// Затемняющий градиент под подпись — на ВСЕХ карточках одинаково,
+		// иначе подпись нечитаема на светлых участках фото (макет кладёт
+		// его только на часть карточек непоследовательно между брейкпоинтами).
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(to bottom, rgba($sAudience-beige, 0) 40%, rgba($sAudience-beige, .75));
+			pointer-events: none;
+		}
+
+		&--small-breast { grid-area: small; }
+		&--sensitive-skin { grid-area: sensitive; }
+		&--big-breast { grid-area: big; }
+		&--postpartum { grid-area: afterbirth; }
+		&--teens { grid-area: teens; }
+		&--asymmetry { grid-area: asymmetry; }
+		&--sport { grid-area: sport; }
+	}
+
+	&__card-img {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		// Лица/верх кадра — самая частая грабля object-fit:cover на разноформатных
+		// фото: якорим по верхней трети, а не center, чтобы не срезать лицо.
+		object-position: 50% 20%;
+	}
+
+	&__card-text {
+		position: relative;
+		z-index: 1;
+		padding: rem(15);
+		color: var(--eb-ink);
+		font-family: $font-family-display;
+		font-size: var(--eb-subtitle-1);
+		line-height: 1.1;
+	}
+
+	// Круглая кнопка-стрелка — видна только на десктопной раскладке карточки
+	// (в мобильном макете 692:1129 её нет ни на одной карточке).
+	&__card-arrow {
+		display: none;
+	}
+
+	&__widget {
+		grid-area: widget;
+		display: flex;
+		align-items: center;
+		gap: rem(20);
+		margin-top: rem(20);
+	}
+
+	&__avatars {
+		display: flex;
+		flex-shrink: 0;
+
+		.sAudience__avatar:not(:first-child) {
+			margin-left: rem(-15);
+		}
+	}
+
+	&__avatar {
+		width: rem(44);
+		height: rem(44);
+		border: rem(2) solid var(--eb-white);
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+	&__widget-text {
+		position: relative;
+		max-width: rem(220);
+		padding-left: rem(20);
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1.4;
+
+		// Тонкая вертикальная линия-разделитель перед подписью — вместо
+		// импорта одного SVG-отрезка из макета.
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: rem(1);
+			height: 100%;
+			background-color: var(--eb-hairline);
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		--sPT: #{rem(90)};
+		--sPB: #{rem(90)};
+
+		&__title {
+			margin-bottom: 0;
+			align-self: start;
+		}
+
+		&__grid {
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-rows: rem(260) rem(260) rem(170) rem(260);
+			gap: rem(10);
+			grid-template-areas:
+				"title  .           big  asymmetry"
+				"small  sensitive   big  teens"
+				"small  sensitive   big  sport"
+				"widget afterbirth  .    sport";
+		}
+
+		&__card {
+			border-radius: rem(24);
+			padding: rem(20);
+		}
+
+		&__card-arrow {
+			position: absolute;
+			top: rem(20);
+			right: rem(20);
+			z-index: 2;
+			display: inline-flex;
+		}
+
+		&__widget {
+			align-self: end;
+			margin-top: 0;
+		}
+	}
+} // end .sAudience

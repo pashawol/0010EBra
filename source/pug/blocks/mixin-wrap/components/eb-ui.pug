@@ -1,0 +1,87 @@
+//- ---------------------------------------------------------------------------
+//- Атомы Esthetic Bra. Источник правды — UI-Kit (638:122) и состояния (641:631).
+//-
+//- Все компоненты работают и на светлой, и на тёмной секции: они читают только
+//- контекстные роли (--eb-surface, --eb-accent, --eb-text), а тему включает
+//- секция классом .eb-theme--dark. Поэтому один и тот же +ebBtn не нужно
+//- дублировать под тёмный фон.
+//- ---------------------------------------------------------------------------
+
+//- Главная кнопка. mode: primary (заливка акцентом) | secondary (полупрозрачная)
+//- ВНИМАНИЕ: модификатор передаётся как "--" + mode, БЕЗ базового класса.
+//- bemto достраивает базовый класс сам; если написать "eb-btn--" + mode,
+//- на выходе будет дубль class и html-validate уронит сборку (no-dup-class).
+//- href передан — рендерится <a>, иначе <button>. Нужно потому, что часть
+//- кнопок в макете ведут на другие страницы («Все статьи», «К коллекции»),
+//- и подменять ссылку кнопкой ради одного миксина неправильно.
+mixin ebBtn(text, mode, iconName, href)
+	- mode = mode || 'primary'
+	if href
+		+b.A.eb-btn(class="--" + mode href=href)&attributes(attributes)
+			if iconName
+				+icon(iconName).eb-btn__icon
+			+e.SPAN.label= text
+	else
+		+b.BUTTON.eb-btn(class="--" + mode type="button")&attributes(attributes)
+			if iconName
+				+icon(iconName).eb-btn__icon
+			+e.SPAN.label= text
+
+//- Текстовая кнопка-ссылка (Smal button из UI-Kit)
+mixin ebBtnText(text, href)
+	+b.A.eb-btn-text(href=href || '#')&attributes(attributes)
+		+e.SPAN.label= text
+
+//- Круглая кнопка-иконка 52×52. mode: solid (с фоном) | ghost (без фона)
+mixin ebIconBtn(iconName, label, mode)
+	- mode = mode || 'solid'
+	+b.BUTTON.eb-icon-btn(class="--" + mode type="button" aria-label=label)&attributes(attributes)
+		+icon(iconName)
+
+//- Пара стрелок + буллеты для слайдера. Используется 6+ блоками — не копировать.
+mixin ebSliderNav()
+	+b.eb-slider-nav&attributes(attributes)
+		+e.DIV.dots.swiper-pagination
+		+e.DIV.arrows
+			+ebIconBtn('arrow-right', 'Предыдущий слайд').eb-slider-nav__prev.swiper-button-prev
+			+ebIconBtn('arrow-right', 'Следующий слайд').eb-slider-nav__next.swiper-button-next
+
+//- Пилюля-метка («Факт», «Примеры», «New», «Комплект недели»)
+mixin ebTag(text, iconName)
+	+b.SPAN.eb-tag&attributes(attributes)
+		if iconName
+			+icon(iconName).eb-tag__icon
+		+e.SPAN.label= text
+
+//- Заголовок секции
+mixin ebTitle(text, level)
+	- level = level || 2
+	+b.eb-title&attributes(attributes)
+		if level == 1
+			h1!= text
+		else if level == 3
+			h3!= text
+		else
+			h2!= text
+
+//- Крупный факт: «Факт / 80% / подпись»
+mixin ebFact(value, caption, tagText)
+	+b.eb-fact&attributes(attributes)
+		if tagText
+			+ebTag(tagText).eb-fact__tag
+		+e.DIV.value= value
+		if caption
+			+e.DIV.caption!= caption
+
+//- Хотспот: точка на фото + всплывающая карточка.
+//- Геометрия фиксированная (rem), не в % от высоты секции — иначе карточка
+//- уезжает, когда секция становится выше макета из-за переносов текста.
+mixin ebHotspot(title, text, href)
+	+b.eb-hotspot&attributes(attributes)
+		+e.BUTTON.dot(type="button" aria-label=title || text)
+		+e.A.card(href=href || '#')
+			+e.SPAN.card-body
+				if title
+					+e.SPAN.card-title= title
+				+e.SPAN.card-text= text
+			+icon('arrow-right').eb-hotspot__card-icon

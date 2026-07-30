@@ -1,0 +1,50 @@
+{
+	"customSyntax": "postcss-scss",
+	"plugins": ["stylelint-scss", "stylelint-declaration-strict-value"],
+	"rules": {
+		"color-no-invalid-hex": true,
+		"no-duplicate-selectors": true,
+		"declaration-block-no-duplicate-properties": [
+			true,
+			{ "ignore": ["consecutive-duplicates-with-different-values"] }
+		],
+		"no-duplicate-at-import-rules": true
+	},
+	"overrides": [
+		{
+			"files": [
+				"source/pug/blocks/**/*.scss",
+				"source/sass/_base.scss",
+				"source/sass/_select2.scss"
+			],
+			"rules": {
+				"scale-unlimited/declaration-strict-value": [
+					["/color$/", "background", "fill", "stroke"],
+					{
+						"ignoreValues": [
+							"transparent",
+							"currentColor",
+							"inherit",
+							"unset",
+							"initial",
+							"none",
+							"0",
+							"0 0"
+						],
+						"ignoreFunctions": true,
+						"disableFix": true,
+						"message": "Хардкод запрещён — используй var(--…) или SCSS-переменную (правило: %prop%)"
+					}
+				]
+			}
+		}
+	],
+	"ignoreFiles": [
+		"node_modules/**",
+		"public/**",
+		"source/sass/bourbon/**",
+		"source/sass/_sprite*.scss",
+		"source/sass/templates/**",
+		"source/sass/custom-bootstrap.scss"
+	]
+}

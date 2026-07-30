@@ -1,0 +1,32 @@
+//- Section «Блог Esthetic Bra» — node 495:202 (desktop), 692:1129 → 737:707 (mobile).
+//- Заголовок + кнопка «Все статьи» слева, одна крупная карточка статьи и две
+//- обычные. Раскладка меняется по брейкпоинту через grid-template-areas —
+//- DOM-порядок один и тот же, порядок ячеек в раскладке решает CSS.
+//-
+//- Карточка статьи (+ebArticleCard) — локальный аналог будущего общего
+//- компонента `article` из UI-Kit (669:3563). Заявка на вынос в eb-ui —
+//- в docs/coordination/sBlog.md.
+mixin ebArticleCard(article, mod)
+	+b.ARTICLE.eb-article-card(class="sBlog__article--" + mod)
+		+e.DIV.media
+			img(src=article.image alt=article.imageAlt loading="lazy")
+		+e.DIV.body
+			+e.H3.title
+				a(href=article.href)= article.title
+			+e.P.text= article.text
+			+e.DIV.meta
+				+ebTag(article.category)
+				+e.TIME.date(datetime=article.date)= article.dateLabel
+
+mixin sBlog(data)
+	- data = data || sBlog
+	// start sBlog
+	+b.SECTION.sBlog.section#sBlog&attributes(attributes)
+		.container
+			+e.DIV.grid
+				+ebTitle(data.title).sBlog__title
+				+ebBtn(data.cta.text, 'primary').sBlog__cta
+				each article, i in data.articles
+					- let mod = article.featured ? 'feat' : (i === 1 ? 'a' : 'b')
+					+ebArticleCard(article, mod)
+	// end sBlog

@@ -1,0 +1,39 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sAudience block > matches HTML snapshot 1`] = `
+"
+<!-- start sAudience-->
+<section class="sAudience section" id="sAudience">
+  <div class="container">
+    <div class="sAudience__grid">
+      <div class="eb-title sAudience__title">
+        <h2>Кому помогает<br>Esthetic Bra</h2>
+      </div>
+      <div class="sAudience__card sAudience__card--small-breast"><img class="sAudience__card-img" src="img/sAudience/card-small-breast.webp" alt="Маленькая грудь"/><span class="sAudience__card-text">Маленькая<br>грудь</span>
+      </div>
+      <div class="sAudience__card sAudience__card--sensitive-skin"><img class="sAudience__card-img" src="img/sAudience/card-sensitive-skin.webp" alt="Чувствительная кожа" loading="lazy"/><span class="sAudience__card-text">Чувствительная<br>кожа</span>
+        <button class="eb-icon-btn eb-icon-btn--solid sAudience__card-arrow" type="button" aria-label="Подробнее">
+          <svg class="icon icon-arrow-right ">
+            <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="sAudience__card sAudience__card--big-breast"><img class="sAudience__card-img" src="img/sAudience/card-big-breast.webp" alt="Большая грудь" loading="lazy"/><span class="sAudience__card-text">Большая<br>грудь</span>
+      </div>
+      <div class="sAudience__card sAudience__card--postpartum"><img class="sAudience__card-img" src="img/sAudience/card-postpartum.webp" alt="После родов" loading="lazy"/><span class="sAudience__card-text">После родов</span>
+      </div>
+      <div class="sAudience__card sAudience__card--teens"><img class="sAudience__card-img" src="img/sAudience/card-teens.webp" alt="Подростки" loading="lazy"/><span class="sAudience__card-text">Подростки</span>
+      </div>
+      <div class="sAudience__card sAudience__card--asymmetry"><img class="sAudience__card-img" src="img/sAudience/card-asymmetry.webp" alt="Асимметрия груди" loading="lazy"/><span class="sAudience__card-text">Асимметрия<br>груди</span>
+      </div>
+      <div class="sAudience__card sAudience__card--sport"><img class="sAudience__card-img" src="img/sAudience/card-sport.webp" alt="Спорт и активная жизнь" loading="lazy"/><span class="sAudience__card-text">Спорт и<br>активная жизнь</span>
+      </div>
+      <div class="sAudience__widget">
+        <div class="sAudience__avatars"><img class="sAudience__avatar" src="img/sAudience/avatar-1.webp" alt="" loading="lazy"/><img class="sAudience__avatar" src="img/sAudience/avatar-2.webp" alt="" loading="lazy"/><img class="sAudience__avatar" src="img/sAudience/avatar-3.webp" alt="" loading="lazy"/>
+        </div><span class="sAudience__widget-text">Делаем женщин счастливее каждый день</span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end sAudience-->"
+`;

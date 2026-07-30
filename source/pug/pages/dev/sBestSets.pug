@@ -1,0 +1,30 @@
+extends ../../layout/main.pug
+
+//- Строительные леса для QA блока sBestSets — не боевая страница, удаляется
+//- координатором при сдаче (см. docs/coordination/products.md). Верстаем
+//- ТОЛЬКО свой блок, index.pug не трогаем (границы задачи).
+include ../../blocks/sBestSets/_sBestSets.pug
+
+block variables
+	- let mainPage = 'dev-page'
+	- let bg = null
+
+block base
+	//- Страница лежит в public/dev/sBestSets.html — относительные css/js/img
+	//- иначе резолвятся как public/dev/libs/... и 404-ят (см. docs/coordination
+	//- любого другого блока, решение уже общее — `block base` в main.pug).
+	base(href="../")
+
+block title
+	title sBestSets — dev stand
+
+block pagecontent
+	main
+		+sBestSets()
+
+block scripts
+	//- best-sets.js — новый файл, сборка копирует его в public/js как есть, но
+	//- в боевой `allcjs()` (source/pug/layout/js-css.pug) его подключает
+	//- координатор (layout/* вне границ этой задачи) — заявка в
+	//- docs/coordination/products.md. Здесь подключаем напрямую для QA.
+	script(src="js/best-sets.js")

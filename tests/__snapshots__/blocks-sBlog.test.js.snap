@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sBlog block > matches HTML snapshot 1`] = `
+"
+<!-- start sBlog-->
+<section class="sBlog section" id="sBlog">
+  <div class="container">
+    <div class="sBlog__grid">
+      <div class="eb-title sBlog__title">
+        <h2>Блог<br>Esthetic<br>Bra</h2>
+      </div>
+      <button class="eb-btn eb-btn--primary sBlog__cta" type="button"><span class="eb-btn__label">Все статьи</span>
+      </button>
+      <article class="eb-article-card sBlog__article sBlog__article--feat">
+        <div class="eb-article-card__media"><img src="img/sBlog/vybor-belya.webp" alt="Женщина в голубом бюстгальтере примеряет белье перед зеркалом" loading="lazy"/>
+        </div>
+        <div class="eb-article-card__body">
+          <h3 class="eb-article-card__title"><a href="#">Как выбрать женское нижнее белье: профессиональные советы по размеру, посадке и стилю</a>
+          </h3>
+          <p class="eb-article-card__text">Узнайте, как подобрать белье, которое идеально сидит, подчеркивает фигуру и остается комфортным в течение всего дня.
+          </p>
+          <div class="eb-article-card__meta"><span class="eb-tag"><span class="eb-tag__label">Выбор белья</span></span><time class="eb-article-card__date" datetime="2026-01-02">2 января 2026</time>
+          </div>
+        </div>
+      </article>
+      <article class="eb-article-card sBlog__article sBlog__article--a">
+        <div class="eb-article-card__media"><img src="img/sBlog/osobyy-sluchay.webp" alt="Невеста в свадебном платье держит букет цветов" loading="lazy"/>
+        </div>
+        <div class="eb-article-card__body">
+          <h3 class="eb-article-card__title"><a href="#">Женское белье для особых случаев: как выбрать комплект для свадьбы, свидания и фотосессии</a>
+          </h3>
+          <p class="eb-article-card__text">Подбираем белье для важных моментов, когда особенно важны безупречный вид, комфорт и эффектный образ.
+          </p>
+          <div class="eb-article-card__meta"><span class="eb-tag"><span class="eb-tag__label">Особый случай</span></span><time class="eb-article-card__date" datetime="2026-01-02">2 января 2026</time>
+          </div>
+        </div>
+      </article>
+      <article class="eb-article-card sBlog__article sBlog__article--b">
+        <div class="eb-article-card__media"><img src="img/sBlog/kollekciya.webp" alt="Женщина в синем кружевном белье коллекции LULU" loading="lazy"/>
+        </div>
+        <div class="eb-article-card__body">
+          <h3 class="eb-article-card__title"><a href="#">Красивая и удобная женская бельевая коллекция: как найти идеальный комплект</a>
+          </h3>
+          <p class="eb-article-card__text">Разбираем, как сочетать эстетику и удобство, чтобы каждый комплект приносил уверенность и удовольствие.
+          </p>
+          <div class="eb-article-card__meta"><span class="eb-tag"><span class="eb-tag__label">Коллекция</span></span><time class="eb-article-card__date" datetime="2026-01-02">2 января 2026</time>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- end sBlog-->"
+`;

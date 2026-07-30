@@ -1,0 +1,131 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sStory block > matches HTML snapshot 1`] = `
+"
+<!-- start sStory-->
+<section class="sStory section" id="sStory" data-swiper-scope="data-swiper-scope">
+  <div class="container">
+    <div class="sStory__slider sStory__slider--js swiper" data-swiper-options="{&quot;slidesPerView&quot;:1,&quot;loop&quot;:true,&quot;navigation&quot;:true,&quot;pagination&quot;:true}">
+      <div class="swiper-wrapper">
+        <div class="sStory__slide swiper-slide">
+          <div class="sStory__grid">
+            <div class="sStory__compare" data-story-compare="data-story-compare" data-split="30">
+              <div class="sStory__photo sStory__photo--before"><img src="img/sStory/before.webp" alt="Виктория до подбора белья" loading="lazy"/>
+              </div>
+              <div class="sStory__photo sStory__photo--after"><img src="img/sStory/after.webp" alt="Виктория после подбора белья" loading="lazy"/>
+              </div><span class="sStory__label sStory__label--before">До</span><span class="sStory__label sStory__label--after">После</span>
+              <div class="sStory__handle">
+                <div class="sStory__handle-line">
+                </div>
+                <button class="sStory__handle-btn swiper-no-swiping" type="button" role="slider" aria-label="Потяните, чтобы сравнить фото до и после подбора" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" aria-orientation="horizontal">
+                </button>
+                <svg class="icon icon-move-horizontal sStory__handle-icon">
+                  <use xlink:href="img/svg/sprite.svg#move-horizontal"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="sStory__card">
+              <div class="sStory__top"><span class="sStory__badge">История</span><span class="sStory__year">2026</span>
+              </div>
+              <div class="sStory__name">
+                <h3 class="sStory__name-value">Виктория</h3>
+                <p class="sStory__age">32 года</p>
+              </div>
+              <div class="sStory__info">
+                <div class="sStory__info-row"><span class="sStory__info-label">Состояние</span><span class="sStory__info-value">После родов</span>
+                </div>
+                <div class="sStory__info-row"><span class="sStory__info-label">Размер груди</span><span class="sStory__info-value">75F</span>
+                </div>
+                <div class="sStory__info-row"><span class="sStory__info-label">Жалобы</span><span class="sStory__info-value">Боль в спине</span>
+                </div>
+              </div>
+              <div class="sStory__result">
+                <p class="sStory__result-title">Результат после подбора</p>
+                <div class="sStory__quote"><img class="sStory__avatar" src="img/sStory/avatar-1.webp" alt="Виктория" loading="lazy" width="52" height="52"/>
+                  <p class="sStory__quote-text">Я так долго терпела неудобное бельё, а после подбора впервые почувствовала поддержку и облегчение
+                  </p>
+                </div>
+              </div>
+              <div class="eb-slider-nav sStory__nav">
+                <div class="eb-slider-nav__dots swiper-pagination">
+                </div>
+                <div class="eb-slider-nav__arrows">
+                  <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+                    <svg class="icon icon-arrow-right ">
+                      <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </button>
+                  <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+                    <svg class="icon icon-arrow-right ">
+                      <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sStory__slide swiper-slide">
+          <div class="sStory__grid">
+            <div class="sStory__compare" data-story-compare="data-story-compare" data-split="30">
+              <div class="sStory__photo sStory__photo--before"><img src="img/sStory/before.webp" alt="Александра до подбора белья" loading="lazy"/>
+              </div>
+              <div class="sStory__photo sStory__photo--after"><img src="img/sStory/after.webp" alt="Александра после подбора белья" loading="lazy"/>
+              </div><span class="sStory__label sStory__label--before">До</span><span class="sStory__label sStory__label--after">После</span>
+              <div class="sStory__handle">
+                <div class="sStory__handle-line">
+                </div>
+                <button class="sStory__handle-btn swiper-no-swiping" type="button" role="slider" aria-label="Потяните, чтобы сравнить фото до и после подбора" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" aria-orientation="horizontal">
+                </button>
+                <svg class="icon icon-move-horizontal sStory__handle-icon">
+                  <use xlink:href="img/svg/sprite.svg#move-horizontal"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="sStory__card">
+              <div class="sStory__top"><span class="sStory__badge">История</span><span class="sStory__year">2026</span>
+              </div>
+              <div class="sStory__name">
+                <h3 class="sStory__name-value">Александра</h3>
+                <p class="sStory__age">34 года</p>
+              </div>
+              <div class="sStory__info">
+                <div class="sStory__info-row"><span class="sStory__info-label">Состояние</span><span class="sStory__info-value">Кормление</span>
+                </div>
+                <div class="sStory__info-row"><span class="sStory__info-label">Размер груди</span><span class="sStory__info-value">80E</span>
+                </div>
+                <div class="sStory__info-row"><span class="sStory__info-label">Жалобы</span><span class="sStory__info-value">Натирают бретели</span>
+                </div>
+              </div>
+              <div class="sStory__result">
+                <p class="sStory__result-title">Результат после подбора</p>
+                <div class="sStory__quote"><img class="sStory__avatar" src="img/sStory/avatar-1.webp" alt="Александра" loading="lazy" width="52" height="52"/>
+                  <p class="sStory__quote-text">Впервые за долгое время бельё не давит и не съезжает за день
+                  </p>
+                </div>
+              </div>
+              <div class="eb-slider-nav sStory__nav">
+                <div class="eb-slider-nav__dots swiper-pagination">
+                </div>
+                <div class="eb-slider-nav__arrows">
+                  <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+                    <svg class="icon icon-arrow-right ">
+                      <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </button>
+                  <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+                    <svg class="icon icon-arrow-right ">
+                      <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end sStory-->"
+`;

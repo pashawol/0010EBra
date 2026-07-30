@@ -1,0 +1,270 @@
+// ---------------------------------------------------------------------------
+// Атомы Esthetic Bra. Геометрия из UI-Kit (638:122), состояния из 641:631.
+// Ни одного литерального цвета — только токены (проверяется stylelint).
+// ---------------------------------------------------------------------------
+
+// Общая база кнопок: высота 52, радиус 14, Inter Medium 18
+%eb-control {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: rem(10);
+	min-height: var(--eb-control-size);
+	padding-inline: rem(15);
+	border: 0;
+	border-radius: var(--eb-radius);
+	font-family: $font-family-sans-serif;
+	font-size: var(--eb-subtitle-2);
+	font-weight: 500;
+	line-height: 1;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+
+	&:disabled,
+	&.disabled {
+		opacity: 0.35;
+		pointer-events: none;
+	}
+}
+
+.eb-btn {
+	@extend %eb-control;
+
+	&__icon {
+		font-size: rem(24);
+	}
+
+	// Заливка акцентом. На тёмной теме --eb-accent становится белым,
+	// а --eb-on-accent — тёмным: инверсия из макета получается сама.
+	&--primary {
+		background-color: var(--eb-accent);
+		color: var(--eb-on-accent);
+
+		&:hover {
+			background-color: var(--eb-burgundy);
+			color: var(--eb-white);
+		}
+	}
+
+	// Полупрозрачная кнопка со блюром
+	&--secondary {
+		background-color: var(--eb-surface);
+		color: var(--eb-text);
+		backdrop-filter: blur(var(--eb-blur));
+
+		&:hover {
+			background-color: var(--eb-surface-hover);
+			color: var(--eb-accent);
+		}
+	}
+}
+
+.eb-btn-text {
+	display: inline-block;
+	color: var(--eb-text);
+	font-size: var(--eb-subtitle-2);
+	line-height: 1.4;
+	text-decoration: none;
+	transition: color 0.25s ease;
+
+	&:hover {
+		color: var(--eb-text-faint);
+	}
+}
+
+.eb-icon-btn {
+	@extend %eb-control;
+
+	width: var(--eb-control-size);
+	height: var(--eb-control-size);
+	padding-inline: 0;
+	color: var(--eb-text);
+	font-size: rem(20);
+
+	&--solid {
+		background-color: var(--eb-surface);
+		backdrop-filter: blur(var(--eb-blur));
+
+		&:hover {
+			background-color: var(--eb-surface-hover);
+			color: var(--eb-accent);
+		}
+	}
+
+	&--ghost {
+		background-color: transparent;
+
+		&:hover {
+			background-color: var(--eb-surface);
+		}
+	}
+}
+
+.eb-slider-nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: rem(20);
+
+	&__dots {
+		position: static;
+		display: flex;
+		align-items: center;
+		gap: rem(8);
+		width: auto;
+		text-align: left;
+	}
+
+	&__arrows {
+		display: flex;
+		gap: rem(8);
+	}
+
+	// Стрелка «назад» — та же иконка, развёрнутая: отдельный ассет не нужен
+	&__prev .icon {
+		transform: scaleX(-1);
+	}
+
+	.swiper-button-prev,
+	.swiper-button-next {
+		position: static;
+		margin: 0;
+
+		&::after {
+			display: none;
+		}
+	}
+}
+
+.eb-tag {
+	display: inline-flex;
+	align-items: center;
+	gap: rem(6);
+	padding: rem(6) rem(8);
+	border-radius: var(--eb-radius-badge);
+	background-color: var(--eb-surface);
+	backdrop-filter: blur(var(--eb-blur));
+	color: var(--eb-text);
+	font-size: var(--eb-caption);
+	line-height: 1;
+
+	&__icon {
+		font-size: rem(16);
+	}
+}
+
+.eb-title {
+	margin-bottom: var(--sTPB);
+	color: var(--eb-text);
+
+	> * {
+		margin-bottom: 0;
+	}
+}
+
+.eb-fact {
+	color: var(--eb-text);
+
+	&__tag {
+		margin-bottom: rem(12);
+	}
+
+	&__value {
+		font-family: $font-family-display;
+		font-size: var(--eb-h2);
+		line-height: 1;
+	}
+
+	&__caption {
+		max-width: rem(200);
+		margin-top: rem(8);
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1.3;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Хотспот. Карточка позиционируется от точки фиксированной геометрией,
+// не в процентах от секции — иначе съезжает при изменении высоты блока.
+// ---------------------------------------------------------------------------
+.eb-hotspot {
+	position: absolute;
+	z-index: 2;
+
+	&__dot {
+		display: block;
+		width: rem(24);
+		height: rem(24);
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		background-color: var(--eb-white-35);
+		backdrop-filter: blur(var(--eb-blur));
+		cursor: pointer;
+
+		&::after {
+			content: "";
+			display: block;
+			width: rem(10);
+			height: rem(10);
+			margin: rem(7);
+			border-radius: 50%;
+			background-color: var(--eb-white);
+		}
+	}
+
+	&__card {
+		position: absolute;
+		top: 50%;
+		left: calc(100% + #{rem(12)});
+		display: flex;
+		align-items: flex-start;
+		gap: rem(16);
+		width: max-content;
+		max-width: rem(220);
+		padding: rem(12) rem(16);
+		border-radius: var(--eb-radius);
+		background-color: var(--eb-white);
+		color: var(--eb-ink);
+		text-decoration: none;
+		transform: translateY(-50%);
+		transition: background-color 0.25s ease;
+
+		&:hover {
+			background-color: var(--eb-light-blue);
+			color: var(--eb-ink);
+		}
+	}
+
+	&__card-title {
+		display: block;
+		// В макете подпись светло-серая (35%), но это контраст 2.05 при норме
+		// 4.5 — axe валит как serious. Берём 65%: визуально по-прежнему
+		// приглушённая, но читаемая. Осознанное отступление от макета.
+		color: var(--eb-ink-65);
+		font-size: var(--eb-caption);
+		line-height: 1.2;
+	}
+
+	&__card-text {
+		display: block;
+		font-size: var(--eb-subtitle-2);
+		line-height: 1.2;
+	}
+
+	&__card-icon {
+		flex-shrink: 0;
+		font-size: rem(16);
+	}
+
+	// На мобильном карточка не влезает справа — уводим под точку
+	@include media-breakpoint-down(md) {
+		&__card {
+			top: calc(100% + #{rem(8)});
+			left: 0;
+			transform: none;
+		}
+	}
+}

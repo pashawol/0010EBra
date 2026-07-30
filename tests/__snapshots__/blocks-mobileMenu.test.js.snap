@@ -1,0 +1,561 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`mobileMenu block > matches HTML snapshot 1`] = `
+"
+<!-- start mobileMenu-->
+<div class="mobileMenu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Меню" hidden="hidden">
+  <div class="mobileMenu__backdrop" data-menu-close="data-menu-close">
+  </div>
+  <div class="mobileMenu__panel">
+    <div class="mobileMenu__screen mobileMenu__screen--root" data-menu-screen="root">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__services"><span class="mobileMenu__services-title">Услуги</span>
+          <div class="mobileMenu__services-track"><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-showroom.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+                <svg class="icon icon-arrow-right ">
+                  <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                </svg></span><span class="mobileMenu__service-label">Подбор белья в Самаре</span></a><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-online.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+                <svg class="icon icon-arrow-right ">
+                  <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                </svg></span><span class="mobileMenu__service-label">Подбор белья онлайн</span></a><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-fitting.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+                <svg class="icon icon-arrow-right ">
+                  <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                </svg></span><span class="mobileMenu__service-label">Индивидуальный брафиттинг</span></a><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-giftcard.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+                <svg class="icon icon-arrow-right ">
+                  <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                </svg></span><span class="mobileMenu__service-label">Подарочные сертификаты</span></a>
+          </div>
+        </div>
+        <div class="mobileMenu__catalog"><span class="mobileMenu__catalog-title">Каталог</span>
+          <ul class="mobileMenu__catalog-list">
+            <li class="mobileMenu__catalog-item">
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-underwear"><span class="mobileMenu__catalog-name">Нижнее белье</span><span class="mobileMenu__catalog-count">654</span></button>
+            </li>
+            <li class="mobileMenu__catalog-item">
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-sport"><span class="mobileMenu__catalog-name">Спортивное белье</span><span class="mobileMenu__catalog-count">32</span></button>
+            </li>
+            <li class="mobileMenu__catalog-item">
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-erotic"><span class="mobileMenu__catalog-name">Эротическое белье</span><span class="mobileMenu__catalog-count">12</span></button>
+            </li>
+            <li class="mobileMenu__catalog-item">
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-swimwear"><span class="mobileMenu__catalog-name">Купальники</span><span class="mobileMenu__catalog-count">128</span></button>
+            </li>
+            <li class="mobileMenu__catalog-item">
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-homewear"><span class="mobileMenu__catalog-name">Домашняя одежда</span><span class="mobileMenu__catalog-count">24</span></button>
+            </li>
+            <li class="mobileMenu__catalog-item">
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-sleepwear"><span class="mobileMenu__catalog-name">Одежда для сна</span><span class="mobileMenu__catalog-count">46</span></button>
+            </li>
+            <li class="mobileMenu__catalog-item">
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-beachwear"><span class="mobileMenu__catalog-name">Пляжная одежда</span><span class="mobileMenu__catalog-count">12</span></button>
+            </li>
+            <li class="mobileMenu__catalog-item">
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-accessories"><span class="mobileMenu__catalog-name">Аксессуары</span><span class="mobileMenu__catalog-count">56</span></button>
+            </li>
+            <li class="mobileMenu__catalog-item">
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-bust-type"><span class="mobileMenu__catalog-name">По виду груди</span><span class="mobileMenu__catalog-count">562</span></button>
+            </li>
+          </ul>
+        </div>
+        <hr class="mobileMenu__divider"/>
+        <div class="mobileMenu__links">
+          <div class="mobileMenu__links-col">
+            <button class="mobileMenu__link" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="client">Для вас</button><a class="mobileMenu__link" href="#">Бренды</a><a class="mobileMenu__link" href="#">Спец предложения</a>
+          </div>
+          <div class="mobileMenu__links-col"><a class="mobileMenu__link" href="#">Блог</a><a class="mobileMenu__link" href="#">Контакты</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-underwear" hidden="hidden">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        </div>
+        <div class="mobileMenu__breadcrumb">
+          <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+            <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+          </svg><span class="mobileMenu__breadcrumb-name">Нижнее белье</span><span class="mobileMenu__breadcrumb-count">654</span>
+        </div>
+        <ul class="mobileMenu__sublist">
+          <li><a class="mobileMenu__sublist-link" href="#">Бюстгальтеры</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Трусы</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Комплекты</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Корректирующее белье</a></li>
+        </ul>
+      </div>
+      <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+    </div>
+    <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-sport" hidden="hidden">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        </div>
+        <div class="mobileMenu__breadcrumb">
+          <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+            <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+          </svg><span class="mobileMenu__breadcrumb-name">Спортивное белье</span><span class="mobileMenu__breadcrumb-count">32</span>
+        </div>
+        <ul class="mobileMenu__sublist">
+          <li><a class="mobileMenu__sublist-link" href="#">Топы для фитнеса</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Бесшовное белье</a></li>
+        </ul>
+      </div>
+      <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+    </div>
+    <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-erotic" hidden="hidden">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        </div>
+        <div class="mobileMenu__breadcrumb">
+          <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+            <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+          </svg><span class="mobileMenu__breadcrumb-name">Эротическое белье</span><span class="mobileMenu__breadcrumb-count">12</span>
+        </div>
+        <ul class="mobileMenu__sublist">
+          <li><a class="mobileMenu__sublist-link" href="#">Комплекты</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Боди</a></li>
+        </ul>
+      </div>
+      <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+    </div>
+    <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-swimwear" hidden="hidden">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        </div>
+        <div class="mobileMenu__breadcrumb">
+          <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+            <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+          </svg><span class="mobileMenu__breadcrumb-name">Купальники</span><span class="mobileMenu__breadcrumb-count">128</span>
+        </div>
+        <ul class="mobileMenu__sublist">
+          <li><a class="mobileMenu__sublist-link" href="#">Купальник раздельный</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Купальник слитный</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Плавки</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Танкини</a></li>
+        </ul>
+      </div>
+      <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+    </div>
+    <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-homewear" hidden="hidden">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        </div>
+        <div class="mobileMenu__breadcrumb">
+          <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+            <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+          </svg><span class="mobileMenu__breadcrumb-name">Домашняя одежда</span><span class="mobileMenu__breadcrumb-count">24</span>
+        </div>
+        <ul class="mobileMenu__sublist">
+          <li><a class="mobileMenu__sublist-link" href="#">Халаты</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Пижамные комплекты</a></li>
+        </ul>
+      </div>
+      <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+    </div>
+    <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-sleepwear" hidden="hidden">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        </div>
+        <div class="mobileMenu__breadcrumb">
+          <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+            <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+          </svg><span class="mobileMenu__breadcrumb-name">Одежда для сна</span><span class="mobileMenu__breadcrumb-count">46</span>
+        </div>
+        <ul class="mobileMenu__sublist">
+          <li><a class="mobileMenu__sublist-link" href="#">Ночные сорочки</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Пижамы</a></li>
+        </ul>
+      </div>
+      <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+    </div>
+    <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-beachwear" hidden="hidden">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        </div>
+        <div class="mobileMenu__breadcrumb">
+          <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+            <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+          </svg><span class="mobileMenu__breadcrumb-name">Пляжная одежда</span><span class="mobileMenu__breadcrumb-count">12</span>
+        </div>
+        <ul class="mobileMenu__sublist">
+          <li><a class="mobileMenu__sublist-link" href="#">Парео</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Туники</a></li>
+        </ul>
+      </div>
+      <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+    </div>
+    <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-accessories" hidden="hidden">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        </div>
+        <div class="mobileMenu__breadcrumb">
+          <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+            <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+          </svg><span class="mobileMenu__breadcrumb-name">Аксессуары</span><span class="mobileMenu__breadcrumb-count">56</span>
+        </div>
+        <ul class="mobileMenu__sublist">
+          <li><a class="mobileMenu__sublist-link" href="#">Чулки и колготки</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Пояса</a></li>
+        </ul>
+      </div>
+      <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+    </div>
+    <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-bust-type" hidden="hidden">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        </div>
+        <div class="mobileMenu__breadcrumb">
+          <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+            <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+          </svg><span class="mobileMenu__breadcrumb-name">По виду груди</span><span class="mobileMenu__breadcrumb-count">562</span>
+        </div>
+        <ul class="mobileMenu__sublist">
+          <li><a class="mobileMenu__sublist-link" href="#">Для маленькой груди</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Для большой груди</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Push-up</a></li>
+        </ul>
+      </div>
+      <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+    </div>
+    <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="client" hidden="hidden">
+      <div class="mobileMenu__head">
+        <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+          <svg class="icon icon-x ">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+        <div class="mobileMenu__head-icons">
+          <button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+            <svg class="icon icon-search ">
+              <use xlink:href="img/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+            <svg class="icon icon-user-round ">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+            <svg class="icon icon-heart ">
+              <use xlink:href="img/svg/sprite.svg#heart"></use>
+            </svg>
+          </button>
+          <button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+            <svg class="icon icon-shopping-cart ">
+              <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobileMenu__body">
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/client-showroom.webp" alt="" loading="lazy"/>
+        </div>
+        <div class="mobileMenu__breadcrumb">
+          <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+            <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+          </svg><span class="mobileMenu__breadcrumb-name">Для вас</span>
+        </div>
+        <ul class="mobileMenu__sublist">
+          <li><a class="mobileMenu__sublist-link" href="#">Как заказать</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Оплата</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Доставка</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Возврат</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Подарочные сертификаты</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Вопрос/ответ</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">О брафиттинге</a></li>
+        </ul>
+      </div>
+      <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+    </div>
+  </div>
+</div>
+<!-- end mobileMenu-->"
+`;

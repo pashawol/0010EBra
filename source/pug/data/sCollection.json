@@ -1,0 +1,64 @@
+{
+	"sCollection": {
+		"label": "Новые<br>поступления",
+		"slides": [
+			{
+				"badge": "New",
+				"title": "LULU<br>Collection",
+				"text": "Коллекция, вдохновлённая янтарём: элегантная, женственная и комфортная, с изысканным дизайном и идеальной посадкой.",
+				"cta": { "text": "К коллекции", "href": "#" },
+				"image": "img/sCollection/lulu.webp",
+				"photoAlt": "Три модели в белье коллекции LULU Collection в тёмно-бордовом интерьере с растениями",
+				"hotspots": [
+					{
+						"top": 58.2,
+						"left": 35.1,
+						"corner": "tr",
+						"thumb": "img/sCollection/lulu-thumb-1.webp",
+						"title": "LULU Soft full cup",
+						"price": "9 200 ₽",
+						"href": "#"
+					},
+					{
+						"top": 39.1,
+						"left": 72.8,
+						"corner": "bl",
+						"thumb": "img/sCollection/lulu-thumb-2.webp",
+						"title": "LULU Briefs high waste",
+						"price": "4 900 ₽",
+						"href": "#"
+					}
+				]
+			},
+			{
+				"badge": "New",
+				"title": "Lizzy Wizzy",
+				"text": "Коллекция, вдохновлённая янтарём: элегантная, женственная и комфортная, с изысканным дизайном и идеальной посадкой.",
+				"cta": { "text": "К коллекции", "href": "#" },
+				"image": "img/sCollection/lizzy.webp",
+				"photoAlt": "Две модели в белье коллекции Lizzy Wizzy в тёмно-бордовом интерьере с растениями",
+				"hotspots": [
+					{
+						"top": 60.4,
+						"left": 25.9,
+						"corner": "tr",
+						"thumb": "img/sCollection/lizzy-thumb-1.webp",
+						"title": "Unlined demi Bra",
+						"price": "9 200 ₽",
+						"href": "#"
+					},
+					{
+						"top": 34.9,
+						"left": 61.9,
+						"corner": "bl",
+						"thumb": "img/sCollection/lizzy-thumb-2.webp",
+						"title": "Unlined demi Bra",
+						"price": "4 900 ₽",
+						"href": "#"
+					}
+				]
+			}
+		],
+		"_slidesNote": "2 реальных слайда из спек-нод 385:1497 (LULU Collection) и 634:2078/slide 2 (Lizzy Wizzy) — вторая нода буквально держит обе карточки состояния слайдера (632:1975 показывает hover-кольцо точки, 634:2078 — сам компонент с двумя слайдами: LULU Collection и Lizzy Wizzy). Пагинация в основной ноде 385:1497 отрисована статичной картинкой на 3 точки, но третьей отдельной коллекции с фото и товарами в исследованных нодах файла нет — не стал добавлять третий слайд-заглушку с дублирующим фото (как это сделано в sExpertise), т.к. тут, в отличие от sExpertise, есть два ПОЛНОЦЕННЫХ разных слайда с разным контентом и это не выглядит как искусственный дубль. Решение — в docs/coordination/sCollection.md."
+	}
+}

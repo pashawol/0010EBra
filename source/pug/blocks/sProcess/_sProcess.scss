@@ -1,0 +1,216 @@
+// start .sProcess — node 214:97, мобильный 710:1924
+// ---------------------------------------------------------------------------
+// Раскладка через CSS Grid на lg+ (grid-template-areas), а не через flex-order:
+// в DOM порядок всегда title → steps → widget (мобильный порядок из макета
+// 710:1924), а на десктопе только сетка меняет визуальное место widget —
+// это надёжнее order (не путает табуляцию/скринридер).
+//
+// Шкала-линейка (01/02/03/04) — на CSS: repeating-linear-gradient рисует
+// мелкие насечки, ::after — высокий стартовый штрих. Картинкой не делаем.
+// ---------------------------------------------------------------------------
+.sProcess {
+	background-color: var(--eb-white);
+
+	.container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__title {
+		order: 1;
+		margin-bottom: 0;
+	}
+
+	// ---------------------------------------------------------------------
+	// Мобильная лента шагов: 4 фото не влезают в ряд на 375px, поэтому
+	// дорожка full-bleed на 100vw со scroll-snap, а не сжатые в 4 колонки
+	// (карточка стала бы уже min-card-width и текст под ней не читался бы).
+	// Парный сброс bleed на lg+ — см. грабля §3.1 PLAN.md.
+	// ---------------------------------------------------------------------
+	&__steps {
+		order: 2;
+		display: flex;
+		gap: rem(12);
+		margin-top: rem(24);
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+		@include eb-bleed();
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	&__step {
+		flex: 0 0 min(78vw, #{rem(320)});
+		scroll-snap-align: start;
+	}
+
+	&__step-media {
+		overflow: hidden;
+		border-radius: rem(24);
+		aspect-ratio: 440 / 295;
+	}
+
+	&__step-img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__step-content {
+		display: flex;
+		flex-direction: column;
+		gap: rem(16);
+		margin-top: rem(20);
+	}
+
+	&__step-num {
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1;
+	}
+
+	&__step-ruler {
+		position: relative;
+		height: rem(24);
+
+		// Мелкие насечки — повторяющийся вертикальный штрих через градиент
+		&::before {
+			content: "";
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: rem(10);
+			background-image: repeating-linear-gradient(
+				to right,
+				var(--eb-ink-35),
+				var(--eb-ink-35) 1px,
+				transparent 1px,
+				transparent calc(100% / 37)
+			);
+		}
+
+		// Высокий стартовый штрих шкалы
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 1px;
+			height: 100%;
+			background-color: var(--eb-ink-35);
+		}
+	}
+
+	&__step-label {
+		color: var(--eb-text);
+		font-family: $font-family-display;
+		font-size: var(--eb-subtitle-1);
+		line-height: 1.1;
+	}
+
+	// -----------------------------------------------------------------------
+	// Мини-карточка «Видео обзор». Цвета — точные токены из UI-Kit:
+	// фон rgba(230,235,245,.5) = --eb-light-blue-50, кнопка = --eb-accent.
+	// -----------------------------------------------------------------------
+	&__widget {
+		order: 3;
+		display: flex;
+		align-items: center;
+		gap: rem(20);
+		margin-top: rem(24);
+		padding: rem(10);
+		border-radius: rem(18);
+		background-color: var(--eb-light-blue-50);
+	}
+
+	&__widget-text {
+		display: flex;
+		flex: 1 0 0;
+		flex-direction: column;
+		gap: rem(5);
+		min-width: 0;
+	}
+
+	&__widget-label {
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1;
+	}
+
+	&__widget-title {
+		overflow: hidden;
+		color: var(--eb-text);
+		font-size: var(--eb-subtitle-2);
+		line-height: 1.2;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	// Доп. класс поверх +ebIconBtn ломает bemto (дублирует базовый класс —
+	// см. COORDINATION.md), поэтому цвет переопределён скоуп-селектором
+	// по родителю, без правки самого атома. Разметку и состояния
+	// (disabled, фокус, hover-переход) берём готовые из eb-ui.scss.
+	&__widget .eb-icon-btn--solid {
+		flex-shrink: 0;
+		background-color: var(--eb-accent);
+		color: var(--eb-on-accent);
+
+		&:hover {
+			background-color: var(--eb-burgundy);
+			color: var(--eb-white);
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		.container {
+			display: grid;
+			grid-template-areas: "title widget" "steps steps";
+			grid-template-columns: 1fr auto;
+			column-gap: rem(24);
+			row-gap: rem(40);
+			align-items: start;
+		}
+
+		&__title {
+			grid-area: title;
+			order: initial;
+			max-width: rem(560);
+		}
+
+		&__widget {
+			grid-area: widget;
+			order: initial;
+			flex-shrink: 0;
+			width: rem(290);
+			margin-top: 0;
+		}
+
+		&__steps {
+			grid-area: steps;
+			order: initial;
+			flex-wrap: nowrap;
+			margin-top: 0;
+			overflow-x: visible;
+			@include eb-bleed-reset();
+		}
+
+		&__step {
+			flex: 1 1 0;
+			min-width: 0;
+			scroll-snap-align: none;
+		}
+	}
+
+	@include media-breakpoint-up(xl) {
+		&__steps {
+			gap: rem(10);
+		}
+	}
+}
+// end .sProcess

@@ -1,0 +1,129 @@
+// ---------------------------------------------------------------------------
+// +ebProductCard — общая карточка товара. Спека `669:3403 Card`, реальные
+// инстансы `384:633` (sBestSets) и `428:10` (sFavorites) — те же 440×550 фото
+// + бейдж + свотч + название/цена, разница только в данных.
+//
+// Грабли, уже оплаченные на этом проекте и закрытые здесь намеренно:
+// - flex: 1 0 0 без брейкпоинта схлопывает карточку на мобилке — здесь высота
+//   везде по контенту (aspect-ratio на фото, flex-column без принудительной
+//   высоты на самой карточке).
+// - Название разной длины не должно разъезжать карточки по высоте в ряду —
+//   line-clamp на title, а не фиксированная высота.
+// - object-fit на фикс-боксе + разные пропорции фото — общий aspect-ratio
+//   (440/550 из макета), не растягиваем/не обрезаем сверх меры.
+// - Цвет свотча — контент из данных, поэтому инлайновый style на дочернем
+//   элементе (не в этом файле): здесь ноль литеральных цветов, только токены.
+// ---------------------------------------------------------------------------
+.eb-product-card {
+	--card-image-ratio: 440 / 550;
+
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	color: var(--eb-text);
+
+	&__media {
+		position: relative;
+		overflow: hidden;
+		border-radius: var(--eb-radius);
+		background-color: var(--eb-surface);
+	}
+
+	&__img {
+		display: block;
+		width: 100%;
+		aspect-ratio: var(--card-image-ratio);
+		object-fit: cover;
+	}
+
+	// Бейдж «New» / «−16%» — слева сверху. Цвет фона решает модификатор,
+	// приходящий из данных (is-new/is-sale), не bemto-модификатор.
+	&__badge {
+		position: absolute;
+		top: rem(20);
+		left: rem(20);
+		padding: rem(6) rem(8);
+		border-radius: var(--eb-radius-badge);
+		backdrop-filter: blur(var(--eb-blur));
+		font-size: var(--eb-caption);
+		line-height: 1;
+
+		&.is-new {
+			background-color: var(--eb-ink);
+			color: var(--eb-white);
+		}
+
+		&.is-sale {
+			background-color: var(--eb-white);
+			color: var(--eb-ink);
+		}
+	}
+
+	// Свотч цвета — справа сверху: кружок + «+N» доп. цветов.
+	&__swatch {
+		position: absolute;
+		top: rem(20);
+		right: rem(20);
+		display: flex;
+		align-items: center;
+		gap: rem(5);
+	}
+
+	&__swatch-dot {
+		display: block;
+		width: rem(24);
+		height: rem(24);
+		border-radius: 50%;
+		// Тонкая обводка токеном: белый свотч иначе теряется на светлом фото.
+		box-shadow: inset 0 0 0 1px var(--eb-hairline);
+	}
+
+	&__swatch-count {
+		font-size: var(--eb-caption);
+		color: var(--eb-text-muted);
+	}
+
+	&__body {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		gap: rem(10);
+		padding-top: rem(16);
+	}
+
+	&__title {
+		margin-bottom: 0;
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1.3;
+		// Название любой длины не должно разъезжать карточки по высоте в ряду.
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	&__price {
+		display: flex;
+		align-items: baseline;
+		gap: rem(10);
+		flex-wrap: wrap;
+		margin-top: auto;
+	}
+
+	&__price-current {
+		font-size: var(--eb-subtitle-2);
+		line-height: 1.2;
+		color: var(--eb-text);
+	}
+
+	&__price-old {
+		// Макет даёт 35% (--eb-ink-35) — контраст 2.05 при норме 4.5, axe валит
+		// как serious (тот же паттерн уже решён в eb-hotspot__card-title). Берём
+		// --eb-text-soft (65%): по-прежнему приглушённая, но читаемая.
+		color: var(--eb-text-soft);
+		font-size: var(--eb-caption);
+		line-height: 1.2;
+		text-decoration: line-through;
+	}
+}

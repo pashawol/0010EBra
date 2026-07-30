@@ -1,0 +1,31 @@
+{
+	"sProcess": {
+		"title": "Что происходит на брафиттинге",
+		"widget": {
+			"label": "Видео обзор",
+			"title": "О брафиттинге"
+		},
+		"steps": [
+			{
+				"num": "01",
+				"label": "Измерение",
+				"img": "img/sProcess/step-1-measure.webp"
+			},
+			{
+				"num": "02",
+				"label": "Примерка",
+				"img": "img/sProcess/step-2-fitting.webp"
+			},
+			{
+				"num": "03",
+				"label": "Подбор",
+				"img": "img/sProcess/step-3-selection.webp"
+			},
+			{
+				"num": "04",
+				"label": "Рекомендации",
+				"img": "img/sProcess/step-4-recommend.webp"
+			}
+		]
+	}
+}

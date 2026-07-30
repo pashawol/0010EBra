@@ -1,0 +1,30 @@
+{
+	"sPromo": {
+		"cards": [
+			{
+				"mod": "week",
+				"image": "img/sPromo/banner-week.webp",
+				"badgeInBody": false,
+				"badge": { "icon": "award", "text": "Комплект недели" },
+				"title": { "lead": "До", "value": "20%" },
+				"text": "На комплект белья из категории Bra"
+			},
+			{
+				"mod": "gift",
+				"image": "img/sPromo/banner-gift.webp",
+				"badgeInBody": false,
+				"badge": { "icon": "gift", "text": "Подарок" },
+				"title": { "value": "Подарок" },
+				"text": "При покупке от 15 000 ₽ — стильный аксессуар или средство ухода за бельём"
+			},
+			{
+				"mod": "outlet",
+				"image": "img/sPromo/banner-outlet.webp",
+				"badgeInBody": true,
+				"badge": { "icon": "percent", "text": "Outlet" },
+				"title": { "lead": "До", "value": "40%" },
+				"text": "На любимые модели прошлых коллекций"
+			}
+		]
+	}
+}

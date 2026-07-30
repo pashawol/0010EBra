@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<title>UI-кит — Esthetic Bra</title>
+		<meta name="description" content="о чем страница">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,  shrink-to-fit=no, viewport-fit=cover">
+		<link type="image/ico" href="img/favicon.ico" rel="shortcut icon"><meta name="format-detection" content="telephone=no"> 
+		<link href="libs/swiper/swiper-bundle.min.css" rel="stylesheet"/>
+		<link href="libs/@fancyapps/ui/fancybox/fancybox.css" rel="stylesheet"/>
+		<link href="css/custom-bootstrap.min.css" rel="stylesheet"/>
+		<link href="css/main.min.css" rel="stylesheet"/>
+		<script>
+			// Shared part loader for demo mode.
+			// Keeps duplicated blocks visible in templates and avoids repeated fetches.
+			const sharedPartCache = new Map();
+			
+			function addBlock(partName) {
+				const wrap = document.querySelector(`#${partName}Wrap`);
+				if (!wrap) return;
+			
+				const partRequest =
+					sharedPartCache.get(partName) ||
+					fetch(`parts/${partName}.html`)
+						.then(response => (response.ok ? response.text() : ""))
+						.catch(() => "");
+			
+				sharedPartCache.set(partName, partRequest);
+			
+				partRequest.then(text => {
+					if (!text) return;
+					const markerScript = wrap.previousElementSibling;
+					wrap.insertAdjacentHTML("afterend", text);
+					if (markerScript && markerScript.tagName === "SCRIPT") {
+						markerScript.remove();
+					}
+					wrap.remove();
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div class="main-wrapper">
+			<main class="ui-kit">
+				<div class="container">
+					<h1 class="ui-kit__title">UI-кит Esthetic Bra</h1>
+					<p class="eb-body ui-kit__intro">
+						Компоненты читают только контекстные роли токенов, поэтому один и тот же
+						атом работает на светлой и на тёмной секции без дублирования кода.
+						Тёмная тема включается классом<code> .eb-theme--dark</code> на секции-контейнере.
+					</p>
+										<div class="ui-kit__section">
+											<div class="ui-kit__body ">
+												<h2 class="ui-kit__section-title h3">Типографика
+												</h2>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Headline 1
+																		</div>
+																		<div class="ui-kit__items">
+																			<h1>Влюбиться в себя</h1>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Headline 2
+																		</div>
+																		<div class="ui-kit__items">
+																			<h2>Магия трансформации</h2>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Headline 3
+																		</div>
+																		<div class="ui-kit__items">
+																			<h3>Лучшие наборы белья</h3>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Headline 4
+																		</div>
+																		<div class="ui-kit__items">
+																			<h4>Подарочные решения</h4>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Subtitle 1
+																		</div>
+																		<div class="ui-kit__items"><span class="eb-subtitle-1">Реальные истории</span>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Subtitle 2
+																		</div>
+																		<div class="ui-kit__items"><span class="eb-subtitle-2">Реальные истории</span>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Body
+																		</div>
+																		<div class="ui-kit__items"><span class="eb-body">Студия брафиттинга и нижнего белья.</span>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Caption
+																		</div>
+																		<div class="ui-kit__items"><span class="eb-caption">Женщины носят неправильный размер</span>
+																		</div>
+																	</div>
+											</div>
+										</div>
+										<div class="ui-kit__section">
+											<div class="ui-kit__body ">
+												<h2 class="ui-kit__section-title h3">Кнопки — светлый фон
+												</h2>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Main
+																		</div>
+																		<div class="ui-kit__items">
+																			<button class="eb-btn eb-btn--primary" type="button">
+																				<svg class="icon icon-gallery-horizontal-end  eb-btn__icon">
+																					<use xlink:href="img/svg/sprite.svg#gallery-horizontal-end"></use>
+																				</svg><span class="eb-btn__label">Кнопка</span>
+																			</button>
+																			<button class="eb-btn eb-btn--primary" type="button" disabled="disabled">
+																				<svg class="icon icon-gallery-horizontal-end  eb-btn__icon">
+																					<use xlink:href="img/svg/sprite.svg#gallery-horizontal-end"></use>
+																				</svg><span class="eb-btn__label">Кнопка</span>
+																			</button>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Secondary
+																		</div>
+																		<div class="ui-kit__items">
+																			<button class="eb-btn eb-btn--secondary" type="button"><span class="eb-btn__label">Кнопка</span>
+																			</button>
+																			<button class="eb-btn eb-btn--secondary" type="button" disabled="disabled"><span class="eb-btn__label">Кнопка</span>
+																			</button>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Ссылка-кнопка
+																		</div>
+																		<div class="ui-kit__items">
+																			<a class="eb-btn eb-btn--primary" href="#"><span class="eb-btn__label">Все статьи</span>
+																			</a>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Small button
+																		</div>
+																		<div class="ui-kit__items">
+																			<a class="eb-btn-text" href="#"><span class="eb-btn-text__label">Small button</span>
+																			</a>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Icon button
+																		</div>
+																		<div class="ui-kit__items">
+																			<button class="eb-icon-btn eb-icon-btn--solid" type="button" aria-label="Вперёд">
+																				<svg class="icon icon-arrow-right ">
+																					<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+																				</svg>
+																			</button>
+																			<button class="eb-icon-btn eb-icon-btn--ghost" type="button" aria-label="Меню">
+																				<svg class="icon icon-align-justify ">
+																					<use xlink:href="img/svg/sprite.svg#align-justify"></use>
+																				</svg>
+																			</button>
+																			<button class="eb-icon-btn eb-icon-btn--solid" type="button" aria-label="Вперёд" disabled="disabled">
+																				<svg class="icon icon-arrow-right ">
+																					<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+																				</svg>
+																			</button>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Метки
+																		</div>
+																		<div class="ui-kit__items"><span class="eb-tag"><span class="eb-tag__label">Факт</span></span><span class="eb-tag">
+																			<svg class="icon icon-sparkles  eb-tag__icon">
+																				<use xlink:href="img/svg/sprite.svg#sparkles"></use>
+																			</svg><span class="eb-tag__label">Примеры</span></span><span class="eb-tag">
+																			<svg class="icon icon-message-circle-question  eb-tag__icon">
+																				<use xlink:href="img/svg/sprite.svg#message-circle-question"></use>
+																			</svg><span class="eb-tag__label">4 вопроса</span></span>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Навигация слайдера
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="eb-slider-nav">
+																				<div class="eb-slider-nav__dots swiper-pagination">
+																				</div>
+																				<div class="eb-slider-nav__arrows">
+																					<button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+																						<svg class="icon icon-arrow-right ">
+																							<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+																						</svg>
+																					</button>
+																					<button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+																						<svg class="icon icon-arrow-right ">
+																							<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+																						</svg>
+																					</button>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Факт
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="eb-fact"><span class="eb-tag eb-fact__tag"><span class="eb-tag__label">Факт</span></span>
+																				<div class="eb-fact__value">80%
+																				</div>
+																				<div class="eb-fact__caption">Женщины носят неправильный размер
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+											</div>
+										</div>
+										<div class="ui-kit__section ui-kit__section--dark">
+											<div class="ui-kit__body eb-theme--dark">
+												<h2 class="ui-kit__section-title h3">Кнопки — тёмный фон
+												</h2>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Main
+																		</div>
+																		<div class="ui-kit__items">
+																			<button class="eb-btn eb-btn--primary" type="button">
+																				<svg class="icon icon-gallery-horizontal-end  eb-btn__icon">
+																					<use xlink:href="img/svg/sprite.svg#gallery-horizontal-end"></use>
+																				</svg><span class="eb-btn__label">Кнопка</span>
+																			</button>
+																			<button class="eb-btn eb-btn--primary" type="button" disabled="disabled">
+																				<svg class="icon icon-gallery-horizontal-end  eb-btn__icon">
+																					<use xlink:href="img/svg/sprite.svg#gallery-horizontal-end"></use>
+																				</svg><span class="eb-btn__label">Кнопка</span>
+																			</button>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Secondary
+																		</div>
+																		<div class="ui-kit__items">
+																			<button class="eb-btn eb-btn--secondary" type="button"><span class="eb-btn__label">Кнопка</span>
+																			</button>
+																			<button class="eb-btn eb-btn--secondary" type="button" disabled="disabled"><span class="eb-btn__label">Кнопка</span>
+																			</button>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Small button
+																		</div>
+																		<div class="ui-kit__items">
+																			<a class="eb-btn-text" href="#"><span class="eb-btn-text__label">Small button</span>
+																			</a>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Icon button
+																		</div>
+																		<div class="ui-kit__items">
+																			<button class="eb-icon-btn eb-icon-btn--solid" type="button" aria-label="Вперёд">
+																				<svg class="icon icon-arrow-right ">
+																					<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+																				</svg>
+																			</button>
+																			<button class="eb-icon-btn eb-icon-btn--ghost" type="button" aria-label="Меню">
+																				<svg class="icon icon-align-justify ">
+																					<use xlink:href="img/svg/sprite.svg#align-justify"></use>
+																				</svg>
+																			</button>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Метки
+																		</div>
+																		<div class="ui-kit__items"><span class="eb-tag">
+																			<svg class="icon icon-hand-heart  eb-tag__icon">
+																				<use xlink:href="img/svg/sprite.svg#hand-heart"></use>
+																			</svg><span class="eb-tag__label">Комплект недели</span></span>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Навигация слайдера
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="eb-slider-nav">
+																				<div class="eb-slider-nav__dots swiper-pagination">
+																				</div>
+																				<div class="eb-slider-nav__arrows">
+																					<button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+																						<svg class="icon icon-arrow-right ">
+																							<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+																						</svg>
+																					</button>
+																					<button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+																						<svg class="icon icon-arrow-right ">
+																							<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+																						</svg>
+																					</button>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Факт
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="eb-fact"><span class="eb-tag eb-fact__tag"><span class="eb-tag__label">Факт</span></span>
+																				<div class="eb-fact__value">100+
+																				</div>
+																				<div class="eb-fact__caption">Женщин доверяют нашим специалистам ежедневно
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+											</div>
+										</div>
+										<div class="ui-kit__section">
+											<div class="ui-kit__body ">
+												<h2 class="ui-kit__section-title h3">Поля формы
+												</h2>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Default
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="ui-kit__field">
+																				<label class="ui-kit__field-label" for="uikit-name">Input name</label>
+																				<input class="ui-kit__input" id="uikit-name" type="text" placeholder="Input name">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Filled
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="ui-kit__field">
+																				<label class="ui-kit__field-label" for="uikit-filled">Input name</label>
+																				<input class="ui-kit__input" id="uikit-filled" type="text" value="My name">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Error
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="ui-kit__field ui-kit__field--error">
+																				<label class="ui-kit__field-label" for="uikit-error">Input name</label>
+																				<input class="ui-kit__input" id="uikit-error" type="text" value="My name" aria-invalid="true" aria-describedby="uikit-error-msg"><span class="ui-kit__field-error" id="uikit-error-msg" role="alert">Text of error</span>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Телефон с маской
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="ui-kit__field">
+																				<label class="ui-kit__field-label" for="uikit-tel">Your Phone</label>
+																				<input class="ui-kit__input" id="uikit-tel" type="tel" placeholder="+7(___)___-__-__">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Селект (select2)
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="ui-kit__field">
+																				<label class="ui-kit__field-label" for="uikit-select">Размер</label>
+																				<select class="ui-kit__input custom-select-js" id="uikit-select" data-placeholder="Выберите размер">
+																					<option value="">Выберите размер</option>
+																					<option value="70b">70B</option>
+																					<option value="75c">75C</option>
+																					<option value="80d">80D</option>
+																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Чекбокс
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="ui-kit__field">
+																				<label class="ui-kit__check">
+																					<input type="checkbox"><span>Согласие на обработку персональных данных</span>
+																				</label>
+																			</div>
+																		</div>
+																	</div>
+											</div>
+										</div>
+										<div class="ui-kit__section">
+											<div class="ui-kit__body ">
+												<h2 class="ui-kit__section-title h3">Иконки
+												</h2>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Контурные (Lucide)
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="ui-kit__icon" title="align-justify">
+																				<svg class="icon icon-align-justify ">
+																					<use xlink:href="img/svg/sprite.svg#align-justify"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="arrow-right">
+																				<svg class="icon icon-arrow-right ">
+																					<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="corner-right-down">
+																				<svg class="icon icon-corner-right-down ">
+																					<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="gallery-horizontal-end">
+																				<svg class="icon icon-gallery-horizontal-end ">
+																					<use xlink:href="img/svg/sprite.svg#gallery-horizontal-end"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="hand-heart">
+																				<svg class="icon icon-hand-heart ">
+																					<use xlink:href="img/svg/sprite.svg#hand-heart"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="heart">
+																				<svg class="icon icon-heart ">
+																					<use xlink:href="img/svg/sprite.svg#heart"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="message-circle-question">
+																				<svg class="icon icon-message-circle-question ">
+																					<use xlink:href="img/svg/sprite.svg#message-circle-question"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="move-horizontal">
+																				<svg class="icon icon-move-horizontal ">
+																					<use xlink:href="img/svg/sprite.svg#move-horizontal"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="play">
+																				<svg class="icon icon-play ">
+																					<use xlink:href="img/svg/sprite.svg#play"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="search">
+																				<svg class="icon icon-search ">
+																					<use xlink:href="img/svg/sprite.svg#search"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="shopping-cart">
+																				<svg class="icon icon-shopping-cart ">
+																					<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="sparkles">
+																				<svg class="icon icon-sparkles ">
+																					<use xlink:href="img/svg/sprite.svg#sparkles"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="square-check-big">
+																				<svg class="icon icon-square-check-big ">
+																					<use xlink:href="img/svg/sprite.svg#square-check-big"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="user-round">
+																				<svg class="icon icon-user-round ">
+																					<use xlink:href="img/svg/sprite.svg#user-round"></use>
+																				</svg>
+																			</div>
+																			<div class="ui-kit__icon" title="x">
+																				<svg class="icon icon-x ">
+																					<use xlink:href="img/svg/sprite.svg#x"></use>
+																				</svg>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="ui-kit__row">
+																		<div class="ui-kit__label">Заливка
+																		</div>
+																		<div class="ui-kit__items">
+																			<div class="ui-kit__icon" title="eb-monogram">
+																				<svg class="icon icon-eb-monogram ">
+																					<use xlink:href="img/svg/sprite.svg#eb-monogram"></use>
+																				</svg>
+																			</div>
+																		</div>
+																	</div>
+											</div>
+										</div>
+				</div>
+			</main>
+		</div>
+		<!--  start modals-->
+		<div id="modal-call" style="display: none">
+			<div class="modal-win">
+				<div class="form-wrap">
+					<form>
+						<div class="text-center">
+							<div class="form-wrap__title form-data h3 ttu">Обратный звонок
+							</div>
+							<p class="after-headline">Заполните заявку и&nbsp;мы&nbsp;с&nbsp;Вами свяжемся в&nbsp;течение 15&nbsp;минут</p>
+						</div>
+						<div class="form-wrap__input-wrap form-group">
+							<label><span class="form-wrap__input-title">Имя</span><input class="form-wrap__input form-control" inputmode="text" name="text" type="text" placeholder="Ваше Имя" required="required"/>
+							</label>
+						</div>
+						<!-- +e.input-wrap-->
+						<div class="form-wrap__input-wrap form-group">
+							<label><span class="form-wrap__input-title">Телефон</span><input class="form-wrap__input form-control" inputmode="tel" name="tel" type="tel" placeholder="Ваше телефон" required="required"/>
+							</label>
+						</div>
+						<!-- +e.input-wrap-->
+						<button class="form-wrap__btn btn" type="submit">submit
+						</button>
+						<div class="form-wrap__policy">
+							<label class="custom-input form-check"><input class="custom-input__input form-check-input" name="checkbox" type="checkbox" checked="checked"/><small class="custom-input__text text-secondary">Согласен на обработку и хранение моих персональных данных в соответствии с условиями</small>
+							</label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- #modal-call-->
+		<!-- end modals-->
+		<script src="libs/jquery/jquery.min.js"></script>
+		<script src="libs/@fancyapps/ui/fancybox/fancybox.umd.js"></script>
+		<script src="libs/swiper/swiper-bundle.min.js"></script>
+		<script src="libs/inputmask/inputmask.min.js"></script>
+		<script src="libs/select2/js/select2.min.js"></script>
+		<script src="libs/select2/js/i18n/ru.js"></script>
+		<script src="libs/gsap/gsap.min.js"></script>
+		<script src="libs/gsap/ScrollTrigger.min.js"></script>
+		<script src="js/JSCCommon.js"></script>
+		<script src="js/header.js"></script>
+		<script src="js/mobile-menu.js"></script>
+		<script src="js/best-sets.js"></script>
+		<script src="js/footer.js"></script>
+		<script src="js/story-compare.js"></script>
+		<script src="js/booking.js"></script>
+		<script src="js/anim.js"></script>
+		<script src="js/anim-transition-2.js"></script>
+		<script src="js/anim-transition-3.js"></script>
+		<script src="js/anim-transition-4.js"></script>
+		<script src="js/anim-transition-5.js"></script>
+		<script src="js/common.js"></script>
+	</body>
+</html>

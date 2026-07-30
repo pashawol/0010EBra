@@ -1,0 +1,115 @@
+$default-font: "Inter";
+$display-font: "Vetrino";
+$addr: '../fonts/';
+$file-format: woff2;
+$rfs-rem-value: 16 !default;
+$em-base: $rfs-rem-value * 1px;
+$small: rem(14);
+$url: '../img/';
+$path2: '@2x/';
+$path1: '@1x/';
+$rfs-breakpoint: 1200px !default;
+
+// $themeColor: $primary !default;
+// $colors: (
+//   'white': #ffffff,
+//   'black': $body-color,
+// ) !default;
+
+$font-family-sans-serif: $default-font, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ;
+
+// Стек заголовков: настоящий Vetrino → метрик-совместимая заглушка → системный serif.
+$font-family-display: $display-font, "VetrinoFallback", Georgia, "Times New Roman", serif;
+
+// ---------------------------------------------------------------------------
+// Палитра Esthetic Bra. Снята из UI-Kit (node 638:122), Figma-переменных в файле нет.
+// Единственное место, где живут литеральные hex — дальше только через токены.
+// ---------------------------------------------------------------------------
+$eb-burgundy:    #5a0d30; // акцент: кнопки, активные табы, фокус полей
+$eb-ink:         #2c2b2b; // основной текст
+$eb-light-blue:  #e6ebf5; // светлый фон секций и вторичных кнопок
+$eb-error:       #eb4141; // бордер и подчёркивание ошибки
+// Текст ошибки на её же 15%-фоне: макетный #eb4141 даёт контраст 3.21 при
+// норме 4.5 — axe валит как serious. Затемнённый вариант той же краски
+// проходит, визуально остаётся тем же «красным». Осознанное отступление.
+$eb-error-text:  #b3261e; // на светлом фоне
+$eb-error-on-dark: #ffb4ab; // на бордовом: тёмно-красный там нечитаем
+$eb-white:       #ffffff;
+$eb-beige:       #f5e8d9; // фон карточек-фото (sAudience, sGifts) — заявка агентов
+
+// Прозрачности из макета — используются как отдельные ступени, а не «на глаз».
+$eb-ink-75:      rgba($eb-ink, .75);
+$eb-ink-65:      rgba($eb-ink, .65);
+$eb-ink-35:      rgba($eb-ink, .35);
+$eb-white-75:    rgba($eb-white, .75);
+$eb-white-35:    rgba($eb-white, .35);
+$eb-white-15:    rgba($eb-white, .15);
+$eb-light-blue-50: rgba($eb-light-blue, .5);
+$eb-error-15:    rgba($eb-error, .15);
+
+// Переопределения Bootstrap (объявлены до _vars.scss, где они стоят с !default).
+$primary:    $eb-burgundy;
+$danger:     $eb-error;
+$body-color: $eb-ink;
+$body-bg:    $eb-white;
+
+// Геометрия из UI-Kit: радиусы 14 / 10 / 8, контролы 52px.
+$eb-radius:       14px;
+$eb-radius-badge: 10px;
+$eb-radius-check: 8px;
+$eb-control-size: 52px;
+$eb-blur:         15px;
+
+// Сетка макета: 1920 внешняя ширина, 1790 контент → 65px по бокам.
+$eb-layout-width: 1920px;
+$eb-gutter-desktop: 65px;
+$eb-gutter-mobile: 16px;
+
+// Брейкпоинт под ширину макета — нужен, чтобы были утилиты и колонки на 1920+.
+// Объявлено здесь, потому что _vars.scss ставит эти карты с !default и наше значение победит.
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px,
+	xxxl: $eb-layout-width
+);
+
+
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace ;
+
+$link-decoration: inherit;
+
+$spacers: ( 0: 0, );
+$position-values: ( 100: 100% );
+$border-widths: ( 1: 1px,  );
+$aspect-ratios: ( );
+
+$display-font-sizes: ( 1: 5rem) !default;
+ 
+$zindex-levels: (
+  n1: -1, 
+) ;
+
+
+$enable-caret:                true ;
+$enable-rounded:              true ;
+$enable-shadows:              false ;
+$enable-gradients:            false ;
+$enable-transitions:          true ;
+$enable-reduced-motion:       true ;
+$enable-smooth-scroll:        true ;
+$enable-grid-classes:         true ;
+$enable-container-classes:    true ;
+$enable-cssgrid:              false ;
+$enable-button-pointers:      true ;
+$enable-rfs:                  true ;
+$enable-validation-icons:     false ;
+$enable-negative-margins:     false ;
+$enable-deprecation-messages: true ;
+$enable-important-utilities:  true ;
+
+$enable-dark-mode:            false ;
+$color-mode-type:             data ; // `data` or `media-query`

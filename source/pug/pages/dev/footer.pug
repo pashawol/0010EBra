@@ -1,0 +1,19 @@
+//- Строительные леса — стенд для точечной сверки блока footer с макетом
+//- (508:96 desktop, 744:1165 mobile). Координатор удаляет при сдаче.
+extends ../../layout/main.pug
+
+include ../../blocks/footer/_footer.pug
+
+block base
+	base(href="../")
+
+block variables
+	- let mainPage = 'main-page'
+	- let bg = null
+
+block title
+	title Dev — footer
+
+block pagecontent
+	main
+		+footer()

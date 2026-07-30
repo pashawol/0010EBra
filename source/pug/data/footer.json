@@ -1,0 +1,188 @@
+{
+	"footer": {
+		"intro": {
+			"image": "img/footer/bg-photo.webp",
+			"captionTop": "идеального",
+			"captionBottom": "белья"
+		},
+		"brand": "Esthetic Bra",
+		"contacts": {
+			"title": "Контакты",
+			"items": [
+				{
+					"label": "Телефон:",
+					"value": "+7 (987) 434‑47‑77",
+					"href": "tel:+79874344777"
+				},
+				{
+					"label": "Email:",
+					"value": "info@estheticbra.ru",
+					"href": "mailto:info@estheticbra.ru"
+				},
+				{
+					"label": "Адрес:",
+					"value": "Самара, Московское ш., литер А"
+				}
+			]
+		},
+		"cta": {
+			"image": "img/footer/cta-photo.webp",
+			"eyebrow": "Онлайн запись",
+			"title": "Подбор белья в шоуруме",
+			"href": "#"
+		},
+		"subscribe": {
+			"title": "Будьте в курсе всех новостей",
+			"placeholder": "Ваш email",
+			"button": "Подписаться",
+			"error": "Введите корректный email"
+		},
+		"social": [
+			{
+				"name": "vk",
+				"href": "#",
+				"label": "Мы в VK"
+			},
+			{
+				"name": "telegram",
+				"href": "#",
+				"label": "Мы в Telegram"
+			},
+			{
+				"name": "whatsapp",
+				"href": "#",
+				"label": "Написать в WhatsApp"
+			}
+		],
+		"menus": [
+			{
+				"title": "Интернет-магазин",
+				"links": [
+					{
+						"text": "Каталог",
+						"href": "#"
+					},
+					{
+						"text": "Акции",
+						"href": "#"
+					},
+					{
+						"text": "Бренды",
+						"href": "#"
+					},
+					{
+						"text": "Услуги",
+						"href": "#"
+					}
+				]
+			},
+			{
+				"title": "О нас",
+				"links": [
+					{
+						"text": "Компания",
+						"href": "#"
+					},
+					{
+						"text": "Отзывы",
+						"href": "#"
+					},
+					{
+						"text": "Реквизиты",
+						"href": "#"
+					}
+				]
+			},
+			{
+				"title": "Для клиента",
+				"links": [
+					{
+						"text": "Общая информация",
+						"href": "#"
+					},
+					{
+						"text": "Условия оплаты",
+						"href": "#"
+					},
+					{
+						"text": "Условия доставки",
+						"href": "#"
+					},
+					{
+						"text": "Обмен и возврат",
+						"href": "#"
+					},
+					{
+						"text": "Вопрос-ответ",
+						"href": "#"
+					},
+					{
+						"text": "О брафиттинге",
+						"href": "#"
+					}
+				]
+			}
+		],
+		"copyright": "© 2026 EstheticBra Самара",
+		"legal": [
+			{
+				"text": "Конфиденциальность",
+				"href": "#"
+			},
+			{
+				"text": "Оферта",
+				"href": "#"
+			}
+		],
+		"payments": [
+			{
+				"name": "mastercard",
+				"file": "img/footer/pay-mastercard.webp",
+				"w": 33,
+				"h": 20
+			},
+			{
+				"name": "visa",
+				"file": "img/footer/pay-visa.webp",
+				"w": 49,
+				"h": 16
+			},
+			{
+				"name": "sber",
+				"file": "img/footer/pay-sber.webp",
+				"w": 24,
+				"h": 24
+			},
+			{
+				"name": "alfa",
+				"file": "img/footer/pay-alfa.webp",
+				"w": 24,
+				"h": 24
+			},
+			{
+				"name": "mir",
+				"file": "img/footer/pay-mir.webp",
+				"w": 49,
+				"h": 24
+			},
+			{
+				"name": "yoomoney",
+				"file": "img/footer/pay-yoomoney.webp",
+				"w": 34,
+				"h": 24
+			},
+			{
+				"name": "halva",
+				"file": "img/footer/pay-halva.webp",
+				"w": 24,
+				"h": 24
+			},
+			{
+				"name": "tbank",
+				"file": "img/footer/pay-tbank.webp",
+				"w": 24,
+				"h": 24
+			}
+		]
+	}
+}

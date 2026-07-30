@@ -1,0 +1,225 @@
+// обсалютное центрирование
+
+@mixin a-cent($xy: xy) {
+	position: absolute;
+
+	@if $xy==xy {
+		margin: auto;
+		inset: 0;
+	} @else if $xy==x {
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+	} @else if $xy==y {
+		top: 0;
+		bottom: 0;
+		margin-top: auto;
+		margin-bottom: auto;
+	}
+}
+
+@mixin a-cent1($xy: xy) {
+	@if $xy==xy {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		bottom: auto;
+		right: auto;
+		translate: -50% -50%;
+	} @else if $xy==x {
+		position: absolute;
+		left: 50%;
+		right: auto;
+		translate: -50% 0;
+	} @else if $xy==y {
+		position: absolute;
+		top: 50%;
+		bottom: auto;
+		translate: 0 -50%;
+	}
+}
+
+@mixin gut($a: $grid-gutter-width, $b: 0) {
+	--bs-gutter-x: #{$a};
+	--bs-gutter-y: #{$b};
+}
+
+@mixin roww($a: $grid-gutter-width, $b: 0, $m: p) {
+	@include gut($a, $b);
+
+	margin-top: calc(-1 * var(--bs-gutter-y));
+	margin-left: calc(-1 * var(--bs-gutter-x) / 2);
+	margin-right: calc(-1 * var(--bs-gutter-x) / 2);
+
+	> * {
+		margin-top: calc(var(--bs-gutter-y));
+		@if $m==m {
+			margin-left: calc(var(--bs-gutter-x) / 2);
+			margin-right: calc(var(--bs-gutter-x) / 2);
+		} @else {
+			padding-left: calc(var(--bs-gutter-x) / 2);
+			padding-right: calc(var(--bs-gutter-x) / 2);
+		}
+	}
+}
+
+@mixin center($w) {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $w;
+}
+
+@mixin bgs($w: center, $h: center) {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: $w $h;
+}
+
+@mixin img-bg($w: center, $h: center) {
+	position: relative;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: $w $h;
+
+	img {
+		position: absolute;
+		inset: 0;
+		object-fit: cover;
+	}
+}
+
+@mixin bgsn($img, $w: center, $h: center) {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url($img);
+}
+
+@mixin mt($s: 0.36s) {
+	--s: #{$s};
+	transition: all var(--s) ease-in-out;
+}
+
+//
+@mixin ellips {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	// display: block;
+	// display: inline-block;
+}
+
+//
+@mixin ratio($w: 1, $h: 1) {
+	display: block;
+	position: relative;
+	aspect-ratio: var(--ratio, #{$h}/#{$w});
+}
+//
+@mixin block($w: 1, $h: 1) {
+	@include ratio($w, $h);
+}
+// @mixin block($w: 1, $h: 1) {
+//   display: block;
+//   position: relative;
+//   --ratio: #{$h}/#{$w};
+//   &::before {
+//     content: '';
+//     position: relative;
+//     height: 0;
+//     display: block;
+//     padding-bottom: calc(var(--ratio) * 100%);
+//   }
+// }
+
+@mixin round($w) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	width: var(--size, #{$w});
+	--ratio: 1;
+}
+
+@mixin ell($n: 3) {
+	// line-clamp: $n;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $n;
+	position: relative;
+	overflow: hidden;
+}
+
+@mixin col-sw() {
+	@include make-col;
+	@include make-col-ready;
+	// padding: 0 calc(var(--bs-gutter-x)/2) !important;
+	// margin-top: var(--bs-gutter-y);
+	margin-right: 0 !important;
+}
+
+@mixin row-sw($x: $grid-gutter-width, $media: lg, $y: $x) {
+	@include media-breakpoint-up($media) {
+		@include make-row;
+		--bs-gutter-x: #{$x};
+		--bs-gutter-y: #{$y};
+		margin-top: calc(-1 * var(--bs-gutter-y));
+		transform: none !important;
+		width: calc(100% + var(--bs-gutter-x, 0px)) !important;
+		max-width: calc(100% + var(--bs-gutter-x, 0px)) !important;
+		height: auto;
+		& > .swiper-slide-duplicate {
+			display: none !important;
+		}
+		& > .swiper-slide {
+			@include col-sw();
+		}
+	}
+	& > .swiper-slide {
+		height: auto;
+	}
+}
+
+@mixin custom-scroll() {
+	/* ===== Scrollbar CSS ===== */
+	/* Firefox */
+	// --bs-primary: #DEDEDE;
+	@media (hover: hover) {
+		& {
+			scrollbar-width: auto;
+			scrollbar-color: var(--bs-primary) transparent;
+		}
+
+		/* Chrome, Edge, and Safari */
+		&::-webkit-scrollbar {
+			width: 4px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: var(--bs-primary);
+			border-radius: 16px;
+			border: 0px solid transparent;
+		}
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Full-bleed: секция во всю ширину экрана, контент возвращается к сетке.
+// Сброс ОБЯЗАТЕЛЬНО парный: снять только margin недостаточно — остаётся
+// width:100vw и блок уезжает во всю ширину экрана на десктопе.
+// ---------------------------------------------------------------------------
+@mixin eb-bleed() {
+	width: 100vw;
+	margin-inline: calc(50% - 50vw);
+}
+
+@mixin eb-bleed-reset() {
+	width: auto;
+	margin-inline: 0;
+}

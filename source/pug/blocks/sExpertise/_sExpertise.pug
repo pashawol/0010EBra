@@ -1,0 +1,29 @@
+//- Section «Тысячи подборов» — node 344:1379 (desktop), 726:99 (mobile, 692:1129).
+//- Full-bleed фото-слайдер на тёмной бордовой секции: слева мелкий лейбл,
+//- по центру заголовок поверх фото, справа факт «100+» (на мобиле факт
+//- заменяется пилюлей «О нас» — так решено в макете, не наш выбор).
+mixin sExpertise(data)
+	- data = data || sExpertise
+	// start sExpertise
+	//- data-swiper-scope: общий инициализатор ищет стрелки и буллеты ВНУТРИ
+	//- этой области, иначе на странице с несколькими слайдерами перепутает их.
+	+b.SECTION.sExpertise.eb-theme--dark.section#sExpertise(data-swiper-scope)&attributes(attributes)
+		+e.DIV.media
+			//- Модификатор-хук для Swiper передан как `.--js` (ведущий модификатор
+			//- к предыдущему элементу `slider`), а не строкой "sExpertise__slider--js" —
+			//- иначе bemto декомпозирует строку сам и даёт дубль базового класса.
+			+e.DIV.slider.--js.swiper(data-swiper-options=JSON.stringify({ slidesPerView: 1, loop: data.slides.length > 1, navigation: true, pagination: true }))
+				.swiper-wrapper
+					each slide in data.slides
+						+e.DIV.slide.swiper-slide
+							img.sExpertise__photo(src=slide.image alt=data.photoAlt loading="lazy")
+		.container.sExpertise__overlay
+			+e.DIV.top
+				+e.P.label!= data.label
+				//- Мобильный вариант (726:99): факта нет, справа пилюля «О нас» —
+				//- решение макета, не наша замена. Скрыта от lg и выше.
+				+ebTag(data.mobileTag).sExpertise__mobile-tag
+			+ebTitle(data.title, 2).sExpertise__title.text-center
+			+ebFact(data.fact.value, data.fact.caption, data.fact.tag).sExpertise__fact
+			+ebSliderNav().sExpertise__nav
+	// end sExpertise

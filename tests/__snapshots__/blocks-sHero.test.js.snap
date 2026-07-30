@@ -1,0 +1,57 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sHero block > matches HTML snapshot 1`] = `
+"
+<!-- start sHero-->
+<section class="sHero eb-theme eb-theme--dark section" id="sHero">
+  <div class="sHero__stage">
+    <div class="sHero__slider swiper" data-swiper-options="{&quot;loop&quot;:true,&quot;effect&quot;:&quot;fade&quot;,&quot;speed&quot;:600,&quot;fadeEffect&quot;:{&quot;crossFade&quot;:true},&quot;pagination&quot;:{&quot;el&quot;:&quot;#sHero .swiper-pagination&quot;,&quot;clickable&quot;:true},&quot;navigation&quot;:{&quot;nextEl&quot;:&quot;#sHero .swiper-button-next&quot;,&quot;prevEl&quot;:&quot;#sHero .swiper-button-prev&quot;}}">
+      <div class="swiper-wrapper">
+        <div class="sHero__slide swiper-slide"><img class="sHero__img" src="img/sHero/hero-slide-1.webp" alt="Модели в белье Esthetic Bra на бордовом фоне" width="2400" height="1659" fetchpriority="high"/>
+        </div>
+      </div>
+    </div>
+    <div class="sHero__scrim" aria-hidden="true">
+    </div>
+    <div class="container sHero__container">
+      <div class="sHero__content">
+        <h1 class="sHero__title"><span class="visually-hidden">Влюбиться в себя... навсегда</span><span class="sHero__title-main" aria-hidden="true">Влюбиться<br>в себя...</span></h1>
+        <p class="sHero__text">Студия брафиттинга и нижнего белья. Здесь каждая женщина находит свой идеальный размер, форму, идеальный комфорт и уверенность.
+        </p>
+        <div class="sHero__buttons">
+          <button class="eb-btn eb-btn--primary" type="button"><span class="eb-btn__label">Запись на брафиттинг</span>
+          </button>
+          <button class="eb-btn eb-btn--secondary" type="button"><span class="eb-btn__label">Онлайн-подбор</span>
+          </button>
+        </div>
+      </div><span class="sHero__decor" aria-hidden="true">навсегда</span>
+      <div class="eb-hotspot sHero__hotspot">
+        <button class="eb-hotspot__dot" type="button" aria-label="Коллекция">
+        </button>
+        <a class="eb-hotspot__card" href="#"><span class="eb-hotspot__card-body"><span class="eb-hotspot__card-title">Коллекция</span><span class="eb-hotspot__card-text">Asoka Mia Dot</span></span>
+          <svg class="icon icon-arrow-right  eb-hotspot__card-icon">
+            <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="eb-slider-nav sHero__nav">
+        <div class="eb-slider-nav__dots swiper-pagination">
+        </div>
+        <div class="eb-slider-nav__arrows">
+          <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+            <svg class="icon icon-arrow-right ">
+              <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+            </svg>
+          </button>
+          <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+            <svg class="icon icon-arrow-right ">
+              <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end sHero-->"
+`;

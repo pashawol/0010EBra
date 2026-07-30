@@ -1,0 +1,352 @@
+// start .mobileMenu — node 777:2 / 777:1466 / 777:1584
+// ---------------------------------------------------------------------------
+// Полноэкранный drill-down на 3 экрана. Переключение экранов и открытие/
+// закрытие — атрибутами [hidden] (source/js/mobile-menu.js): скрытый экран
+// реально пропадает из a11y-дерева и таб-порядка, отдельный focus-trap на
+// каждый под-экран не нужен — фокус и так не может уйти в [hidden]-контент.
+// [hidden] дублируется !important — иначе flex/grid-правила блока по
+// специфичности перебивают юзер-агентский display:none (та же грабля, что и
+// у обычных модалок).
+//
+// Скролл body блокируется JS-классом (.mobileMenu-scroll-lock) с
+// компенсацией ширины скроллбара через padding-right — открытое меню не
+// должно двигать контент (грабля §4 ТЗ).
+// ---------------------------------------------------------------------------
+.mobileMenu {
+	position: fixed;
+	inset: 0;
+	z-index: 1050;
+	background-color: var(--eb-white);
+
+	&[hidden] {
+		display: none !important;
+	}
+
+	&__backdrop {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+	}
+
+	&__panel {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	// -------------------------------------------------------------------
+	// Экран — уровень 1 (--root) или уровень 2 (--sub), всегда в DOM,
+	// переключается [hidden].
+	// -------------------------------------------------------------------
+	&__screen {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+
+		&[hidden] {
+			display: none !important;
+		}
+	}
+
+	&__head {
+		display: flex;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: space-between;
+		padding: rem(15);
+	}
+
+	&__head-close {
+		@extend %eb-control;
+
+		width: rem(44);
+		height: rem(44);
+		padding: 0;
+		color: var(--eb-text);
+		font-size: rem(20);
+		background-color: transparent;
+	}
+
+	&__head-icons {
+		display: flex;
+		align-items: center;
+		gap: rem(10);
+	}
+
+	&__head-icon {
+		@extend %eb-control;
+
+		width: rem(20);
+		height: rem(20);
+		min-height: 0;
+		padding: 0;
+		color: var(--eb-text);
+		font-size: rem(20);
+		background-color: transparent;
+	}
+
+	&__body {
+		flex: 1 1 auto;
+		padding-inline: rem(15);
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	// -------------------------------------------------------------------
+	// Услуги — full-bleed горизонтальная лента (тот же приём, что sProcess).
+	// -------------------------------------------------------------------
+	&__services-title,
+	&__catalog-title {
+		display: block;
+		margin-bottom: rem(16);
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1;
+	}
+
+	&__services-track {
+		display: flex;
+		gap: rem(8);
+		margin-inline: calc(-1 * var(--eb-gutter));
+		padding-inline: var(--eb-gutter);
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	&__service {
+		position: relative;
+		flex: 0 0 min(44vw, #{rem(160)});
+		aspect-ratio: 160 / 180;
+		overflow: hidden;
+		border-radius: var(--eb-radius);
+		scroll-snap-align: start;
+		text-decoration: none;
+	}
+
+	&__service-img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__service-arrow {
+		position: absolute;
+		top: rem(10);
+		right: rem(10);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: rem(28);
+		height: rem(28);
+		border-radius: 50%;
+		background-color: var(--eb-white-35);
+		backdrop-filter: blur(var(--eb-blur));
+		color: var(--eb-white);
+		font-size: rem(14);
+
+		// В спрайте нет отдельной иконки «внешняя ссылка» — переиспользуем
+		// arrow-right, развёрнутую в диагональ (тот же приём, что
+		// eb-slider-nav__prev). Новая svg — отдельная заявка, не наш файл.
+		.icon {
+			transform: rotate(-45deg);
+		}
+	}
+
+	&__service-label {
+		position: absolute;
+		right: rem(12);
+		bottom: rem(12);
+		left: rem(12);
+		color: var(--eb-white);
+		font-size: var(--eb-caption);
+		line-height: 1.2;
+	}
+
+	// -------------------------------------------------------------------
+	// Каталог — список категорий, Vetrino как в sProcess__step-label.
+	// -------------------------------------------------------------------
+	&__catalog {
+		margin-top: rem(32);
+	}
+
+	&__catalog-list {
+		display: flex;
+		flex-direction: column;
+		gap: rem(10);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__catalog-trigger {
+		display: flex;
+		align-items: baseline;
+		gap: rem(8);
+		width: 100%;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: var(--eb-text);
+		text-align: left;
+		cursor: pointer;
+	}
+
+	&__catalog-name {
+		font-family: $font-family-display;
+		font-size: var(--eb-subtitle-1);
+		line-height: 1.2;
+	}
+
+	&__catalog-count {
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+	}
+
+	&__divider {
+		margin: rem(24) 0;
+		border: 0;
+		border-top: 1px solid var(--eb-hairline);
+		opacity: 0.4;
+	}
+
+	&__links {
+		display: flex;
+		gap: rem(24);
+		padding-bottom: rem(24);
+	}
+
+	&__links-col {
+		display: flex;
+		flex: 1 1 0;
+		flex-direction: column;
+		gap: rem(16);
+		min-width: 0;
+	}
+
+	&__link {
+		padding: 0;
+		border: 0;
+		background: none;
+		color: var(--eb-text);
+		font-size: var(--eb-body);
+		text-align: left;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	// -------------------------------------------------------------------
+	// Уровень 2 — баннер, хлебная крошка, список подпунктов, «Назад».
+	// -------------------------------------------------------------------
+	&__banner {
+		position: relative;
+		margin-top: rem(15);
+		border-radius: var(--eb-radius);
+		aspect-ratio: 345 / 180;
+		overflow: hidden;
+	}
+
+	&__banner-img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__banner-btn {
+		@extend %eb-control;
+
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		background-color: var(--eb-white);
+		color: var(--eb-ink);
+		transform: translate(-50%, -50%);
+
+		&:hover {
+			background-color: var(--eb-light-blue);
+		}
+	}
+
+	&__breadcrumb {
+		display: flex;
+		align-items: center;
+		gap: rem(8);
+		margin-top: rem(20);
+		color: var(--eb-text-muted);
+	}
+
+	&__breadcrumb-icon {
+		font-size: rem(20);
+	}
+
+	&__breadcrumb-name {
+		color: var(--eb-text);
+		font-family: $font-family-display;
+		font-size: var(--eb-subtitle-1);
+		line-height: 1.2;
+	}
+
+	&__breadcrumb-count {
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+	}
+
+	&__sublist {
+		display: flex;
+		flex-direction: column;
+		gap: rem(16);
+		margin: rem(24) 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__sublist-link {
+		color: var(--eb-text-soft);
+		font-size: var(--eb-body);
+		text-decoration: none;
+	}
+
+	&__back {
+		@extend %eb-control;
+
+		flex: 0 0 auto;
+		width: 100%;
+		margin: 0;
+		border-radius: 0;
+		background-color: var(--eb-surface);
+		color: var(--eb-text);
+
+		&:hover {
+			background-color: var(--eb-surface-hover);
+		}
+	}
+}
+
+// Блокировка скролла страницы, пока меню открыто. Компенсация ширины
+// скроллбара — через padding-right, выставляется JS (source/js/mobile-menu.js),
+// чтобы контент не дёргался при исчезновении скроллбара (грабля §4 ТЗ).
+.mobileMenu-scroll-lock {
+	overflow: hidden;
+}
+
+@include media-breakpoint-up(lg) {
+	// Мобильное меню — компонент мобильной навигации; на lg+ шапка
+	// переключается на десктопный `.catalog-modal`/`+mnu()` (top-nav, чужая
+	// зона). Наш триггер прячется своей стороной в coordination, сам
+	// компонент на lg+ не открываем — на всякий случай гасим и его.
+	.mobileMenu {
+		display: none;
+	}
+}
+// end .mobileMenu

@@ -1,0 +1,63 @@
+//- Section «История» — node 218:361 (desktop, 1790×960), 710:2046 (mobile, в 692:1129).
+//- Слева слайдер «до/после» с drag-ручкой (независимая механика на КАЖДОМ
+//- слайде, source/js/story-compare.js), справа карточка истории клиентки.
+//- Снаружи — Swiper, листает ИСТОРИИ целиком (не путать с drag-компаратором
+//- внутри слайда — это два независимых механизма, см. заявку в docs/coordination/sStory.md).
+mixin sStory(data)
+	- data = data || sStory
+	// start sStory
+	//- data-swiper-scope: общий инициализатор common.js ищет стрелки/буллеты
+	//- ВНУТРИ этой области (грабля §3.1: без scope стрелки — декорация).
+	+b.SECTION.sStory.section#sStory(data-swiper-scope)&attributes(attributes)
+		.container
+			+e.DIV.slider.--js.swiper(data-swiper-options=JSON.stringify({ slidesPerView: 1, loop: data.stories.length > 1, navigation: true, pagination: true }))
+				.swiper-wrapper
+					each story, i in data.stories
+						+e.DIV.slide.swiper-slide
+							+e.DIV.grid
+								//- Компаратор до/после — независимый от Swiper, см. story-compare.js.
+								//- swiper-no-swiping на самой ручке — иначе Swiper перехватывает
+								//- pointerdown и вместо сдвига границы листает слайды.
+								+e.DIV.compare(data-story-compare data-split="30")
+									+e.DIV.photo.--before
+										img(src=story.photos.before alt=story.photos.beforeAlt loading="lazy")
+									+e.DIV.photo.--after
+										img(src=story.photos.after alt=story.photos.afterAlt loading="lazy")
+									+e.SPAN.label.--before= data.beforeLabel
+									+e.SPAN.label.--after= data.afterLabel
+									+e.DIV.handle
+										+e.DIV.handle-line
+										+e.BUTTON.handle-btn.swiper-no-swiping(
+											type="button"
+											role="slider"
+											aria-label=data.compareAriaLabel
+											aria-valuemin="0"
+											aria-valuemax="100"
+											aria-valuenow="30"
+											aria-orientation="horizontal"
+										)
+											//- icon.pug не форвардит &attributes(attributes) — цепочка
+										//- ".handle-icon" молча пропадает (баг общего компонента,
+										//- тот же дефект у +icon(iconName).eb-btn__icon в eb-ui.pug,
+										//- см. заявку в docs/coordination/sStory.md). Обходим,
+										//- передавая класс вторым параметром mod, как задумано сигнатурой.
+										+icon('move-horizontal', 'sStory__handle-icon')
+								+e.DIV.card
+									+e.DIV.top
+										+e.SPAN.badge= data.badge
+										+e.SPAN.year= story.year
+									+e.DIV.name
+										h3.sStory__name-value= story.name
+										p.sStory__age= story.age
+									+e.DIV.info
+										each param in story.params
+											+e.DIV.info-row
+												+e.SPAN.info-label= param.label
+												+e.SPAN.info-value= param.value
+									+e.DIV.result
+										p.sStory__result-title= data.resultTitle
+										+e.DIV.quote
+											img.sStory__avatar(src=story.avatar alt=story.avatarAlt loading="lazy" width="52" height="52")
+											+e.P.quote-text= story.quote
+									+ebSliderNav().sStory__nav
+	// end sStory

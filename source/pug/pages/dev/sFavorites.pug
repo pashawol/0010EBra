@@ -1,0 +1,20 @@
+extends ../../layout/main.pug
+
+//- Строительные леса для QA блока sFavorites — не боевая страница, удаляется
+//- координатором при сдаче (см. docs/coordination/products.md). Верстаем
+//- ТОЛЬКО свой блок, index.pug не трогаем (границы задачи).
+include ../../blocks/sFavorites/_sFavorites.pug
+
+block variables
+	- let mainPage = 'dev-page'
+	- let bg = null
+
+block base
+	base(href="../")
+
+block title
+	title sFavorites — dev stand
+
+block pagecontent
+	main
+		+sFavorites()

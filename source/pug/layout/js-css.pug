@@ -1,0 +1,33 @@
+mixin allcss()
+	link(href="libs/swiper/swiper-bundle.min.css", rel="stylesheet")
+	link(href="libs/@fancyapps/ui/fancybox/fancybox.css", rel="stylesheet")
+	link(href=`css/custom-bootstrap.min.css`, rel="stylesheet")
+	link(href=`css/main.min.css`, rel="stylesheet")
+
+mixin allcjs()
+	script(src="libs/jquery/jquery.min.js")
+	script(src="libs/@fancyapps/ui/fancybox/fancybox.umd.js")
+	script(src="libs/swiper/swiper-bundle.min.js")
+	script(src="libs/inputmask/inputmask.min.js")
+	script(src="libs/select2/js/select2.min.js")
+	script(src="libs/select2/js/i18n/ru.js")
+	script(src="libs/gsap/gsap.min.js")
+	script(src="libs/gsap/ScrollTrigger.min.js")
+	script(src=`js/JSCCommon.js`)
+	//- Скрипты блоков. Лежат в source/js/, сборка копирует их в public/js как есть.
+	//- Каждый сам проверяет наличие своей разметки, поэтому подключать можно всем
+	//- страницам без разбора.
+	script(src=`js/header.js`)
+	script(src=`js/mobile-menu.js`)
+	script(src=`js/best-sets.js`)
+	script(src=`js/footer.js`)
+	script(src=`js/story-compare.js`)
+	script(src=`js/booking.js`)
+	script(src=`js/anim.js`)
+	//- Сцены скролл-переходов по раскадровке дизайнера (страница Scroll Animation).
+	//- Каждая — отдельным файлом: сцены независимы и правятся по одной.
+	script(src=`js/anim-transition-2.js`)
+	script(src=`js/anim-transition-3.js`)
+	script(src=`js/anim-transition-4.js`)
+	script(src=`js/anim-transition-5.js`)
+	script(src=`js/common.js`)

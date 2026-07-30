@@ -1,0 +1,18 @@
+{
+	"$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+	"testRunner": "vitest",
+	"plugins": ["@stryker-mutator/vitest-runner"],
+	"mutate": ["lib/utils.js"],
+	"vitest": {
+		"configFile": "vitest.config.js"
+	},
+	"reporters": ["clear-text", "progress"],
+	"coverageAnalysis": "perTest",
+	"thresholds": {
+		"high": 60,
+		"low": 40,
+		"break": 0
+	},
+	"timeoutMS": 30000,
+	"concurrency": 2
+}

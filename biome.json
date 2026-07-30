@@ -1,0 +1,84 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.4.12/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"includes": [
+			"source/js/**/*.js",
+			"block.js",
+			"lib/**/*.js",
+			"gulpfile.js",
+			"gulp/**/*.js",
+			"tests/**/*.js",
+			"vitest.config.js",
+			"playwright.config.js",
+			"*.json",
+			"!public",
+			"!source/js/libs",
+			"!source/js/vendor"
+		]
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"lineWidth": 100
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"suspicious": {
+				"noConsole": "off",
+				"noAssignInExpressions": "off",
+				"noDoubleEquals": "off",
+				"useIterableCallbackReturn": "off"
+			},
+			"complexity": {
+				"noForEach": "off",
+				"useArrowFunction": "off",
+				"noStaticOnlyClass": "off"
+			},
+			"correctness": {
+				"noInnerDeclarations": "off"
+			},
+			"style": {
+				"noParameterAssign": "off",
+				"useTemplate": "off"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"trailingCommas": "all",
+			"semicolons": "asNeeded"
+		},
+		"globals": [
+			"$",
+			"jQuery",
+			"Fancybox",
+			"Inputmask",
+			"Swiper",
+			"select2",
+			"describe",
+			"it",
+			"expect",
+			"beforeEach",
+			"afterEach",
+			"beforeAll",
+			"afterAll",
+			"vi"
+		]
+	},
+	"assist": {
+		"enabled": true,
+		"actions": {
+			"source": {
+				"organizeImports": "off"
+			}
+		}
+	}
+}

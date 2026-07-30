@@ -1,0 +1,107 @@
+//- Section «Когда белье меняет жизнь навсегда» — node 321:1063 (desktop),
+//- 721:2 (mobile, часть 692:1129). Слайдер вертикальных видео-карточек
+//- (формат сторис): постер, круглая кнопка play, цитата, плашка
+//- «Имя/возраст» с аватаркой и мини-карточка товара — обе плавающие,
+//- частично выступающие за край карточки (см. Widget 1/2/3 в метаданных
+//- обоих кадров). Только первый слайд несёт эти плавающие виджеты — так
+//- в макете (карточка-образец `669:3819 Video (Preview)` для остальных
+//- слайдов показывает только имя/возраст/цитату, запечённые в градиенте).
+//-
+//- Видео нет (заказчик пришлёт ссылку позже, см. PLAN §1) — вместо src
+//- у карточки data-fancybox + data-src на скрытый inline-шаблон с <video>,
+//- готовый под встройку. Подробности и заявка координатору по Fancybox.bind —
+//- в docs/coordination/sReels.md.
+mixin sReels(data)
+	- data = data || sReels
+	// start sReels
+	//- data-swiper-scope: общий инициализатор ищет стрелки/буллеты ВНУТРИ
+	//- этой области (см. sExpertise) — на странице несколько слайдеров.
+	+b.SECTION.sReels.section#sReels(data-swiper-scope)&attributes(attributes)
+		//- Intro (tag/title/subtitle) идёт ПЕРЕД track в разметке: на
+		//- мобиле (692:1129 → 721:2) это обычный текстовый блок в потоке
+		//- ДО слайдера — так в макете. На десктопе (xl) .sReels__overlay
+		//- становится position:absolute поверх track (правило в
+		//- _sReels.scss) — абсолютное позиционирование не зависит от
+		//- порядка в DOM, поэтому один и тот же порядок разметки даёт
+		//- нужный результат на обеих раскладках без дублирования.
+		.container.sReels__overlay
+			+e.DIV.intro
+				+ebTag(data.tag).sReels__tag
+				+ebTitle(data.title, 2).sReels__title
+				+e.P.subtitle= data.subtitle
+				+ebSliderNav().sReels__nav
+		//- Дорожка вне .container: секция и так прямой ребёнок <main>
+		//- (полная ширина вьюпорта), поэтому слайды получают правый край
+		//- экрана без vw-трюков — eb-bleed() навешан формально, как защита
+		//- на случай будущей вложенности (тот же приём, что в sExpertise).
+		+e.DIV.track
+			+e.DIV.slider.--js.swiper(
+				data-swiper-options=JSON.stringify({
+					slidesPerView: 'auto',
+					spaceBetween: 16,
+					watchOverflow: true,
+					navigation: true,
+					pagination: true,
+					breakpoints: {
+						992: { spaceBetween: 32 }
+					}
+				})
+			)
+				.swiper-wrapper
+					each slide, i in data.slides
+						+e.DIV.slide.swiper-slide
+							//- "has-badges" (не "--with-badges"): bemto декомпозирует и
+							//- runtime-строку class=, если она матчит паттерн модификатора
+							//- ("--") — тот же no-dup-class, что и в грабле §1 из ТЗ, только
+							//- через атрибут, а не dot-chain. Обычный (не-BEM) класс не
+							//- матчит паттерн и bemto его не трогает.
+							+e.A.card(
+								class=(slide.person && slide.person.avatar ? 'has-badges' : null)
+								data-fancybox="sReels"
+								data-src=`#sReels-video-${i}`
+								href="#"
+								aria-label=`Смотреть видео: ${slide.person ? slide.person.name + ', ' : ''}${slide.quote}`
+							)
+								img.sReels__poster(src=slide.poster alt=slide.posterAlt loading="lazy")
+								+e.DIV.card-scrim
+								+e.DIV.card-play(aria-hidden="true")
+									+e.SPAN.play-ring
+										+icon('play').sReels__play-icon
+									+e.SPAN.play-label Play
+								+e.P.card-quote!= slide.quote
+								//- Вариант без плавающих виджетов (карточка-образец
+								//- 669:3819): имя/возраст запекается в градиент.
+								if slide.person && !slide.person.avatar
+									+e.DIV.card-person
+										+e.SPAN.card-person-name= slide.person.name
+										+e.SPAN.card-person-age= slide.person.age
+							//- Плавающие виджеты — только когда есть аватарка
+							//- (сейчас только первый слайд, как в макете).
+							if slide.person && slide.person.avatar
+								+e.DIV.person
+									img.sReels__person-avatar(src=slide.person.avatar alt=slide.person.avatarAlt || "" loading="lazy")
+									+e.DIV.person-body
+										+e.SPAN.person-name= slide.person.name
+										+e.SPAN.person-age= slide.person.age
+							if slide.product
+								+e.DIV.product
+									+e.SPAN.product-label= slide.product.label
+									+e.SPAN.product-title= slide.product.title
+									+e.DIV.product-meta
+										+e.SPAN.product-size= slide.product.size
+										+e.DIV.product-color
+											+e.SPAN.product-color-label Цвет:
+											span.sReels__swatch(style=`background-color:${slide.product.colorHex}`)
+							if slide.productPhoto
+								+e.DIV.product-photo
+									img(src=slide.productPhoto.src alt=slide.productPhoto.alt loading="lazy")
+							//- Скрытый inline-шаблон для Fancybox (data-fancybox="sReels" —
+							//- НЕ "modal", чтобы не попасть под общий клик-обработчик
+							//- modalCall(), который делает querySelector(data.src) и упадёт
+							//- на произвольном значении — см. заявку в coordination).
+							div(id=`sReels-video-${i}` style="display: none")
+								.sReels__video-modal
+									video(poster=slide.poster controls playsinline)
+										//- TODO(заказчик): подставить ссылку на видеофайл
+										source(src="" type="video/mp4")
+	// end sReels

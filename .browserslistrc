@@ -1,0 +1,10 @@
+>= 0.5%
+last 2 major versions
+not dead
+Chrome >= 110
+Edge >= 110
+Firefox >= 110
+Firefox ESR
+iOS >= 15.4
+Safari >= 15.4
+not Explorer <= 11

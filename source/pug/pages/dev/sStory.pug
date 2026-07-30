@@ -1,0 +1,26 @@
+extends ../../layout/main.pug
+
+//- Строительные леса для QA блока sStory (node 218:361 / 710:2046).
+//- Папку dev/ координатор удаляет при сдаче — см. заявку в docs/coordination/sStory.md
+//- о включении блока в реальный source/pug/pages/index.pug.
+include ../../blocks/sStory/_sStory.pug
+
+block base
+	base(href="../")
+
+block variables
+	- let mainPage = 'main-page'
+	- let bg = null
+
+block title
+	- let title = 'DEV — sStory'
+	title= title
+
+block pagecontent
+	main
+		+sStory()
+
+block scripts
+	//- common.js (подключён в main.pug) уже инициализирует все
+	//- [data-swiper-options] сам — здесь добавляем только свой модуль.
+	script(src="js/story-compare.js")

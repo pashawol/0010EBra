@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sFavorites block > matches HTML snapshot 1`] = `
+"
+<!-- start sFavorites-->
+<section class="sFavorites section" id="sFavorites">
+  <div class="container">
+    <div class="eb-title sFavorites__title">
+      <h2>Самые любимые модели</h2>
+    </div>
+    <div class="sFavorites__cards">
+      <article class="eb-product-card sFavorites__card">
+        <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sFavorites/fullcup.webp" alt="Full Cup Side Support Bra" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+          <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span>
+          </div>
+        </div>
+        <div class="eb-product-card__body">
+          <p class="eb-product-card__title">Full Cup Side Support Bra
+          </p>
+          <div class="eb-product-card__price"><span class="eb-product-card__price-current">7 400 ₽</span>
+          </div>
+        </div>
+      </article>
+      <article class="eb-product-card sFavorites__card">
+        <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sFavorites/maribel.webp" alt="Maribel big soft" loading="lazy"/>
+          <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#F5E8D9"></span><span class="eb-product-card__swatch-count">+3</span>
+          </div>
+        </div>
+        <div class="eb-product-card__body">
+          <p class="eb-product-card__title">Maribel big soft
+          </p>
+          <div class="eb-product-card__price"><span class="eb-product-card__price-current">10 500 ₽</span>
+          </div>
+        </div>
+      </article>
+      <article class="eb-product-card sFavorites__card">
+        <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sFavorites/sophia.webp" alt="Sophia Full Cup Bra" loading="lazy"/><span class="eb-product-card__badge is-sale">-16%</span>
+          <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#F5E8D9"></span><span class="eb-product-card__swatch-count">+2</span>
+          </div>
+        </div>
+        <div class="eb-product-card__body">
+          <p class="eb-product-card__title">Sophia Full Cup Bra
+          </p>
+          <div class="eb-product-card__price"><span class="eb-product-card__price-current">11 200 ₽</span><span class="eb-product-card__price-old">14 900 ₽</span>
+          </div>
+        </div>
+      </article>
+      <article class="eb-product-card sFavorites__card">
+        <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sFavorites/linda.webp" alt="Бюстгальтер Linda big soft" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+          <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+4</span>
+          </div>
+        </div>
+        <div class="eb-product-card__body">
+          <p class="eb-product-card__title">Бюстгальтер Linda big soft
+          </p>
+          <div class="eb-product-card__price"><span class="eb-product-card__price-current">8 400 ₽</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- end sFavorites-->"
+`;

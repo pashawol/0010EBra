@@ -1,0 +1,53 @@
+// start .sSale — node 385:1481 (desktop) / 726:251 (mobile)
+.sSale {
+	--sPT: #{rem(32)};
+	--sPB: #{rem(32)};
+
+	background-color: var(--eb-white);
+	text-align: center;
+
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: rem(615);
+		margin-inline: auto;
+	}
+
+	// «Брафиттинг +» — тот же шрифт заголовков, но мелким кеглем: в макете это
+	// продолжение фразы, а не подпись, поэтому Vetrino, а не Inter.
+	&__eyebrow {
+		margin-bottom: 0;
+		font-family: $font-family-display;
+		font-size: var(--eb-h4);
+		line-height: 1.1;
+		color: var(--eb-text);
+	}
+
+	&__title {
+		margin-bottom: rem(20);
+		color: var(--eb-text);
+	}
+
+	&__text {
+		margin-bottom: rem(24);
+		color: var(--eb-text-soft);
+		font-size: var(--eb-caption);
+		line-height: 1.4;
+	}
+
+	@include media-breakpoint-up(lg) {
+		--sPT: #{rem(60)};
+		--sPB: #{rem(60)};
+
+		&__title {
+			margin-bottom: rem(32);
+		}
+
+		&__text {
+			margin-bottom: rem(32);
+			font-size: var(--eb-body);
+		}
+	}
+}
+// end .sSale

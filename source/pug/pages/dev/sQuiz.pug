@@ -1,0 +1,21 @@
+extends ../../layout/main.pug
+
+//- Строительные леса для локальной QA-проверки sQuiz. Папку dev/ удаляет
+//- координатор при сдаче — здесь только этот блок, шапка/футер не нужны.
+include ../../blocks/sQuiz/_sQuiz.pug
+
+block variables
+	- var mainPage = 'main-page'
+
+//- Страница лежит в public/dev/ — относительные пути к css/js/img
+//- промахиваются на уровень, поэтому переопределяем базовый href.
+block base
+	base(href="../")
+
+block title
+	- var title = 'DEV — sQuiz'
+	title= title
+
+block pagecontent
+	main
+		+sQuiz()

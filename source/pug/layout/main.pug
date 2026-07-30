@@ -1,0 +1,83 @@
+include include.pug
+include js-css.pug
+include ../blocks/modal/_modal.pug
+doctype html
+html(lang="ru")
+	head
+		meta(charset="utf-8")
+		//- Все ассеты подключаются относительными путями — так сборка работает и
+		//- локально, и на GitHub Pages, где сайт лежит в подпапке репозитория.
+		//- Но страница во вложенной папке (public/dev/*.html) от такого пути
+		//- промахивается на уровень и молча отдаёт 404 на css/js.
+		//-
+		//- Именно БЛОК, а не проверка переменной: `block variables` подставляется
+		//- ниже, рядом с <body>, поэтому к моменту проверки в head присваивание
+		//- ещё не выполнено и переменная всегда undefined. Блок же
+		//- переопределяется на месте объявления.
+		block base
+
+		block title
+			title title
+		meta(name="description", content="о чем страница")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		//- meta(name="viewport", content="width=device-width, shrink-to-fit=no")
+		//- meta(name="viewport",  content="width=575,   maximum-scale=1 , user-scalable=0, shrink-to-fit=no")
+		//- script.
+		//- 	let viewport = document.querySelector("meta[name=viewport]");
+		//- 	var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+		//- 	if (is_safari) {
+		//- 		//- alert(navigator.userAgent);
+		//- 		function w() {
+		//- 			this.outerWidth > 575 
+		//- 				? viewport.content = "width=device-width, initial-scale=1.0,  maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" 
+		//- 				:  viewport.content = "width=575,   maximum-scale=1 , user-scalable=0, shrink-to-fit=no" 
+		//- 			//- alert(this.outerWidth + ', '+  viewport.content);
+		//- 		}
+		//- 		 w();
+		//- 		window.addEventListener('resize', () => { 
+		//- 		 w();
+		//- 		}, { passive: true });
+		//- 	}
+		meta(name="viewport", content="width=device-width,initial-scale=1.0,  shrink-to-fit=no, viewport-fit=cover")
+		link(type="image/ico", href='img/favicon.ico', rel='shortcut icon') 
+		<meta name="format-detection" content="telephone=no"> 
+		+allcss()
+		script.
+			// Shared part loader for demo mode.
+			// Keeps duplicated blocks visible in templates and avoids repeated fetches.
+			const sharedPartCache = new Map();
+
+			function addBlock(partName) {
+				const wrap = document.querySelector(`#${partName}Wrap`);
+				if (!wrap) return;
+
+				const partRequest =
+					sharedPartCache.get(partName) ||
+					fetch(`parts/${partName}.html`)
+						.then(response => (response.ok ? response.text() : ""))
+						.catch(() => "");
+
+				sharedPartCache.set(partName, partRequest);
+
+				partRequest.then(text => {
+					if (!text) return;
+					const markerScript = wrap.previousElementSibling;
+					wrap.insertAdjacentHTML("afterend", text);
+					if (markerScript && markerScript.tagName === "SCRIPT") {
+						markerScript.remove();
+					}
+					wrap.remove();
+				});
+			}
+	block variables
+	//- style.
+	//- 	.loaded_hiding {  opacity: 0; pointer-events: none;  } .loaded_hiding::before { display: none; }
+	//- body.loaded_hiding(class= mainPage) 
+	body(class=mainPage data-bg=bg)
+		.main-wrapper
+			block pagecontent
+				h3 content
+		
+		+modal
+		+allcjs()
+		block scripts

@@ -1,0 +1,149 @@
+extends ../layout/main.pug
+
+//- Живая библиотека компонентов. Не часть сайта — стенд для тех, кто будет
+//- внедрять вёрстку: здесь видно все состояния атомов на светлом и тёмном фоне.
+//- Источник правды по состояниям — UI-Kit в Figma (638:122, 641:631, 652:1373).
+
+block title
+	title UI-кит — Esthetic Bra
+
+block pagecontent
+	main.ui-kit
+		.container
+			h1.ui-kit__title UI-кит Esthetic Bra
+
+			p.eb-body.ui-kit__intro
+				| Компоненты читают только контекстные роли токенов, поэтому один и тот же
+				| атом работает на светлой и на тёмной секции без дублирования кода.
+				| Тёмная тема включается классом
+				code  .eb-theme--dark
+				|  на секции-контейнере.
+
+			//- ---------------------------------------------------------------
+			mixin uiSection(title, dark)
+				+b.ui-kit__section(class=dark ? '--dark' : '')&attributes(attributes)
+					//- Тему включаем на обычном div, а не через bemto: bemto
+					//- декомпозирует любую строку класса с `--` и подмешал бы
+					//- лишний базовый класс `eb-theme`.
+					//- Заголовок ОБЯЗАН быть внутри этого div: снаружи он не видит
+					//- переключения темы и остаётся тёмным на бордовом фоне.
+					div(class="ui-kit__body " + (dark ? 'eb-theme--dark' : ''))
+						+e.H2.section-title.h3= title
+						block
+
+			mixin uiRow(label)
+				+b.ui-kit__row
+					+e.DIV.label= label
+					+e.DIV.items
+						block
+
+			//- --- Типографика ------------------------------------------------
+			+uiSection('Типографика')
+				+uiRow('Headline 1')
+					h1 Влюбиться в себя
+				+uiRow('Headline 2')
+					h2 Магия трансформации
+				+uiRow('Headline 3')
+					h3 Лучшие наборы белья
+				+uiRow('Headline 4')
+					h4 Подарочные решения
+				+uiRow('Subtitle 1')
+					span.eb-subtitle-1 Реальные истории
+				+uiRow('Subtitle 2')
+					span.eb-subtitle-2 Реальные истории
+				+uiRow('Body')
+					span.eb-body Студия брафиттинга и нижнего белья.
+				+uiRow('Caption')
+					span.eb-caption Женщины носят неправильный размер
+
+			//- --- Кнопки на светлом -----------------------------------------
+			+uiSection('Кнопки — светлый фон')
+				+uiRow('Main')
+					+ebBtn('Кнопка', 'primary', 'gallery-horizontal-end')
+					+ebBtn('Кнопка', 'primary', 'gallery-horizontal-end')(disabled)
+				+uiRow('Secondary')
+					+ebBtn('Кнопка', 'secondary')
+					+ebBtn('Кнопка', 'secondary')(disabled)
+				+uiRow('Ссылка-кнопка')
+					+ebBtn('Все статьи', 'primary', null, '#')
+				+uiRow('Small button')
+					+ebBtnText('Small button', '#')
+				+uiRow('Icon button')
+					+ebIconBtn('arrow-right', 'Вперёд')
+					+ebIconBtn('align-justify', 'Меню', 'ghost')
+					+ebIconBtn('arrow-right', 'Вперёд')(disabled)
+				+uiRow('Метки')
+					+ebTag('Факт')
+					+ebTag('Примеры', 'sparkles')
+					+ebTag('4 вопроса', 'message-circle-question')
+				+uiRow('Навигация слайдера')
+					+ebSliderNav()
+				+uiRow('Факт')
+					+ebFact('80%', 'Женщины носят неправильный размер', 'Факт')
+
+			//- --- Кнопки на тёмном ------------------------------------------
+			+uiSection('Кнопки — тёмный фон', true)
+				+uiRow('Main')
+					+ebBtn('Кнопка', 'primary', 'gallery-horizontal-end')
+					+ebBtn('Кнопка', 'primary', 'gallery-horizontal-end')(disabled)
+				+uiRow('Secondary')
+					+ebBtn('Кнопка', 'secondary')
+					+ebBtn('Кнопка', 'secondary')(disabled)
+				+uiRow('Small button')
+					+ebBtnText('Small button', '#')
+				+uiRow('Icon button')
+					+ebIconBtn('arrow-right', 'Вперёд')
+					+ebIconBtn('align-justify', 'Меню', 'ghost')
+				+uiRow('Метки')
+					+ebTag('Комплект недели', 'hand-heart')
+				+uiRow('Навигация слайдера')
+					+ebSliderNav()
+				+uiRow('Факт')
+					+ebFact('100+', 'Женщин доверяют нашим специалистам ежедневно', 'Факт')
+
+			//- --- Поля формы ------------------------------------------------
+			//- Состояния взяты из UI-Kit (652:1373). Селект здесь ещё и живая
+			//- проверка select2 под jQuery 4: версии обновлены мажорно, и без
+			//- реального экземпляра на странице совместимость остаётся
+			//- недоказанной.
+			+uiSection('Поля формы')
+				+uiRow('Default')
+					+b.ui-kit__field
+						label.ui-kit__field-label(for="uikit-name") Input name
+						input.ui-kit__input#uikit-name(type="text" placeholder="Input name")
+				+uiRow('Filled')
+					+b.ui-kit__field
+						label.ui-kit__field-label(for="uikit-filled") Input name
+						input.ui-kit__input#uikit-filled(type="text" value="My name")
+				+uiRow('Error')
+					+b.ui-kit__field(class="--error")
+						label.ui-kit__field-label(for="uikit-error") Input name
+						input.ui-kit__input#uikit-error(type="text" value="My name" aria-invalid="true" aria-describedby="uikit-error-msg")
+						span.ui-kit__field-error#uikit-error-msg(role="alert") Text of error
+				+uiRow('Телефон с маской')
+					+b.ui-kit__field
+						label.ui-kit__field-label(for="uikit-tel") Your Phone
+						input.ui-kit__input#uikit-tel(type="tel" placeholder="+7(___)___-__-__")
+				+uiRow('Селект (select2)')
+					+b.ui-kit__field
+						label.ui-kit__field-label(for="uikit-select") Размер
+						select.ui-kit__input.custom-select-js#uikit-select(data-placeholder="Выберите размер")
+							option(value="") Выберите размер
+							option(value="70b") 70B
+							option(value="75c") 75C
+							option(value="80d") 80D
+				+uiRow('Чекбокс')
+					+b.ui-kit__field
+						label.ui-kit__check
+							input(type="checkbox")
+							span Согласие на обработку персональных данных
+
+			//- --- Иконки ----------------------------------------------------
+			+uiSection('Иконки')
+				+uiRow('Контурные (Lucide)')
+					each name in ['align-justify', 'arrow-right', 'corner-right-down', 'gallery-horizontal-end', 'hand-heart', 'heart', 'message-circle-question', 'move-horizontal', 'play', 'search', 'shopping-cart', 'sparkles', 'square-check-big', 'user-round', 'x']
+						+b.ui-kit__icon(title=name)
+							+icon(name)
+				+uiRow('Заливка')
+					+b.ui-kit__icon(title="eb-monogram")
+						+icon('eb-monogram')

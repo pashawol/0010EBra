@@ -1,0 +1,110 @@
+{
+	"mobileMenu": {
+		"services": [
+			{
+				"label": "Подбор белья в Самаре",
+				"img": "img/mobileMenu/service-showroom.webp",
+				"href": "#"
+			},
+			{
+				"label": "Подбор белья онлайн",
+				"img": "img/mobileMenu/service-online.webp",
+				"href": "#"
+			},
+			{
+				"label": "Индивидуальный брафиттинг",
+				"img": "img/mobileMenu/service-fitting.webp",
+				"href": "#"
+			},
+			{
+				"label": "Подарочные сертификаты",
+				"img": "img/mobileMenu/service-giftcard.webp",
+				"href": "#"
+			}
+		],
+		"categories": [
+			{
+				"slug": "underwear",
+				"name": "Нижнее белье",
+				"count": "654",
+				"img": "img/mobileMenu/catalog-swimwear.webp",
+				"subcategories": ["Бюстгальтеры", "Трусы", "Комплекты", "Корректирующее белье"]
+			},
+			{
+				"slug": "sport",
+				"name": "Спортивное белье",
+				"count": "32",
+				"img": "img/mobileMenu/catalog-swimwear.webp",
+				"subcategories": ["Топы для фитнеса", "Бесшовное белье"]
+			},
+			{
+				"slug": "erotic",
+				"name": "Эротическое белье",
+				"count": "12",
+				"img": "img/mobileMenu/catalog-swimwear.webp",
+				"subcategories": ["Комплекты", "Боди"]
+			},
+			{
+				"slug": "swimwear",
+				"name": "Купальники",
+				"count": "128",
+				"img": "img/mobileMenu/catalog-swimwear.webp",
+				"subcategories": ["Купальник раздельный", "Купальник слитный", "Плавки", "Танкини"]
+			},
+			{
+				"slug": "homewear",
+				"name": "Домашняя одежда",
+				"count": "24",
+				"img": "img/mobileMenu/catalog-swimwear.webp",
+				"subcategories": ["Халаты", "Пижамные комплекты"]
+			},
+			{
+				"slug": "sleepwear",
+				"name": "Одежда для сна",
+				"count": "46",
+				"img": "img/mobileMenu/catalog-swimwear.webp",
+				"subcategories": ["Ночные сорочки", "Пижамы"]
+			},
+			{
+				"slug": "beachwear",
+				"name": "Пляжная одежда",
+				"count": "12",
+				"img": "img/mobileMenu/catalog-swimwear.webp",
+				"subcategories": ["Парео", "Туники"]
+			},
+			{
+				"slug": "accessories",
+				"name": "Аксессуары",
+				"count": "56",
+				"img": "img/mobileMenu/catalog-swimwear.webp",
+				"subcategories": ["Чулки и колготки", "Пояса"]
+			},
+			{
+				"slug": "bust-type",
+				"name": "По виду груди",
+				"count": "562",
+				"img": "img/mobileMenu/catalog-swimwear.webp",
+				"subcategories": ["Для маленькой груди", "Для большой груди", "Push-up"]
+			}
+		],
+		"client": {
+			"label": "Для вас",
+			"img": "img/mobileMenu/client-showroom.webp",
+			"links": [
+				"Как заказать",
+				"Оплата",
+				"Доставка",
+				"Возврат",
+				"Подарочные сертификаты",
+				"Вопрос/ответ",
+				"О брафиттинге"
+			]
+		},
+		"otherLinks": [
+			{ "label": "Бренды", "href": "#" },
+			{ "label": "Спец предложения", "href": "#" },
+			{ "label": "Блог", "href": "#" },
+			{ "label": "Контакты", "href": "#" }
+		]
+	}
+}

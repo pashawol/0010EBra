@@ -1,0 +1,115 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sCollection block > matches HTML snapshot 1`] = `
+"
+<!-- start sCollection-->
+<section class="sCollection eb-theme eb-theme--dark section" id="sCollection" data-swiper-scope="data-swiper-scope">
+  <div class="sCollection__media">
+    <div class="sCollection__slider sCollection__slider--js swiper" data-swiper-options="{&quot;slidesPerView&quot;:1,&quot;loop&quot;:true,&quot;navigation&quot;:true,&quot;pagination&quot;:true}">
+      <div class="swiper-wrapper">
+        <div class="sCollection__slide swiper-slide"><img class="sCollection__photo" src="img/sCollection/lulu.webp" alt="Три модели в белье коллекции LULU Collection в тёмно-бордовом интерьере с растениями" fetchpriority="high"/>
+          <div class="container sCollection__slide-overlay">
+            <div class="sCollection__content">
+              <div class="sCollection__top"><span class="sCollection__badge">New</span>
+                <div class="eb-title sCollection__title">
+                  <h2>LULU<br>Collection</h2>
+                </div>
+              </div>
+              <p class="sCollection__text">Коллекция, вдохновлённая янтарём: элегантная, женственная и комфортная, с изысканным дизайном и идеальной посадкой.
+              </p>
+              <a class="eb-btn eb-btn--secondary sCollection__cta" href="#"><span class="eb-btn__label">К коллекции</span>
+              </a>
+            </div>
+            <div class="sCollection__hotspots">
+              <div class="eb-hotspot eb-hotspot--tr" style="top:58.2%;left:35.1%">
+                <button class="eb-hotspot__dot" type="button" aria-label="LULU Soft full cup">
+                </button>
+                <a class="eb-hotspot__card" href="#">
+                  <div class="eb-hotspot__card-thumb"><img src="img/sCollection/lulu-thumb-1.webp" alt="" width="80" height="80" loading="lazy"/>
+                  </div><span class="eb-hotspot__card-body"><span class="eb-hotspot__card-title">LULU Soft full cup</span><span class="eb-hotspot__card-text">9 200 ₽</span></span>
+                  <svg class="icon icon-arrow-right  eb-hotspot__card-icon">
+                    <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+              <div class="eb-hotspot eb-hotspot--bl" style="top:39.1%;left:72.8%">
+                <button class="eb-hotspot__dot" type="button" aria-label="LULU Briefs high waste">
+                </button>
+                <a class="eb-hotspot__card" href="#">
+                  <div class="eb-hotspot__card-thumb"><img src="img/sCollection/lulu-thumb-2.webp" alt="" width="80" height="80" loading="lazy"/>
+                  </div><span class="eb-hotspot__card-body"><span class="eb-hotspot__card-title">LULU Briefs high waste</span><span class="eb-hotspot__card-text">4 900 ₽</span></span>
+                  <svg class="icon icon-arrow-right  eb-hotspot__card-icon">
+                    <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sCollection__slide swiper-slide"><img class="sCollection__photo" src="img/sCollection/lizzy.webp" alt="Две модели в белье коллекции Lizzy Wizzy в тёмно-бордовом интерьере с растениями" loading="lazy"/>
+          <div class="container sCollection__slide-overlay">
+            <div class="sCollection__content">
+              <div class="sCollection__top"><span class="sCollection__badge">New</span>
+                <div class="eb-title sCollection__title">
+                  <h2>Lizzy Wizzy</h2>
+                </div>
+              </div>
+              <p class="sCollection__text">Коллекция, вдохновлённая янтарём: элегантная, женственная и комфортная, с изысканным дизайном и идеальной посадкой.
+              </p>
+              <a class="eb-btn eb-btn--secondary sCollection__cta" href="#"><span class="eb-btn__label">К коллекции</span>
+              </a>
+            </div>
+            <div class="sCollection__hotspots">
+              <div class="eb-hotspot eb-hotspot--tr" style="top:60.4%;left:25.9%">
+                <button class="eb-hotspot__dot" type="button" aria-label="Unlined demi Bra">
+                </button>
+                <a class="eb-hotspot__card" href="#">
+                  <div class="eb-hotspot__card-thumb"><img src="img/sCollection/lizzy-thumb-1.webp" alt="" width="80" height="80" loading="lazy"/>
+                  </div><span class="eb-hotspot__card-body"><span class="eb-hotspot__card-title">Unlined demi Bra</span><span class="eb-hotspot__card-text">9 200 ₽</span></span>
+                  <svg class="icon icon-arrow-right  eb-hotspot__card-icon">
+                    <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+              <div class="eb-hotspot eb-hotspot--bl" style="top:34.9%;left:61.9%">
+                <button class="eb-hotspot__dot" type="button" aria-label="Unlined demi Bra">
+                </button>
+                <a class="eb-hotspot__card" href="#">
+                  <div class="eb-hotspot__card-thumb"><img src="img/sCollection/lizzy-thumb-2.webp" alt="" width="80" height="80" loading="lazy"/>
+                  </div><span class="eb-hotspot__card-body"><span class="eb-hotspot__card-title">Unlined demi Bra</span><span class="eb-hotspot__card-text">4 900 ₽</span></span>
+                  <svg class="icon icon-arrow-right  eb-hotspot__card-icon">
+                    <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sCollection__overlay">
+      <div class="container sCollection__overlay-inner">
+        <p class="sCollection__label">Новые<br>поступления
+        </p>
+        <div class="eb-slider-nav sCollection__nav">
+          <div class="eb-slider-nav__dots swiper-pagination">
+          </div>
+          <div class="eb-slider-nav__arrows">
+            <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+              <svg class="icon icon-arrow-right ">
+                <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+              </svg>
+            </button>
+            <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+              <svg class="icon icon-arrow-right ">
+                <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end sCollection-->"
+`;

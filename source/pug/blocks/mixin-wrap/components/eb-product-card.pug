@@ -1,0 +1,40 @@
+//- ---------------------------------------------------------------------------
+//- Карточка товара — общий компонент. Спека: `669:3403 Card` (базовая форма)
+//- + реальные инстансы `384:633` (sBestSets) / `428:10` (sFavorites).
+//-
+//- Заявлен как НОВЫЙ файл (см. docs/coordination/products.md) — подключение в
+//- `mixin-wrap.pug` делает координатор, сам его не трогаю. Пока для проверки
+//- dev-страницы блока подключают этот файл напрямую через `include`.
+//-
+//- product = {
+//-   image, imageAlt,
+//-   badge: { type: 'new'|'sale', text },      // необязательно
+//-   swatch: { color, count },                 // color — hex из данных (контент,
+//-                                              // инлайн style разрешён граблей
+//-                                              // #5), count — необязательно
+//-   title, price, oldPrice                    // oldPrice — необязательно
+//- }
+//-
+//- Модификатор бейджа передан НЕ через bemto ("--" + mod), а отдельным
+//- литеральным классом is-new/is-sale — оба значения приходят из данных
+//- (JSON), а bemto сам достраивает базовый класс из "--"-модификатора: если
+//- передать его тут, получится дубль класса и html-validate уронит сборку на
+//- no-dup-class (уже оплаченная грабля этого проекта).
+mixin ebProductCard(product)
+	- let hasOldPrice = !!product.oldPrice
+	+b.ARTICLE.eb-product-card&attributes(attributes)
+		+e.DIV.media
+			img.eb-product-card__img(src=product.image alt=product.imageAlt loading="lazy")
+			if product.badge
+				+e.SPAN.badge(class=product.badge.type === 'new' ? 'is-new' : 'is-sale')= product.badge.text
+			if product.swatch
+				+e.DIV.swatch
+					+e.SPAN.swatch-dot(style=`background-color:${product.swatch.color}`)
+					if product.swatch.count
+						+e.SPAN.swatch-count= '+' + product.swatch.count
+		+e.DIV.body
+			+e.P.title= product.title
+			+e.DIV.price
+				+e.SPAN.price-current= product.price
+				if hasOldPrice
+					+e.SPAN.price-old= product.oldPrice

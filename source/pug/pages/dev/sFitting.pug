@@ -1,0 +1,22 @@
+extends ../../layout/main.pug
+
+//- Строительные леса для локальной QA-проверки sFitting. Папку dev/ удаляет
+//- координатор при сдаче — здесь только этот блок, шапка/футер не нужны.
+include ../../blocks/sFitting/_sFitting.pug
+
+block variables
+	- var mainPage = 'main-page'
+
+//- Страница лежит в public/dev/ — относительные пути к css/js/img
+//- промахиваются на уровень. Координатор завёл в main.pug блок `base`
+//- (переопределяемый на месте, без зависимости от порядка block variables).
+block base
+	base(href="../")
+
+block title
+	- var title = 'DEV — sFitting'
+	title= title
+
+block pagecontent
+	main
+		+sFitting()

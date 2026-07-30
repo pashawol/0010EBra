@@ -1,0 +1,65 @@
+extends ../layout/main.pug
+
+//- Блоки главной. Порядок = порядок секций в макете (120:468).
+//- Секции, которых ещё нет, помечены TODO — верстаются следующими пачками.
+include ../blocks/header/_header.pug
+include ../blocks/top-nav/_top-nav.pug
+include ../blocks/mobileMenu/_mobileMenu.pug
+include ../blocks/sHero/_sHero.pug
+include ../blocks/sAudience/_sAudience.pug
+include ../blocks/sFitting/_sFitting.pug
+include ../blocks/sProcess/_sProcess.pug
+include ../blocks/sTransformIntro/_sTransformIntro.pug
+include ../blocks/sStory/_sStory.pug
+include ../blocks/sReels/_sReels.pug
+include ../blocks/sExpertise/_sExpertise.pug
+include ../blocks/sQuiz/_sQuiz.pug
+include ../blocks/sSale/_sSale.pug
+include ../blocks/sPromo/_sPromo.pug
+include ../blocks/sBestSets/_sBestSets.pug
+include ../blocks/sFavorites/_sFavorites.pug
+include ../blocks/sCollection/_sCollection.pug
+include ../blocks/sGifts/_sGifts.pug
+include ../blocks/sBlog/_sBlog.pug
+include ../blocks/sTestimonials/_sTestimonials.pug
+include ../blocks/sBooking/_sBooking.pug
+include ../blocks/footer/_footer.pug
+
+block variables
+	- let  mainPage= 'main-page'
+
+block title
+	- let  title= index.head.title
+	title= title
+
+block pagecontent
+	//- Шапка и футер собираются здесь, а не догружаются скриптом:
+	//- миксин +parts() из стартера отдавал пустой div и подтягивал
+	//- parts/header.html уже в браузере — в исходнике страницы шапки не было.
+	//- +header() — тонкая семантическая обёртка, реальная разметка бара и
+	//- попапа каталога живёт в +top-nav() и передаётся сюда блоком.
+	+header()
+		+top-nav()
+	+mobileMenu()
+
+	main
+		+sHero()
+		+sAudience()
+		+sFitting()
+		+sProcess()
+		+sTransformIntro()
+		+sStory()
+		+sReels()
+		+sExpertise()
+		+sQuiz()
+		+sSale()
+		+sPromo()
+		+sBestSets()
+		+sCollection()
+		+sFavorites()
+		+sGifts()
+		+sBlog()
+		+sTestimonials()
+		+sBooking()
+
+	+footer()

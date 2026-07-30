@@ -1,0 +1,27 @@
+//- Section «Что происходит на брафиттинге» — node 214:97, мобильный 710:1924
+//- Заголовок + мини-карточка видео-обзора сверху, 4 фото шага ниже,
+//- под каждым фото — номер, шкала-линейка (CSS) и подпись шага.
+mixin sProcess(data)
+	- data = data || sProcess
+	// start sProcess
+	+b.SECTION.sProcess.section#sProcess&attributes(attributes)
+		.container
+			//- Порядок в DOM = мобильный порядок (title → steps → widget).
+			//- На lg+ раскладка меняется на CSS Grid (title/widget в одной
+			//- строке, steps под ними) через grid-template-areas — без order-хаков.
+			+ebTitle(data.title).sProcess__title
+			+e.DIV.steps
+				each step in data.steps
+					+e.DIV.step
+						+e.DIV.step-media
+							img.sProcess__step-img(src=step.img alt=step.label loading="lazy")
+						+e.DIV.step-content
+							+e.SPAN.step-num= step.num
+							+e.DIV.step-ruler(aria-hidden="true")
+							+e.SPAN.step-label= step.label
+			+e.DIV.widget
+				+e.DIV.widget-text
+					+e.SPAN.widget-label= data.widget.label
+					+e.SPAN.widget-title= data.widget.title
+				+ebIconBtn('play', data.widget.title)
+	// end sProcess

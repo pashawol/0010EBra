@@ -1,0 +1,16 @@
+@use "sass:math";
+
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+{{#shapes}}
+.icon-{{base}} {
+	$h: {{height.inner}};
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc({{width.inner}} / #{$h} *1em );
+}
+{{/shapes}}

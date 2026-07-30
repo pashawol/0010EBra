@@ -1,0 +1,164 @@
+// start .sExpertise — node 344:1379 (desktop), 726:99 (mobile)
+// Full-bleed фото-слайдер, тёмная бордовая тема (.eb-theme--dark).
+.sExpertise {
+	--sPT: 0;
+	--sPB: 0;
+
+	position: relative;
+	color: var(--eb-text);
+
+	// ---------------------------------------------------------------------
+	// Full-bleed. Сброс ОБЯЗАТЕЛЬНО парный (грабля §3.1) — но здесь секция
+	// уже не вложена в узкий .container (main.pug кладёт секции напрямую),
+	// поэтому eb-bleed() численно не сдвигает блок (100vw == текущая ширина).
+	// Оставлен как защита на случай, если секцию когда-нибудь обернут —
+	// парного eb-bleed-reset() не требуется: единственный потомок здесь —
+	// стандартный .container, который сам управляет своей шириной.
+	// ---------------------------------------------------------------------
+	&__media {
+		@include eb-bleed();
+
+		position: relative;
+		aspect-ratio: 375 / 620;
+		overflow: hidden;
+	}
+
+	&__slider {
+		position: absolute;
+		inset: 0;
+	}
+
+	&__slider,
+	.swiper-wrapper,
+	&__slide {
+		height: 100%;
+	}
+
+	&__photo {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__overlay {
+		position: absolute;
+		// Swiper даёт своему корню (`.swiper`) собственный `z-index: 1` в
+		// базовом CSS библиотеки — оверлей с z-index:auto проигрывает ему
+		// стек и уезжает под фото. Явный z-index выше единицы чинит это.
+		z-index: 2;
+		inset: 0;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: rem(16);
+		padding-block: rem(15);
+		// Декоративная надпись/факт кликов не перехватывают — свайп фото
+		// и клики по стрелкам должны проходить насквозь.
+		pointer-events: none;
+	}
+
+	&__top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: rem(12);
+	}
+
+	// Мобильный лейбл — обычный текст (Inter, Caption), на десктопе
+	// становится крупным Vetrino-заголовком (Headline 4) — так в макете.
+	&__label {
+		margin: 0;
+		color: var(--eb-text);
+		font-family: $font-family-sans-serif;
+		font-size: var(--eb-caption);
+		line-height: 1.2;
+	}
+
+	&__title {
+		margin: 0;
+	}
+
+	// Факт «100+» — только десктоп, на мобиле его заменяет &__mobile-tag.
+	&__fact {
+		display: none;
+	}
+
+	&__nav {
+		width: 100%;
+		pointer-events: auto;
+	}
+
+	@include media-breakpoint-up(lg) {
+		--sPT: 0;
+		--sPB: 0;
+
+		&__media {
+			aspect-ratio: 1920 / 1080;
+		}
+
+		&__overlay {
+			display: block;
+			padding-block: rem(65);
+		}
+
+		&__top {
+			display: block;
+		}
+
+		&__mobile-tag {
+			display: none;
+		}
+
+		&__label {
+			position: absolute;
+			top: 0;
+			left: 0;
+			max-width: rem(300);
+			font-family: $font-family-display;
+			font-size: var(--eb-h4);
+			line-height: 1.1;
+		}
+
+		// Геометрия фиксированная (translate -50%/-50% от центра стейджа),
+		// а не в % от высоты секции — секция не растёт от переносов текста
+		// (высота задана aspect-ratio), но координата и так самая надёжная.
+		&__title {
+			@include a-cent1(xy);
+
+			width: max-content;
+			max-width: rem(600);
+		}
+
+		&__fact {
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			max-width: rem(220);
+			text-align: right;
+			pointer-events: none;
+
+			// Бесповодный компонент даёт Headline 2 (76px) и Caption (16px) —
+			// в этом инстансе макет просит Headline 3 (54px) и Body (18px).
+			// Точечный override под блок, без правки общего eb-ui.scss
+			// (см. заявку в docs/coordination/sExpertise.md).
+			.eb-fact__value {
+				font-size: var(--eb-h3);
+			}
+
+			.eb-fact__caption {
+				max-width: rem(220);
+				font-size: var(--eb-body);
+			}
+		}
+
+		&__nav {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+		}
+	}
+} // end .sExpertise

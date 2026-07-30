@@ -1,0 +1,19 @@
+//- svg-sprite
+//-
+//- `&attributes(attributes)` обязателен: без него миксин молча съедает классы
+//- и атрибуты, переданные цепочкой на месте вызова (`+icon('play').my-class`).
+//- Молча — разметка валидная, ошибок нет, просто стиль не применяется.
+//- Ловилось так: класс `.eb-btn__icon` не доезжал до иконки внутри кнопки,
+//- и её размер оставался дефолтным вместо заданного в компоненте.
+mixin icon(name, mod)
+	- mod = mod || ''
+	svg(class="icon icon-" + name + ' ' + mod)&attributes(attributes)
+		use(xlink:href="img/svg/sprite.svg#" + name)
+//-/ svg-sprite
+
+//- svg-sprite (цветной спрайт)
+mixin iconC(name, mod)
+	- mod = mod || ''
+	svg(class="iconC iconC-" + name + ' ' + mod)&attributes(attributes)
+		use(xlink:href="img/svg/spriteC.svg#" + name)
+//-/ svg-sprite

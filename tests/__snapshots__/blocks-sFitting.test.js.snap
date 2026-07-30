@@ -1,0 +1,90 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sFitting block > matches HTML snapshot 1`] = `
+"
+<!-- start sFitting-->
+<section class="sFitting section" id="sFitting">
+  <div class="sFitting__bg"><img class="sFitting__bg-photo" src="img/sFitting/bg-desktop.webp" alt="" loading="lazy" aria-hidden="true"/>
+  </div>
+  <div class="container">
+    <div class="sFitting__grid">
+      <div class="sFitting__text">
+        <div class="eb-title sFitting__title">
+          <h2>Подбор идеального варианта</h2>
+        </div>
+        <p class="sFitting__lead">Мы не просто измеряем ваш объем под грудью — мы анализируем анатомию груди
+        </p>
+      </div>
+      <div class="sFitting__photo-wrap">
+        <div class="sFitting__meta">
+          <div class="sFitting__meta-item"><span class="sFitting__meta-label">Цвет:</span><span class="sFitting__meta-value">Black</span>
+          </div>
+          <div class="sFitting__meta-item"><span class="sFitting__meta-label">Размер:</span><span class="sFitting__meta-value">65E</span>
+          </div>
+        </div>
+        <div class="sFitting__photo-frame">
+          <picture>
+            <source media="(min-width: 992px)" srcset="img/sFitting/model-desktop.webp"/><img class="sFitting__photo" src="img/sFitting/model-mobile.webp" alt="Модель в бюстгальтере Esthetic Bra крупным планом" loading="lazy"/>
+          </picture>
+          <div class="sFitting__arrow sFitting__arrow--straight"><svg class="sFitting__arrow-svg" aria-hidden="true" focusable="false" preserveAspectRatio="none" viewBox="0 0 203.571 90.5702" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M203.147 6.07024L188.364 15.0948L203.571 23.3856L203.147 6.07024ZM1.64724 0.0702354L0.148882 0C-0.860423 21.5318 3.16386 44.1492 15.2299 61.429C27.3516 78.7884 47.4593 90.5702 78.1471 90.5702V89.0702V87.5702C48.3352 87.5702 29.193 76.1854 17.6896 59.7115C6.13069 43.1579 2.1549 21.2753 3.14559 0.140471L1.64724 0.0702354ZM78.1471 89.0702V90.5702C153.776 90.5702 185.612 41.7963 198.009 18.6284L196.687 17.9207L195.364 17.213C183.166 40.0076 152.122 87.5702 78.1471 87.5702V89.0702Z" fill="url(#sFitting-arrow-straight)"/>
+<defs>
+<linearGradient id="sFitting-arrow-straight" x1="1.6474" y1="6.07024" x2="203.647" y2="6.07024" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+</defs>
+</svg>
+
+          </div>
+          <div class="sFitting__arrow sFitting__arrow--curled"><svg class="sFitting__arrow-svg" aria-hidden="true" focusable="false" preserveAspectRatio="none" viewBox="0 0 224.898 107.916" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M93.5632 105.958L93.6969 107.452L93.5632 105.958ZM220.619 0L208.223 12.0971L224.898 16.7838L220.619 0ZM1.63038 12.7329L0.132221 12.6585C-1.02801 36.0269 5.41722 61.2074 20.6613 79.8306C35.9556 98.5152 60.0056 110.468 93.6969 107.452L93.5632 105.958L93.4294 104.464C60.6792 107.396 37.6172 95.8088 22.9828 77.9304C8.29806 59.9906 1.99766 35.5845 3.12853 12.8073L1.63038 12.7329ZM93.5632 105.958L93.6969 107.452C141.392 103.182 170.141 88.5055 188.207 70.3529C206.249 52.2247 213.466 30.7925 218.409 13.4053L216.967 12.9951L215.524 12.5849C210.608 29.8737 203.558 50.676 186.081 68.2366C168.628 85.7728 140.604 100.24 93.4294 104.464L93.5632 105.958Z" fill="url(#sFitting-arrow-curled)"/>
+<defs>
+<linearGradient id="sFitting-arrow-curled" x1="1.66018" y1="7.17414" x2="221.162" y2="7.17414" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+</defs>
+</svg>
+
+          </div>
+          <div class="eb-hotspot sFitting__hotspot sFitting__hotspot--left-m" style="--hs-x-d: 78.38%; --hs-y-d: 50.11%; --hs-x-m: 80.58%; --hs-y-m: 50.45%;">
+            <button class="eb-hotspot__dot" type="button" aria-label="Плотная посадка">
+            </button>
+            <a class="eb-hotspot__card" href="#"><span class="eb-hotspot__card-body"><span class="eb-hotspot__card-text">Плотная посадка</span></span>
+              <svg class="icon icon-arrow-right  eb-hotspot__card-icon">
+                <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+          <div class="eb-hotspot sFitting__hotspot sFitting__hotspot--left-d" style="--hs-x-d: 24.59%; --hs-y-d: 63.94%; --hs-x-m: 40.58%; --hs-y-m: 70%;">
+            <button class="eb-hotspot__dot" type="button" aria-label="Комфортная чашка">
+            </button>
+            <a class="eb-hotspot__card" href="#"><span class="eb-hotspot__card-body"><span class="eb-hotspot__card-text">Комфортная чашка</span></span>
+              <svg class="icon icon-arrow-right  eb-hotspot__card-icon">
+                <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+          <div class="eb-hotspot sFitting__hotspot sFitting__hotspot--left-m" style="--hs-x-d: 65.54%; --hs-y-d: 84.47%; --hs-x-m: 68.99%; --hs-y-m: 87.5%;">
+            <button class="eb-hotspot__dot" type="button" aria-label="Надежная поддержка груди">
+            </button>
+            <a class="eb-hotspot__card" href="#"><span class="eb-hotspot__card-body"><span class="eb-hotspot__card-text">Надежная поддержка груди</span></span>
+              <svg class="icon icon-arrow-right  eb-hotspot__card-icon">
+                <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="eb-fact sFitting__fact"><span class="eb-tag eb-fact__tag"><span class="eb-tag__label">Факт</span></span>
+        <div class="eb-fact__value">80%
+        </div>
+        <div class="eb-fact__caption">Женщин носят неправильный размер
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end sFitting-->"
+`;

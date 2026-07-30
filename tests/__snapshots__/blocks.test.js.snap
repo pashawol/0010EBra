@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`form-wrap input mixin > matches HTML snapshot 1`] = `
+"
+<div class="input-wrap form-group">
+  <label><span class="input-title">Snapshot label</span><input class="input form-control" inputmode="text" name="text" type="text" placeholder="Snapshot placeholder"/>
+  </label>
+</div>
+<!-- +e.input-wrap-->"
+`;

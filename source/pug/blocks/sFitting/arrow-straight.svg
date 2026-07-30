@@ -1,0 +1,9 @@
+<svg class="sFitting__arrow-svg" aria-hidden="true" focusable="false" preserveAspectRatio="none" viewBox="0 0 203.571 90.5702" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M203.147 6.07024L188.364 15.0948L203.571 23.3856L203.147 6.07024ZM1.64724 0.0702354L0.148882 0C-0.860423 21.5318 3.16386 44.1492 15.2299 61.429C27.3516 78.7884 47.4593 90.5702 78.1471 90.5702V89.0702V87.5702C48.3352 87.5702 29.193 76.1854 17.6896 59.7115C6.13069 43.1579 2.1549 21.2753 3.14559 0.140471L1.64724 0.0702354ZM78.1471 89.0702V90.5702C153.776 90.5702 185.612 41.7963 198.009 18.6284L196.687 17.9207L195.364 17.213C183.166 40.0076 152.122 87.5702 78.1471 87.5702V89.0702Z" fill="url(#sFitting-arrow-straight)"/>
+<defs>
+<linearGradient id="sFitting-arrow-straight" x1="1.6474" y1="6.07024" x2="203.647" y2="6.07024" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+</defs>
+</svg>

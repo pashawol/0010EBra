@@ -1,0 +1,204 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sTestimonials block > matches HTML snapshot 1`] = `
+"
+<!-- start sTestimonials-->
+<section class="sTestimonials section" id="sTestimonials" data-swiper-scope="data-swiper-scope">
+  <div class="container">
+    <div class="eb-title sTestimonials__title">
+      <h2>Отзывы</h2>
+    </div>
+    <div class="sTestimonials__placeholder">
+      <p class="sTestimonials__placeholder-note">Сторонний модуль с отзывами
+      </p>
+    </div>
+    <p class="sTestimonials__label">Видео отзывы
+    </p>
+  </div>
+  <div class="sTestimonials__track">
+    <div class="sTestimonials__slider sTestimonials__slider--js swiper" data-swiper-options="{&quot;slidesPerView&quot;:&quot;auto&quot;,&quot;spaceBetween&quot;:16,&quot;watchOverflow&quot;:true,&quot;navigation&quot;:true,&quot;pagination&quot;:true,&quot;breakpoints&quot;:{&quot;992&quot;:{&quot;spaceBetween&quot;:32}}}">
+      <div class="swiper-wrapper">
+        <div class="sTestimonials__slide swiper-slide">
+          <a class="sTestimonials__card" data-fancybox="video" data-src="#sTestimonials-popup" href="#" aria-label="Смотреть видео-отзыв: Александра, Нестандартная форма груди"><img class="sTestimonials__poster" src="img/sTestimonials/poster-1.webp" alt="Александра, 46 лет — кадр видео-отзыва" loading="lazy"/>
+            <div class="sTestimonials__card-scrim">
+            </div>
+            <svg class="icon icon-play  sTestimonials__play-icon">
+              <use xlink:href="img/svg/sprite.svg#play"></use>
+            </svg>
+            <div class="sTestimonials__card-text">
+              <div class="sTestimonials__card-person"><span class="sTestimonials__card-person-name">Александра</span><span class="sTestimonials__card-person-age">46 года</span>
+              </div>
+              <p class="sTestimonials__card-quote">Нестандартная форма груди
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="sTestimonials__slide swiper-slide">
+          <a class="sTestimonials__card" data-fancybox="video" data-src="#sTestimonials-popup" href="#" aria-label="Смотреть видео-отзыв: Анна, После беременности"><img class="sTestimonials__poster" src="img/sTestimonials/poster-2.webp" alt="Анна — кадр видео-отзыва" loading="lazy"/>
+            <div class="sTestimonials__card-scrim">
+            </div>
+            <svg class="icon icon-play  sTestimonials__play-icon">
+              <use xlink:href="img/svg/sprite.svg#play"></use>
+            </svg>
+            <div class="sTestimonials__card-text">
+              <div class="sTestimonials__card-person"><span class="sTestimonials__card-person-name">Анна</span><span class="sTestimonials__card-person-age">29 лет</span>
+              </div>
+              <p class="sTestimonials__card-quote">После беременности
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="sTestimonials__slide swiper-slide">
+          <a class="sTestimonials__card" data-fancybox="video" data-src="#sTestimonials-popup" href="#" aria-label="Смотреть видео-отзыв: Марина, Асимметрия груди"><img class="sTestimonials__poster" src="img/sTestimonials/poster-3.webp" alt="Марина в кафе — кадр видео-отзыва" loading="lazy"/>
+            <div class="sTestimonials__card-scrim">
+            </div>
+            <svg class="icon icon-play  sTestimonials__play-icon">
+              <use xlink:href="img/svg/sprite.svg#play"></use>
+            </svg>
+            <div class="sTestimonials__card-text">
+              <div class="sTestimonials__card-person"><span class="sTestimonials__card-person-name">Марина</span><span class="sTestimonials__card-person-age">27 лет</span>
+              </div>
+              <p class="sTestimonials__card-quote">Асимметрия груди
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="sTestimonials__slide swiper-slide">
+          <a class="sTestimonials__card" data-fancybox="video" data-src="#sTestimonials-popup" href="#" aria-label="Смотреть видео-отзыв: Николь, Сложно подобрать размер"><img class="sTestimonials__poster" src="img/sTestimonials/poster-4.webp" alt="Николь — кадр видео-отзыва" loading="lazy"/>
+            <div class="sTestimonials__card-scrim">
+            </div>
+            <svg class="icon icon-play  sTestimonials__play-icon">
+              <use xlink:href="img/svg/sprite.svg#play"></use>
+            </svg>
+            <div class="sTestimonials__card-text">
+              <div class="sTestimonials__card-person"><span class="sTestimonials__card-person-name">Николь</span><span class="sTestimonials__card-person-age">31 год</span>
+              </div>
+              <p class="sTestimonials__card-quote">Сложно подобрать размер
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="sTestimonials__nav-wrap container">
+      <div class="eb-slider-nav sTestimonials__nav">
+        <div class="eb-slider-nav__dots swiper-pagination">
+        </div>
+        <div class="eb-slider-nav__arrows">
+          <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+            <svg class="icon icon-arrow-right ">
+              <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+            </svg>
+          </button>
+          <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+            <svg class="icon icon-arrow-right ">
+              <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end sTestimonials-->
+<div id="sTestimonials-popup" style="display: none">
+  <div class="sTestimonials-popup" data-swiper-scope="data-swiper-scope">
+    <div class="sTestimonials-popup__head"><span class="sTestimonials-popup__title">Видео отзывы</span>
+      <button class="sTestimonials-popup__close" type="button" data-fancybox-close="data-fancybox-close" aria-label="Закрыть">
+        <svg class="icon icon-x ">
+          <use xlink:href="img/svg/sprite.svg#x"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="sTestimonials-popup__track">
+      <div class="sTestimonials-popup__slider sTestimonials-popup__slider--js swiper" data-swiper-options="{&quot;slidesPerView&quot;:&quot;auto&quot;,&quot;centeredSlides&quot;:true,&quot;spaceBetween&quot;:16,&quot;watchOverflow&quot;:true,&quot;navigation&quot;:true,&quot;breakpoints&quot;:{&quot;992&quot;:{&quot;spaceBetween&quot;:32}}}">
+        <div class="swiper-wrapper">
+          <div class="sTestimonials-popup__slide sTestimonials-popup__slide--featured swiper-slide">
+            <div class="sTestimonials-popup__card">
+              <video class="sTestimonials-popup__video" poster="img/sTestimonials/popup-poster.webp" controls="controls" playsinline="playsinline">
+                <source src="" type="video/mp4"/>
+              </video>
+            </div>
+          </div>
+          <div class="sTestimonials-popup__slide swiper-slide">
+            <div class="sTestimonials-popup__card"><img class="sTestimonials-popup__poster" src="img/sTestimonials/poster-1.webp" alt="Александра, 46 лет — кадр видео-отзыва" loading="lazy"/>
+              <div class="sTestimonials-popup__card-scrim">
+              </div>
+              <svg class="icon icon-play  sTestimonials-popup__play-icon">
+                <use xlink:href="img/svg/sprite.svg#play"></use>
+              </svg>
+              <div class="sTestimonials-popup__card-text">
+                <div class="sTestimonials-popup__card-person"><span class="sTestimonials-popup__card-person-name">Александра</span><span class="sTestimonials-popup__card-person-age">46 года</span>
+                </div>
+                <p class="sTestimonials-popup__card-quote">Нестандартная форма груди
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="sTestimonials-popup__slide swiper-slide">
+            <div class="sTestimonials-popup__card"><img class="sTestimonials-popup__poster" src="img/sTestimonials/poster-2.webp" alt="Анна — кадр видео-отзыва" loading="lazy"/>
+              <div class="sTestimonials-popup__card-scrim">
+              </div>
+              <svg class="icon icon-play  sTestimonials-popup__play-icon">
+                <use xlink:href="img/svg/sprite.svg#play"></use>
+              </svg>
+              <div class="sTestimonials-popup__card-text">
+                <div class="sTestimonials-popup__card-person"><span class="sTestimonials-popup__card-person-name">Анна</span><span class="sTestimonials-popup__card-person-age">29 лет</span>
+                </div>
+                <p class="sTestimonials-popup__card-quote">После беременности
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="sTestimonials-popup__slide swiper-slide">
+            <div class="sTestimonials-popup__card"><img class="sTestimonials-popup__poster" src="img/sTestimonials/poster-3.webp" alt="Марина в кафе — кадр видео-отзыва" loading="lazy"/>
+              <div class="sTestimonials-popup__card-scrim">
+              </div>
+              <svg class="icon icon-play  sTestimonials-popup__play-icon">
+                <use xlink:href="img/svg/sprite.svg#play"></use>
+              </svg>
+              <div class="sTestimonials-popup__card-text">
+                <div class="sTestimonials-popup__card-person"><span class="sTestimonials-popup__card-person-name">Марина</span><span class="sTestimonials-popup__card-person-age">27 лет</span>
+                </div>
+                <p class="sTestimonials-popup__card-quote">Асимметрия груди
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="sTestimonials-popup__slide swiper-slide">
+            <div class="sTestimonials-popup__card"><img class="sTestimonials-popup__poster" src="img/sTestimonials/poster-4.webp" alt="Николь — кадр видео-отзыва" loading="lazy"/>
+              <div class="sTestimonials-popup__card-scrim">
+              </div>
+              <svg class="icon icon-play  sTestimonials-popup__play-icon">
+                <use xlink:href="img/svg/sprite.svg#play"></use>
+              </svg>
+              <div class="sTestimonials-popup__card-text">
+                <div class="sTestimonials-popup__card-person"><span class="sTestimonials-popup__card-person-name">Николь</span><span class="sTestimonials-popup__card-person-age">31 год</span>
+                </div>
+                <p class="sTestimonials-popup__card-quote">Сложно подобрать размер
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="eb-slider-nav sTestimonials-popup__nav">
+        <div class="eb-slider-nav__dots swiper-pagination">
+        </div>
+        <div class="eb-slider-nav__arrows">
+          <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+            <svg class="icon icon-arrow-right ">
+              <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+            </svg>
+          </button>
+          <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+            <svg class="icon icon-arrow-right ">
+              <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;

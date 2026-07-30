@@ -1,0 +1,314 @@
+// start .sStory — node 218:361 (desktop), 710:2046 (mobile, в 692:1129)
+// Светлая тема (роли --eb-* дефолтные). Внешний Swiper листает ИСТОРИИ,
+// внутри каждого слайда — независимый drag-компаратор (story-compare.js).
+.sStory {
+	&__slide {
+		height: auto;
+	}
+
+	// Мобильный порядок (710:2046): бейдж/год → компаратор → имя → инфо →
+	// результат → пагинация. Flat-порядок в DOM специально совпадает с этим —
+	// на десктопе те же элементы просто раскладываются в CSS Grid (ниже),
+	// без необходимости дублировать разметку под каждый брейкпоинт.
+	&__grid {
+		display: flex;
+		flex-direction: column;
+		gap: rem(30 * 0.5);
+	}
+
+	// -------------------------------------------------------------------
+	// Компаратор до/после. Геометрия фиксированная, не % от секции — обе
+	// фотографии обязаны делить один и тот же бокс (грабля §3.1: object-fit:
+	// cover на разных фото без общей рамки рвёт совпадение "до"/"после").
+	//
+	// Классический приём padding-bottom, а не `aspect-ratio`: на практике
+	// высота, выведенная через `aspect-ratio`, не считается "явной" для
+	// растяжения абсолютно спозиционированных потомков (`.sStory__handle`
+	// с `top:0; height:100%`) на первом layout-проходе — ручка схлопывается
+	// в высоту своей кнопки (56px) вместо полной высоты бокса. Замер
+	// Playwright'ом это подтвердил численно (см. отчёт). padding-bottom
+	// даёт высоту, вычисленную из ширины ещё на первом проходе — без этой
+	// двусмысленности.
+	&__compare {
+		--split: 30%;
+
+		position: relative;
+		overflow: hidden;
+		height: 0;
+		padding-bottom: calc(275 / 345 * 100%);
+		border-radius: var(--eb-radius);
+		touch-action: pan-y;
+	}
+
+	&__photo {
+		position: absolute;
+		inset: 0;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		&--before img {
+			object-position: bottom;
+		}
+
+		// "После" рисуется поверх "До" и обрезается по границе ручки —
+		// именно clip-path двигает JS, а не ширину/позицию картинки.
+		&--after {
+			z-index: 1;
+			clip-path: inset(0 0 0 var(--split));
+		}
+	}
+
+	&__label {
+		position: absolute;
+		z-index: 2;
+		bottom: rem(12);
+		color: var(--eb-text);
+		font-family: $font-family-display;
+		font-size: var(--eb-h4);
+		line-height: 1.1;
+		pointer-events: none;
+
+		&--before {
+			left: rem(12);
+		}
+
+		&--after {
+			right: rem(12);
+		}
+	}
+
+	&__handle {
+		position: absolute;
+		z-index: 3;
+		top: 0;
+		// top+bottom:0 без явной height не растягивает translate-элемент
+		// стабильно во всех браузерах — задаём height:100% явно, а не
+		// полагаемся на растяжение по краям.
+		height: 100%;
+		left: var(--split);
+		width: rem(56);
+		translate: -50% 0;
+		touch-action: none;
+	}
+
+	&__handle-line {
+		position: absolute;
+		inset-block: 0;
+		left: 50%;
+		width: rem(2);
+		background-color: var(--eb-white-35);
+		translate: -50% 0;
+	}
+
+	&__handle-btn {
+		@include a-cent1(y);
+
+		left: 50%;
+		translate: -50% -50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: rem(56);
+		height: rem(56);
+		border: 0;
+		border-radius: 50%;
+		background-color: var(--eb-surface);
+		backdrop-filter: blur(var(--eb-blur));
+		color: var(--eb-text);
+		cursor: ew-resize;
+		touch-action: none;
+
+		&:hover,
+		&:focus-visible {
+			background-color: var(--eb-surface-hover);
+		}
+	}
+
+	&__handle-icon {
+		font-size: rem(20);
+	}
+
+	// -------------------------------------------------------------------
+	// Карточка истории
+	// -------------------------------------------------------------------
+	&__card {
+		display: flex;
+		flex-direction: column;
+		gap: rem(30 * 0.5);
+	}
+
+	&__top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: rem(12);
+	}
+
+	&__badge {
+		display: inline-flex;
+		align-items: center;
+		padding: rem(6) rem(8);
+		border-radius: var(--eb-radius-badge);
+		background-color: var(--eb-ink);
+		color: var(--eb-white);
+		font-size: var(--eb-caption);
+		line-height: 1;
+	}
+
+	&__year {
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+	}
+
+	&__name {
+		display: flex;
+		flex-direction: column;
+		gap: rem(10 * 0.5);
+	}
+
+	&__name-value {
+		margin: 0;
+		color: var(--eb-text);
+		font-family: $font-family-display;
+		font-size: var(--eb-h3);
+		line-height: 1;
+	}
+
+	&__age {
+		margin: 0;
+		color: var(--eb-text);
+		font-size: var(--eb-subtitle-2);
+		line-height: 1.2;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: rem(5);
+	}
+
+	&__info-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: rem(12);
+	}
+
+	&__info-label {
+		color: var(--eb-text-muted);
+		font-size: var(--eb-body);
+		line-height: 1.4;
+	}
+
+	&__info-value {
+		color: var(--eb-text);
+		font-size: var(--eb-body);
+		line-height: 1.4;
+	}
+
+	&__result {
+		display: flex;
+		flex-direction: column;
+		gap: rem(20 * 0.5);
+	}
+
+	&__result-title {
+		margin: 0;
+		color: var(--eb-text);
+		font-family: $font-family-display;
+		font-size: var(--eb-h4);
+		line-height: 1.1;
+	}
+
+	&__quote {
+		display: flex;
+		align-items: flex-start;
+		gap: rem(6);
+	}
+
+	&__avatar {
+		flex-shrink: 0;
+		width: rem(44);
+		height: rem(44);
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+	&__quote-text {
+		flex: 1 0 0;
+		min-width: 0;
+		margin: 0;
+		padding: rem(15);
+		border-radius: 0 rem(16) rem(16) rem(16);
+		background-color: var(--eb-surface);
+		color: var(--eb-text-muted);
+		font-size: var(--eb-body);
+		line-height: 1.4;
+	}
+
+	&__nav {
+		margin-top: auto;
+	}
+
+	@include media-breakpoint-up(lg) {
+		&__grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) rem(320);
+			grid-template-rows: auto auto auto 1fr auto;
+			column-gap: rem(48);
+			row-gap: rem(16);
+			grid-template-areas:
+				"compare top"
+				"compare name"
+				"compare info"
+				"compare result"
+				"compare nav";
+		}
+
+		&__compare {
+			grid-area: compare;
+			padding-bottom: calc(960 / 1190 * 100%);
+		}
+
+		&__top {
+			grid-area: top;
+		}
+
+		&__name {
+			grid-area: name;
+		}
+
+		&__info {
+			grid-area: info;
+		}
+
+		&__result {
+			grid-area: result;
+			align-self: start;
+		}
+
+		&__nav {
+			grid-area: nav;
+			align-self: end;
+			margin-top: 0;
+		}
+
+		&__card {
+			display: contents;
+		}
+	}
+
+	// Значения макета (1790 контента при 1920 внешней ширины) — только на
+	// его ширине, как в остальных блоках (см. _root.scss).
+	@include media-breakpoint-up(xl) {
+		&__grid {
+			grid-template-columns: minmax(0, 1fr) rem(440);
+			column-gap: rem(160);
+		}
+	}
+} // end .sStory

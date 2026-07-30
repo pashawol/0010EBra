@@ -1,0 +1,58 @@
+{
+	"sReels": {
+		"tag": "Примеры",
+		"title": "Когда белье<br>меняет жизнь<br>навсегда",
+		"subtitle": "Реальные истории",
+		"slides": [
+			{
+				"poster": "img/sReels/poster-1.webp",
+				"posterAlt": "Александра улыбается в кофейне — кадр видео-истории",
+				"quote": "Я стеснялась своей груди 15 лет",
+				"person": {
+					"name": "Александра",
+					"age": "34 года",
+					"avatar": "img/sReels/avatar-1.webp",
+					"avatarAlt": "Александра, портрет"
+				},
+				"product": {
+					"label": "Бюстгальтер",
+					"title": "Entwined Balcony",
+					"size": "75B",
+					"colorHex": "#2C2B2B"
+				},
+				"productPhoto": {
+					"src": "img/sReels/product-1.webp",
+					"alt": "Бюстгальтер Entwined Balcony крупным планом"
+				}
+			},
+			{
+				"poster": "img/sReels/poster-2.webp",
+				"posterAlt": "Александра, 46 лет — кадр видео-истории",
+				"quote": "Нестандартная форма груди",
+				"person": {
+					"name": "Александра",
+					"age": "46 года"
+				}
+			},
+			{
+				"poster": "img/sReels/poster-3.webp",
+				"posterAlt": "Марина в кофейне — кадр видео-истории",
+				"quote": "Теперь ношу открытые вырезы без стеснения",
+				"person": {
+					"name": "Марина",
+					"age": "29 лет"
+				}
+			},
+			{
+				"poster": "img/sReels/poster-4.webp",
+				"posterAlt": "Ольга — кадр видео-истории",
+				"quote": "Наконец нашла размер, который сидит идеально",
+				"person": {
+					"name": "Ольга",
+					"age": "41 год"
+				}
+			}
+		],
+		"_slidesNote": "Реальных видеофайлов заказчик не предоставил (см. PLAN §1). Разметка каждого слайда несёт data-fancybox + data-src на скрытый inline-шаблон с <video><source src=\"\">, чтобы заказчику осталось подставить ссылку — см. docs/coordination/sReels.md. Цитаты и имена слайдов 3–4 — временный мок-контент (как и в sExpertise), заменить на реальные истории при получении."
+	}
+}

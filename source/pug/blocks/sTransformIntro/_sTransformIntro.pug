@@ -1,0 +1,16 @@
+//- Section «Магия трансформации» — node 318:482
+//- Заголовок по центру, за ним водяной знак-монограмма, вокруг плавающие метки.
+mixin sTransformIntro(data)
+	- data = data || sTransformIntro
+	// start sTransformIntro
+	+b.SECTION.sTransformIntro.section#sTransformIntro&attributes(attributes)
+		.container
+			+e.inner
+				+e.DIV.watermark(aria-hidden="true")
+					+icon('eb-monogram')
+				+ebTitle(data.title).sTransformIntro__title.text-center
+				each tag in data.tags
+					//- Передаём ТОЛЬКО модификатор: bemto сам добавит базовый
+					//- класс, иначе html-validate ловит дубль class.
+					+ebTag(tag.text)(class="sTransformIntro__tag--" + tag.pos)
+	// end sTransformIntro

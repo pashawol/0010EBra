@@ -1,0 +1,28 @@
+//- Section «Кому помогает Esthetic Bra» — node 313:404, мобильный вариант 692:1129 (710:1466)
+//- Мозаика из 7 карточек-фото на CSS Grid с явными grid-template-areas —
+//- десктопная и мобильная раскладка задаются areas'ами в _sAudience.scss,
+//- разметка карточек одна и та же на обеих ширинах.
+mixin sAudience(data)
+	- data = data || sAudience
+	// start sAudience
+	+b.SECTION.sAudience.section#sAudience&attributes(attributes)
+		.container
+			+e.DIV.grid
+				+ebTitle(data.title).sAudience__title
+
+				each card, i in data.cards
+					//- Модификатор без базового класса в цепочке: bemto сам
+					//- добавит "sAudience__card" по "--" (см. sGifts). Ставить
+					//- ".card" в цепочку ЖЕ давало дубль класса в html-validate.
+					+e.DIV(class="card--" + card.mod)
+						img.sAudience__card-img(src="img/sAudience/" + card.image alt=card.text.replace('<br>', ' ') loading=(i === 0 ? undefined : "lazy"))
+						+e.SPAN.card-text!= card.text
+						if card.arrow
+							+ebIconBtn('arrow-right', 'Подробнее').sAudience__card-arrow
+
+				+e.DIV.widget
+					+e.DIV.avatars
+						each avatar in data.avatars
+							img.sAudience__avatar(src="img/sAudience/" + avatar alt="" loading="lazy")
+					+e.SPAN.widget-text= data.widgetText
+	// end sAudience

@@ -1,0 +1,205 @@
+:root {
+	--animate-delay: 1.2s;
+	--bs-body-font-size: #{$em-base};
+
+	// -----------------------------------------------------------------------
+	// Токены Esthetic Bra. Единственный источник правды по цвету в рантайме:
+	// в SCSS блоков хардкод hex запрещён механически (stylelint strict-value),
+	// а JS-анимации обязаны читать цвет отсюда через getComputedStyle,
+	// а не хардкодить его в GSAP-таймлайне.
+	// -----------------------------------------------------------------------
+	--eb-burgundy: #{$eb-burgundy};
+	--eb-ink: #{$eb-ink};
+	--eb-light-blue: #{$eb-light-blue};
+	--eb-error: #{$eb-error};
+	--eb-error-text: #{$eb-error-text};
+	--eb-error-on-dark: #{$eb-error-on-dark};
+	--eb-beige: #{$eb-beige};
+	--eb-white: #{$eb-white};
+
+	--eb-ink-75: #{$eb-ink-75};
+	--eb-ink-65: #{$eb-ink-65};
+	--eb-ink-35: #{$eb-ink-35};
+	--eb-white-75: #{$eb-white-75};
+	--eb-white-35: #{$eb-white-35};
+	--eb-white-15: #{$eb-white-15};
+	--eb-light-blue-50: #{$eb-light-blue-50};
+	--eb-error-15: #{$eb-error-15};
+
+	// Контекстные роли. Секция переключает тему одним классом (.eb-theme--dark),
+	// блоки внутри читают только роли — поэтому один и тот же блок
+	// корректно выглядит и на светлом, и на тёмном фоне.
+	--eb-text: var(--eb-ink);
+	--eb-text-muted: var(--eb-ink-75);
+	--eb-text-soft: var(--eb-ink-65);
+	--eb-text-faint: var(--eb-ink-35);
+	--eb-surface: var(--eb-light-blue-50);
+	--eb-surface-hover: var(--eb-light-blue);
+	--eb-accent: var(--eb-burgundy);
+	--eb-on-accent: var(--eb-white);
+	--eb-hairline: var(--eb-ink-35);
+
+	// Геометрия контролов
+	--eb-radius: #{$eb-radius};
+	--eb-radius-badge: #{$eb-radius-badge};
+	--eb-radius-check: #{$eb-radius-check};
+	--eb-control-size: #{$eb-control-size};
+	--eb-blur: #{$eb-blur};
+
+	// Боковой отступ контейнера: 16 на мобильном → 65 на ширине макета
+	--eb-gutter: #{$eb-gutter-mobile};
+
+	// Типографическая шкала. Мобильные значения — база, десктопные ниже
+	// по брейкпоинтам (снято с Fonts System: 683:1040 и 683:1068).
+	--eb-h1: #{rem(44)};
+	--eb-h2: #{rem(34)};
+	--eb-h3: #{rem(28)};
+	--eb-h4: #{rem(22)};
+	--eb-subtitle-1: #{rem(20)};
+	--eb-subtitle-2: #{rem(18)};
+	--eb-body: #{rem(16)};
+	--eb-caption: #{rem(14)};
+
+	--sPT: #{rem(80 * 0.5)};
+	--sPB: #{rem(90 * 0.5)};
+	--sTPB: #{rem(40 * 0.5)};
+
+	--fancybox-content-color: var(--bs-body-color);
+	--swiperArrowSize: #{rem(68)};
+	--swiperArrowPosition: calc(-1 * var(--swiperArrowSize) / 2);
+	--swiperBorderColorDef: var(--bs-primary);
+	--swiperColorDef: var(--bs-primary);
+	--swiperBgDef: #ffffff;
+
+	--swiperBorderColorDefHover: var(--bs-primary);
+	--swiperColorDefHover: var(--bs-primary);
+	--swiperBgDefHover: #ffffff;
+
+	//  --carousel-button-width: 48px;
+	//  --carousel-button-height: 48px;
+
+	//  --carousel-button-svg-width: 24px;
+	//  --carousel-button-svg-height: 24px;
+
+	//  --carousel-button-svg-stroke-width: 2.5;
+	//  --carousel-button-svg-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0/ 0.4));
+
+	@include media-breakpoint-up(md) {
+		--sPT: #{rem(80)};
+		--sPB: #{rem(90)};
+		--sTPB: #{rem(40)};
+
+		--eb-gutter: #{rem(32)};
+		--eb-h1: #{rem(72)};
+		--eb-h2: #{rem(52)};
+		--eb-h3: #{rem(40)};
+		--eb-h4: #{rem(28)};
+		--eb-subtitle-1: #{rem(22)};
+		--eb-subtitle-2: #{rem(20)};
+		--eb-body: #{rem(17)};
+		--eb-caption: #{rem(15)};
+	}
+
+	// Значения макета — только на его ширине, ниже масштабируются.
+	@include media-breakpoint-up(xl) {
+		--eb-gutter: #{rem($eb-gutter-desktop)};
+		--eb-h1: #{rem(124)};
+		--eb-h2: #{rem(76)};
+		--eb-h3: #{rem(54)};
+		--eb-h4: #{rem(36)};
+		--eb-subtitle-1: #{rem(24)};
+		--eb-subtitle-2: #{rem(24)};
+		--eb-body: #{rem(18)};
+		--eb-caption: #{rem(16)};
+	}
+}
+
+// Светлый под-блок ВНУТРИ тёмной секции (карточка формы в sBooking, поповер
+// хотспота на фото). Без этого сброса он наследует роли тёмной темы: текст
+// становится белым на белом, а текст ошибки — светло-красным на белом
+// (замерено: контраст 1.7 при норме 4.5).
+.eb-theme--light {
+	--eb-text: var(--eb-ink);
+	--eb-text-muted: var(--eb-ink-75);
+	--eb-text-soft: var(--eb-ink-65);
+	--eb-text-faint: var(--eb-ink-35);
+	--eb-surface: var(--eb-light-blue-50);
+	--eb-surface-hover: var(--eb-light-blue);
+	--eb-accent: var(--eb-burgundy);
+	--eb-on-accent: var(--eb-white);
+	--eb-hairline: var(--eb-ink-35);
+	--eb-error-text: #{$eb-error-text};
+
+	color: var(--eb-text);
+}
+
+// Тёмная (бордовая) тема секции: sHero, sExpertise, sBooking, футер.
+// Переключается классом на секции — блоки внутри не знают о теме ничего.
+.eb-theme--dark {
+	--eb-text: var(--eb-white);
+	--eb-text-muted: var(--eb-white-75);
+	--eb-text-soft: var(--eb-white-75);
+	--eb-text-faint: var(--eb-white-35);
+	--eb-surface: var(--eb-white-15);
+	--eb-surface-hover: var(--eb-white-35);
+	--eb-accent: var(--eb-white);
+	--eb-on-accent: var(--eb-ink);
+	--eb-hairline: var(--eb-white-35);
+	// На бордовом фоне тёмно-красный нечитаем — роль переключается вместе с темой.
+	--eb-error-text: var(--eb-error-on-dark);
+
+	color: var(--eb-text);
+}
+.fancybox__container {
+	--fancybox-bg: rgba(58, 59, 60, 0.77);
+}
+@include media-breakpoint-up(xl) {
+}
+
+@include media-breakpoint-up(lg) {
+}
+
+@include media-breakpoint-up(md) {
+}
+
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(xs) {
+}
+
+//
+@include media-breakpoint-between(md, xl) {
+}
+
+//
+@include media-breakpoint-only(xs) {
+}
+
+@include media-breakpoint-only(sm) {
+}
+
+@include media-breakpoint-only(md) {
+}
+
+@include media-breakpoint-only(lg) {
+}
+
+@include media-breakpoint-only(xl) {
+}
+
+//
+@include media-breakpoint-down(xl) {
+}
+
+@include media-breakpoint-down(lg) {
+}
+
+@include media-breakpoint-down(md) {
+}
+
+@include media-breakpoint-down(sm) {
+}
+
+@include media-breakpoint-down(xs) {
+}

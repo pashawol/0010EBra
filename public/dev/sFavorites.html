@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<base href="../">
+		<title>sFavorites — dev stand</title>
+		<meta name="description" content="о чем страница">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,  shrink-to-fit=no, viewport-fit=cover">
+		<link type="image/ico" href="img/favicon.ico" rel="shortcut icon"><meta name="format-detection" content="telephone=no"> 
+		<link href="libs/swiper/swiper-bundle.min.css" rel="stylesheet"/>
+		<link href="libs/@fancyapps/ui/fancybox/fancybox.css" rel="stylesheet"/>
+		<link href="css/custom-bootstrap.min.css" rel="stylesheet"/>
+		<link href="css/main.min.css" rel="stylesheet"/>
+		<script>
+			// Shared part loader for demo mode.
+			// Keeps duplicated blocks visible in templates and avoids repeated fetches.
+			const sharedPartCache = new Map();
+			
+			function addBlock(partName) {
+				const wrap = document.querySelector(`#${partName}Wrap`);
+				if (!wrap) return;
+			
+				const partRequest =
+					sharedPartCache.get(partName) ||
+					fetch(`parts/${partName}.html`)
+						.then(response => (response.ok ? response.text() : ""))
+						.catch(() => "");
+			
+				sharedPartCache.set(partName, partRequest);
+			
+				partRequest.then(text => {
+					if (!text) return;
+					const markerScript = wrap.previousElementSibling;
+					wrap.insertAdjacentHTML("afterend", text);
+					if (markerScript && markerScript.tagName === "SCRIPT") {
+						markerScript.remove();
+					}
+					wrap.remove();
+				});
+			}
+		</script>
+	</head>
+	<body class="dev-page">
+		<div class="main-wrapper">
+			<main>
+				<!-- start sFavorites-->
+				<section class="sFavorites section" id="sFavorites">
+					<div class="container">
+						<div class="eb-title sFavorites__title">
+							<h2>Самые любимые модели</h2>
+						</div>
+						<div class="sFavorites__cards">
+							<article class="eb-product-card sFavorites__card">
+								<div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sFavorites/fullcup.webp" alt="Full Cup Side Support Bra" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+									<div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span>
+									</div>
+								</div>
+								<div class="eb-product-card__body">
+									<p class="eb-product-card__title">Full Cup Side Support Bra
+									</p>
+									<div class="eb-product-card__price"><span class="eb-product-card__price-current">7 400 ₽</span>
+									</div>
+								</div>
+							</article>
+							<article class="eb-product-card sFavorites__card">
+								<div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sFavorites/maribel.webp" alt="Maribel big soft" loading="lazy"/>
+									<div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#F5E8D9"></span><span class="eb-product-card__swatch-count">+3</span>
+									</div>
+								</div>
+								<div class="eb-product-card__body">
+									<p class="eb-product-card__title">Maribel big soft
+									</p>
+									<div class="eb-product-card__price"><span class="eb-product-card__price-current">10 500 ₽</span>
+									</div>
+								</div>
+							</article>
+							<article class="eb-product-card sFavorites__card">
+								<div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sFavorites/sophia.webp" alt="Sophia Full Cup Bra" loading="lazy"/><span class="eb-product-card__badge is-sale">-16%</span>
+									<div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#F5E8D9"></span><span class="eb-product-card__swatch-count">+2</span>
+									</div>
+								</div>
+								<div class="eb-product-card__body">
+									<p class="eb-product-card__title">Sophia Full Cup Bra
+									</p>
+									<div class="eb-product-card__price"><span class="eb-product-card__price-current">11 200 ₽</span><span class="eb-product-card__price-old">14 900 ₽</span>
+									</div>
+								</div>
+							</article>
+							<article class="eb-product-card sFavorites__card">
+								<div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sFavorites/linda.webp" alt="Бюстгальтер Linda big soft" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+									<div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+4</span>
+									</div>
+								</div>
+								<div class="eb-product-card__body">
+									<p class="eb-product-card__title">Бюстгальтер Linda big soft
+									</p>
+									<div class="eb-product-card__price"><span class="eb-product-card__price-current">8 400 ₽</span>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+				</section>
+				<!-- end sFavorites-->
+			</main>
+		</div>
+		<!--  start modals-->
+		<div id="modal-call" style="display: none">
+			<div class="modal-win">
+				<div class="form-wrap">
+					<form>
+						<div class="text-center">
+							<div class="form-wrap__title form-data h3 ttu">Обратный звонок
+							</div>
+							<p class="after-headline">Заполните заявку и&nbsp;мы&nbsp;с&nbsp;Вами свяжемся в&nbsp;течение 15&nbsp;минут</p>
+						</div>
+						<div class="form-wrap__input-wrap form-group">
+							<label><span class="form-wrap__input-title">Имя</span><input class="form-wrap__input form-control" inputmode="text" name="text" type="text" placeholder="Ваше Имя" required="required"/>
+							</label>
+						</div>
+						<!-- +e.input-wrap-->
+						<div class="form-wrap__input-wrap form-group">
+							<label><span class="form-wrap__input-title">Телефон</span><input class="form-wrap__input form-control" inputmode="tel" name="tel" type="tel" placeholder="Ваше телефон" required="required"/>
+							</label>
+						</div>
+						<!-- +e.input-wrap-->
+						<button class="form-wrap__btn btn" type="submit">submit
+						</button>
+						<div class="form-wrap__policy">
+							<label class="custom-input form-check"><input class="custom-input__input form-check-input" name="checkbox" type="checkbox" checked="checked"/><small class="custom-input__text text-secondary">Согласен на обработку и хранение моих персональных данных в соответствии с условиями</small>
+							</label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- #modal-call-->
+		<!-- end modals-->
+		<script src="libs/jquery/jquery.min.js"></script>
+		<script src="libs/@fancyapps/ui/fancybox/fancybox.umd.js"></script>
+		<script src="libs/swiper/swiper-bundle.min.js"></script>
+		<script src="libs/inputmask/inputmask.min.js"></script>
+		<script src="libs/select2/js/select2.min.js"></script>
+		<script src="libs/select2/js/i18n/ru.js"></script>
+		<script src="libs/gsap/gsap.min.js"></script>
+		<script src="libs/gsap/ScrollTrigger.min.js"></script>
+		<script src="js/JSCCommon.js"></script>
+		<script src="js/header.js"></script>
+		<script src="js/mobile-menu.js"></script>
+		<script src="js/best-sets.js"></script>
+		<script src="js/footer.js"></script>
+		<script src="js/story-compare.js"></script>
+		<script src="js/booking.js"></script>
+		<script src="js/anim.js"></script>
+		<script src="js/anim-transition-2.js"></script>
+		<script src="js/anim-transition-3.js"></script>
+		<script src="js/anim-transition-4.js"></script>
+		<script src="js/anim-transition-5.js"></script>
+		<script src="js/common.js"></script>
+	</body>
+</html>

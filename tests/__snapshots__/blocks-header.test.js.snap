@@ -1,0 +1,123 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`top-nav block (fixed bar) > matches HTML snapshot 1`] = `
+"
+<!-- start top-nav-->
+<div class="top-nav">
+  <div class="top-nav__inner">
+    <div class="top-nav__start">
+      <button class="top-nav__burger" type="button" aria-label="Меню" aria-haspopup="dialog" aria-expanded="false" aria-controls="catalogModal" data-catalog-open="data-catalog-open">
+        <svg class="icon icon-align-justify top-nav__burger-icon">
+          <use xlink:href="img/svg/sprite.svg#align-justify"></use>
+        </svg>
+      </button>
+      <button class="top-nav__catalog-btn d-none d-lg-inline-flex" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="catalogModal" data-catalog-open="data-catalog-open">
+        <svg class="icon icon-gallery-horizontal-end top-nav__catalog-btn-icon">
+          <use xlink:href="img/svg/sprite.svg#gallery-horizontal-end"></use>
+        </svg><span class="top-nav__catalog-btn-label">Каталог</span>
+      </button>
+    </div><a class="top-nav__logo d-none d-lg-block" href="#">Esthetic Bra</a>
+    <nav class="top-nav__actions" aria-label="Аккаунт и покупки"><a class="top-nav__action" href="#" aria-label="Поиск" data-action="search">
+        <svg class="icon icon-search top-nav__action-icon">
+          <use xlink:href="img/svg/sprite.svg#search"></use>
+        </svg></a><a class="top-nav__action" href="#" aria-label="Профиль" data-action="profile">
+        <svg class="icon icon-user-round top-nav__action-icon">
+          <use xlink:href="img/svg/sprite.svg#user-round"></use>
+        </svg></a><a class="top-nav__action" href="#" aria-label="Избранное" data-action="favorites">
+        <svg class="icon icon-heart top-nav__action-icon">
+          <use xlink:href="img/svg/sprite.svg#heart"></use>
+        </svg></a><a class="top-nav__action" href="#" aria-label="Корзина" data-action="cart">
+        <svg class="icon icon-shopping-cart top-nav__action-icon">
+          <use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+        </svg></a>
+    </nav>
+  </div>
+  <div class="catalog-modal" id="catalogModal" role="dialog" aria-modal="true" aria-label="Каталог" tabindex="-1" hidden="hidden">
+    <div class="catalog-modal__backdrop" data-catalog-close="data-catalog-close"></div>
+    <div class="catalog-modal__dialog">
+      <div class="catalog-modal__head"><span class="catalog-modal__title">Каталог</span>
+        <button class="catalog-modal__close" type="button" aria-label="Закрыть каталог" data-catalog-close="data-catalog-close">
+          <svg class="icon icon-x catalog-modal__close-icon">
+            <use xlink:href="img/svg/sprite.svg#x"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="catalog-modal__body">
+        <ul class="catalog-modal__list">
+          <li class="catalog-modal__item --has-children"><a class="catalog-modal__item-link --active" href="#" data-catalog-trigger="0" aria-haspopup="true" aria-expanded="true"><span class="catalog-modal__item-title">Нижнее бельё</span><span class="catalog-modal__item-count">654</span>
+              <svg class="icon icon-arrow-right catalog-modal__item-arrow">
+                <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+              </svg></a></li>
+          <li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">Спортивное бельё</span><span class="catalog-modal__item-count">32</span></a></li>
+          <li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">Эротическое бельё</span><span class="catalog-modal__item-count">12</span></a></li>
+          <li class="catalog-modal__item --has-children"><a class="catalog-modal__item-link" href="#" data-catalog-trigger="3" aria-haspopup="true" aria-expanded="false"><span class="catalog-modal__item-title">Купальники</span><span class="catalog-modal__item-count">876</span>
+              <svg class="icon icon-arrow-right catalog-modal__item-arrow">
+                <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+              </svg></a></li>
+          <li class="catalog-modal__item --has-children"><a class="catalog-modal__item-link" href="#" data-catalog-trigger="4" aria-haspopup="true" aria-expanded="false"><span class="catalog-modal__item-title">Домашняя одежда</span><span class="catalog-modal__item-count">546</span>
+              <svg class="icon icon-arrow-right catalog-modal__item-arrow">
+                <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+              </svg></a></li>
+          <li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">Одежда для сна</span><span class="catalog-modal__item-count">45</span></a></li>
+          <li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">Пляжная одежда</span><span class="catalog-modal__item-count">36</span></a></li>
+          <li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">Аксессуары</span><span class="catalog-modal__item-count">11</span></a></li>
+          <li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">По виду груди</span><span class="catalog-modal__item-count">943</span></a></li>
+        </ul>
+        <div class="catalog-modal__panels">
+          <div class="catalog-modal__panel --active" data-catalog-panel="0">
+            <div class="catalog-modal__panel-head d-lg-none">
+              <button class="catalog-modal__back" type="button" data-catalog-back="data-catalog-back">
+                <svg class="icon icon-arrow-right catalog-modal__back-icon">
+                  <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                </svg><span>Нижнее бельё</span>
+              </button>
+            </div>
+            <ul class="catalog-modal__panel-list">
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link --all" href="#">Смотреть все</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Бюстгальтеры</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Трусы</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Комплекты</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Корректирующее бельё</a></li>
+            </ul>
+            <div class="catalog-modal__panel-media"><img src="img/sAudience/card-asymmetry.webp" alt="Нижнее бельё Esthetic Bra" loading="lazy"/></div>
+          </div>
+          <div class="catalog-modal__panel" data-catalog-panel="3">
+            <div class="catalog-modal__panel-head d-lg-none">
+              <button class="catalog-modal__back" type="button" data-catalog-back="data-catalog-back">
+                <svg class="icon icon-arrow-right catalog-modal__back-icon">
+                  <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                </svg><span>Купальники</span>
+              </button>
+            </div>
+            <ul class="catalog-modal__panel-list">
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link --all" href="#">Смотреть все</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Купальник раздельный</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Купальник слитный</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Плавки</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Танкини</a></li>
+            </ul>
+            <div class="catalog-modal__panel-media"><img src="img/sHero/hero-slide-1.webp" alt="Купальники Esthetic Bra" loading="lazy"/></div>
+          </div>
+          <div class="catalog-modal__panel" data-catalog-panel="4">
+            <div class="catalog-modal__panel-head d-lg-none">
+              <button class="catalog-modal__back" type="button" data-catalog-back="data-catalog-back">
+                <svg class="icon icon-arrow-right catalog-modal__back-icon">
+                  <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+                </svg><span>Домашняя одежда</span>
+              </button>
+            </div>
+            <ul class="catalog-modal__panel-list">
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link --all" href="#">Смотреть все</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Халаты</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Пижамы</a></li>
+              <li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Домашние комплекты</a></li>
+            </ul>
+            <div class="catalog-modal__panel-media"><img src="img/sGifts/lingerie.webp" alt="Домашняя одежда Esthetic Bra" loading="lazy"/></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end top-nav-->"
+`;

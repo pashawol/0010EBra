@@ -1,0 +1,53 @@
+$output-bourbon-deprecation-warnings: false;
+// @use "sass:list";
+// @use "sass:map";
+@use "sass:math";
+
+// @use "sass:meta";
+
+// @import "mq";
+@import "bourbon/app/assets/stylesheets/bourbon";
+
+// @import "../../node_modules/rfs/scss";
+// @import "../../node_modules/@fancyapps/ui/src/Fancybox/Fancybox.scss";
+// @import "../../node_modules/swiper/swiper.scss";
+
+@import "mixin";
+// @import "bootstrap-theme/bootstrap";
+
+// Option B: Include parts of Bootstrap
+
+// v5
+
+// Layout & components
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "vars_base";
+@import "vars";
+@import "fonts";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+@import "root";
+@import "base";
+
+@import "ui-kit";
+@import "../pug/blocks/**/*.scss";
+// @import '../pug/blocks/form-wrap/form-wrap.scss';
+
+// @import '../pug/blocks/topLine/_topLine.scss';
+// @import '../pug/blocks/top-nav/_top-nav.scss';
+// @import '../pug/blocks/top-nav/_navMenu.scss';
+// @import '../pug/blocks/sForm/_sForm.scss';
+// @import '../pug/blocks/sContent/_sContent.scss';
+// @import '../pug/blocks/modal/_modal.scss';
+// @import '../pug/blocks/headerBlock/_headerBlock.scss';
+
+// @import '../pug/blocks/header/_header.scss';
+// @import '../pug/blocks/footer/_footer.scss';
+
+// @import "media"; // Всегда в конце
+
+/*
+  коммент
+	#{primary}
+*/

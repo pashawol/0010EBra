@@ -1,0 +1,151 @@
+// Стенд UI-кита (страница 01-ui-kit). Не участвует в вёрстке сайта —
+// служебная страница для тех, кто будет внедрять.
+.ui-kit {
+	padding-block: rem(40);
+
+	&__title {
+		margin-bottom: rem(16);
+	}
+
+	&__intro {
+		max-width: rem(720);
+		margin-bottom: rem(48);
+		color: var(--eb-text-muted);
+
+		code {
+			padding: rem(2) rem(6);
+			border-radius: rem(4);
+			background-color: var(--eb-surface);
+			color: var(--eb-accent);
+		}
+	}
+
+	&__section {
+		margin-bottom: rem(48);
+		padding: rem(32);
+		border-radius: var(--eb-radius);
+		background-color: var(--eb-white);
+		box-shadow: 0 0 0 1px var(--eb-ink-35);
+
+		// Тёмный вариант: включает ту же тему, что и секции сайта, поэтому
+		// на стенде видно ровно то поведение, что будет в бою.
+		&--dark {
+			background-color: var(--eb-burgundy);
+			box-shadow: none;
+		}
+	}
+
+	&__row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: rem(16) rem(24);
+		padding-block: rem(16);
+		border-top: 1px solid var(--eb-hairline);
+
+		&:first-of-type {
+			border-top: 0;
+		}
+	}
+
+	&__label {
+		flex-shrink: 0;
+		width: rem(200);
+		// 35% давало контраст 2.05 при норме 4.5 — axe валит как serious.
+		color: var(--eb-text-soft);
+		font-size: var(--eb-caption);
+	}
+
+	&__items {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: rem(16);
+		color: var(--eb-text);
+	}
+
+	&__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: rem(44);
+		height: rem(44);
+		border-radius: var(--eb-radius-check);
+		background-color: var(--eb-surface);
+		color: var(--eb-text);
+		font-size: rem(22);
+
+		// Жёсткий размер: у монограммы viewBox совсем другой пропорции, и без
+		// явного ограничения она вылезала за пределы бокса на всю секцию.
+		.icon {
+			width: rem(22);
+			height: rem(22);
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		&__label {
+			width: 100%;
+		}
+
+		&__section {
+			padding: rem(16);
+		}
+	}
+
+	// Поля формы на стенде. Геометрия из UI-Kit (652:1373): подчёркивание снизу,
+	// лейбл над полем, ошибка отдельной плашкой справа.
+	&__field {
+		display: flex;
+		flex-direction: column;
+		gap: rem(4);
+		width: 100%;
+		max-width: rem(360);
+
+		&--error {
+			.ui-kit__input {
+				border-bottom-color: var(--eb-error);
+			}
+		}
+	}
+
+	&__field-label {
+		color: var(--eb-text-soft);
+		font-size: var(--eb-caption);
+	}
+
+	&__field-error {
+		align-self: flex-end;
+		padding: rem(6) rem(8);
+		border-radius: var(--eb-radius-badge);
+		background-color: var(--eb-error-15);
+		color: var(--eb-error-text);
+		font-size: var(--eb-caption);
+	}
+
+	&__input {
+		width: 100%;
+		min-height: var(--eb-control-size);
+		padding: 0;
+		border: 0;
+		border-bottom: 1px solid var(--eb-hairline);
+		background-color: transparent;
+		color: var(--eb-text);
+		font-family: $font-family-sans-serif;
+		font-size: var(--eb-subtitle-2);
+
+		&:focus-visible {
+			border-bottom-color: var(--eb-accent);
+			outline: none;
+		}
+	}
+
+	&__check {
+		display: flex;
+		align-items: center;
+		gap: rem(10);
+		color: var(--eb-text);
+		font-size: var(--eb-caption);
+		cursor: pointer;
+	}
+}

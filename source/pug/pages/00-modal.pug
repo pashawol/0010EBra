@@ -1,0 +1,63 @@
+extends ../layout/main.pug
+
+//- Стенд модалок. Не часть сайта — служебная страница для тех, кто будет
+//- внедрять вёрстку: каждая всплывающая сущность макета вызывается своей кнопкой.
+//- Выдуманных попапов здесь нет, только то, что есть в Figma.
+
+include ../blocks/header/_header.pug
+include ../blocks/top-nav/_top-nav.pug
+include ../blocks/mobileMenu/_mobileMenu.pug
+include ../blocks/sReels/_sReels.pug
+include ../blocks/sTestimonials/_sTestimonials.pug
+include ../blocks/sBooking/_sBooking.pug
+
+block title
+	title Стенд модалок — Esthetic Bra
+
+block pagecontent
+	//- Шапка выводится целиком: попап каталога живёт в ней, и без её разметки
+	//- и скрипта он не откроется.
+	+header()
+		+top-nav()
+	+mobileMenu()
+
+	main.ui-kit
+		.container
+			h1.ui-kit__title Стенд модалок
+
+			p.eb-body.ui-kit__intro
+				| Каждая кнопка открывает соответствующую всплывающую сущность из макета.
+				| Разметка попапов лежит внутри своих блоков — здесь только триггеры,
+				| чтобы поведение можно было проверить, не пролистывая всю главную.
+
+			.ui-kit__section
+				.ui-kit__body
+					h2.section-title.h3 Каталог
+					.ui-kit__row
+						.ui-kit__label Попап каталога, уровни 1 и 2
+						.ui-kit__items
+							+ebBtn('Открыть каталог', 'primary', 'gallery-horizontal-end')(data-catalog-open)
+
+					h2.section-title.h3 Мобильное меню
+					.ui-kit__row
+						.ui-kit__label Три экрана с переходами. Проверять на ширине 375
+						.ui-kit__items
+							+ebBtn('Открыть меню', 'secondary', 'align-justify')(data-mobile-menu-toggle aria-expanded="false")
+
+					h2.section-title.h3 Видео
+					.ui-kit__row
+						.ui-kit__label Плеер в попапе
+						.ui-kit__items
+							span.eb-caption Карточки блоков «Рилсы» и «Видео отзывы» ниже кликабельны — они и есть штатный триггер плеера.
+
+					h2.section-title.h3 Форма записи
+					.ui-kit__row
+						.ui-kit__label Состояния: пустая, с ошибкой, заполненная
+						.ui-kit__items
+							span.eb-caption Форма выведена ниже целиком. Отправка не выполняется по решению заказчика — проверяется только валидация и состояния.
+
+	//- Блоки-владельцы попапов выводятся целиком: их внутренние триггеры
+	//- (карточки видео, поля формы) и есть штатный способ проверить поведение.
+	+sReels()
+	+sTestimonials()
+	+sBooking()

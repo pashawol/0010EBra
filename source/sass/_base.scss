@@ -1,0 +1,562 @@
+// Local palette tokens for base helpers / debug UI below (kept out of the
+// global Bootstrap palette; one-off colors not part of the brand scale).
+$base-debug-link: #98c3d1;
+$base-track-muted: #e6e6e6;
+
+.pixel-perfect {
+	top: 0;
+	pointer-events: none;
+	z-index: 1000;
+	background-repeat: no-repeat;
+	// overflow: hidden;
+	// height: 100%;
+	// width: 100%;
+	background-position: center 0;
+	@include a-cent1(x);
+	text-align: center;
+
+	opacity: 0.7;
+	// content: var(--screen);
+}
+
+body,
+html {
+	font-size: var(--bs-body-font-size);
+}
+
+// ---------------------------------------------------------------------------
+// Контейнер под макет: 1790px контента внутри 1920px рамки.
+//
+// Bootstrap-овские ступени $container-max-widths дают резкий скачок 1320 → 1790,
+// поэтому контейнер сделан резиновым: до 1920 это вся ширина минус боковой отступ,
+// на 1920+ упирается в рамку макета и даёт ровно 1790 контента.
+// Боковой отступ едет от мобильного к десктопному вместе с брейкпоинтами.
+// ---------------------------------------------------------------------------
+.container {
+	--bs-gutter-x: 0;
+
+	width: 100%;
+	max-width: $eb-layout-width;
+	margin-inline: auto;
+	padding-inline: var(--eb-gutter);
+}
+
+// ---------------------------------------------------------------------------
+// Иконки.
+//
+// Набор макета — Lucide, а они ЧИСТО КОНТУРНЫЕ: вся геометрия рисуется stroke,
+// fill у них none. Сборка спрайта (svgmin) вырезает атрибуты fill/stroke из
+// символа — без восстановления такая иконка есть в DOM, но невидима.
+// Восстанавливаем на host-элементе <svg>: fill и stroke наследуются внутрь
+// клона <use>, в отличие от селекторов по содержимому символа.
+//
+// Список ведётся вручную: добавил контурную иконку в source/svg — допиши сюда.
+// ---------------------------------------------------------------------------
+$eb-line-icons: align-justify, arrow-right, corner-right-down, gallery-horizontal-end, hand-heart, heart,
+	message-circle-question, move-horizontal, play, search, shopping-cart, sparkles, square-check-big,
+	user-round, x;
+
+.icon {
+	width: 1em;
+	height: 1em;
+	flex-shrink: 0;
+	fill: currentColor;
+}
+
+@each $name in $eb-line-icons {
+	.icon-#{$name} {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Типографика: заголовки на Vetrino, текст на Inter.
+// Размеры берутся из токенов, поэтому масштабируются по брейкпоинтам
+// без переопределения в каждом блоке.
+// ---------------------------------------------------------------------------
+h1,
+h2,
+h3,
+h4,
+.h1,
+.h2,
+.h3,
+.h4 {
+	font-family: $font-family-display;
+	font-weight: 400;
+}
+
+h1,
+.h1 {
+	font-size: var(--eb-h1);
+	line-height: 1;
+}
+
+h2,
+.h2 {
+	font-size: var(--eb-h2);
+	line-height: 1;
+}
+
+h3,
+.h3 {
+	font-size: var(--eb-h3);
+	line-height: 1;
+}
+
+h4,
+.h4 {
+	font-size: var(--eb-h4);
+	line-height: 1.1;
+}
+
+// Subtitle 1 — единственный «текстовый» стиль на Vetrino (по Fonts System).
+.eb-subtitle-1 {
+	font-family: $font-family-display;
+	font-size: var(--eb-subtitle-1);
+	line-height: 1.1;
+}
+
+.eb-subtitle-2 {
+	font-size: var(--eb-subtitle-2);
+	line-height: 1.2;
+}
+
+.eb-body {
+	font-size: var(--eb-body);
+	line-height: 1.4;
+}
+
+.eb-caption {
+	font-size: var(--eb-caption);
+	line-height: 1.2;
+}
+html {
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: rgba(33, 36, 41, 0);
+	// margin-right: calc(-1 * (100vw - 100%));
+}
+
+body {
+	&[class*="fixed"],
+	&.fancybox-active {
+		.header {
+			padding-right: var(--spacing-end);
+		}
+		margin-right: var(--spacing-end);
+	}
+	// min-width: 575px;
+	// -webkit-font-smoothing: antialiased;
+	// position: relative;
+	// overflow-x: hidden;
+
+	&.loaded_hiding {
+		@include mt;
+
+		opacity: 0;
+		pointer-events: none;
+
+		&::before {
+			display: none;
+		}
+	}
+
+	&.loaded {
+		pointer-events: visible;
+		opacity: 1;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		@include mt;
+		// background-color: $body-color;
+		background-color: rgba($body-color, 0.8);
+		backdrop-filter: blur(5px);
+		opacity: 0;
+		z-index: -1;
+		// left: 200px;
+		left: 0;
+		// opacity: 1;
+		// z-index: 1;
+		top: 0;
+	}
+
+	&.fancybox-active {
+		overflow: hidden;
+	}
+	&[class*="fixed"] {
+		position: absolute;
+		width: 100%;
+		left: 0;
+		top: 0;
+		z-index: 999;
+		touch-action: none;
+		-webkit-overflow-scrolling: none;
+		overflow: hidden;
+		/* Other browsers */
+		overscroll-behavior: none;
+
+		&::before {
+			z-index: 999;
+			opacity: 0.76;
+		}
+	}
+}
+
+.main-wrapper {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	// flex-direction: row;
+	// /	overflow: scroll;
+	// width: 100%;
+	// height: calc(var(--vh, 1vh) * 100);
+}
+main {
+	flex-grow: 1;
+}
+
+.section {
+	@include bgs;
+	padding-top: var(--sPT);
+	padding-bottom: var(--sPB);
+}
+
+.section-title {
+	margin-bottom: var(--sTPB);
+}
+
+.mono {
+	font-family: $font-family-code;
+}
+
+.small {
+	font-size: $small;
+}
+
+.tdn {
+	text-decoration: none !important;
+}
+
+.ttu {
+	text-transform: uppercase;
+}
+
+.tdu {
+	text-decoration: underline;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.fw-300 {
+	font-weight: 300;
+}
+
+.fw-500 {
+	font-weight: 500;
+}
+.fw-400 {
+	font-weight: 400;
+}
+
+.fw-900 {
+	font-weight: 900;
+}
+.fw-600 {
+	font-weight: 600;
+}
+.fw-100 {
+	font-weight: 100;
+}
+
+.row--sm {
+	--bg-gutter-x: #{rem(20)};
+}
+
+.image-source-link {
+	color: $base-debug-link;
+}
+
+strong,
+.strong {
+	font-weight: bold;
+}
+
+ul {
+	padding-left: 0;
+}
+
+.res-i {
+	max-width: 100%;
+	// width: auto;
+	height: auto;
+}
+
+.img-bg {
+	@include img-bg();
+}
+
+.bgs {
+	@include bgs();
+}
+
+.table {
+	display: table;
+}
+
+.tr {
+	display: table-row;
+}
+
+.td {
+	display: table-cell;
+}
+
+.tabs__btn-accordion {
+	// display: none;
+	width: 100%;
+}
+.tabs {
+	&__btn {
+		&:hover {
+			cursor: pointer;
+		}
+
+		&.active {
+		}
+	}
+
+	&__content {
+		// opacity: 0;
+		// @include mt;
+		&.active {
+			display: block;
+			// opacity: 1;
+		}
+
+		display: none;
+	}
+}
+
+.invisible {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+}
+
+.control-wrap {
+	position: relative;
+}
+
+.swiper-button-hand {
+	width: var(--swiperArrowSize);
+	height: var(--swiperArrowSize);
+	border-radius: 50%;
+	background-color: var(--swiperBgDef);
+	border: 2px solid var(--swiperBorderColorDef);
+	color: var(--swiperColorDef);
+	@include bgs;
+	outline: none !important;
+	// margin-bottom: 0;
+	background-image: none;
+	margin: 0;
+	@include a-cent(y);
+	box-shadow: 0 15px 60px rgba(0, 0, 0, 0.1);
+	@include mt;
+	user-select: none;
+
+	&:hover {
+		background-color: var(--swiperBgDefHover);
+		border-color: var(--swiperBorderColorDefHover);
+		color: var(--swiperColorDefHover);
+	}
+
+	.icon {
+		font-size: rem(12);
+	}
+
+	&::after {
+		display: none;
+	}
+	&-next {
+		right: var(--swiperArrowPosition);
+	}
+
+	&-prev {
+		left: var(--swiperArrowPosition);
+	}
+}
+
+.swiper-pagination {
+	width: 100%;
+	text-align: center;
+
+	&-bullet {
+		opacity: 1;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background-color: $base-track-muted;
+		outline: none !important;
+		@include mt;
+		margin-left: rem(8);
+		// padding-right: rem(8);
+		margin-right: rem(5);
+		display: inline-block;
+
+		&-active,
+		&:hover {
+			background-color: var(--bs-primary);
+		}
+	}
+}
+
+@include media-breakpoint-up(lg) {
+	.wow {
+		visibility: hidden;
+	}
+}
+
+picture {
+	display: block;
+	img {
+		@extend .res-i;
+	}
+}
+
+img.object-fit-js {
+	height: 100%;
+	width: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+img.img-bg,
+.object-fit-js img {
+	object-fit: cover;
+}
+
+a {
+	@include mt;
+}
+
+img.img-bg,
+.picture-bg {
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	.object-fit-js {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.bg-wrap {
+	position: relative;
+	z-index: 2;
+}
+
+// .pagination-wrapper li
+
+.browsehappy {
+	position: absolute;
+	// position: fixed;
+	width: 100%;
+	z-index: 2000;
+	background: $black;
+	min-height: 100px;
+	font-size: 10px;
+	color: $white;
+	top: 0;
+	padding-top: 30px;
+}
+
+iframe {
+	border: none;
+}
+
+// *::selection {
+// 	color: #fff;
+// 	/* Цвет текста */
+// 	background: var(--bs-primary) ;
+// 	/* Цвет фона */
+// }
+
+.custom-scroll {
+	@include custom-scroll;
+}
+
+// Data-URI обязан быть percent-encoded: `#` внутри url() обрывает адрес,
+// а $primary интерполируется как #5a0d30 — иконка получалась битой.
+// Кодируем цвет через str-replace, `<`/`>` тоже экранируем, иначе svgo в cssnano
+// не может разобрать payload и молча пропускает оптимизацию.
+::-webkit-calendar-picker-indicator {
+	$icon-fill: str-replace(inspect($primary), "#", "%23");
+
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='15' viewBox='0 0 24 24'%3E%3Cpath fill='#{$icon-fill}' d='M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z'/%3E%3C/svg%3E");
+}
+
+.swiper-wrapper {
+	// @include row-sw(10px, sm, 100px);
+}
+
+// .btn-outline-light,
+// .btn-outline-primary{
+// 	--bs-btn-color: #{$body-color};
+// }
+
+.btn,
+.form-control,
+.form-select {
+	box-shadow: none !important;
+}
+
+.fancybox__content :focus:not(.carousel__button.is-close) {
+	outline: none !important;
+}
+
+.form-switch,
+.form-check-input,
+.form-check {
+	cursor: pointer;
+}
+
+.img-wrap-center {
+	@include a-cent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	img {
+		max-width: 100%;
+		max-height: 100%;
+		height: auto;
+	}
+	img.object-fit-js {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}

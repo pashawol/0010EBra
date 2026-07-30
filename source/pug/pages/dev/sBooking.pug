@@ -1,0 +1,31 @@
+extends ../../layout/main.pug
+
+//- Строительные леса для локальной QA-проверки sBooking — не боевая
+//- страница, удаляется координатором при сдаче (см. docs/coordination/
+//- sBooking.md). Верстаем ТОЛЬКО свой блок, index.pug не трогаем (границы
+//- задачи).
+include ../../blocks/sBooking/_sBooking.pug
+
+block variables
+	- var mainPage = 'main-page'
+
+//- Страница лежит в public/dev/ (на уровень глубже корня) — относительные
+//- ассеты (css/js/svg) в js-css.pug иначе резолвятся как public/dev/libs/...
+//- и 404-ят. `block base` уже заведён координатором в main.pug (см.
+//- docs/coordination/footer.md) — переопределяем его здесь тем же образом.
+block base
+	base(href="../")
+
+block title
+	- var title = 'DEV — sBooking'
+	title= title
+
+block pagecontent
+	main
+		+sBooking()
+
+block scripts
+	//- booking.js подключён напрямую здесь для проверки механики на
+	//- dev-стенде — на боевой странице подключение делает координатор через
+	//- js-css.pug (allcjs()), см. заявку в docs/coordination/sBooking.md.
+	script(src="js/booking.js")

@@ -1,0 +1,602 @@
+// start .footer — node 508:96 (desktop 1920), 744:1165 (mobile 375)
+//
+// Тёмная тема на корне (.eb-theme--dark) — весь текст читает --eb-text/
+// --eb-text-muted и становится белым сам, руками белый нигде не задан.
+// Исключение — CTA-карточка (.footer__cta): она белая ВНУТРИ тёмной секции,
+// поэтому локально возвращает контекстным ролям светлые значения (только
+// существующими базовыми токенами, без новых записей в _root.scss).
+.footer {
+	margin-top: auto;
+	overflow: hidden; // full-bleed интро не должно давать горизонтальный скролл
+
+	// -------------------------------------------------------------------
+	// Фото-подложка с надписью «идеального белья» + дуга-переход в бордовый.
+	// Высота — не жёсткая (никаких height:Npx): паддинги резервируют место
+	// под текст сверху и под дугу-переход снизу, дуга спозиционирована
+	// абсолютно и просто перекрывает низ фото своим собственным фоном.
+	// -------------------------------------------------------------------
+	&__intro {
+		position: relative;
+		// Высота = ровно резерв под дугу-переход снизу (её собственная высота
+		// ниже, footer__transition-shape); подпись поверх — absolute, в высоту
+		// не считается, увеличивать паддинг под неё не нужно (см. ниже).
+		padding-bottom: rem(120);
+		overflow: hidden;
+	}
+
+	&__intro-img {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	// Затемнение к низу бордовым — те же альфа-ступени, что в макете
+	// (15% → 75%); rgba() — функция, strict-value её не режет (см.
+	// docs/architecture.md), новый токен на альфу burgundy заводить не
+	// пришлось.
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		background: linear-gradient(
+			to bottom,
+			rgba($eb-burgundy, 0.15) 50%,
+			rgba($eb-burgundy, 0.75) 100%
+		);
+		pointer-events: none;
+	}
+
+	&__intro-caption {
+		position: absolute;
+		top: rem(20);
+		right: 0;
+		left: 0;
+		z-index: 2;
+		padding-inline: var(--eb-gutter);
+		color: var(--eb-text);
+		font-family: $font-family-display;
+		font-size: var(--eb-h2);
+		line-height: 1;
+		text-align: right;
+
+		span {
+			display: block;
+		}
+	}
+
+	&__transition {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 3;
+		display: block;
+		line-height: 0;
+	}
+
+	&__transition-shape {
+		display: block;
+		width: 100%;
+		height: rem(120);
+
+		path {
+			fill: var(--eb-burgundy);
+		}
+	}
+
+	// -------------------------------------------------------------------
+	// Основное тело футера — сплошной бордовый (тема .eb-theme--dark на
+	// корне даёт этот цвет автоматически через --eb-text, сам фон всё же
+	// прописан явно токеном, т.к. это не текстовая роль, а заливка блока).
+	// -------------------------------------------------------------------
+	.container {
+		position: relative;
+		z-index: 4;
+		padding-top: rem(48);
+		padding-bottom: rem(48);
+		background-color: var(--eb-burgundy);
+	}
+
+	&__brand {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: rem(32);
+	}
+
+	&__monogram {
+		width: rem(62);
+		height: auto;
+		margin-bottom: rem(8);
+		color: var(--eb-text);
+	}
+
+	&__wordmark {
+		margin: 0;
+		color: var(--eb-text);
+		font-family: $font-family-display;
+		font-size: clamp(#{rem(48)}, 14vw, #{rem(170)});
+		font-weight: 400;
+		line-height: 0.9;
+		letter-spacing: -0.02em;
+		text-align: center;
+	}
+
+	&__top {
+		display: flex;
+		flex-direction: column;
+		gap: rem(24);
+		margin-bottom: rem(40);
+	}
+
+	&__contacts {
+		display: flex;
+		flex-direction: column;
+		gap: rem(20);
+	}
+
+	&__contacts-title {
+		margin-bottom: 0;
+	}
+
+	&__contact-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: rem(16) rem(32);
+	}
+
+	&__contact {
+		display: flex;
+		flex-direction: column;
+		gap: rem(8);
+	}
+
+	&__contact-label {
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1;
+	}
+
+	&__contact-value {
+		color: var(--eb-text);
+		font-size: var(--eb-body);
+		line-height: 1.4;
+		text-decoration: none;
+	}
+
+	a#{&}__contact-value:hover {
+		color: var(--eb-text-muted);
+	}
+
+	// CTA-карточка «Онлайн запись» — белая внутри тёмной секции: контекстные
+	// роли переопределены локально существующими базовыми токенами, новых
+	// свойств в _root.scss заводить не пришлось.
+	&__cta {
+		--eb-text: var(--eb-ink);
+		--eb-text-muted: var(--eb-ink-75);
+		--eb-accent: var(--eb-burgundy);
+		--eb-on-accent: var(--eb-white);
+
+		display: flex;
+		gap: rem(15);
+		align-items: flex-start;
+		padding: rem(10);
+		border-radius: rem(18);
+		background-color: var(--eb-white);
+		text-decoration: none;
+	}
+
+	&__cta-img {
+		width: rem(120);
+		height: rem(128);
+		border-radius: var(--eb-radius);
+		object-fit: cover;
+	}
+
+	&__cta-body {
+		display: flex;
+		flex: 1 1 0;
+		flex-direction: column;
+		gap: rem(10);
+		min-width: 0;
+		padding-top: rem(10);
+	}
+
+	&__cta-text {
+		display: flex;
+		flex-direction: column;
+		gap: rem(5);
+	}
+
+	&__cta-eyebrow {
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1;
+	}
+
+	&__cta-title {
+		color: var(--eb-text);
+		font-size: var(--eb-subtitle-2);
+		line-height: 1.2;
+	}
+
+	&__cta-arrow {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: rem(44);
+		height: rem(44);
+		border-radius: rem(12);
+		background-color: var(--eb-accent);
+		color: var(--eb-on-accent);
+		font-size: rem(20);
+
+		// Стрелка в макете смотрит на северо-восток — тот же ассет
+		// arrow-right, развёрнутый, отдельная иконка не нужна.
+		.icon {
+			transform: rotate(-45deg);
+		}
+	}
+
+	&__divider {
+		margin: 0 calc(-1 * var(--eb-gutter)) rem(40);
+		border: 0;
+		border-top: 1px solid var(--eb-white-15);
+	}
+
+	&__bottom {
+		display: flex;
+		flex-direction: column;
+		gap: rem(40);
+	}
+
+	&__subscribe-col {
+		display: flex;
+		flex-direction: column;
+		gap: rem(32);
+	}
+
+	&__subscribe {
+		display: flex;
+		flex-direction: column;
+		gap: rem(20);
+	}
+
+	&__subscribe-title {
+		margin-bottom: 0;
+	}
+
+	&__subscribe-form {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__subscribe-field {
+		display: flex;
+		flex-wrap: wrap;
+		gap: rem(10);
+	}
+
+	&__subscribe-input {
+		flex: 1 1 rem(180);
+		min-width: 0;
+		padding: 0;
+		border: 0;
+		border-bottom: 1px solid var(--eb-hairline);
+		background: transparent;
+		color: var(--eb-text);
+		font-family: $font-family-sans-serif;
+		font-size: var(--eb-body);
+		line-height: 1.4;
+
+		&::placeholder {
+			color: var(--eb-text-muted);
+		}
+
+		&:focus {
+			outline: none;
+			border-color: var(--eb-text);
+		}
+	}
+
+	&__subscribe-btn {
+		flex-shrink: 0;
+	}
+
+	&__subscribe-error {
+		display: none;
+		color: var(--eb-error-text);
+		font-size: var(--eb-caption);
+		line-height: 1.3;
+	}
+
+	// Состояние ошибки — переключается footer.js через Constraint Validation
+	// API (checkValidity). CSS :invalid — подстраховка на случай, если
+	// блочный JS не подключится (см. заявку в COORDINATION про gulpfile.js).
+	&__subscribe-field--error &__subscribe-input,
+	&__subscribe-input:invalid:not(:placeholder-shown):not(:focus) {
+		border-color: var(--eb-error);
+	}
+
+	&__subscribe-field--error &__subscribe-error,
+	&__subscribe-input:invalid:not(:placeholder-shown):not(:focus) ~ &__subscribe-error {
+		display: block;
+	}
+
+	&__social {
+		display: flex;
+		flex-direction: column;
+		gap: rem(20);
+	}
+
+	&__social-label {
+		margin: 0;
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1.3;
+	}
+
+	&__social-list {
+		display: flex;
+		align-items: center;
+		gap: rem(5);
+	}
+
+	&__social-btn {
+		flex-shrink: 0;
+	}
+
+	&__menus {
+		display: flex;
+		flex-wrap: wrap;
+		gap: rem(20) rem(15);
+
+		// Первые два меню — в ряд по половине ширины, третье («Для клиента»,
+		// самый длинный список) — во всю ширину под ними: повторяет мобильную
+		// раскладку макета (744:1345 + 744:1429) без отдельной обёртки в DOM.
+		> :nth-child(1),
+		> :nth-child(2) {
+			flex: 1 1 calc(50% - #{rem(8)});
+			min-width: 0;
+		}
+
+		> :nth-child(3) {
+			flex: 1 1 100%;
+		}
+	}
+
+	&__menu-title {
+		margin: 0 0 rem(20);
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1;
+	}
+
+	&__menu-links {
+		display: flex;
+		flex-direction: column;
+		gap: rem(10);
+	}
+
+	&__menu-link {
+		color: var(--eb-text);
+		font-size: var(--eb-body);
+		line-height: 1.4;
+		text-decoration: none;
+
+		&:hover {
+			color: var(--eb-text-muted);
+		}
+	}
+
+	// «Для клиента» — самый длинный список (6 пунктов): на мобильном сведён
+	// в 2 колонки, чтобы не растягивать футер по высоте (744:1447). На
+	// десктопе — назад в один список (544:479 в макете одноколоночный).
+	&__menu--split &__menu-links {
+		@include media-breakpoint-down(lg) {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			column-gap: rem(15);
+		}
+	}
+
+	// -------------------------------------------------------------------
+	// Нижняя плашка: копирайт / платёжные бейджи / юридические ссылки.
+	// Один и тот же DOM-порядок на всех ширинах, раскладка — только CSS
+	// (order + flex-basis), поэтому мобильная и десктопная сверстаны разом.
+	// -------------------------------------------------------------------
+	&__bottom-bar {
+		position: relative;
+		z-index: 4;
+		background-color: var(--eb-burgundy);
+		border-top: 1px solid var(--eb-white-15);
+
+		.container {
+			padding-top: rem(20);
+			padding-bottom: rem(20);
+		}
+	}
+
+	&__bottom-bar-inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: rem(15);
+	}
+
+	&__copyright {
+		order: 1;
+		flex: 1 1 auto;
+		margin: 0;
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1.4;
+		white-space: nowrap;
+	}
+
+	&__legal {
+		display: flex;
+		flex-direction: column;
+		order: 2;
+		flex: 0 0 auto;
+		gap: rem(10);
+	}
+
+	&__legal-link {
+		color: var(--eb-text-muted);
+		font-size: var(--eb-caption);
+		line-height: 1.4;
+		text-decoration: none;
+		white-space: nowrap;
+
+		&:hover {
+			color: var(--eb-text);
+		}
+	}
+
+	&__payments {
+		display: flex;
+		order: 3;
+		flex: 1 1 100%;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: rem(10);
+	}
+
+	// Мобильные размеры бейджей — из мобильной спеки (744:1370): ~0.75 от
+	// десктопных (511:351), не просто уменьшенные десктопные пропорции на
+	// глаз — иначе 8 значков не помещаются в одну строку на 375px и
+	// переносятся на вторую (в макете — одна строка).
+	&__payment-icon {
+		flex-shrink: 0;
+		height: rem(18);
+		width: auto;
+		max-width: rem(37);
+		object-fit: contain;
+	}
+
+	// -------------------------------------------------------------------
+	// Десктоп — снято с 508:96 / 507:15 (контейнер 1790 при gutter 65).
+	// -------------------------------------------------------------------
+	@include media-breakpoint-up(lg) {
+		&__intro {
+			padding-bottom: rem(200);
+		}
+
+		&__intro-caption {
+			top: rem(48);
+		}
+
+		&__transition-shape {
+			height: rem(200);
+		}
+
+		.container {
+			padding-top: rem(70);
+			padding-bottom: rem(70);
+		}
+
+		&__brand {
+			margin-bottom: rem(60);
+		}
+
+		&__monogram {
+			width: rem(105);
+		}
+
+		&__top {
+			flex-direction: row;
+			gap: rem(60);
+			align-items: stretch;
+			margin-bottom: rem(70);
+		}
+
+		&__contacts {
+			flex: 1 1 0;
+			justify-content: space-between;
+		}
+
+		&__contact-list {
+			flex-wrap: nowrap;
+			gap: rem(60);
+		}
+
+		&__cta {
+			flex: 0 0 rem(440);
+			gap: rem(20);
+		}
+
+		&__cta-img {
+			width: rem(145);
+			height: rem(164);
+		}
+
+		&__cta-arrow {
+			width: rem(52);
+			height: rem(52);
+			border-radius: var(--eb-radius);
+		}
+
+		&__divider {
+			margin-bottom: rem(70);
+		}
+
+		&__bottom {
+			flex-direction: row;
+			gap: rem(10);
+		}
+
+		&__subscribe-col {
+			flex: 1 1 0;
+			gap: rem(60);
+		}
+
+		&__subscribe-title {
+			max-width: rem(441);
+		}
+
+		&__subscribe-field {
+			flex-wrap: nowrap;
+		}
+
+		&__menus {
+			flex: 1 1 0;
+			flex-wrap: nowrap;
+			gap: rem(8);
+
+			> :nth-child(1),
+			> :nth-child(2),
+			> :nth-child(3) {
+				flex: 1 1 0;
+			}
+		}
+
+		&__bottom-bar-inner {
+			flex-wrap: nowrap;
+			align-items: center;
+		}
+
+		&__legal {
+			flex-direction: row;
+			gap: rem(30);
+		}
+
+		&__payments {
+			flex: 0 1 auto;
+			justify-content: center;
+			gap: rem(30);
+		}
+
+		&__payment-icon {
+			height: rem(24);
+			max-width: rem(49);
+		}
+	}
+}
+// end .footer

@@ -1,0 +1,296 @@
+// start .sFitting — node 313:442 (desktop 1920×1080), mobile 692:1129 → 700:1316
+// Бежевая секция. Мобиль: text → photo → fact одной колонкой. Десктоп (lg+):
+// text+fact в левой колонке, фото — во всю высоту справа (grid-template-areas,
+// а не вложенность — иначе не получить оба порядка одной разметкой).
+.sFitting {
+	position: relative;
+	// НЕ overflow:hidden на секции целиком: мобильные хотспот-карточки (дот
+	// у самого края фото) намеренно бleedят за пределы вьюпорта справа —
+	// section-level clip резал бы им иконку-стрелку (грабля «есть в DOM, но
+	// не видно на скриншоте»). Фон-фото (&__bg) клипается своим ЖЕ overflow.
+	background-color: var(--eb-beige);
+	color: var(--eb-text);
+
+	// -------------------------------------------------------------------
+	// Full-bleed декоративный фон — только десктоп (313:443/313:444).
+	// На мобиле (700:1316) фона в макете нет, только сплошной --eb-beige.
+	// -------------------------------------------------------------------
+	&__bg {
+		display: none;
+	}
+
+	&__bg-photo {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.container {
+		position: relative;
+		z-index: 1;
+	}
+
+	&__grid {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-areas: "text" "photo" "fact";
+		row-gap: rem(40);
+	}
+
+	&__text {
+		grid-area: text;
+		display: flex;
+		flex-direction: column;
+		gap: rem(20);
+		text-align: center;
+	}
+
+	&__title {
+		margin-bottom: 0;
+	}
+
+	&__lead {
+		margin: 0;
+		color: var(--eb-text-muted);
+		font-size: var(--eb-body);
+		line-height: 1.4;
+	}
+
+	// Факт «80%» — отдельный grid-item (не внутри &__text), чтобы на десктопе
+	// его можно было прижать к низу левой колонки независимо от заголовка.
+	&__fact {
+		grid-area: fact;
+		text-align: center;
+
+		// Бейдж «Факт» в макете — тёмная сплошная плашка (bg var(--eb-ink), текст белый),
+		// а не светлая полупрозрачная как у общего +ebTag. Точечный override
+		// под инстанс, общий eb-ui.scss не трогаю (заявка — docs/coordination/sFitting.md).
+		.eb-tag {
+			background-color: var(--eb-ink);
+			backdrop-filter: none;
+			color: var(--eb-white);
+		}
+	}
+
+	&__photo-wrap {
+		grid-area: photo;
+		position: relative;
+		width: 100%;
+
+		// «Надежная поддержка груди» (700:1357) сидит у нижнего края мобильного
+		// кадра — карточка (open below the dot, как и остальные) бleedит ниже
+		// рамки фото примерно на rem(54) и без зазора легла бы поверх факта/
+		// бейджа «80%» следующего grid-item'а. Доп. отступ снизу — только
+		// мобиль (на десктопе карточка вертикально центрирована на точке, не
+		// вылезает вниз, см. базовый .eb-hotspot__card в eb-ui.scss).
+		@include media-breakpoint-down(lg) {
+			margin-bottom: rem(32);
+		}
+	}
+
+	// Мини-подписи «Цвет / Размер» — только десктоп, нет в мобильном узле 700:1316.
+	&__meta {
+		display: none;
+	}
+
+	// Рамка фото — фиксированный aspect-ratio, а НЕ % от высоты секции: секция
+	// становится выше макета из-за переносов заголовка/абзаца, а хотспоты
+	// (позиционируются в % от этой рамки, не от секции) должны остаться на месте.
+	&__photo-frame {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 345 / 440;
+		overflow: visible; // не clip — карточки хотспотов и стрелки могут выходить за кадр
+	}
+
+	&__photo {
+		display: block;
+		width: 100%;
+		height: 100%;
+		border-radius: rem(20);
+		object-fit: cover;
+	}
+
+	// ---------------------------------------------------------------------
+	// Изогнутые стрелки-указатели — инлайн SVG (313:476/313:477, 700:1321/
+	// 700:1322), НЕ растровая картинка. Проценты — от рамки фото, снятые
+	// из Figma напрямую (совпадают на обеих ширинах — тот же относительный
+	// узор, увеличенный/уменьшенный целиком).
+	// ---------------------------------------------------------------------
+	&__arrow {
+		position: absolute;
+		z-index: 2;
+		pointer-events: none;
+	}
+
+	&__arrow-svg {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	&__arrow--straight {
+		left: 19.03%;
+		top: 73.7%;
+		width: 27.25%;
+	}
+
+	&__arrow--curled {
+		left: 44.6%;
+		top: 74.84%;
+		width: 32.46%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.sFitting__arrow-svg {
+			width: 93%;
+			transform: rotate(-163.61deg) scaleY(-1);
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// Хотспоты — общий +ebHotspot, свой компонент не пишем. Точка позиции —
+	// центр круга, снятая из Figma отдельно по desktop/mobile нодам (разный
+	// кроп фото → разные %, см. sFitting.json). Смещение на -12px (радиус
+	// точки 24px) переносится на весь wrapper, а не на .dot отдельно — иначе
+	// карточка потеряет привязку к точке (её offset считается от wrapper).
+	// ---------------------------------------------------------------------
+	&__hotspot {
+		left: calc(var(--hs-x-m) - #{rem(12)});
+		top: calc(var(--hs-y-m) - #{rem(12)});
+	}
+
+	// -------------------------------------------------------------------
+	// Направление карточки — считается ОТДЕЛЬНО для десктопа и мобилки:
+	// desktop и mobile — разный экспорт фото (разный кроп, см. sFitting.json),
+	// одна и та же точка может оказаться у самого края кадра на одной ширине
+	// и по центру на другой. Общий +ebHotspot по умолчанию кладёт карточку
+	// вправо (десктоп) либо ниже точки, начиная от неё же (мобиль, его
+	// @include media-breakpoint-down(md) в eb-ui.scss) — доработка направления
+	// компонента не в моей зоне (заявка в docs/coordination/sFitting.md),
+	// точечные оверрайды здесь.
+	// -------------------------------------------------------------------
+
+	// Карточка на всю доступную ширину мобильного кадра ужимается — иначе
+	// у краевых точек она бы вылезала за вьюпорт (см. --left-m ниже и заявку
+	// в coordination.md: у shared-компонента карточка фиксированной ширины
+	// rem(220) не проверяет, сколько места остаётся до края экрана).
+	@include media-breakpoint-down(lg) {
+		.eb-hotspot__card {
+			max-width: rem(200);
+		}
+	}
+
+	// «Комфортная чашка» (313:462) — на ДЕСКТОПЕ точка близко к левому краю
+	// фото (карточка бы вылезла за пределы кадра влево-в-фон), открывается
+	// влево от точки, а общий компонент по умолчанию кладёт её вправо.
+	&__hotspot--left-d {
+		@include media-breakpoint-up(lg) {
+			.eb-hotspot__card {
+				left: auto;
+				right: calc(100% + #{rem(12)});
+			}
+		}
+	}
+
+	// «Плотная посадка» и «Надежная поддержка груди» (700:1343/700:1357) —
+	// на МОБИЛЕ точка стоит у самого правого края фото-кадра: карточка,
+	// уводимая общим компонентом вправо-вниз от точки (@include
+	// media-breakpoint-down(md) в eb-ui.scss), вылезала бы за вьюпорт и
+	// обрезалась — иконка-стрелка внутри карточки была в DOM, но не видна на
+	// скриншоте (см. заявку в coordination.md). Открываем влево вместо вправо.
+	&__hotspot--left-m {
+		@include media-breakpoint-down(lg) {
+			.eb-hotspot__card {
+				left: auto;
+				right: 0;
+			}
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		&__grid {
+			grid-template-columns: minmax(0, #{rem(590)}) minmax(0, #{rem(890)});
+			grid-template-rows: auto 1fr;
+			grid-template-areas: "text photo" "fact photo";
+			column-gap: rem(32);
+			row-gap: rem(40);
+			justify-content: space-between;
+		}
+
+		&__text {
+			text-align: left;
+		}
+
+		&__lead {
+			max-width: rem(430);
+		}
+
+		&__fact {
+			align-self: end;
+			text-align: left;
+		}
+
+		&__meta {
+			display: flex;
+			position: absolute;
+			top: 0;
+			right: 0;
+			flex-direction: column;
+			gap: rem(32);
+			text-align: right;
+			pointer-events: none;
+		}
+
+		&__meta-item {
+			display: flex;
+			flex-direction: column;
+			gap: rem(10);
+		}
+
+		&__meta-label {
+			color: var(--eb-text-muted);
+			font-size: var(--eb-caption);
+		}
+
+		&__meta-value {
+			color: var(--eb-text);
+			font-size: var(--eb-body);
+			line-height: 1.4;
+		}
+
+		&__photo-frame {
+			aspect-ratio: 740 / 940;
+			max-width: rem(740);
+		}
+
+		&__photo {
+			border-radius: rem(24);
+		}
+
+		&__hotspot {
+			left: calc(var(--hs-x-d) - #{rem(12)});
+			top: calc(var(--hs-y-d) - #{rem(12)});
+		}
+
+		// Полноразмерный размытый фон-фото + белая вуаль — виден только тут.
+		&__bg {
+			position: absolute;
+			z-index: 0;
+			display: block;
+			overflow: hidden;
+			inset: 0;
+
+			&::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				backdrop-filter: blur(rem(40));
+				background-color: var(--eb-white-15);
+			}
+		}
+	}
+} // end .sFitting

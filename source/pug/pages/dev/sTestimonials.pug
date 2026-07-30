@@ -1,0 +1,31 @@
+extends ../../layout/main.pug
+
+//- Строительные леса для QA блока sTestimonials — не боевая страница,
+//- удаляется координатором при сдаче (см. docs/coordination/sTestimonials.md).
+//- Верстаем ТОЛЬКО свой блок, index.pug не трогаем (границы задачи).
+include ../../blocks/sTestimonials/_sTestimonials.pug
+
+block variables
+	- let mainPage = 'dev-page'
+	- let bg = null
+block base
+	//- Страница лежит в public/dev/sTestimonials.html (на уровень глубже корня) —
+	//- относительные ассеты (css/js/svg) в js-css.pug иначе резолвятся как
+	//- public/dev/libs/... и 404-ят (решение и объяснение — см.
+	//- docs/coordination/sReels.md, тот же приём переиспользован здесь).
+	base(href="../")
+
+block title
+	title sTestimonials — dev stand
+
+block pagecontent
+	main
+		+sTestimonials()
+
+//- Свой block scripts не нужен: common.js грузится через +alljs() и на
+//- DOMContentLoaded сам вызывает JSCCommon.init() → modalCall(), которая уже
+//- биндит Fancybox для '[data-fancybox="sReels"], [data-fancybox="video"]'
+//- (см. JSCCommon.js) — ровно тот профиль, что использует триггер карточки
+//- ниже. Дублировать Fancybox.bind() инлайн-скриптом здесь нельзя: второй
+//- bind() на тот же селектор навешивает второй click-обработчик и открывает
+//- попап дважды.

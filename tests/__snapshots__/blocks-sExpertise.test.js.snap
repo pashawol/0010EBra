@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sExpertise block > matches HTML snapshot 1`] = `
+"
+<!-- start sExpertise-->
+<section class="sExpertise eb-theme eb-theme--dark section" id="sExpertise" data-swiper-scope="data-swiper-scope">
+  <div class="sExpertise__media">
+    <div class="sExpertise__slider sExpertise__slider--js swiper" data-swiper-options="{&quot;slidesPerView&quot;:1,&quot;loop&quot;:true,&quot;navigation&quot;:true,&quot;pagination&quot;:true}">
+      <div class="swiper-wrapper">
+        <div class="sExpertise__slide swiper-slide"><img class="sExpertise__photo" src="img/sExpertise/models.webp" alt="Две модели в кружевном белье Esthetic Bra" loading="lazy"/>
+        </div>
+        <div class="sExpertise__slide swiper-slide"><img class="sExpertise__photo" src="img/sHero/hero-slide-1.webp" alt="Две модели в кружевном белье Esthetic Bra" loading="lazy"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container sExpertise__overlay">
+    <div class="sExpertise__top">
+      <p class="sExpertise__label">Экспертность<br>Esthetic Bra
+      </p><span class="eb-tag sExpertise__mobile-tag"><span class="eb-tag__label">О нас</span></span>
+    </div>
+    <div class="eb-title sExpertise__title text-center">
+      <h2>Тысячи<br>подборов</h2>
+    </div>
+    <div class="eb-fact sExpertise__fact"><span class="eb-tag eb-fact__tag"><span class="eb-tag__label">Факт</span></span>
+      <div class="eb-fact__value">100+
+      </div>
+      <div class="eb-fact__caption">Женщин доверяют нашим специалистам ежедневно
+      </div>
+    </div>
+    <div class="eb-slider-nav sExpertise__nav">
+      <div class="eb-slider-nav__dots swiper-pagination">
+      </div>
+      <div class="eb-slider-nav__arrows">
+        <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+          <svg class="icon icon-arrow-right ">
+            <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+          </svg>
+        </button>
+        <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+          <svg class="icon icon-arrow-right ">
+            <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end sExpertise-->"
+`;

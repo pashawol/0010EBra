@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sQuiz block > matches HTML snapshot 1`] = `
+"
+<!-- start sQuiz-->
+<section class="sQuiz section" id="sQuiz">
+  <div class="sQuiz__bg" aria-hidden="true">
+    <picture>
+      <source media="(min-width: 992px)" srcset="img/sQuiz/bg-desktop.webp"/><img class="sQuiz__bg-photo" src="img/sQuiz/bg-mobile.webp" alt="" loading="lazy"/>
+    </picture>
+  </div>
+  <div class="container">
+    <div class="sQuiz__header">
+      <p class="sQuiz__eyebrow">Уникальная функция онлайн подбора
+      </p>
+      <div class="eb-title sQuiz__title text-center">
+        <h2>Интерактивный квиз на базе<br>ИИ-ассистента</h2>
+      </div>
+    </div>
+    <div class="sQuiz__chat">
+      <div class="sQuiz__row sQuiz__row--visitor"><span class="sQuiz__row-label sQuiz__row-label--visitor">Посетитель</span>
+        <div class="sQuiz__line sQuiz__line--visitor">
+          <div class="sQuiz__bubble-col sQuiz__bubble-col--visitor"><span class="sQuiz__bubble sQuiz__bubble--visitor">Что умеет ИИ-ассистент Esthetic Bra</span><span class="sQuiz__dot sQuiz__dot--visitor"></span>
+          </div>
+          <div class="sQuiz__avatar sQuiz__avatar--visitor">
+            <svg class="icon icon-user-round  sQuiz__avatar-icon">
+              <use xlink:href="img/svg/sprite.svg#user-round"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="sQuiz__row sQuiz__row--assistant"><span class="sQuiz__row-label sQuiz__row-label--assistant">ИИ-ассистент</span>
+        <div class="sQuiz__line sQuiz__line--assistant">
+          <div class="sQuiz__avatar sQuiz__avatar--assistant">
+            <svg class="icon icon-eb-monogram  sQuiz__avatar-mark">
+              <use xlink:href="img/svg/sprite.svg#eb-monogram"></use>
+            </svg>
+          </div>
+          <div class="sQuiz__bubble-col sQuiz__bubble-col--assistant"><span class="sQuiz__dot sQuiz__dot--assistant"></span>
+            <div class="sQuiz__messages"><span class="sQuiz__bubble sQuiz__bubble--assistant">Я помогу подобрать бельё по вашим параметрам, чтобы сразу отсеять неподходящие модели</span><span class="sQuiz__bubble sQuiz__bubble--assistant">Задам несколько коротких вопросов и предложу варианты, которые лучше сядут по фигуре и размеру</span><span class="sQuiz__bubble sQuiz__bubble--assistant">Покажу, что выбрать дальше: подходящие модели, размер и возможность записаться на онлайн-консультацию</span><span class="sQuiz__bubble sQuiz__bubble--assistant">Хотите попробовать?</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sQuiz__panel">
+      <div class="sQuiz__hint">
+        <svg class="icon icon-message-circle-question  sQuiz__hint-icon">
+          <use xlink:href="img/svg/sprite.svg#message-circle-question"></use>
+        </svg><span class="sQuiz__hint-label">4 вопроса</span>
+      </div>
+      <button class="eb-btn eb-btn--primary sQuiz__cta" type="button">
+        <svg class="icon icon-sparkles  eb-btn__icon">
+          <use xlink:href="img/svg/sprite.svg#sparkles"></use>
+        </svg><span class="eb-btn__label">Подобрать с ИИ</span>
+      </button>
+    </div>
+  </div>
+</section>
+<!-- end sQuiz-->"
+`;

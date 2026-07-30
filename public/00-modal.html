@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<title>Стенд модалок — Esthetic Bra</title>
+		<meta name="description" content="о чем страница">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,  shrink-to-fit=no, viewport-fit=cover">
+		<link type="image/ico" href="img/favicon.ico" rel="shortcut icon"><meta name="format-detection" content="telephone=no"> 
+		<link href="libs/swiper/swiper-bundle.min.css" rel="stylesheet"/>
+		<link href="libs/@fancyapps/ui/fancybox/fancybox.css" rel="stylesheet"/>
+		<link href="css/custom-bootstrap.min.css" rel="stylesheet"/>
+		<link href="css/main.min.css" rel="stylesheet"/>
+		<script>
+			// Shared part loader for demo mode.
+			// Keeps duplicated blocks visible in templates and avoids repeated fetches.
+			const sharedPartCache = new Map();
+			
+			function addBlock(partName) {
+				const wrap = document.querySelector(`#${partName}Wrap`);
+				if (!wrap) return;
+			
+				const partRequest =
+					sharedPartCache.get(partName) ||
+					fetch(`parts/${partName}.html`)
+						.then(response => (response.ok ? response.text() : ""))
+						.catch(() => "");
+			
+				sharedPartCache.set(partName, partRequest);
+			
+				partRequest.then(text => {
+					if (!text) return;
+					const markerScript = wrap.previousElementSibling;
+					wrap.insertAdjacentHTML("afterend", text);
+					if (markerScript && markerScript.tagName === "SCRIPT") {
+						markerScript.remove();
+					}
+					wrap.remove();
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div class="main-wrapper">
+			<!-- start header-->
+			<header class="header" id="header">
+				<!-- start top-nav-->
+				<div class="top-nav">
+					<div class="top-nav__inner">
+						<div class="top-nav__start">
+							<button class="top-nav__burger" type="button" aria-label="Меню" aria-haspopup="dialog" aria-expanded="false" aria-controls="catalogModal" data-catalog-open="data-catalog-open">
+								<svg class="icon icon-align-justify top-nav__burger-icon">
+									<use xlink:href="img/svg/sprite.svg#align-justify"></use>
+								</svg>
+							</button>
+							<button class="top-nav__catalog-btn d-none d-lg-inline-flex" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="catalogModal" data-catalog-open="data-catalog-open">
+								<svg class="icon icon-gallery-horizontal-end top-nav__catalog-btn-icon">
+									<use xlink:href="img/svg/sprite.svg#gallery-horizontal-end"></use>
+								</svg><span class="top-nav__catalog-btn-label">Каталог</span>
+							</button>
+						</div><a class="top-nav__logo d-none d-lg-block" href="#">Esthetic Bra</a>
+						<nav class="top-nav__actions" aria-label="Аккаунт и покупки"><a class="top-nav__action" href="#" aria-label="Поиск" data-action="search">
+								<svg class="icon icon-search top-nav__action-icon">
+									<use xlink:href="img/svg/sprite.svg#search"></use>
+								</svg></a><a class="top-nav__action" href="#" aria-label="Профиль" data-action="profile">
+								<svg class="icon icon-user-round top-nav__action-icon">
+									<use xlink:href="img/svg/sprite.svg#user-round"></use>
+								</svg></a><a class="top-nav__action" href="#" aria-label="Избранное" data-action="favorites">
+								<svg class="icon icon-heart top-nav__action-icon">
+									<use xlink:href="img/svg/sprite.svg#heart"></use>
+								</svg></a><a class="top-nav__action" href="#" aria-label="Корзина" data-action="cart">
+								<svg class="icon icon-shopping-cart top-nav__action-icon">
+									<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+								</svg></a>
+						</nav>
+					</div>
+					<div class="catalog-modal" id="catalogModal" role="dialog" aria-modal="true" aria-label="Каталог" tabindex="-1" hidden="hidden">
+						<div class="catalog-modal__backdrop" data-catalog-close="data-catalog-close"></div>
+						<div class="catalog-modal__dialog">
+							<div class="catalog-modal__head"><span class="catalog-modal__title">Каталог</span>
+								<button class="catalog-modal__close" type="button" aria-label="Закрыть каталог" data-catalog-close="data-catalog-close">
+									<svg class="icon icon-x catalog-modal__close-icon">
+										<use xlink:href="img/svg/sprite.svg#x"></use>
+									</svg>
+								</button>
+							</div>
+							<div class="catalog-modal__body">
+								<ul class="catalog-modal__list">
+									<li class="catalog-modal__item --has-children"><a class="catalog-modal__item-link --active" href="#" data-catalog-trigger="0" aria-haspopup="true" aria-expanded="true"><span class="catalog-modal__item-title">Нижнее бельё</span><span class="catalog-modal__item-count">654</span>
+											<svg class="icon icon-arrow-right catalog-modal__item-arrow">
+												<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+											</svg></a></li>
+									<li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">Спортивное бельё</span><span class="catalog-modal__item-count">32</span></a></li>
+									<li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">Эротическое бельё</span><span class="catalog-modal__item-count">12</span></a></li>
+									<li class="catalog-modal__item --has-children"><a class="catalog-modal__item-link" href="#" data-catalog-trigger="3" aria-haspopup="true" aria-expanded="false"><span class="catalog-modal__item-title">Купальники</span><span class="catalog-modal__item-count">876</span>
+											<svg class="icon icon-arrow-right catalog-modal__item-arrow">
+												<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+											</svg></a></li>
+									<li class="catalog-modal__item --has-children"><a class="catalog-modal__item-link" href="#" data-catalog-trigger="4" aria-haspopup="true" aria-expanded="false"><span class="catalog-modal__item-title">Домашняя одежда</span><span class="catalog-modal__item-count">546</span>
+											<svg class="icon icon-arrow-right catalog-modal__item-arrow">
+												<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+											</svg></a></li>
+									<li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">Одежда для сна</span><span class="catalog-modal__item-count">45</span></a></li>
+									<li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">Пляжная одежда</span><span class="catalog-modal__item-count">36</span></a></li>
+									<li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">Аксессуары</span><span class="catalog-modal__item-count">11</span></a></li>
+									<li class="catalog-modal__item"><a class="catalog-modal__item-link" href="#"><span class="catalog-modal__item-title">По виду груди</span><span class="catalog-modal__item-count">943</span></a></li>
+								</ul>
+								<div class="catalog-modal__panels">
+									<div class="catalog-modal__panel --active" data-catalog-panel="0">
+										<div class="catalog-modal__panel-head d-lg-none">
+											<button class="catalog-modal__back" type="button" data-catalog-back="data-catalog-back">
+												<svg class="icon icon-arrow-right catalog-modal__back-icon">
+													<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+												</svg><span>Нижнее бельё</span>
+											</button>
+										</div>
+										<ul class="catalog-modal__panel-list">
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link --all" href="#">Смотреть все</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Бюстгальтеры</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Трусы</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Комплекты</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Корректирующее бельё</a></li>
+										</ul>
+										<div class="catalog-modal__panel-media"><img src="img/sAudience/card-asymmetry.webp" alt="Нижнее бельё Esthetic Bra" loading="lazy"/></div>
+									</div>
+									<div class="catalog-modal__panel" data-catalog-panel="3">
+										<div class="catalog-modal__panel-head d-lg-none">
+											<button class="catalog-modal__back" type="button" data-catalog-back="data-catalog-back">
+												<svg class="icon icon-arrow-right catalog-modal__back-icon">
+													<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+												</svg><span>Купальники</span>
+											</button>
+										</div>
+										<ul class="catalog-modal__panel-list">
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link --all" href="#">Смотреть все</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Купальник раздельный</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Купальник слитный</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Плавки</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Танкини</a></li>
+										</ul>
+										<div class="catalog-modal__panel-media"><img src="img/sHero/hero-slide-1.webp" alt="Купальники Esthetic Bra" loading="lazy"/></div>
+									</div>
+									<div class="catalog-modal__panel" data-catalog-panel="4">
+										<div class="catalog-modal__panel-head d-lg-none">
+											<button class="catalog-modal__back" type="button" data-catalog-back="data-catalog-back">
+												<svg class="icon icon-arrow-right catalog-modal__back-icon">
+													<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+												</svg><span>Домашняя одежда</span>
+											</button>
+										</div>
+										<ul class="catalog-modal__panel-list">
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link --all" href="#">Смотреть все</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Халаты</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Пижамы</a></li>
+											<li class="catalog-modal__panel-item"><a class="catalog-modal__panel-link" href="#">Домашние комплекты</a></li>
+										</ul>
+										<div class="catalog-modal__panel-media"><img src="img/sGifts/lingerie.webp" alt="Домашняя одежда Esthetic Bra" loading="lazy"/></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end top-nav-->
+			</header>
+			<!-- end header-->
+			<!-- start mobileMenu-->
+			<div class="mobileMenu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Меню" hidden="hidden">
+				<div class="mobileMenu__backdrop" data-menu-close="data-menu-close">
+				</div>
+				<div class="mobileMenu__panel">
+					<div class="mobileMenu__screen mobileMenu__screen--root" data-menu-screen="root">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__services"><span class="mobileMenu__services-title">Услуги</span>
+								<div class="mobileMenu__services-track"><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-showroom.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+											<svg class="icon icon-arrow-right ">
+												<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+											</svg></span><span class="mobileMenu__service-label">Подбор белья в Самаре</span></a><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-online.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+											<svg class="icon icon-arrow-right ">
+												<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+											</svg></span><span class="mobileMenu__service-label">Подбор белья онлайн</span></a><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-fitting.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+											<svg class="icon icon-arrow-right ">
+												<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+											</svg></span><span class="mobileMenu__service-label">Индивидуальный брафиттинг</span></a><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-giftcard.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+											<svg class="icon icon-arrow-right ">
+												<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+											</svg></span><span class="mobileMenu__service-label">Подарочные сертификаты</span></a>
+								</div>
+							</div>
+							<div class="mobileMenu__catalog"><span class="mobileMenu__catalog-title">Каталог</span>
+								<ul class="mobileMenu__catalog-list">
+									<li class="mobileMenu__catalog-item">
+										<button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-underwear"><span class="mobileMenu__catalog-name">Нижнее белье</span><span class="mobileMenu__catalog-count">654</span></button>
+									</li>
+									<li class="mobileMenu__catalog-item">
+										<button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-sport"><span class="mobileMenu__catalog-name">Спортивное белье</span><span class="mobileMenu__catalog-count">32</span></button>
+									</li>
+									<li class="mobileMenu__catalog-item">
+										<button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-erotic"><span class="mobileMenu__catalog-name">Эротическое белье</span><span class="mobileMenu__catalog-count">12</span></button>
+									</li>
+									<li class="mobileMenu__catalog-item">
+										<button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-swimwear"><span class="mobileMenu__catalog-name">Купальники</span><span class="mobileMenu__catalog-count">128</span></button>
+									</li>
+									<li class="mobileMenu__catalog-item">
+										<button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-homewear"><span class="mobileMenu__catalog-name">Домашняя одежда</span><span class="mobileMenu__catalog-count">24</span></button>
+									</li>
+									<li class="mobileMenu__catalog-item">
+										<button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-sleepwear"><span class="mobileMenu__catalog-name">Одежда для сна</span><span class="mobileMenu__catalog-count">46</span></button>
+									</li>
+									<li class="mobileMenu__catalog-item">
+										<button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-beachwear"><span class="mobileMenu__catalog-name">Пляжная одежда</span><span class="mobileMenu__catalog-count">12</span></button>
+									</li>
+									<li class="mobileMenu__catalog-item">
+										<button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-accessories"><span class="mobileMenu__catalog-name">Аксессуары</span><span class="mobileMenu__catalog-count">56</span></button>
+									</li>
+									<li class="mobileMenu__catalog-item">
+										<button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-bust-type"><span class="mobileMenu__catalog-name">По виду груди</span><span class="mobileMenu__catalog-count">562</span></button>
+									</li>
+								</ul>
+							</div>
+							<hr class="mobileMenu__divider"/>
+							<div class="mobileMenu__links">
+								<div class="mobileMenu__links-col">
+									<button class="mobileMenu__link" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="client">Для вас</button><a class="mobileMenu__link" href="#">Бренды</a><a class="mobileMenu__link" href="#">Спец предложения</a>
+								</div>
+								<div class="mobileMenu__links-col"><a class="mobileMenu__link" href="#">Блог</a><a class="mobileMenu__link" href="#">Контакты</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-underwear" hidden="hidden">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+							</div>
+							<div class="mobileMenu__breadcrumb">
+								<svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+									<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+								</svg><span class="mobileMenu__breadcrumb-name">Нижнее белье</span><span class="mobileMenu__breadcrumb-count">654</span>
+							</div>
+							<ul class="mobileMenu__sublist">
+								<li><a class="mobileMenu__sublist-link" href="#">Бюстгальтеры</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Трусы</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Комплекты</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Корректирующее белье</a></li>
+							</ul>
+						</div>
+						<button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+					</div>
+					<div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-sport" hidden="hidden">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+							</div>
+							<div class="mobileMenu__breadcrumb">
+								<svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+									<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+								</svg><span class="mobileMenu__breadcrumb-name">Спортивное белье</span><span class="mobileMenu__breadcrumb-count">32</span>
+							</div>
+							<ul class="mobileMenu__sublist">
+								<li><a class="mobileMenu__sublist-link" href="#">Топы для фитнеса</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Бесшовное белье</a></li>
+							</ul>
+						</div>
+						<button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+					</div>
+					<div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-erotic" hidden="hidden">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+							</div>
+							<div class="mobileMenu__breadcrumb">
+								<svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+									<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+								</svg><span class="mobileMenu__breadcrumb-name">Эротическое белье</span><span class="mobileMenu__breadcrumb-count">12</span>
+							</div>
+							<ul class="mobileMenu__sublist">
+								<li><a class="mobileMenu__sublist-link" href="#">Комплекты</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Боди</a></li>
+							</ul>
+						</div>
+						<button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+					</div>
+					<div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-swimwear" hidden="hidden">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+							</div>
+							<div class="mobileMenu__breadcrumb">
+								<svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+									<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+								</svg><span class="mobileMenu__breadcrumb-name">Купальники</span><span class="mobileMenu__breadcrumb-count">128</span>
+							</div>
+							<ul class="mobileMenu__sublist">
+								<li><a class="mobileMenu__sublist-link" href="#">Купальник раздельный</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Купальник слитный</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Плавки</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Танкини</a></li>
+							</ul>
+						</div>
+						<button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+					</div>
+					<div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-homewear" hidden="hidden">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+							</div>
+							<div class="mobileMenu__breadcrumb">
+								<svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+									<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+								</svg><span class="mobileMenu__breadcrumb-name">Домашняя одежда</span><span class="mobileMenu__breadcrumb-count">24</span>
+							</div>
+							<ul class="mobileMenu__sublist">
+								<li><a class="mobileMenu__sublist-link" href="#">Халаты</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Пижамные комплекты</a></li>
+							</ul>
+						</div>
+						<button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+					</div>
+					<div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-sleepwear" hidden="hidden">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+							</div>
+							<div class="mobileMenu__breadcrumb">
+								<svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+									<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+								</svg><span class="mobileMenu__breadcrumb-name">Одежда для сна</span><span class="mobileMenu__breadcrumb-count">46</span>
+							</div>
+							<ul class="mobileMenu__sublist">
+								<li><a class="mobileMenu__sublist-link" href="#">Ночные сорочки</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Пижамы</a></li>
+							</ul>
+						</div>
+						<button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+					</div>
+					<div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-beachwear" hidden="hidden">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+							</div>
+							<div class="mobileMenu__breadcrumb">
+								<svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+									<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+								</svg><span class="mobileMenu__breadcrumb-name">Пляжная одежда</span><span class="mobileMenu__breadcrumb-count">12</span>
+							</div>
+							<ul class="mobileMenu__sublist">
+								<li><a class="mobileMenu__sublist-link" href="#">Парео</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Туники</a></li>
+							</ul>
+						</div>
+						<button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+					</div>
+					<div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-accessories" hidden="hidden">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+							</div>
+							<div class="mobileMenu__breadcrumb">
+								<svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+									<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+								</svg><span class="mobileMenu__breadcrumb-name">Аксессуары</span><span class="mobileMenu__breadcrumb-count">56</span>
+							</div>
+							<ul class="mobileMenu__sublist">
+								<li><a class="mobileMenu__sublist-link" href="#">Чулки и колготки</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Пояса</a></li>
+							</ul>
+						</div>
+						<button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+					</div>
+					<div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-bust-type" hidden="hidden">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+							</div>
+							<div class="mobileMenu__breadcrumb">
+								<svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+									<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+								</svg><span class="mobileMenu__breadcrumb-name">По виду груди</span><span class="mobileMenu__breadcrumb-count">562</span>
+							</div>
+							<ul class="mobileMenu__sublist">
+								<li><a class="mobileMenu__sublist-link" href="#">Для маленькой груди</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Для большой груди</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Push-up</a></li>
+							</ul>
+						</div>
+						<button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+					</div>
+					<div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="client" hidden="hidden">
+						<div class="mobileMenu__head">
+							<button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
+								<svg class="icon icon-x ">
+									<use xlink:href="img/svg/sprite.svg#x"></use>
+								</svg>
+							</button>
+							<div class="mobileMenu__head-icons">
+								<button class="mobileMenu__head-icon" type="button" aria-label="Поиск">
+									<svg class="icon icon-search ">
+										<use xlink:href="img/svg/sprite.svg#search"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Профиль">
+									<svg class="icon icon-user-round ">
+										<use xlink:href="img/svg/sprite.svg#user-round"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Избранное">
+									<svg class="icon icon-heart ">
+										<use xlink:href="img/svg/sprite.svg#heart"></use>
+									</svg>
+								</button>
+								<button class="mobileMenu__head-icon" type="button" aria-label="Корзина">
+									<svg class="icon icon-shopping-cart ">
+										<use xlink:href="img/svg/sprite.svg#shopping-cart"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mobileMenu__body">
+							<div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/client-showroom.webp" alt="" loading="lazy"/>
+							</div>
+							<div class="mobileMenu__breadcrumb">
+								<svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
+									<use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+								</svg><span class="mobileMenu__breadcrumb-name">Для вас</span>
+							</div>
+							<ul class="mobileMenu__sublist">
+								<li><a class="mobileMenu__sublist-link" href="#">Как заказать</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Оплата</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Доставка</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Возврат</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Подарочные сертификаты</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">Вопрос/ответ</a></li>
+								<li><a class="mobileMenu__sublist-link" href="#">О брафиттинге</a></li>
+							</ul>
+						</div>
+						<button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
+					</div>
+				</div>
+			</div>
+			<!-- end mobileMenu-->
+			<main class="ui-kit">
+				<div class="container">
+					<h1 class="ui-kit__title">Стенд модалок</h1>
+					<p class="eb-body ui-kit__intro">
+						Каждая кнопка открывает соответствующую всплывающую сущность из макета.
+						Разметка попапов лежит внутри своих блоков — здесь только триггеры,
+						чтобы поведение можно было проверить, не пролистывая всю главную.
+					</p>
+					<div class="ui-kit__section">
+						<div class="ui-kit__body">
+							<h2 class="section-title h3">Каталог</h2>
+							<div class="ui-kit__row">
+								<div class="ui-kit__label">Попап каталога, уровни 1 и 2</div>
+								<div class="ui-kit__items">
+									<button class="eb-btn eb-btn--primary" type="button" data-catalog-open="data-catalog-open">
+										<svg class="icon icon-gallery-horizontal-end  eb-btn__icon">
+											<use xlink:href="img/svg/sprite.svg#gallery-horizontal-end"></use>
+										</svg><span class="eb-btn__label">Открыть каталог</span>
+									</button>
+								</div>
+							</div>
+							<h2 class="section-title h3">Мобильное меню</h2>
+							<div class="ui-kit__row">
+								<div class="ui-kit__label">Три экрана с переходами. Проверять на ширине 375</div>
+								<div class="ui-kit__items">
+									<button class="eb-btn eb-btn--secondary" type="button" data-mobile-menu-toggle="data-mobile-menu-toggle" aria-expanded="false">
+										<svg class="icon icon-align-justify  eb-btn__icon">
+											<use xlink:href="img/svg/sprite.svg#align-justify"></use>
+										</svg><span class="eb-btn__label">Открыть меню</span>
+									</button>
+								</div>
+							</div>
+							<h2 class="section-title h3">Видео</h2>
+							<div class="ui-kit__row">
+								<div class="ui-kit__label">Плеер в попапе</div>
+								<div class="ui-kit__items"><span class="eb-caption">Карточки блоков «Рилсы» и «Видео отзывы» ниже кликабельны — они и есть штатный триггер плеера.</span></div>
+							</div>
+							<h2 class="section-title h3">Форма записи</h2>
+							<div class="ui-kit__row">
+								<div class="ui-kit__label">Состояния: пустая, с ошибкой, заполненная</div>
+								<div class="ui-kit__items"><span class="eb-caption">Форма выведена ниже целиком. Отправка не выполняется по решению заказчика — проверяется только валидация и состояния.</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- start sReels-->
+			<section class="sReels section" id="sReels" data-swiper-scope="data-swiper-scope">
+				<div class="container sReels__overlay">
+					<div class="sReels__intro"><span class="eb-tag sReels__tag"><span class="eb-tag__label">Примеры</span></span>
+						<div class="eb-title sReels__title">
+							<h2>Когда белье<br>меняет жизнь<br>навсегда</h2>
+						</div>
+						<p class="sReels__subtitle">Реальные истории
+						</p>
+						<div class="eb-slider-nav sReels__nav">
+							<div class="eb-slider-nav__dots swiper-pagination">
+							</div>
+							<div class="eb-slider-nav__arrows">
+								<button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+									<svg class="icon icon-arrow-right ">
+										<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+									</svg>
+								</button>
+								<button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+									<svg class="icon icon-arrow-right ">
+										<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sReels__track">
+					<div class="sReels__slider sReels__slider--js swiper" data-swiper-options="{&quot;slidesPerView&quot;:&quot;auto&quot;,&quot;spaceBetween&quot;:16,&quot;watchOverflow&quot;:true,&quot;navigation&quot;:true,&quot;pagination&quot;:true,&quot;breakpoints&quot;:{&quot;992&quot;:{&quot;spaceBetween&quot;:32}}}">
+						<div class="swiper-wrapper">
+							<div class="sReels__slide swiper-slide">
+								<a class="sReels__card has-badges" data-fancybox="sReels" data-src="#sReels-video-0" href="#" aria-label="Смотреть видео: Александра, Я стеснялась своей груди 15 лет"><img class="sReels__poster" src="img/sReels/poster-1.webp" alt="Александра улыбается в кофейне — кадр видео-истории" loading="lazy"/>
+									<div class="sReels__card-scrim">
+									</div>
+									<div class="sReels__card-play" aria-hidden="true"><span class="sReels__play-ring">
+										<svg class="icon icon-play  sReels__play-icon">
+											<use xlink:href="img/svg/sprite.svg#play"></use>
+										</svg></span><span class="sReels__play-label">Play</span>
+									</div>
+									<p class="sReels__card-quote">Я стеснялась своей груди 15 лет
+									</p>
+								</a>
+								<div class="sReels__person"><img class="sReels__person-avatar" src="img/sReels/avatar-1.webp" alt="Александра, портрет" loading="lazy"/>
+									<div class="sReels__person-body"><span class="sReels__person-name">Александра</span><span class="sReels__person-age">34 года</span>
+									</div>
+								</div>
+								<div class="sReels__product"><span class="sReels__product-label">Бюстгальтер</span><span class="sReels__product-title">Entwined Balcony</span>
+									<div class="sReels__product-meta"><span class="sReels__product-size">75B</span>
+										<div class="sReels__product-color"><span class="sReels__product-color-label">Цвет:</span><span class="sReels__swatch" style="background-color:#2C2B2B"></span>
+										</div>
+									</div>
+								</div>
+								<div class="sReels__product-photo"><img src="img/sReels/product-1.webp" alt="Бюстгальтер Entwined Balcony крупным планом" loading="lazy"/>
+								</div>
+								<div id="sReels-video-0" style="display: none">
+									<div class="sReels__video-modal">
+										<video poster="img/sReels/poster-1.webp" controls="controls" playsinline="playsinline">
+											<source src="" type="video/mp4"/>
+										</video>
+									</div>
+								</div>
+							</div>
+							<div class="sReels__slide swiper-slide">
+								<a class="sReels__card" data-fancybox="sReels" data-src="#sReels-video-1" href="#" aria-label="Смотреть видео: Александра, Нестандартная форма груди"><img class="sReels__poster" src="img/sReels/poster-2.webp" alt="Александра, 46 лет — кадр видео-истории" loading="lazy"/>
+									<div class="sReels__card-scrim">
+									</div>
+									<div class="sReels__card-play" aria-hidden="true"><span class="sReels__play-ring">
+										<svg class="icon icon-play  sReels__play-icon">
+											<use xlink:href="img/svg/sprite.svg#play"></use>
+										</svg></span><span class="sReels__play-label">Play</span>
+									</div>
+									<p class="sReels__card-quote">Нестандартная форма груди
+									</p>
+									<div class="sReels__card-person"><span class="sReels__card-person-name">Александра</span><span class="sReels__card-person-age">46 года</span>
+									</div>
+								</a>
+								<div id="sReels-video-1" style="display: none">
+									<div class="sReels__video-modal">
+										<video poster="img/sReels/poster-2.webp" controls="controls" playsinline="playsinline">
+											<source src="" type="video/mp4"/>
+										</video>
+									</div>
+								</div>
+							</div>
+							<div class="sReels__slide swiper-slide">
+								<a class="sReels__card" data-fancybox="sReels" data-src="#sReels-video-2" href="#" aria-label="Смотреть видео: Марина, Теперь ношу открытые вырезы без стеснения"><img class="sReels__poster" src="img/sReels/poster-3.webp" alt="Марина в кофейне — кадр видео-истории" loading="lazy"/>
+									<div class="sReels__card-scrim">
+									</div>
+									<div class="sReels__card-play" aria-hidden="true"><span class="sReels__play-ring">
+										<svg class="icon icon-play  sReels__play-icon">
+											<use xlink:href="img/svg/sprite.svg#play"></use>
+										</svg></span><span class="sReels__play-label">Play</span>
+									</div>
+									<p class="sReels__card-quote">Теперь ношу открытые вырезы без стеснения
+									</p>
+									<div class="sReels__card-person"><span class="sReels__card-person-name">Марина</span><span class="sReels__card-person-age">29 лет</span>
+									</div>
+								</a>
+								<div id="sReels-video-2" style="display: none">
+									<div class="sReels__video-modal">
+										<video poster="img/sReels/poster-3.webp" controls="controls" playsinline="playsinline">
+											<source src="" type="video/mp4"/>
+										</video>
+									</div>
+								</div>
+							</div>
+							<div class="sReels__slide swiper-slide">
+								<a class="sReels__card" data-fancybox="sReels" data-src="#sReels-video-3" href="#" aria-label="Смотреть видео: Ольга, Наконец нашла размер, который сидит идеально"><img class="sReels__poster" src="img/sReels/poster-4.webp" alt="Ольга — кадр видео-истории" loading="lazy"/>
+									<div class="sReels__card-scrim">
+									</div>
+									<div class="sReels__card-play" aria-hidden="true"><span class="sReels__play-ring">
+										<svg class="icon icon-play  sReels__play-icon">
+											<use xlink:href="img/svg/sprite.svg#play"></use>
+										</svg></span><span class="sReels__play-label">Play</span>
+									</div>
+									<p class="sReels__card-quote">Наконец нашла размер, который сидит идеально
+									</p>
+									<div class="sReels__card-person"><span class="sReels__card-person-name">Ольга</span><span class="sReels__card-person-age">41 год</span>
+									</div>
+								</a>
+								<div id="sReels-video-3" style="display: none">
+									<div class="sReels__video-modal">
+										<video poster="img/sReels/poster-4.webp" controls="controls" playsinline="playsinline">
+											<source src="" type="video/mp4"/>
+										</video>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- end sReels-->
+			<!-- start sTestimonials-->
+			<section class="sTestimonials section" id="sTestimonials" data-swiper-scope="data-swiper-scope">
+				<div class="container">
+					<div class="eb-title sTestimonials__title">
+						<h2>Отзывы</h2>
+					</div>
+					<div class="sTestimonials__placeholder">
+						<p class="sTestimonials__placeholder-note">Сторонний модуль с отзывами
+						</p>
+					</div>
+					<p class="sTestimonials__label">Видео отзывы
+					</p>
+				</div>
+				<div class="sTestimonials__track">
+					<div class="sTestimonials__slider sTestimonials__slider--js swiper" data-swiper-options="{&quot;slidesPerView&quot;:&quot;auto&quot;,&quot;spaceBetween&quot;:16,&quot;watchOverflow&quot;:true,&quot;navigation&quot;:true,&quot;pagination&quot;:true,&quot;breakpoints&quot;:{&quot;992&quot;:{&quot;spaceBetween&quot;:32}}}">
+						<div class="swiper-wrapper">
+							<div class="sTestimonials__slide swiper-slide">
+								<a class="sTestimonials__card" data-fancybox="video" data-src="#sTestimonials-popup" href="#" aria-label="Смотреть видео-отзыв: Александра, Нестандартная форма груди"><img class="sTestimonials__poster" src="img/sTestimonials/poster-1.webp" alt="Александра, 46 лет — кадр видео-отзыва" loading="lazy"/>
+									<div class="sTestimonials__card-scrim">
+									</div>
+									<svg class="icon icon-play  sTestimonials__play-icon">
+										<use xlink:href="img/svg/sprite.svg#play"></use>
+									</svg>
+									<div class="sTestimonials__card-text">
+										<div class="sTestimonials__card-person"><span class="sTestimonials__card-person-name">Александра</span><span class="sTestimonials__card-person-age">46 года</span>
+										</div>
+										<p class="sTestimonials__card-quote">Нестандартная форма груди
+										</p>
+									</div>
+								</a>
+							</div>
+							<div class="sTestimonials__slide swiper-slide">
+								<a class="sTestimonials__card" data-fancybox="video" data-src="#sTestimonials-popup" href="#" aria-label="Смотреть видео-отзыв: Анна, После беременности"><img class="sTestimonials__poster" src="img/sTestimonials/poster-2.webp" alt="Анна — кадр видео-отзыва" loading="lazy"/>
+									<div class="sTestimonials__card-scrim">
+									</div>
+									<svg class="icon icon-play  sTestimonials__play-icon">
+										<use xlink:href="img/svg/sprite.svg#play"></use>
+									</svg>
+									<div class="sTestimonials__card-text">
+										<div class="sTestimonials__card-person"><span class="sTestimonials__card-person-name">Анна</span><span class="sTestimonials__card-person-age">29 лет</span>
+										</div>
+										<p class="sTestimonials__card-quote">После беременности
+										</p>
+									</div>
+								</a>
+							</div>
+							<div class="sTestimonials__slide swiper-slide">
+								<a class="sTestimonials__card" data-fancybox="video" data-src="#sTestimonials-popup" href="#" aria-label="Смотреть видео-отзыв: Марина, Асимметрия груди"><img class="sTestimonials__poster" src="img/sTestimonials/poster-3.webp" alt="Марина в кафе — кадр видео-отзыва" loading="lazy"/>
+									<div class="sTestimonials__card-scrim">
+									</div>
+									<svg class="icon icon-play  sTestimonials__play-icon">
+										<use xlink:href="img/svg/sprite.svg#play"></use>
+									</svg>
+									<div class="sTestimonials__card-text">
+										<div class="sTestimonials__card-person"><span class="sTestimonials__card-person-name">Марина</span><span class="sTestimonials__card-person-age">27 лет</span>
+										</div>
+										<p class="sTestimonials__card-quote">Асимметрия груди
+										</p>
+									</div>
+								</a>
+							</div>
+							<div class="sTestimonials__slide swiper-slide">
+								<a class="sTestimonials__card" data-fancybox="video" data-src="#sTestimonials-popup" href="#" aria-label="Смотреть видео-отзыв: Николь, Сложно подобрать размер"><img class="sTestimonials__poster" src="img/sTestimonials/poster-4.webp" alt="Николь — кадр видео-отзыва" loading="lazy"/>
+									<div class="sTestimonials__card-scrim">
+									</div>
+									<svg class="icon icon-play  sTestimonials__play-icon">
+										<use xlink:href="img/svg/sprite.svg#play"></use>
+									</svg>
+									<div class="sTestimonials__card-text">
+										<div class="sTestimonials__card-person"><span class="sTestimonials__card-person-name">Николь</span><span class="sTestimonials__card-person-age">31 год</span>
+										</div>
+										<p class="sTestimonials__card-quote">Сложно подобрать размер
+										</p>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="sTestimonials__nav-wrap container">
+						<div class="eb-slider-nav sTestimonials__nav">
+							<div class="eb-slider-nav__dots swiper-pagination">
+							</div>
+							<div class="eb-slider-nav__arrows">
+								<button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+									<svg class="icon icon-arrow-right ">
+										<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+									</svg>
+								</button>
+								<button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+									<svg class="icon icon-arrow-right ">
+										<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- end sTestimonials-->
+			<div id="sTestimonials-popup" style="display: none">
+				<div class="sTestimonials-popup" data-swiper-scope="data-swiper-scope">
+					<div class="sTestimonials-popup__head"><span class="sTestimonials-popup__title">Видео отзывы</span>
+						<button class="sTestimonials-popup__close" type="button" data-fancybox-close="data-fancybox-close" aria-label="Закрыть">
+							<svg class="icon icon-x ">
+								<use xlink:href="img/svg/sprite.svg#x"></use>
+							</svg>
+						</button>
+					</div>
+					<div class="sTestimonials-popup__track">
+						<div class="sTestimonials-popup__slider sTestimonials-popup__slider--js swiper" data-swiper-options="{&quot;slidesPerView&quot;:&quot;auto&quot;,&quot;centeredSlides&quot;:true,&quot;spaceBetween&quot;:16,&quot;watchOverflow&quot;:true,&quot;navigation&quot;:true,&quot;breakpoints&quot;:{&quot;992&quot;:{&quot;spaceBetween&quot;:32}}}">
+							<div class="swiper-wrapper">
+								<div class="sTestimonials-popup__slide sTestimonials-popup__slide--featured swiper-slide">
+									<div class="sTestimonials-popup__card">
+										<video class="sTestimonials-popup__video" poster="img/sTestimonials/popup-poster.webp" controls="controls" playsinline="playsinline">
+											<source src="" type="video/mp4"/>
+										</video>
+									</div>
+								</div>
+								<div class="sTestimonials-popup__slide swiper-slide">
+									<div class="sTestimonials-popup__card"><img class="sTestimonials-popup__poster" src="img/sTestimonials/poster-1.webp" alt="Александра, 46 лет — кадр видео-отзыва" loading="lazy"/>
+										<div class="sTestimonials-popup__card-scrim">
+										</div>
+										<svg class="icon icon-play  sTestimonials-popup__play-icon">
+											<use xlink:href="img/svg/sprite.svg#play"></use>
+										</svg>
+										<div class="sTestimonials-popup__card-text">
+											<div class="sTestimonials-popup__card-person"><span class="sTestimonials-popup__card-person-name">Александра</span><span class="sTestimonials-popup__card-person-age">46 года</span>
+											</div>
+											<p class="sTestimonials-popup__card-quote">Нестандартная форма груди
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="sTestimonials-popup__slide swiper-slide">
+									<div class="sTestimonials-popup__card"><img class="sTestimonials-popup__poster" src="img/sTestimonials/poster-2.webp" alt="Анна — кадр видео-отзыва" loading="lazy"/>
+										<div class="sTestimonials-popup__card-scrim">
+										</div>
+										<svg class="icon icon-play  sTestimonials-popup__play-icon">
+											<use xlink:href="img/svg/sprite.svg#play"></use>
+										</svg>
+										<div class="sTestimonials-popup__card-text">
+											<div class="sTestimonials-popup__card-person"><span class="sTestimonials-popup__card-person-name">Анна</span><span class="sTestimonials-popup__card-person-age">29 лет</span>
+											</div>
+											<p class="sTestimonials-popup__card-quote">После беременности
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="sTestimonials-popup__slide swiper-slide">
+									<div class="sTestimonials-popup__card"><img class="sTestimonials-popup__poster" src="img/sTestimonials/poster-3.webp" alt="Марина в кафе — кадр видео-отзыва" loading="lazy"/>
+										<div class="sTestimonials-popup__card-scrim">
+										</div>
+										<svg class="icon icon-play  sTestimonials-popup__play-icon">
+											<use xlink:href="img/svg/sprite.svg#play"></use>
+										</svg>
+										<div class="sTestimonials-popup__card-text">
+											<div class="sTestimonials-popup__card-person"><span class="sTestimonials-popup__card-person-name">Марина</span><span class="sTestimonials-popup__card-person-age">27 лет</span>
+											</div>
+											<p class="sTestimonials-popup__card-quote">Асимметрия груди
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="sTestimonials-popup__slide swiper-slide">
+									<div class="sTestimonials-popup__card"><img class="sTestimonials-popup__poster" src="img/sTestimonials/poster-4.webp" alt="Николь — кадр видео-отзыва" loading="lazy"/>
+										<div class="sTestimonials-popup__card-scrim">
+										</div>
+										<svg class="icon icon-play  sTestimonials-popup__play-icon">
+											<use xlink:href="img/svg/sprite.svg#play"></use>
+										</svg>
+										<div class="sTestimonials-popup__card-text">
+											<div class="sTestimonials-popup__card-person"><span class="sTestimonials-popup__card-person-name">Николь</span><span class="sTestimonials-popup__card-person-age">31 год</span>
+											</div>
+											<p class="sTestimonials-popup__card-quote">Сложно подобрать размер
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="eb-slider-nav sTestimonials-popup__nav">
+							<div class="eb-slider-nav__dots swiper-pagination">
+							</div>
+							<div class="eb-slider-nav__arrows">
+								<button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+									<svg class="icon icon-arrow-right ">
+										<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+									</svg>
+								</button>
+								<button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+									<svg class="icon icon-arrow-right ">
+										<use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+									</svg>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- start sBooking-->
+			<section class="sBooking eb-theme eb-theme--dark section" id="sBooking">
+				<div class="sBooking__media" aria-hidden="true">
+					<picture>
+						<source media="(min-width: 992px)" srcset="img/sBooking/bg-desktop.webp"/><img class="sBooking__photo" src="img/sBooking/bg-mobile.webp" alt="" loading="lazy"/>
+					</picture>
+				</div>
+				<div class="sBooking__scrim" aria-hidden="true">
+				</div>
+				<svg class="icon icon-eb-monogram  sBooking__decor" aria-hidden="true">
+					<use xlink:href="img/svg/sprite.svg#eb-monogram"></use>
+				</svg>
+				<div class="container sBooking__inner">
+					<h2 class="sBooking__title"><span class="visually-hidden">Каждая женщина заслуживает идеального белья</span><span class="sBooking__title-main" aria-hidden="true">Каждая женщина<br>заслуживает...</span></h2><span class="sBooking__title-tail" aria-hidden="true">идеального<br>белья</span>
+					<div class="sBooking__card eb-theme eb-theme--light">
+						<svg class="icon icon-eb-monogram  sBooking__card-decor" aria-hidden="true">
+							<use xlink:href="img/svg/sprite.svg#eb-monogram"></use>
+						</svg>
+						<form class="sBooking__form" id="sBookingForm" novalidate="novalidate" onsubmit="return false" data-booking-form="data-booking-form">
+							<p class="sBooking__form-title">Записаться на брафиттинг</p>
+							<fieldset class="sBooking__step sBooking__step--contacts">
+								<legend class="sBooking__step-title">Контакты для связи</legend>
+								<div class="sBooking__field">
+									<input class="sBooking__field-input" id="sBookingName" type="text" name="name" placeholder=" " required="required" autocomplete="name" aria-describedby="sBookingNameError"/>
+									<label class="sBooking__field-label" for="sBookingName">Имя</label><span class="sBooking__field-error" id="sBookingNameError" role="alert">Введите имя</span>
+								</div>
+								<div class="sBooking__field">
+									<input class="sBooking__field-input" id="sBookingPhone" type="tel" name="phone" placeholder=" " required="required" autocomplete="tel" aria-describedby="sBookingPhoneError"/>
+									<label class="sBooking__field-label" for="sBookingPhone">Телефон</label><span class="sBooking__field-error" id="sBookingPhoneError" role="alert">Введите телефон в формате +7 (999) 999-99-99</span>
+								</div>
+							</fieldset>
+							<fieldset class="sBooking__step sBooking__step--time">
+								<legend class="sBooking__step-title"><span class="sBooking__step-title-text">Когда вам позвонить?</span><span class="sBooking__time-hint" id="sBookingTimeHint" role="status" hidden="hidden">Выберите время</span>
+								</legend>
+								<div class="sBooking__time" role="group" aria-describedby="sBookingTimeHint">
+									<div class="sBooking__time-row sBooking__time-row--asap">
+										<input class="sBooking__time-input" id="sBookingTime-asap" type="radio" name="timeSlot" value="asap" required="required"/>
+										<label class="sBooking__time-option sBooking__time-option--wide" for="sBookingTime-asap">В ближайшее время
+										</label>
+									</div>
+									<div class="sBooking__time-row sBooking__time-row--slots">
+										<div class="sBooking__time-cell">
+											<input class="sBooking__time-input" type="radio" name="timeSlot" id="sBookingTime-10-12" value="10-12" required="required"/>
+											<label class="sBooking__time-option" for="sBookingTime-10-12">10:00-12:00</label>
+										</div>
+										<div class="sBooking__time-cell">
+											<input class="sBooking__time-input" type="radio" name="timeSlot" id="sBookingTime-12-16" value="12-16" required="required"/>
+											<label class="sBooking__time-option" for="sBookingTime-12-16">12:00-16:00</label>
+										</div>
+										<div class="sBooking__time-cell">
+											<input class="sBooking__time-input" type="radio" name="timeSlot" id="sBookingTime-16-20" value="16-20" required="required"/>
+											<label class="sBooking__time-option" for="sBookingTime-16-20">16:00-20:00</label>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<div class="sBooking__consent">
+								<input class="sBooking__consent-input" id="sBookingConsent" type="checkbox" name="consent" required="required" aria-describedby="sBookingConsentError"/>
+								<label class="sBooking__consent-label" for="sBookingConsent"><span class="sBooking__consent-box">
+									<svg class="icon icon-square-check-big  sBooking__consent-icon">
+										<use xlink:href="img/svg/sprite.svg#square-check-big"></use>
+									</svg></span><span class="sBooking__consent-text">Согласие на обработку 
+									<a class="sBooking__consent-link" href="#">персональных данных
+									</a></span>
+								</label><span class="sBooking__consent-error" id="sBookingConsentError" role="alert">Нужно согласие на обработку данных</span>
+							</div>
+							<button class="eb-btn eb-btn--primary sBooking__submit" type="submit"><span class="eb-btn__label">Записаться</span></button>
+						</form>
+					</div>
+				</div>
+			</section>
+			<!-- end sBooking-->
+		</div>
+		<!--  start modals-->
+		<div id="modal-call" style="display: none">
+			<div class="modal-win">
+				<div class="form-wrap">
+					<form>
+						<div class="text-center">
+							<div class="form-wrap__title form-data h3 ttu">Обратный звонок
+							</div>
+							<p class="after-headline">Заполните заявку и&nbsp;мы&nbsp;с&nbsp;Вами свяжемся в&nbsp;течение 15&nbsp;минут</p>
+						</div>
+						<div class="form-wrap__input-wrap form-group">
+							<label><span class="form-wrap__input-title">Имя</span><input class="form-wrap__input form-control" inputmode="text" name="text" type="text" placeholder="Ваше Имя" required="required"/>
+							</label>
+						</div>
+						<!-- +e.input-wrap-->
+						<div class="form-wrap__input-wrap form-group">
+							<label><span class="form-wrap__input-title">Телефон</span><input class="form-wrap__input form-control" inputmode="tel" name="tel" type="tel" placeholder="Ваше телефон" required="required"/>
+							</label>
+						</div>
+						<!-- +e.input-wrap-->
+						<button class="form-wrap__btn btn" type="submit">submit
+						</button>
+						<div class="form-wrap__policy">
+							<label class="custom-input form-check"><input class="custom-input__input form-check-input" name="checkbox" type="checkbox" checked="checked"/><small class="custom-input__text text-secondary">Согласен на обработку и хранение моих персональных данных в соответствии с условиями</small>
+							</label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- #modal-call-->
+		<!-- end modals-->
+		<script src="libs/jquery/jquery.min.js"></script>
+		<script src="libs/@fancyapps/ui/fancybox/fancybox.umd.js"></script>
+		<script src="libs/swiper/swiper-bundle.min.js"></script>
+		<script src="libs/inputmask/inputmask.min.js"></script>
+		<script src="libs/select2/js/select2.min.js"></script>
+		<script src="libs/select2/js/i18n/ru.js"></script>
+		<script src="libs/gsap/gsap.min.js"></script>
+		<script src="libs/gsap/ScrollTrigger.min.js"></script>
+		<script src="js/JSCCommon.js"></script>
+		<script src="js/header.js"></script>
+		<script src="js/mobile-menu.js"></script>
+		<script src="js/best-sets.js"></script>
+		<script src="js/footer.js"></script>
+		<script src="js/story-compare.js"></script>
+		<script src="js/booking.js"></script>
+		<script src="js/anim.js"></script>
+		<script src="js/anim-transition-2.js"></script>
+		<script src="js/anim-transition-3.js"></script>
+		<script src="js/anim-transition-4.js"></script>
+		<script src="js/anim-transition-5.js"></script>
+		<script src="js/common.js"></script>
+	</body>
+</html>

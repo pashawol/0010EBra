@@ -1,0 +1,25 @@
+// start .sFavorites — node 428:10
+.sFavorites {
+	background-color: var(--eb-white);
+
+	.eb-title {
+		margin-bottom: rem(24);
+	}
+
+	&__cards {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: rem(20) rem(5);
+	}
+
+	&__card {
+		min-width: 0;
+	}
+
+	@include media-breakpoint-up(md) {
+		&__cards {
+			grid-template-columns: repeat(4, 1fr);
+			gap: rem(10);
+		}
+	}
+} // end .sFavorites

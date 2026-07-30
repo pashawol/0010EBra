@@ -1,0 +1,288 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sBestSets block > matches HTML snapshot 1`] = `
+"
+<!-- start sBestSets-->
+<section class="sBestSets section" id="sBestSets">
+  <div class="container">
+    <div class="eb-title sBestSets__title">
+      <h2>Лучшие наборы белья</h2>
+    </div>
+    <div class="sBestSets__tabs" role="tablist" aria-label="Фильтр по наборам белья">
+      <button class="sBestSets__tab" type="button" role="tab" id="sBestSets-tab-big-bust" aria-selected="true" aria-controls="sBestSets-panel-big-bust" tabindex="0" data-tab="big-bust">Идеально для большой груди
+      </button>
+      <button class="sBestSets__tab" type="button" role="tab" id="sBestSets-tab-invisible" aria-selected="false" aria-controls="sBestSets-panel-invisible" tabindex="-1" data-tab="invisible">Невидимое под одеждой
+      </button>
+      <button class="sBestSets__tab" type="button" role="tab" id="sBestSets-tab-no-wire" aria-selected="false" aria-controls="sBestSets-panel-no-wire" tabindex="-1" data-tab="no-wire">Без косточек
+      </button>
+      <button class="sBestSets__tab" type="button" role="tab" id="sBestSets-tab-sport" aria-selected="false" aria-controls="sBestSets-panel-sport" tabindex="-1" data-tab="sport">Для спорта
+      </button>
+      <button class="sBestSets__tab" type="button" role="tab" id="sBestSets-tab-home" aria-selected="false" aria-controls="sBestSets-panel-home" tabindex="-1" data-tab="home">Для дома
+      </button>
+    </div>
+    <div class="sBestSets__panels">
+      <div class="sBestSets__panel" role="tabpanel" id="sBestSets-panel-big-bust" aria-labelledby="sBestSets-tab-big-bust" data-tab-panel="big-bust">
+        <div class="sBestSets__cards">
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/linda.webp" alt="Бюстгальтер Linda big soft" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+6</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Бюстгальтер Linda big soft
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">8 400 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/sophia.webp" alt="Sophia Full Cup Bra" loading="lazy"/><span class="eb-product-card__badge is-sale">-16%</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+8</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Sophia Full Cup Bra
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">11 200 ₽</span><span class="eb-product-card__price-old">14 900 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/maribel.webp" alt="Maribel big soft" loading="lazy"/>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#F5E8D9"></span><span class="eb-product-card__swatch-count">+4</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Maribel big soft
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">10 500 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/fullcup.webp" alt="Full Cup Side Support Bra" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+2</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Full Cup Side Support Bra
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">7 400 ₽</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="sBestSets__panel" role="tabpanel" id="sBestSets-panel-invisible" aria-labelledby="sBestSets-tab-invisible" hidden="hidden" data-tab-panel="invisible">
+        <div class="sBestSets__cards">
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/maribel.webp" alt="Maribel big soft" loading="lazy"/>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#F5E8D9"></span><span class="eb-product-card__swatch-count">+4</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Maribel big soft
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">10 500 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/fullcup.webp" alt="Full Cup Side Support Bra" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+2</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Full Cup Side Support Bra
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">7 400 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/linda.webp" alt="Бюстгальтер Linda big soft" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+6</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Бюстгальтер Linda big soft
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">8 400 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/sophia.webp" alt="Sophia Full Cup Bra" loading="lazy"/><span class="eb-product-card__badge is-sale">-16%</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+8</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Sophia Full Cup Bra
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">11 200 ₽</span><span class="eb-product-card__price-old">14 900 ₽</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="sBestSets__panel" role="tabpanel" id="sBestSets-panel-no-wire" aria-labelledby="sBestSets-tab-no-wire" hidden="hidden" data-tab-panel="no-wire">
+        <div class="sBestSets__cards">
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/sophia.webp" alt="Sophia Full Cup Bra" loading="lazy"/><span class="eb-product-card__badge is-sale">-16%</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+8</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Sophia Full Cup Bra
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">11 200 ₽</span><span class="eb-product-card__price-old">14 900 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/linda.webp" alt="Бюстгальтер Linda big soft" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+6</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Бюстгальтер Linda big soft
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">8 400 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/fullcup.webp" alt="Full Cup Side Support Bra" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+2</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Full Cup Side Support Bra
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">7 400 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/maribel.webp" alt="Maribel big soft" loading="lazy"/>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#F5E8D9"></span><span class="eb-product-card__swatch-count">+4</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Maribel big soft
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">10 500 ₽</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="sBestSets__panel" role="tabpanel" id="sBestSets-panel-sport" aria-labelledby="sBestSets-tab-sport" hidden="hidden" data-tab-panel="sport">
+        <div class="sBestSets__cards">
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/fullcup.webp" alt="Full Cup Side Support Bra" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+2</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Full Cup Side Support Bra
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">7 400 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/maribel.webp" alt="Maribel big soft" loading="lazy"/>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#F5E8D9"></span><span class="eb-product-card__swatch-count">+4</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Maribel big soft
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">10 500 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/sophia.webp" alt="Sophia Full Cup Bra" loading="lazy"/><span class="eb-product-card__badge is-sale">-16%</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+8</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Sophia Full Cup Bra
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">11 200 ₽</span><span class="eb-product-card__price-old">14 900 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/linda.webp" alt="Бюстгальтер Linda big soft" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+6</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Бюстгальтер Linda big soft
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">8 400 ₽</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="sBestSets__panel" role="tabpanel" id="sBestSets-panel-home" aria-labelledby="sBestSets-tab-home" hidden="hidden" data-tab-panel="home">
+        <div class="sBestSets__cards">
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/linda.webp" alt="Бюстгальтер Linda big soft" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+6</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Бюстгальтер Linda big soft
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">8 400 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/maribel.webp" alt="Maribel big soft" loading="lazy"/>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#F5E8D9"></span><span class="eb-product-card__swatch-count">+4</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Maribel big soft
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">10 500 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/fullcup.webp" alt="Full Cup Side Support Bra" loading="lazy"/><span class="eb-product-card__badge is-new">New</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+2</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Full Cup Side Support Bra
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">7 400 ₽</span>
+              </div>
+            </div>
+          </article>
+          <article class="eb-product-card sBestSets__card">
+            <div class="eb-product-card__media"><img class="eb-product-card__img" src="img/sBestSets/sophia.webp" alt="Sophia Full Cup Bra" loading="lazy"/><span class="eb-product-card__badge is-sale">-16%</span>
+              <div class="eb-product-card__swatch"><span class="eb-product-card__swatch-dot" style="background-color:#2C2B2B"></span><span class="eb-product-card__swatch-count">+8</span>
+              </div>
+            </div>
+            <div class="eb-product-card__body">
+              <p class="eb-product-card__title">Sophia Full Cup Bra
+              </p>
+              <div class="eb-product-card__price"><span class="eb-product-card__price-current">11 200 ₽</span><span class="eb-product-card__price-old">14 900 ₽</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end sBestSets-->"
+`;

@@ -1,0 +1,154 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`footer block > matches HTML snapshot 1`] = `
+"
+<!-- start footer-->
+<footer class="footer section eb-theme eb-theme--dark">
+  <div class="footer__intro"><img class="footer__intro-img" src="img/footer/bg-photo.webp" alt="" loading="lazy"/>
+    <p class="footer__intro-caption"><span>идеального</span><span>белья</span>
+    </p>
+    <div class="footer__transition" aria-hidden="true">
+      <svg class="footer__transition-shape" viewBox="0 0 1920 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M960 0C960 110.457 1389.81 200 1920 200H0C530.193 200 960 110.457 960 0Z"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer__brand">
+      <svg class="icon icon-eb-monogram footer__monogram">
+        <use xlink:href="img/svg/sprite.svg#eb-monogram"></use>
+      </svg>
+      <p class="footer__wordmark" translate="no">Esthetic Bra</p>
+    </div>
+    <div class="footer__top">
+      <div class="footer__contacts">
+        <div class="eb-title footer__contacts-title">
+          <h2>Контакты</h2>
+        </div>
+        <div class="footer__contact-list">
+          <div class="footer__contact"><span class="footer__contact-label">Телефон:</span>
+            <a class="footer__contact-value" href="tel:+79874344777">+7 (987) 434‑47‑77
+            </a>
+          </div>
+          <div class="footer__contact"><span class="footer__contact-label">Email:</span>
+            <a class="footer__contact-value" href="mailto:info@estheticbra.ru">info@estheticbra.ru
+            </a>
+          </div>
+          <div class="footer__contact"><span class="footer__contact-label">Адрес:</span><span class="footer__contact-value">Самара, Московское ш., литер А</span>
+          </div>
+        </div>
+      </div>
+      <a class="footer__cta" href="#"><img class="footer__cta-img" src="img/footer/cta-photo.webp" alt="" loading="lazy"/>
+        <div class="footer__cta-body">
+          <div class="footer__cta-text"><span class="footer__cta-eyebrow">Онлайн запись</span><span class="footer__cta-title">Подбор белья в шоуруме</span>
+          </div><span class="footer__cta-arrow" aria-hidden="true">
+          <svg class="icon icon-arrow-right ">
+            <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+          </svg></span>
+        </div>
+      </a>
+    </div>
+    <hr class="footer__divider"/>
+    <div class="footer__bottom">
+      <div class="footer__subscribe-col">
+        <div class="footer__subscribe">
+          <div class="eb-title footer__subscribe-title">
+            <h2>Будьте в курсе всех новостей</h2>
+          </div>
+          <form class="footer__subscribe-form" id="footerSubscribeForm" novalidate="novalidate" onsubmit="return false">
+            <div class="footer__subscribe-field">
+              <label class="visually-hidden" for="footerSubscribeEmail">Ваш email</label>
+              <input class="footer__subscribe-input" id="footerSubscribeEmail" type="email" name="email" placeholder="Ваш email" required="required" autocomplete="email" aria-describedby="footerSubscribeError"/>
+              <button class="eb-btn footer__subscribe-btn --secondary" id="footerSubscribeSubmit" type="submit"><span class="eb-btn__label">Подписаться</span></button>
+            </div><span class="footer__subscribe-error" id="footerSubscribeError" role="alert">Введите корректный email</span>
+          </form>
+        </div>
+        <div class="footer__social">
+          <p class="footer__social-label">Наши социальные сети:
+          </p>
+          <div class="footer__social-list">
+            <a class="footer__social-btn eb-icon-btn eb-icon-btn--solid" href="#" aria-label="Мы в VK">
+              <svg class="icon icon-vk ">
+                <use xlink:href="img/svg/sprite.svg#vk"></use>
+              </svg>
+            </a>
+            <a class="footer__social-btn eb-icon-btn eb-icon-btn--solid" href="#" aria-label="Мы в Telegram">
+              <svg class="icon icon-telegram ">
+                <use xlink:href="img/svg/sprite.svg#telegram"></use>
+              </svg>
+            </a>
+            <a class="footer__social-btn eb-icon-btn eb-icon-btn--solid" href="#" aria-label="Написать в WhatsApp">
+              <svg class="icon icon-whatsapp ">
+                <use xlink:href="img/svg/sprite.svg#whatsapp"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__menus">
+        <div class="footer__menu">
+          <p class="footer__menu-title">Интернет-магазин
+          </p>
+          <div class="footer__menu-links">
+            <a class="footer__menu-link" href="#">Каталог
+            </a>
+            <a class="footer__menu-link" href="#">Акции
+            </a>
+            <a class="footer__menu-link" href="#">Бренды
+            </a>
+            <a class="footer__menu-link" href="#">Услуги
+            </a>
+          </div>
+        </div>
+        <div class="footer__menu">
+          <p class="footer__menu-title">О нас
+          </p>
+          <div class="footer__menu-links">
+            <a class="footer__menu-link" href="#">Компания
+            </a>
+            <a class="footer__menu-link" href="#">Отзывы
+            </a>
+            <a class="footer__menu-link" href="#">Реквизиты
+            </a>
+          </div>
+        </div>
+        <div class="footer__menu footer__menu--split">
+          <p class="footer__menu-title">Для клиента
+          </p>
+          <div class="footer__menu-links">
+            <a class="footer__menu-link" href="#">Общая информация
+            </a>
+            <a class="footer__menu-link" href="#">Условия оплаты
+            </a>
+            <a class="footer__menu-link" href="#">Условия доставки
+            </a>
+            <a class="footer__menu-link" href="#">Обмен и возврат
+            </a>
+            <a class="footer__menu-link" href="#">Вопрос-ответ
+            </a>
+            <a class="footer__menu-link" href="#">О брафиттинге
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom-bar">
+    <div class="container">
+      <div class="footer__bottom-bar-inner">
+        <p class="footer__copyright">© 2026 EstheticBra Самара
+        </p>
+        <div class="footer__payments"><img class="footer__payment-icon" src="img/footer/pay-mastercard.webp" alt="mastercard" loading="lazy" width="33" height="20"/><img class="footer__payment-icon" src="img/footer/pay-visa.webp" alt="visa" loading="lazy" width="49" height="16"/><img class="footer__payment-icon" src="img/footer/pay-sber.webp" alt="sber" loading="lazy" width="24" height="24"/><img class="footer__payment-icon" src="img/footer/pay-alfa.webp" alt="alfa" loading="lazy" width="24" height="24"/><img class="footer__payment-icon" src="img/footer/pay-mir.webp" alt="mir" loading="lazy" width="49" height="24"/><img class="footer__payment-icon" src="img/footer/pay-yoomoney.webp" alt="yoomoney" loading="lazy" width="34" height="24"/><img class="footer__payment-icon" src="img/footer/pay-halva.webp" alt="halva" loading="lazy" width="24" height="24"/><img class="footer__payment-icon" src="img/footer/pay-tbank.webp" alt="tbank" loading="lazy" width="24" height="24"/>
+        </div>
+        <div class="footer__legal">
+          <a class="footer__legal-link" href="#">Конфиденциальность
+          </a>
+          <a class="footer__legal-link" href="#">Оферта
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer-->"
+`;

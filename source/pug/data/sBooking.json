@@ -1,0 +1,38 @@
+{
+	"sBooking": {
+		"titleAccessible": "Каждая женщина заслуживает идеального белья",
+		"titleMain": "Каждая женщина<br>заслуживает...",
+		"titleTail": "идеального<br>белья",
+		"photo": {
+			"desktop": "img/sBooking/bg-desktop.webp",
+			"mobile": "img/sBooking/bg-mobile.webp",
+			"alt": "Модели в кружевном белье Esthetic Bra"
+		},
+		"form": {
+			"title": "Записаться на брафиттинг",
+			"step1Title": "Контакты для связи",
+			"nameLabel": "Имя",
+			"phoneLabel": "Телефон",
+			"step2Title": "Когда вам позвонить?",
+			"timeHint": "Выберите время",
+			"time": {
+				"asap": { "id": "asap", "label": "В ближайшее время" },
+				"slots": [
+					{ "id": "10-12", "label": "10:00-12:00" },
+					{ "id": "12-16", "label": "12:00-16:00" },
+					{ "id": "16-20", "label": "16:00-20:00" }
+				]
+			},
+			"consentPre": "Согласие на обработку ",
+			"consentLink": "персональных данных",
+			"consentHref": "#",
+			"submit": "Записаться",
+			"errors": {
+				"name": "Введите имя",
+				"phone": "Введите телефон в формате +7 (999) 999-99-99",
+				"time": "Выберите время",
+				"consent": "Нужно согласие на обработку данных"
+			}
+		}
+	}
+}
