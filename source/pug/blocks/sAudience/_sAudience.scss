@@ -52,17 +52,35 @@ $sAudience-beige: #f5e8d9;
 			content: "";
 			position: absolute;
 			inset: 0;
-			background: linear-gradient(to bottom, rgba($sAudience-beige, 0) 40%, rgba($sAudience-beige, .75));
+			background: linear-gradient(
+				to bottom,
+				rgba($sAudience-beige, 0) 40%,
+				rgba($sAudience-beige, 0.75)
+			);
 			pointer-events: none;
 		}
 
-		&--small-breast { grid-area: small; }
-		&--sensitive-skin { grid-area: sensitive; }
-		&--big-breast { grid-area: big; }
-		&--postpartum { grid-area: afterbirth; }
-		&--teens { grid-area: teens; }
-		&--asymmetry { grid-area: asymmetry; }
-		&--sport { grid-area: sport; }
+		&--small-breast {
+			grid-area: small;
+		}
+		&--sensitive-skin {
+			grid-area: sensitive;
+		}
+		&--big-breast {
+			grid-area: big;
+		}
+		&--postpartum {
+			grid-area: afterbirth;
+		}
+		&--teens {
+			grid-area: teens;
+		}
+		&--asymmetry {
+			grid-area: asymmetry;
+		}
+		&--sport {
+			grid-area: sport;
+		}
 	}
 
 	&__card-img {
@@ -173,6 +191,10 @@ $sAudience-beige: #f5e8d9;
 			z-index: 2;
 			flex-shrink: 0;
 			display: inline-flex;
+			.icon {
+				position: relative;
+				transform: rotate(-45deg);
+			}
 		}
 
 		&__widget {

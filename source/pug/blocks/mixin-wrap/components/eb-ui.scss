@@ -14,10 +14,16 @@
 	border: 0;
 	border-radius: var(--eb-radius);
 	font-family: $font-family-sans-serif;
-	font-size: var(--eb-subtitle-2);
+	// Фиксированные 18px (стиль «Button» в Figma), НЕ var(--eb-subtitle-2):
+	// тот флюидный (18/20/24 по брейкпоинтам) и на десктопе даёт 24px — текст
+	// «Запись на брафиттинг» переставал влезать в пилюлю в одну строку.
+	// У Subtitle 2 и Button шрифт совпадает только на мобилке (оба 18px) —
+	// отсюда и разъехалось незаметно для мобильного вида.
+	font-size: rem(18);
 	font-weight: 500;
 	line-height: 1;
 	text-decoration: none;
+	white-space: nowrap;
 	cursor: pointer;
 	transition: background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
 
