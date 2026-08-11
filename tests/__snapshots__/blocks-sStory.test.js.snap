@@ -18,10 +18,10 @@ exports[`sStory block > matches HTML snapshot 1`] = `
                 <div class="sStory__handle-line">
                 </div>
                 <button class="sStory__handle-btn swiper-no-swiping" type="button" role="slider" aria-label="Потяните, чтобы сравнить фото до и после подбора" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" aria-orientation="horizontal">
+                  <svg class="icon icon-move-horizontal sStory__handle-icon">
+                    <use xlink:href="img/svg/sprite.svg#move-horizontal"></use>
+                  </svg>
                 </button>
-                <svg class="icon icon-move-horizontal sStory__handle-icon">
-                  <use xlink:href="img/svg/sprite.svg#move-horizontal"></use>
-                </svg>
               </div>
             </div>
             <div class="sStory__card">
@@ -46,22 +46,6 @@ exports[`sStory block > matches HTML snapshot 1`] = `
                   </p>
                 </div>
               </div>
-              <div class="eb-slider-nav sStory__nav">
-                <div class="eb-slider-nav__dots swiper-pagination">
-                </div>
-                <div class="eb-slider-nav__arrows">
-                  <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
-                    <svg class="icon icon-arrow-right ">
-                      <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
-                    </svg>
-                  </button>
-                  <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
-                    <svg class="icon icon-arrow-right ">
-                      <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
-                    </svg>
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -76,10 +60,10 @@ exports[`sStory block > matches HTML snapshot 1`] = `
                 <div class="sStory__handle-line">
                 </div>
                 <button class="sStory__handle-btn swiper-no-swiping" type="button" role="slider" aria-label="Потяните, чтобы сравнить фото до и после подбора" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" aria-orientation="horizontal">
+                  <svg class="icon icon-move-horizontal sStory__handle-icon">
+                    <use xlink:href="img/svg/sprite.svg#move-horizontal"></use>
+                  </svg>
                 </button>
-                <svg class="icon icon-move-horizontal sStory__handle-icon">
-                  <use xlink:href="img/svg/sprite.svg#move-horizontal"></use>
-                </svg>
               </div>
             </div>
             <div class="sStory__card">
@@ -104,24 +88,24 @@ exports[`sStory block > matches HTML snapshot 1`] = `
                   </p>
                 </div>
               </div>
-              <div class="eb-slider-nav sStory__nav">
-                <div class="eb-slider-nav__dots swiper-pagination">
-                </div>
-                <div class="eb-slider-nav__arrows">
-                  <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
-                    <svg class="icon icon-arrow-right ">
-                      <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
-                    </svg>
-                  </button>
-                  <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
-                    <svg class="icon icon-arrow-right ">
-                      <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
-                    </svg>
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="eb-slider-nav sStory__nav">
+        <div class="eb-slider-nav__dots swiper-pagination">
+        </div>
+        <div class="eb-slider-nav__arrows">
+          <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+            <svg class="icon icon-arrow-right ">
+              <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+            </svg>
+          </button>
+          <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+            <svg class="icon icon-arrow-right ">
+              <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+            </svg>
+          </button>
         </div>
       </div>
     </div>

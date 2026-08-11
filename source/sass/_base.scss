@@ -63,9 +63,17 @@ $eb-line-icons: align-justify, arrow-right, corner-right-down, gallery-horizonta
 	fill: currentColor;
 }
 
+// !important проверен эмпирически как необходимый: без него .icon-{name} и
+// .icon{fill:currentColor} — оба классы, оба на самом host-<svg>, "позже
+// объявленный побеждает" — но чистый браузерный тест (минимальный html,
+// внешний sprite.svg, тот же паттерн) показал, что stroke:currentColor из
+// более позднего правила применяется, а fill:none из ТОГО ЖЕ правила — нет,
+// без видимой причины (не @layer, не другой файл, не специфичность). Только
+// !important воспроизводимо чинит именно fill. Не трогать без повторной
+// проверки в реальном браузере — см. /грабля.
 @each $name in $eb-line-icons {
 	.icon-#{$name} {
-		fill: none;
+		fill: none !important;
 		stroke: currentColor;
 		stroke-width: 2;
 		stroke-linecap: round;

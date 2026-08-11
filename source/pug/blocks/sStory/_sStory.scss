@@ -113,6 +113,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		// 56×56 — мобильное значение (710:2072), десктоп крупнее (218:361:
+		// 100×100) — см. override в lg+ ниже, а не общий размер на все ширины.
 		width: rem(56);
 		height: rem(56);
 		border: 0;
@@ -130,6 +132,8 @@
 	}
 
 	&__handle-icon {
+		// 20px — мобильное значение (710:2075), десктоп крупнее (32px, см.
+		// override в lg+ ниже).
 		font-size: rem(20);
 	}
 
@@ -251,23 +255,25 @@
 		line-height: 1.4;
 	}
 
+	// Пагинация/стрелки лежат ОДИН раз вне .swiper-wrapper (см. пометку в
+	// _sStory.pug) — уже не ребёнок .sStory__grid, значит не элемент
+	// grid-areas карточки. На мобиле — просто следующий блок под слайдером.
 	&__nav {
-		margin-top: auto;
+		margin-top: rem(15);
 	}
 
 	@include media-breakpoint-up(lg) {
 		&__grid {
 			display: grid;
 			grid-template-columns: minmax(0, 1fr) rem(320);
-			grid-template-rows: auto auto auto 1fr auto;
+			grid-template-rows: auto auto auto 1fr;
 			column-gap: rem(48);
 			row-gap: rem(16);
 			grid-template-areas:
 				"compare top"
 				"compare name"
 				"compare info"
-				"compare result"
-				"compare nav";
+				"compare result";
 		}
 
 		&__compare {
@@ -292,14 +298,31 @@
 			align-self: start;
 		}
 
+		// Ширина = правая колонка грида (rem(320), xl — rem(440)), прижато
+		// к правому краю — зрительно остаётся «под карточкой», как раньше
+		// в grid-area, но теперь снаружи .swiper-wrapper (см. выше).
 		&__nav {
-			grid-area: nav;
-			align-self: end;
-			margin-top: 0;
+			width: rem(320);
+			@include media-breakpoint-up(lg) {
+				margin-top: rem(-46);
+			}
+			margin-top: rem(16);
+			margin-left: auto;
 		}
 
 		&__card {
 			display: contents;
+		}
+
+		// 218:361 (desktop): ручка drag-compare крупнее мобильной — круг
+		// 100×100 (было 56 на всех ширинах), иконка 32px (было 20).
+		&__handle-btn {
+			width: rem(100);
+			height: rem(100);
+		}
+
+		&__handle-icon {
+			font-size: rem(32);
 		}
 	}
 
@@ -309,6 +332,10 @@
 		&__grid {
 			grid-template-columns: minmax(0, 1fr) rem(440);
 			column-gap: rem(160);
+		}
+
+		&__nav {
+			width: rem(440);
 		}
 	}
 } // end .sStory

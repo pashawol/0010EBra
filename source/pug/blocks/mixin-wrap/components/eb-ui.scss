@@ -82,6 +82,16 @@
 	color: var(--eb-text);
 	font-size: rem(20);
 
+	// Баг: .icon-{name} (source/sass/_sprite.scss) сам прописывает себе
+	// font-size под родной размер спрайта (24px в rem, ещё и растёт по RFS
+	// на широких вьюпортах) — этим перебивает унаследованный 20px и раздувает
+	// SVG (width/height: 1em) почти на всю кнопку. Замерено: 52×50px вместо
+	// 20px. .eb-icon-btn .icon (0,2,0) специфичнее .icon-{name} (0,1,0) —
+	// побеждает без !important и без правки самого спрайта.
+	.icon {
+		font-size: inherit;
+	}
+
 	&--solid {
 		background-color: var(--eb-surface);
 		backdrop-filter: blur(var(--eb-blur));
@@ -133,6 +143,17 @@
 
 		&::after {
 			display: none;
+		}
+
+		// Swiper (libs/swiper/modules/navigation.css) сам вешает на ЛЮБОЙ svg
+		// внутри .swiper-button-prev/-next жёсткий width/height: 100% (расчёт
+		// на кастомную иконку на всю кнопку) — раздувает нашу 20px-стрелку
+		// почти до размера кнопки (52px). ".eb-slider-nav .swiper-button-prev
+		// svg" специфичнее вендорского ".swiper-button-prev svg" (0,2,1 против
+		// 0,1,1) — побеждает без !important и без правки vendor-файла.
+		svg {
+			width: 1em;
+			height: 1em;
 		}
 	}
 }
@@ -193,25 +214,42 @@
 	position: absolute;
 	z-index: 2;
 
+	// Точная геометрия ассета Frame731 (395:1573), общего для sHero/sFitting
+	// и т.д.: диск с блюром r=23 (46px), кольцо-рамка r=31.5 (63px, stroke
+	// white 75% — раньше отсутствовало вовсе), точка в центре r=6 (12px).
+	// Раньше был один сплошной круг 24px без кольца и с непропорционально
+	// крупной точкой (10px, почти половина диаметра) — не совпадало с макетом.
 	&__dot {
+		position: relative;
 		display: block;
-		width: rem(24);
-		height: rem(24);
+		width: rem(46);
+		height: rem(46);
 		padding: 0;
 		border: 0;
 		border-radius: 50%;
-		background-color: var(--eb-white-35);
+		background-color: var(--eb-white-15);
 		backdrop-filter: blur(var(--eb-blur));
 		cursor: pointer;
 
+		&::before {
+			content: "";
+			position: absolute;
+			inset: rem(-8.5);
+			border: 1px solid var(--eb-white-75);
+			border-radius: 50%;
+			pointer-events: none;
+		}
+
 		&::after {
 			content: "";
-			display: block;
-			width: rem(10);
-			height: rem(10);
-			margin: rem(7);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: rem(12);
+			height: rem(12);
 			border-radius: 50%;
 			background-color: var(--eb-white);
+			transform: translate(-50%, -50%);
 		}
 	}
 
@@ -254,9 +292,14 @@
 		line-height: 1.2;
 	}
 
+	// Диагональная стрелка «открыть» (161:144) — arrow-right повёрнут на -45deg
+	// (в спрайте нет отдельной иконки, тот же приём, что и в других местах
+	// проекта — mobileMenu__service-arrow, top-nav__link-icon). Раньше висела
+	// без поворота (указывала вправо) и мельче — не совпадало с макетом.
 	&__card-icon {
 		flex-shrink: 0;
-		font-size: rem(16);
+		font-size: rem(20);
+		transform: rotate(-45deg);
 	}
 
 	// На мобильном карточка не влезает справа — уводим под точку

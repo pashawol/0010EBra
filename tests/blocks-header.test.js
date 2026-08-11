@@ -128,25 +128,32 @@ describe('catalog popup (level1 / level2 / hover)', () => {
 		expect(panels.length).toBe(withChildren.length)
 	})
 
-	it('first category with children is pre-activated (index 0), matching its panel', () => {
+	// Контракт сознательно поменялся (Figma 41:156/41:223, см. _top-nav.pug):
+	// level1 — чистый список, ничего не развёрнуто по умолчанию, панель
+	// появляется только под наведением (header.js: activateCategory добавляет
+	// --active/--peek на mouseover/focus, не на рендере).
+	it('nothing is pre-activated on render — level1 is a plain list until hover', () => {
 		const root = parse(renderTopNav())
-		const activeLink = root.querySelector('.catalog-modal__item-link.--active')
-		expect(activeLink).toBeTruthy()
-		expect(activeLink.getAttribute('data-catalog-trigger')).toBe('0')
-		const activePanel = root.querySelector('.catalog-modal__panel.--active')
-		expect(activePanel?.getAttribute('data-catalog-panel')).toBe('0')
+		expect(root.querySelector('.catalog-modal__item-link.--active')).toBeNull()
+		expect(root.querySelector('.catalog-modal__panel.--active')).toBeNull()
 	})
 
-	it('a level2 panel has the "view all" link, its sub-items and a photo', () => {
+	it('a level2 panel has the "view all" card, its sub-items as image cards', () => {
 		const root = parse(renderTopNav())
 		const panel = root.querySelector('.catalog-modal__panel[data-catalog-panel="0"]')
-		expect(panel.querySelector('.catalog-modal__panel-link.--all')).toBeTruthy()
+		expect(panel.querySelector('.catalog-modal__panel-card.--all')).toBeTruthy()
 		const subItems = fixtureData.catalog.categories[0].children.items
-		expect(panel.querySelectorAll('.catalog-modal__panel-link').length).toBe(subItems.length + 1)
-		const img = panel.querySelector('.catalog-modal__panel-media img')
+		expect(panel.querySelectorAll('.catalog-modal__panel-card').length).toBe(subItems.length + 1)
+		const img = panel.querySelector('.catalog-modal__panel-card-img')
 		expect(img).toBeTruthy()
 		expect(img.getAttribute('loading')).toBe('lazy')
-		expect(img.getAttribute('alt')).toBeTruthy()
+	})
+
+	it('general links (Frame 675) render below the category list, desktop-only', () => {
+		const root = parse(renderTopNav())
+		const links = root.querySelectorAll('.catalog-modal__link')
+		expect(links.length).toBe(fixtureData.links.length)
+		expect(root.querySelector('.catalog-modal__links').classList.contains('d-lg-flex')).toBe(true)
 	})
 
 	it('mobile drill-down back button is present per panel (d-lg-none)', () => {

@@ -1,7 +1,12 @@
-//- Section «Влюбиться в себя... навсегда» — фуллскрин-слайдер, node 161:134.
-//- Мобильного варианта в макете нет (692:1129 начинается сразу с «Кому помогает
-//- Esthetic Bra», хедер-нода 777:28 — пустой дубль): адаптация — моё решение,
-//- см. docs/coordination/sHero.md.
+//- Section «Влюбиться в себя... навсегда», node 161:134 (desktop) / 683:1036
+//- (mobile — тот же статичный кадр, без своей слайдер-механики).
+//-
+//- Слайдер/пагинация/стрелки включаются, только если data.slides реально
+//- больше одного (data.multi ниже) — сейчас в sHero.json один слайд, и Swiper
+//- сам это видит: пагинации ставит .swiper-pagination-lock (display:none —
+//- штатно, не баг), а стрелки при этом остаются и с одним слайдом бессмысленны.
+//- Раз слайд один — рендерим статичную картинку без swiper-обвязки вовсе,
+//- когда слайдов станет больше одного, эта ветка сама переключится обратно.
 //-
 //- Заголовок семантически один h1 («Влюбиться в себя... навсегда»), читается
 //- скринридером одной строкой через .visually-hidden; видимые обрывки —
@@ -9,24 +14,36 @@
 //- «навсегда» унесено в правый нижний угол).
 mixin sHero(data)
 	- data = data || sHero
+	- var multi = data.slides && data.slides.length > 1
 	// start sHero
 	+b.SECTION.sHero.eb-theme--dark.section#sHero&attributes(attributes)
 		+e.DIV.stage
-			+e.DIV.slider.swiper(data-swiper-options=`{"loop":true,"effect":"fade","speed":600,"fadeEffect":{"crossFade":true},"pagination":{"el":"#sHero .swiper-pagination","clickable":true},"navigation":{"nextEl":"#sHero .swiper-button-next","prevEl":"#sHero .swiper-button-prev"}}`)
-				//- Plain класс, не +e: "swiper-wrapper" — служебное имя Swiper,
-				//- не BEM-элемент; +e его бы превратил в "sHero__swiper-wrapper"
-				//- и слайдер терял высоту (см. docs/coordination/sHero.md).
-				.swiper-wrapper
-					each slide, i in data.slides
-						+e.DIV.slide.swiper-slide
-							img.sHero__img(
-								src=`img/sHero/${slide.image}`
-								alt=slide.alt
-								width="2400"
-								height="1659"
-								fetchpriority=(i === 0 ? "high" : null)
-								loading=(i === 0 ? null : "lazy")
-							)
+			if multi
+				+e.DIV.slider.swiper(data-swiper-options=`{"loop":true,"effect":"fade","speed":600,"fadeEffect":{"crossFade":true},"pagination":{"el":"#sHero .swiper-pagination","clickable":true},"navigation":{"nextEl":"#sHero .swiper-button-next","prevEl":"#sHero .swiper-button-prev"}}`)
+					//- Plain класс, не +e: "swiper-wrapper" — служебное имя Swiper,
+					//- не BEM-элемент; +e его бы превратил в "sHero__swiper-wrapper"
+					//- и слайдер терял высоту (см. docs/coordination/sHero.md).
+					.swiper-wrapper
+						each slide, i in data.slides
+							+e.DIV.slide.swiper-slide
+								img.sHero__img(
+									src=`img/sHero/${slide.image}`
+									alt=slide.alt
+									width="2400"
+									height="1659"
+									fetchpriority=(i === 0 ? "high" : null)
+									loading=(i === 0 ? null : "lazy")
+								)
+			else
+				+e.DIV.slider
+					+e.DIV.slide
+						img.sHero__img(
+							src=`img/sHero/${data.slides[0].image}`
+							alt=data.slides[0].alt
+							width="2400"
+							height="1659"
+							fetchpriority="high"
+						)
 			+e.DIV.scrim(aria-hidden="true")
 			.container.sHero__container
 				+e.DIV.content
@@ -39,5 +56,6 @@ mixin sHero(data)
 							+ebBtn(btn.text, btn.mode)
 				span.sHero__decor(aria-hidden="true")= data.titleTail
 				+ebHotspot(data.hotspot.title, data.hotspot.text, data.hotspot.href).sHero__hotspot
-				+ebSliderNav().sHero__nav
+				if multi
+					+ebSliderNav().sHero__nav
 	// end sHero

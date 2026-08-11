@@ -40,6 +40,13 @@
 		height: 100%;
 	}
 
+	// Статичный вариант (один слайд, см. _sHero.pug: multi === false) — та же
+	// позиция, без Swiper и .swiper-wrapper вокруг.
+	&__slide {
+		position: relative;
+		height: 100%;
+	}
+
 	&__img {
 		position: absolute;
 		inset: 0;
@@ -105,10 +112,23 @@
 		line-height: 1.4;
 	}
 
+	// Мобилка (683:1036) — кнопки в столбец на всю ширину; xl+ (161:134)
+	// возвращает обратно в строку. .eb-btn — общий компонент (много блоков),
+	// растягиваем только здесь через дочерний селектор, не трогая сам класс.
 	&__buttons {
 		display: flex;
-		flex-wrap: wrap;
-		gap: rem(8);
+		flex-direction: column;
+		align-items: stretch;
+		gap: rem(5);
+
+		.eb-btn {
+			width: 100%;
+			// Мобилка (683:1036): 44px/radius 12 — меньше десктопного
+			// %eb-control (52px/14, см. xl+ ниже). Только здесь, не в
+			// общем .eb-btn — там 52px верный дефолт для всех остальных мест.
+			min-height: rem(44);
+			border-radius: rem(12);
+		}
 	}
 
 	&__hotspot {
@@ -151,6 +171,19 @@
 			top: 70.74%; // 764 / 1080
 			margin-top: 0;
 			font-size: var(--eb-h1);
+		}
+
+		&__buttons {
+			flex-direction: row;
+			align-items: center;
+			// 5px и на десктопе тоже (161:134: gap-[5px]) — не 8.
+			gap: rem(5);
+
+			.eb-btn {
+				width: auto;
+				min-height: var(--eb-control-size);
+				border-radius: var(--eb-radius);
+			}
 		}
 
 		&__hotspot {

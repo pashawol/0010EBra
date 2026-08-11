@@ -1,6 +1,11 @@
 //- ---------------------------------------------------------------------------
-//- Фикс-хедер (318:527 desktop / 777:28 mobile) + попап каталога
-//- (607:2934 level1 / 607:3054 level2, hover-спека 609:4165).
+//- Фикс-хедер (318:527 desktop / 777:28 mobile) + попап каталога.
+//- Десктоп-попап — ОДИН компонент на оба триггера (бургер и пилюля
+//- «Каталог»), три состояния из Figma слились в один интерактивный флоу:
+//- level1 = список категорий + общие ссылки (41:156 в покое),
+//- level2 = наведение на категорию — плашка растягивается, справа
+//- появляются карточки подкатегорий (41:223). Мобилка — отдельный
+//- #mobileMenu (source/pug/blocks/mobileMenu/), уже совмещает то же самое.
 //- Данные: source/pug/data/header.json → global `header`.
 //-
 //- .top-nav — САМ фиксированный бар (не .header): триггеры внутри него
@@ -22,21 +27,29 @@
 //- Панель level2 (подменю) для категории с детьми. Рендерится один раз,
 //- порядковый index совпадает с индексом категории в level1-списке —
 //- это же значение читает header.js как data-catalog-panel/-trigger.
+//- Ничего не активно по умолчанию (level1 = чистый список, без открытой
+//- панели) — раньше index===0 предактивировался, из-за чего попап открывался
+//- уже с развёрнутой первой категорией; по Figma (41:156/41:223) панель
+//- появляется ТОЛЬКО под наведением, второе состояние («level2»), не сразу.
 mixin catalogPanel(item, index)
-	.catalog-modal__panel(data-catalog-panel=index class=index === 0 ? '--active' : null)
+	.catalog-modal__panel(data-catalog-panel=index)
 		.catalog-modal__panel-head.d-lg-none
 			button.catalog-modal__back(type="button" data-catalog-back)
 				+icon('arrow-right', 'catalog-modal__back-icon')
 				span= item.title
+		span.catalog-modal__panel-label.d-none.d-lg-block= item.title
 		ul.catalog-modal__panel-list
 			li.catalog-modal__panel-item
-				a.catalog-modal__panel-link(class="--all" href=item.children.viewAllHref || '#')= item.children.viewAllLabel || 'Смотреть все'
+				a.catalog-modal__panel-card(class="--all" href=item.children.viewAllHref || '#')
+					if item.children.image
+						img.catalog-modal__panel-card-img(src=item.children.image.src alt="" loading="lazy")
+					span.catalog-modal__panel-card-label= item.children.viewAllLabel || 'Смотреть все'
 			each sub in item.children.items
 				li.catalog-modal__panel-item
-					a.catalog-modal__panel-link(href=sub.href || '#')= sub.name
-		if item.children.image
-			.catalog-modal__panel-media
-				img(src=item.children.image.src alt=item.children.image.alt || '' loading="lazy")
+					a.catalog-modal__panel-card(href=sub.href || '#')
+						if item.children.image
+							img.catalog-modal__panel-card-img(src=item.children.image.src alt="" loading="lazy")
+						span.catalog-modal__panel-card-label= sub.name
 
 //- Строка level1-списка. Категории без `children` — обычные ссылки-заглушки
 //- (см. §1 плана — все ссылки меню это `#`), категории с `children` получают
@@ -45,10 +58,9 @@ mixin catalogItem(item, index)
 	li.catalog-modal__item(class=item.children ? '--has-children' : null)
 		a.catalog-modal__item-link(
 			href=item.href || '#'
-			class=(index === 0 && item.children) ? '--active' : null
 			data-catalog-trigger=item.children ? index : null
 			aria-haspopup=item.children ? 'true' : null
-			aria-expanded=item.children ? (index === 0 ? 'true' : 'false') : null
+			aria-expanded=item.children ? 'false' : null
 		)
 			span.catalog-modal__item-title= item.title
 			if item.count
@@ -73,15 +85,20 @@ mixin top-nav(data)
 			//- бара, прямо под центрированное лого. Группировка оставляет ровно
 			//- 2 flex-item (start/end) — лого центрируется независимо, без коллизии.
 			.top-nav__start
-				//- Бургер. На мобилке — единственный триггер каталога (в 777:28 нет
-				//- отдельной кнопки «Каталог», см. docs/coordination/header.md):
-				//- открывает тот же #catalogModal, что и десктопная пилюля ниже.
+				//- Бургер — двойного назначения по брейкпоинту (41:14/41:72/41:156:
+				//- на десктопе бургер и пилюля «Каталог» — два триггера ОДНОГО
+				//- попапа #catalogModal, у мобилки (777:28) это единственная кнопка
+				//- слева и открывает #mobileMenu, свой full-screen компонент).
+				//- Оба data-атрибута висят одновременно, source/js/header.js и
+				//- source/js/mobile-menu.js сами гасят чужой брейкпоинт через
+				//- matchMedia — иначе на мобилке клик открыл бы оба попапа разом.
 				button.top-nav__burger(
 					type="button"
 					aria-label=data.burgerLabel || 'Меню'
 					aria-haspopup="dialog"
 					aria-expanded="false"
-					aria-controls="catalogModal"
+					aria-controls="mobileMenu catalogModal"
+					data-mobile-menu-toggle
 					data-catalog-open
 				)
 					+icon('align-justify', 'top-nav__burger-icon')
@@ -121,9 +138,20 @@ mixin top-nav(data)
 					button.catalog-modal__close(type="button" aria-label="Закрыть каталог" data-catalog-close)
 						+icon('x', 'catalog-modal__close-icon')
 				.catalog-modal__body
-					ul.catalog-modal__list
-						each item, index in data.catalog.categories
-							+catalogItem(item, index)
+					.catalog-modal__col
+						ul.catalog-modal__list
+							each item, index in data.catalog.categories
+								+catalogItem(item, index)
+						//- Общие ссылки (41:156/Frame 675) — только десктоп, один и тот же
+						//- попап открывают и бургер, и пилюля «Каталог» (см. top-nav()),
+						//- на мобилке это место занимает отдельный #mobileMenu.
+						if data.links
+							nav.catalog-modal__links.d-none.d-lg-flex(aria-label="Дополнительные разделы")
+								each link in data.links
+									a.catalog-modal__link(href=link.href || '#')
+										span= link.label
+										if link.expandable
+											+icon('arrow-right', 'catalog-modal__link-icon')
 					.catalog-modal__panels
 						each item, index in data.catalog.categories
 							if item.children

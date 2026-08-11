@@ -1,10 +1,16 @@
 /**
- * Header + catalog popup (318:527 / 777:28 / 607:2934 / 607:3054 / 609:4165).
+ * Header + catalog popup (318:527 desktop bar / 41:14,41:72,41:156 desktop
+ * menu states / 41:223 hover subcategory panel).
  * Vanilla JS, no jQuery — per task scope. Handles:
- *  - open/close of #catalogModal (burger on mobile doubles as the catalog
- *    trigger — 777:28 has no separate "Каталог" pill, see docs/coordination/header.md)
+ *  - open/close of #catalogModal — desktop only: both the burger and the
+ *    "Каталог" pill open the SAME popup (level1 = category list + general
+ *    links, level2 = hover-expand with subcategory cards). On mobile the
+ *    burger opens #mobileMenu instead (source/js/mobile-menu.js) — this
+ *    module ignores burger clicks below the lg breakpoint.
  *  - focus trap + Escape + backdrop click
- *  - desktop: hover/focus on a level1 category swaps the level2 panel (609:4165)
+ *  - desktop: hover/focus on a level1 category swaps the level2 panel and
+ *    grows the dialog width (.--peek, 41:156→41:223); mouseleave on the
+ *    body collapses it back to level1
  *  - mobile: click drill-down into level2, with a "back" button to level1
  *
  * NOTE: scroll-driven `.top-nav.fixed` background toggle is NOT handled here —
@@ -20,6 +26,10 @@
 	const ITEM_TRIGGER_SELECTOR = '.catalog-modal__item-link[data-catalog-trigger]'
 	const PANEL_SELECTOR = '.catalog-modal__panel'
 	const DESKTOP_QUERY = '(min-width: 992px)' // совпадает с $grid-breakpoints.lg
+	// Бургер — двойного назначения (см. _top-nav.pug): на мобилке им управляет
+	// mobile-menu.js (#mobileMenu), этот модуль должен его игнорировать на
+	// мобилке, иначе клик открыл бы ОБА попапа разом.
+	const BURGER_SELECTOR = '.top-nav__burger'
 	const FOCUSABLE_SELECTOR =
 		'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
@@ -59,6 +69,15 @@
 	function activateCategory(index) {
 		setActiveItem(index)
 		setActivePanel(index)
+		// level1 → level2 (41:156 → 41:223): плашка растягивается под панель
+		// с подкатегориями, transition на width висит на &__dialog (0.2s).
+		modal.classList.add('--peek')
+	}
+
+	function deactivateCategory() {
+		setActiveItem(null)
+		setActivePanel(null)
+		modal.classList.remove('--peek')
 	}
 
 	function getFocusable() {
@@ -130,6 +149,7 @@
 			modal.hidden = true
 			// Возвращаем попап на level1 к следующему открытию.
 			modal.classList.remove('--drilled')
+			deactivateCategory()
 			hideTimer = null
 		}, 320)
 
@@ -141,6 +161,11 @@
 	document.addEventListener('click', (event) => {
 		const opener = event.target.closest(OPEN_SELECTOR)
 		if (opener) {
+			if (opener.matches(BURGER_SELECTOR) && !isDesktopViewport()) {
+				// Мобилка: бургер открывает #mobileMenu (mobile-menu.js), этот
+				// попап на этом брейкпоинте не трогаем.
+				return
+			}
 			event.preventDefault()
 			openModal(opener)
 			return
@@ -172,11 +197,11 @@
 			return
 		}
 
-		// Любая другая ссылка внутри попапа (лист без подменю, ссылка в level2-
+		// Любая другая ссылка внутри попапа (лист без подменю, карточка в level2-
 		// панели) — это выбор конечного пункта каталога: закрываем попап, чтобы
 		// не оставлять его "открытым мёртвым грузом" поверх страницы.
 		const leafLink = event.target.closest(
-			'.catalog-modal__item-link:not([data-catalog-trigger]), .catalog-modal__panel-link',
+			'.catalog-modal__item-link:not([data-catalog-trigger]), .catalog-modal__panel-card',
 		)
 		if (leafLink) {
 			closeModal()
@@ -203,6 +228,18 @@
 			},
 			true,
 		)
+	}
+
+	// Уход мыши со всей области (список + панель) — level2 сворачивается
+	// обратно в level1 (41:223 → 41:156). Вешаем на __body, а не на __list:
+	// перемещение курсора из списка в панель справа не должно считаться
+	// «ушёл», это одна и та же наведённая зона.
+	const body = modal.querySelector('.catalog-modal__body')
+	if (body) {
+		body.addEventListener('mouseleave', () => {
+			if (!isDesktopViewport()) return
+			deactivateCategory()
+		})
 	}
 
 	// Resize с мобилки на десктоп во время открытого попапа: сбрасываем

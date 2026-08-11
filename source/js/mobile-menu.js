@@ -136,6 +136,13 @@
 	function onClick(event) {
 		var toggle = event.target.closest(OPEN_SELECTOR)
 		if (toggle) {
+			// Бургер на десктопе управляется header.js/#catalogModal (см.
+			// _top-nav.pug) — этот компонент там и так display:none, но не
+			// трогаем его состояние (aria-expanded/lastFocused), чтобы не
+			// путать источник правды между двумя попапами.
+			if (toggle.matches('.top-nav__burger') && window.matchMedia('(min-width: 992px)').matches) {
+				return
+			}
 			event.preventDefault()
 			toggleMenu(toggle)
 			return

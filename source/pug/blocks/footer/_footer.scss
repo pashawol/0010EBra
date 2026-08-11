@@ -8,7 +8,7 @@
 .footer {
 	margin-top: auto;
 	overflow: hidden; // full-bleed интро не должно давать горизонтальный скролл
-
+	position: relative;
 	// -------------------------------------------------------------------
 	// Фото-подложка с надписью «идеального белья» + дуга-переход в бордовый.
 	// Высота — не жёсткая (никаких height:Npx): паддинги резервируют место
@@ -324,7 +324,8 @@
 	}
 
 	&__subscribe-field--error &__subscribe-error,
-	&__subscribe-input:invalid:not(:placeholder-shown):not(:focus) ~ &__subscribe-error {
+	&__subscribe-input:invalid:not(:placeholder-shown):not(:focus)
+		~ &__subscribe-error {
 		display: block;
 	}
 

@@ -25,6 +25,21 @@
 		background-color: var(--eb-white);
 		color: var(--eb-ink);
 		box-shadow: 0 rem(2) rem(20) 0 rgba(44, 43, 43, 0.08);
+
+		// Мобилка (777:28): при скролле хедер не прилипает во всю ширину, а
+		// становится плавающей "таблеткой" — отступ от краёв и сверху, рамка,
+		// скругление. lg+ ниже сбрасывает обратно в обычный edge-to-edge бар
+		// (318:527 fixed — плоский, без плавающей рамки).
+		top: rem(10);
+		inset-inline: rem(10);
+		border: 1px solid var(--eb-ink-10);
+		border-radius: rem(16);
+
+		// Внутри плавающей таблетки (mobile fixed) паддинг у самого бара — 5px
+		// (777:781: p:5), а не gutter — кнопки внутри сами стеклянные "чипы".
+		.top-nav__inner {
+			padding: rem(5);
+		}
 	}
 
 	&__inner {
@@ -62,23 +77,23 @@
 
 	&__burger {
 		width: var(--top-nav-control);
+		// Мобилка (683:1036/777:28): бургер — отдельный стеклянный чип и в
+		// hero, и в fixed-состоянии (глубина/контраст задаёт сам blur, не
+		// смена фона по .fixed). lg+ ниже переопределяет под десктопную
+		// группу-обёртку (.top-nav__start).
+		background-color: var(--eb-white-15);
+		backdrop-filter: blur(var(--eb-blur));
 	}
 
 	&__burger-icon {
 		font-size: rem(20);
 	}
 
-	// Пилюля «Каталог» — всегда заливка акцентом, независимо от .fixed/темы:
-	// в макете она контрастная и на прозрачном, и на светлом фоне хедера.
+	// Пилюля «Каталог» — десктоп-only (d-lg-inline-flex, см. _top-nav.pug),
+	// цвет по .fixed: белая на прозрачном hero (161:163), акцентная бордовая
+	// на светлом fixed-баре (318:527) — заливка ниже, в lg+.
 	&__catalog-btn {
 		padding-inline: rem(15);
-		background-color: var(--eb-accent);
-		color: var(--eb-on-accent);
-
-		&:hover {
-			background-color: var(--eb-burgundy);
-			color: var(--eb-white);
-		}
 	}
 
 	&__catalog-btn-icon {
@@ -122,12 +137,26 @@
 		height: var(--top-nav-control);
 		border-radius: var(--eb-radius);
 		color: inherit;
+		// Мобилка: тот же стеклянный чип, что и у бургера (683:1036/777:28) —
+		// одинаково в hero и в fixed.
+		background-color: var(--eb-white-15);
+		backdrop-filter: blur(var(--eb-blur));
 		transition: background-color 0.25s ease, color 0.25s ease;
 
 		&:hover {
 			background-color: var(--eb-surface);
 			color: var(--eb-accent);
 		}
+	}
+
+	// Мобилка hero (683:1036): из четырёх иконок виден только "Корзина" —
+	// остальные появляются, когда бар свёрнут в fixed (777:28: все 4 сразу).
+	&__action:not([data-action='cart']) {
+		display: none;
+	}
+
+	&.fixed &__action:not([data-action='cart']) {
+		display: inline-flex;
 	}
 
 	&__action-icon {
@@ -139,6 +168,80 @@
 
 		&__inner {
 			gap: rem(20);
+		}
+
+		// Десктоп: все 4 иконки всегда видны, независимо от .fixed (161:175 —
+		// hero и fixed оба показывают полный набор).
+		&__action:not([data-action='cart']) {
+			display: inline-flex;
+		}
+
+		// На десктопе стекло уезжает с отдельных кнопок на группу-обёртку
+		// (161:163/161:175) — сами кнопки внутри прозрачные.
+		&__burger,
+		&__action {
+			background-color: transparent;
+			backdrop-filter: none;
+		}
+
+		&__start,
+		&__actions {
+			padding: rem(5);
+			gap: rem(5);
+			border-radius: rem(18);
+			background-color: var(--eb-white-15);
+			backdrop-filter: blur(var(--eb-blur));
+		}
+
+		&__catalog-btn {
+			// Hero (161:163): пилюля белая с тёмным текстом, не акцентная —
+			// акцент только в .fixed (318:527), см. ниже.
+			background-color: var(--eb-white);
+			color: var(--eb-ink);
+
+			&:hover {
+				background-color: var(--eb-surface-hover);
+			}
+		}
+
+		&.fixed {
+			// Fixed-бар на десктопе (499:1118) — та же плавающая "таблетка", что
+			// на мобилке (777:28), просто с другими радиусом/паддингом: отступ
+			// 10px от краёв, рамка, скругление 18px. Раньше здесь стоял плоский
+			// edge-to-edge бар — неверно, свёл по 318:527, а не по этому кадру.
+			// Литеральные .top-nav__* вместо & — иначе & здесь резолвится в
+			// .top-nav.fixed и &__start склеивается в .top-nav.fixed__start
+			// (не тот селектор).
+			top: rem(10);
+			inset-inline: rem(10);
+			border: 1px solid var(--eb-ink-10);
+			border-radius: rem(18);
+
+			.top-nav__inner {
+				padding: rem(10);
+			}
+
+			// Группы больше не стеклянные (это только hero-состояние выше) —
+			// сам бар уже непрозрачно-белый, но остаются flex-контейнером с
+			// нужным gap.
+			.top-nav__start,
+			.top-nav__actions {
+				padding: 0;
+				border-radius: 0;
+				background-color: transparent;
+				backdrop-filter: none;
+				gap: rem(5);
+			}
+
+			.top-nav__catalog-btn {
+				background-color: var(--eb-accent);
+				color: var(--eb-on-accent);
+
+				&:hover {
+					background-color: var(--eb-burgundy);
+					color: var(--eb-white);
+				}
+			}
 		}
 	}
 }
@@ -182,18 +285,22 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		max-height: 100%;
-		margin-block-start: auto;
+		// На мобилке единственный триггер каталога — burger в top-nav — теперь
+		// открывает #mobileMenu (своя секция «Каталог» с drill-down), не этот
+		// попап (см. _top-nav.pug). .catalog-modal остаётся десктопным
+		// компонентом, но высота фиксится и здесь — раньше был bottom sheet
+		// (margin-block-start:auto + translateY(12%) + max-height без height),
+		// из-за которого попап «прилипал» к низу и не занимал весь экран.
+		height: 100dvh;
 		overflow: hidden;
 		background-color: var(--eb-white);
 		color: var(--eb-ink);
-		// Мобилка — модалка снизу вверх (bottom sheet), десктоп её роняет CSS ниже.
-		transform: translateY(12%);
-		transition: transform 0.3s ease;
+		opacity: 0;
+		transition: opacity 0.3s ease;
 	}
 
 	&.--open &__dialog {
-		transform: translateY(0);
+		opacity: 1;
 	}
 
 	&__head {
@@ -236,6 +343,14 @@
 		position: relative;
 		flex-grow: 1;
 		overflow: hidden;
+	}
+
+	// Обёртка список+общие ссылки (41:156/Frame 675). На мобилке ничего не
+	// меняет (display:contents — __list ведёт себя как раньше, напрямую
+	// внутри __body); на десктопе становится флекс-колонкой фиксированной
+	// ширины, см. lg+ ниже.
+	&__col {
+		display: contents;
 	}
 
 	&__list {
@@ -282,6 +397,39 @@
 		margin-inline-start: auto;
 		font-size: rem(16);
 		color: var(--eb-text-faint);
+	}
+
+	// Общие ссылки (Главная/Акции/Услуги.../Контакты) — только десктоп,
+	// на мобилке их место занимает #mobileMenu. Скрыты через .d-none.d-lg-flex
+	// в разметке, здесь только оформление.
+	&__links {
+		flex-direction: column;
+		gap: rem(12);
+		margin-top: auto;
+		padding: rem(16);
+	}
+
+	&__link {
+		display: inline-flex;
+		align-items: center;
+		gap: rem(6);
+		width: fit-content;
+		color: var(--eb-ink);
+		font-size: var(--eb-body);
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: var(--eb-accent);
+		}
+	}
+
+	&__link-icon {
+		font-size: rem(12);
+		color: var(--eb-text-faint);
+		// arrow-right → шеврон вниз (в спрайте нет отдельной иконки, тот же
+		// приём, что и mobileMenu__service-arrow).
+		transform: rotate(90deg);
 	}
 
 	&__panels {
@@ -340,44 +488,53 @@
 		transform: scaleX(-1);
 	}
 
+	// Мини-лейбл активной категории над карточками подкатегорий — только
+	// десктоп (41:223: "Купальники" 14px/35%-ink над списком карточек).
+	&__panel-label {
+		margin-bottom: rem(12);
+		color: var(--eb-text-faint);
+		font-size: var(--eb-caption);
+	}
+
 	&__panel-list {
-		margin: 0 0 rem(20);
+		display: flex;
+		flex-direction: column;
+		gap: rem(10);
+		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
-	&__panel-item:not(:last-child) {
-		margin-bottom: rem(4);
-	}
-
-	&__panel-link {
-		display: inline-block;
-		padding-block: rem(6);
-		color: var(--eb-text-muted);
-		font-size: var(--eb-body);
-		text-decoration: none;
-		transition: color 0.2s ease;
-
-		&:hover {
-			color: var(--eb-accent);
-		}
-
-		&.--all {
-			color: var(--eb-ink);
-			font-weight: 500;
-		}
-	}
-
-	&__panel-media {
-		border-radius: var(--eb-radius);
+	// Карточки подкатегорий (41:223) — картинка категории на фон + подпись
+	// снизу слева, тот же приём, что .mobileMenu__service(-label): реальной
+	// съёмки по подкатегориям нет, картинка на всех карточках одной секции
+	// переиспользуется с уровня категории (см. header.json _note).
+	&__panel-card {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		min-height: rem(110);
+		padding: rem(16);
 		overflow: hidden;
+		border-radius: var(--eb-radius);
+		background-color: var(--eb-surface);
+		text-decoration: none;
+	}
 
-		img {
-			display: block;
-			width: 100%;
-			aspect-ratio: 4 / 5;
-			object-fit: cover;
-		}
+	&__panel-card-img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__panel-card-label {
+		position: relative;
+		z-index: 1;
+		color: var(--eb-white);
+		font-size: var(--eb-body);
+		font-weight: 500;
 	}
 
 	@include media-breakpoint-up(lg) {
@@ -386,25 +543,53 @@
 		padding: rem(24);
 
 		&__dialog {
-			width: min(100%, #{rem(920)});
-			max-height: min(80vh, #{rem(720)});
+			// level1 (41:156) — узкая плашка, только список + общие ссылки.
+			// Ширина растёт только когда наведена категория с детьми (--peek,
+			// см. header.js): level2 (41:223) добавляет вторую колонку с
+			// карточками подкатегорий. Быстро, но плавно — 0.2s.
+			width: min(100%, #{rem(380)});
+			height: auto;
+			max-height: min(85vh, #{rem(760)});
 			border-radius: var(--eb-radius);
 			box-shadow: 0 rem(20) rem(60) 0 rgba(44, 43, 43, 0.16);
-			// Десктоп открывается по центру, не «снизу вверх».
 			transform: scale(0.97);
+			transition: opacity 0.3s ease, transform 0.3s ease, width 0.2s ease;
 		}
 
 		&.--open &__dialog {
 			transform: scale(1);
 		}
 
+		&.--peek &__dialog {
+			width: min(100%, #{rem(720)});
+		}
+
 		&__body {
 			display: flex;
 		}
 
-		&__list {
+		&__col {
+			display: flex;
 			flex: 0 0 min(38%, #{rem(320)});
+			flex-direction: column;
 			border-inline-end: 1px solid var(--eb-hairline);
+		}
+
+		&__list {
+			flex: 1 1 auto;
+		}
+
+		&__item-link {
+			// level1 — все пункты приглушены (41:156: только наведённый пункт
+			// чёрный/medium, остальные rgba(0,0,0,.5)), не только с --active.
+			color: var(--eb-text-muted);
+
+			&:hover,
+			&:focus-visible,
+			&.--active {
+				color: var(--eb-ink);
+				font-weight: 500;
+			}
 		}
 
 		// Десктоп: обе колонки видны одновременно, drill-down не нужен — только
@@ -412,6 +597,7 @@
 		&__panels {
 			position: static;
 			flex: 1 1 auto;
+			min-width: 0;
 			transform: none;
 			pointer-events: auto;
 		}

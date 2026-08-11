@@ -35,18 +35,35 @@ describe('sHero block', () => {
 		expect(h1s[0].text).toContain('навсегда')
 	})
 
-	it('renders the fullscreen slider with at least one slide and an LCP image', () => {
+	// Контракт сознательно поменялся: Swiper подключается только когда
+	// slides.length > 1 (см. _sHero.pug: `multi`). С одним слайдом (текущие
+	// данные) Swiper сам ставит .swiper-pagination-lock на пагинацию и всё
+	// равно показывает бесполезные с одним слайдом стрелки — поэтому при
+	// одном слайде рендерим статичную картинку без swiper-обвязки вовсе.
+	it('renders a static image (no Swiper) when there is only one slide', () => {
 		const html = render()
 		const root = parse(html)
-		expect(root.querySelector('.sHero__slider.swiper')).toBeTruthy()
-		const slides = root.querySelectorAll('.swiper-slide')
-		expect(slides.length).toBeGreaterThanOrEqual(1)
+		expect(fixtureData.slides.length).toBe(1)
+		expect(root.querySelector('.sHero__slider.swiper')).toBeNull()
+		expect(root.querySelector('.swiper-slide')).toBeNull()
 
 		const firstImg = root.querySelector('.sHero__img')
 		expect(firstImg).toBeTruthy()
 		expect(firstImg.getAttribute('fetchpriority')).toBe('high')
 		expect(firstImg.getAttribute('loading')).not.toBe('lazy')
 		expect(firstImg.getAttribute('alt')).toBeTruthy()
+	})
+
+	it('renders an actual Swiper with slider nav once there is more than one slide', () => {
+		const html = renderBlock('sHero', {
+			locals: { sHero: { ...fixtureData, slides: [...fixtureData.slides, fixtureData.slides[0]] } },
+		})
+		const root = parse(html)
+		expect(root.querySelector('.sHero__slider.swiper')).toBeTruthy()
+		expect(root.querySelectorAll('.swiper-slide').length).toBe(2)
+		expect(root.querySelector('.sHero__nav.eb-slider-nav')).toBeTruthy()
+		expect(root.querySelector('.swiper-button-prev')).toBeTruthy()
+		expect(root.querySelector('.swiper-button-next')).toBeTruthy()
 	})
 
 	it('renders two CTA buttons (primary + secondary)', () => {
@@ -67,12 +84,10 @@ describe('sHero block', () => {
 		expect(hotspot.querySelector('.eb-hotspot__card-text').text.trim()).toBe('Asoka Mia Dot')
 	})
 
-	it('renders slider nav (pagination + arrows)', () => {
+	it('does not render slider nav with a single slide (nothing to page through)', () => {
 		const html = render()
 		const root = parse(html)
-		expect(root.querySelector('.sHero__nav.eb-slider-nav')).toBeTruthy()
-		expect(root.querySelector('.swiper-button-prev')).toBeTruthy()
-		expect(root.querySelector('.swiper-button-next')).toBeTruthy()
+		expect(root.querySelector('.sHero__nav.eb-slider-nav')).toBeNull()
 	})
 
 	it('is themed dark (eb-theme--dark)', () => {

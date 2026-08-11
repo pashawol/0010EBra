@@ -377,6 +377,24 @@
 			// Пропускает клики/свайп по дорожке насквозь — интерактивны только
 			// собственные дети (тег, заголовок текст, навигация).
 			pointer-events: none;
+
+			// Панель под текстом: карточки трека проезжают ПОД ним (сам overlay
+			// прозрачный, поэтому раньше край текста резал слайд без перехода).
+			// Ширина = та же зона, что резервирует padding-left у &__slider —
+			// правый край панели совпадает с точкой, где начинается первая
+			// карточка, поэтому фейд и появление слайда из-под панели совпадают.
+			&::before {
+				content: "";
+				position: absolute;
+				inset-block: 0;
+				left: 0;
+				z-index: -1;
+				width: calc(#{rem($eb-gutter-desktop)} + #{rem(590)} + #{rem(60)});
+				background: linear-gradient(to right, var(--eb-light-blue) 65%, transparent 100%);
+				backdrop-filter: blur(var(--eb-blur));
+				-webkit-mask-image: linear-gradient(to right, black 65%, transparent 100%);
+				mask-image: linear-gradient(to right, black 65%, transparent 100%);
+			}
 		}
 
 		&__intro {
@@ -398,6 +416,12 @@
 
 		&__slider {
 			padding-left: calc(#{rem($eb-gutter-desktop)} + #{rem(590)} + #{rem(80)});
+		}
+
+		// Тот же расчёт, что у &__slider выше — фейд-панель снова кончается
+		// ровно там, где начинается первая карточка.
+		&__overlay::before {
+			width: calc(#{rem($eb-gutter-desktop)} + #{rem(590)} + #{rem(80)});
 		}
 	}
 } // end .sReels
