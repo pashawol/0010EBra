@@ -63,14 +63,18 @@ mixin footer(data)
 							+e.DIV.subscribe-field
 								label.visually-hidden(for="footerSubscribeEmail")= data.subscribe.placeholder
 								input#footerSubscribeEmail.footer__subscribe-input(type="email" name="email" placeholder=data.subscribe.placeholder required autocomplete="email" aria-describedby="footerSubscribeError")
-								button.eb-btn.footer__subscribe-btn#footerSubscribeSubmit(class="--secondary" type="submit")
+								//- .btn (Bootstrap) — .eb-btn строится поверх него, см. eb-ui.scss.
+								//- Модификатор — литеральный класс, не class="--secondary": это
+								//- НЕ +b/+e (bemto тут не участвует), рантайм-модификатор молча
+								//- не матчился ни с одним CSS-селектором (проверено рендером).
+								button.btn.eb-btn.eb-btn--secondary.footer__subscribe-btn#footerSubscribeSubmit(type="submit")
 									span.eb-btn__label= data.subscribe.button
 							+e.SPAN.subscribe-error#footerSubscribeError(role="alert")= data.subscribe.error
 					+e.DIV.social
 						+e.P.social-label Наши социальные сети:
 						+e.DIV.social-list
 							each item in data.social
-								+e.A.social-btn.eb-icon-btn(href=item.href aria-label=item.label class="--solid")
+								+e.A.social-btn.btn.eb-icon-btn(href=item.href aria-label=item.label class="--solid")
 									+icon(item.name)
 				+e.DIV.menus
 					each menu in data.menus

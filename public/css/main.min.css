@@ -1454,48 +1454,44 @@ input::-webkit-inner-spin-button {
 }
 
 .sTestimonials-popup__close, .mobileMenu__back, .mobileMenu__banner-btn, .mobileMenu__head-icon, .mobileMenu__head-close, .eb-icon-btn, .eb-btn {
+  --bs-btn-padding-x: 0.9375rem;
+  --bs-btn-padding-y: 0;
+  --bs-btn-font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, Liberation Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --bs-btn-font-size: 1.125rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-line-height: 1;
+  --bs-btn-border-width: 0;
+  --bs-btn-border-radius: var(--eb-radius);
+  --bs-btn-box-shadow: none;
+  --bs-btn-focus-box-shadow: none;
+  --bs-btn-disabled-opacity: 0.35;
+  --bs-btn-disabled-bg: var(--bs-btn-bg);
+  --bs-btn-disabled-color: var(--bs-btn-color);
+  --bs-btn-disabled-border-color: var(--bs-btn-border-color);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
   min-height: var(--eb-control-size);
-  padding-inline: 0.9375rem;
-  border: 0;
-  border-radius: var(--eb-radius);
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 1;
-  text-decoration: none;
   white-space: nowrap;
-  cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
-}
-.sTestimonials-popup__close:disabled, .mobileMenu__back:disabled, .mobileMenu__banner-btn:disabled, .mobileMenu__head-icon:disabled, .mobileMenu__head-close:disabled, .eb-icon-btn:disabled, .eb-btn:disabled, .disabled.sTestimonials-popup__close, .disabled.mobileMenu__back, .disabled.mobileMenu__banner-btn, .disabled.mobileMenu__head-icon, .disabled.mobileMenu__head-close, .disabled.eb-icon-btn, .disabled.eb-btn {
-  opacity: 0.35;
-  pointer-events: none;
 }
 
 .eb-btn__icon {
   font-size: 1.5rem;
 }
 .eb-btn--primary {
-  background-color: var(--eb-accent);
-  color: var(--eb-on-accent);
-}
-.eb-btn--primary:hover {
-  background-color: var(--eb-burgundy);
-  color: var(--eb-white);
+  --bs-btn-bg: var(--eb-accent);
+  --bs-btn-color: var(--eb-on-accent);
+  --bs-btn-hover-bg: var(--eb-burgundy);
+  --bs-btn-hover-color: var(--eb-white);
 }
 .eb-btn--secondary {
-  background-color: var(--eb-surface);
-  color: var(--eb-text);
+  --bs-btn-bg: var(--eb-surface);
+  --bs-btn-color: var(--eb-text);
+  --bs-btn-hover-bg: var(--eb-surface-hover);
+  --bs-btn-hover-color: var(--eb-accent);
   -webkit-backdrop-filter: blur(var(--eb-blur));
           backdrop-filter: blur(var(--eb-blur));
-}
-.eb-btn--secondary:hover {
-  background-color: var(--eb-surface-hover);
-  color: var(--eb-accent);
 }
 
 .eb-btn-text {
@@ -1511,29 +1507,25 @@ input::-webkit-inner-spin-button {
 }
 
 .eb-icon-btn {
+  --bs-btn-padding-x: 0;
+  --bs-btn-color: var(--eb-text);
+  --bs-btn-font-size: 1.25rem;
   width: var(--eb-control-size);
   height: var(--eb-control-size);
-  padding-inline: 0;
-  color: var(--eb-text);
-  font-size: 1.25rem;
 }
 .eb-icon-btn .icon {
   font-size: inherit;
 }
 .eb-icon-btn--solid {
-  background-color: var(--eb-surface);
+  --bs-btn-bg: var(--eb-surface);
+  --bs-btn-hover-bg: var(--eb-surface-hover);
+  --bs-btn-hover-color: var(--eb-accent);
   -webkit-backdrop-filter: blur(var(--eb-blur));
           backdrop-filter: blur(var(--eb-blur));
 }
-.eb-icon-btn--solid:hover {
-  background-color: var(--eb-surface-hover);
-  color: var(--eb-accent);
-}
 .eb-icon-btn--ghost {
-  background-color: transparent;
-}
-.eb-icon-btn--ghost:hover {
-  background-color: var(--eb-surface);
+  --bs-btn-bg: transparent;
+  --bs-btn-hover-bg: var(--eb-surface);
 }
 
 .eb-slider-nav {
@@ -3153,7 +3145,7 @@ a {
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
-  max-width: 26.25rem;
+  max-width: 100%;
 }
 .sHero__title {
   margin-bottom: 0;
@@ -3185,6 +3177,8 @@ a {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  align-self: stretch;
+  max-width: none;
   gap: 0.3125rem;
 }
 .sHero__buttons .eb-btn {
@@ -4847,6 +4841,13 @@ body.catalog-modal-open {
 @media (min-width: 576px){
   .modal-text {
     max-width: 1000px;
+  }
+  .sHero__buttons {
+    flex-direction: row;
+    align-items: center;
+  }
+  .sHero__buttons .eb-btn {
+    width: auto;
   }
 }
 

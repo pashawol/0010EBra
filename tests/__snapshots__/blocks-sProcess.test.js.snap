@@ -45,7 +45,7 @@ exports[`sProcess block > matches HTML snapshot 1`] = `
     <div class="sProcess__widget">
       <div class="sProcess__widget-text"><span class="sProcess__widget-label">Видео обзор</span><span class="sProcess__widget-title">О брафиттинге</span>
       </div>
-      <button class="eb-icon-btn eb-icon-btn--solid" type="button" aria-label="О брафиттинге">
+      <button class="btn eb-icon-btn eb-icon-btn--solid" type="button" aria-label="О брафиттинге">
         <svg class="icon icon-play ">
           <use xlink:href="img/svg/sprite.svg#play"></use>
         </svg>

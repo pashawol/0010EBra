@@ -126,6 +126,6 @@ mixin sBooking(data)
 					//- работают только внутри мixin-вызовов +b/+e (иначе получаем
 					//- баг footer.md §4: "--secondary" как отдельный литеральный класс,
 					//- не "eb-btn--secondary"; проверено рендером в этом же ревью).
-					button.eb-btn.eb-btn--primary.sBooking__submit(type="submit")
+					button.btn.eb-btn.eb-btn--primary.sBooking__submit(type="submit")
 						span.eb-btn__label= data.form.submit
 	// end sBooking

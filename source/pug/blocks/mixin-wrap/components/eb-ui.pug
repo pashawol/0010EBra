@@ -16,16 +16,35 @@
 //- и подменять ссылку кнопкой ради одного миксина неправильно.
 mixin ebBtn(text, mode, iconName, href)
 	- mode = mode || 'primary'
+	//- .btn — реальный Bootstrap-класс (bootstrap/scss/buttons, уже в сборке):
+	//- даёт cursor/transition/disabled/focus-visible бесплатно, вместо
+	//- переизобретения. Цвета/радиус/шрифт — через --bs-btn-* в eb-ui.scss,
+	//- не raw-свойства. Bootstrap-кнопки раньше компилировались, но нигде не
+	//- были подключены — мёртвый вес.
+	//- ВАЖНО (3 попытки, воспроизведено рендером каждый раз):
+	//-  1) ".eb-btn.btn" + class="--mode" → модификатор ушёл в "btn--mode"
+	//-     (bemto цепляет к ПОСЛЕДНЕМУ классу chain), CSS не матчил.
+	//-  2) ".eb-btn.btn" + литеральная "eb-btn--" + mode → no-dup-class
+	//-     (bemto перехватывает ЛЮБУЮ строку с "--", см. verstka-delivery.md
+	//-     §6A, не только class="--mode").
+	//-  3) ".eb-btn" один в chain + class="btn --" + mode → модификатор
+	//-     снова ушёл в "btn--mode" (тот же последний-класс-в-потоке
+	//-     эффект, "btn" в class="" тоже считается).
+	//- Рабочая комбинация: ".btn.eb-btn" (btn первый → модификатор
+	//- корректно цепляется к eb-btn, штатный bemto-шорткат class="--mode"
+	//- работает как задумано) + +e.SPAN.label ЗАМЕНЁН на литеральный
+	//- span.eb-btn__label (не через bemto — +e брал контекст по ПЕРВОМУ
+	//- классу chain, дал бы "btn__label").
 	if href
-		+b.A.eb-btn(class="--" + mode href=href)&attributes(attributes)
+		+b.A.btn.eb-btn(class="--" + mode href=href)&attributes(attributes)
 			if iconName
 				+icon(iconName).eb-btn__icon
-			+e.SPAN.label= text
+			span.eb-btn__label= text
 	else
-		+b.BUTTON.eb-btn(class="--" + mode type="button")&attributes(attributes)
+		+b.BUTTON.btn.eb-btn(class="--" + mode type="button")&attributes(attributes)
 			if iconName
 				+icon(iconName).eb-btn__icon
-			+e.SPAN.label= text
+			span.eb-btn__label= text
 
 //- Текстовая кнопка-ссылка (Smal button из UI-Kit)
 mixin ebBtnText(text, href)
@@ -35,7 +54,7 @@ mixin ebBtnText(text, href)
 //- Круглая кнопка-иконка 52×52. mode: solid (с фоном) | ghost (без фона)
 mixin ebIconBtn(iconName, label, mode)
 	- mode = mode || 'solid'
-	+b.BUTTON.eb-icon-btn(class="--" + mode type="button" aria-label=label)&attributes(attributes)
+	+b.BUTTON.btn.eb-icon-btn(class="--" + mode type="button" aria-label=label)&attributes(attributes)
 		+icon(iconName)
 
 //- Пара стрелок + буллеты для слайдера. Используется 6+ блоками — не копировать.

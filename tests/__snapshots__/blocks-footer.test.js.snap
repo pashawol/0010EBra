@@ -59,7 +59,7 @@ exports[`footer block > matches HTML snapshot 1`] = `
             <div class="footer__subscribe-field">
               <label class="visually-hidden" for="footerSubscribeEmail">Ваш email</label>
               <input class="footer__subscribe-input" id="footerSubscribeEmail" type="email" name="email" placeholder="Ваш email" required="required" autocomplete="email" aria-describedby="footerSubscribeError"/>
-              <button class="eb-btn footer__subscribe-btn --secondary" id="footerSubscribeSubmit" type="submit"><span class="eb-btn__label">Подписаться</span></button>
+              <button class="btn eb-btn eb-btn--secondary footer__subscribe-btn" id="footerSubscribeSubmit" type="submit"><span class="eb-btn__label">Подписаться</span></button>
             </div><span class="footer__subscribe-error" id="footerSubscribeError" role="alert">Введите корректный email</span>
           </form>
         </div>
@@ -67,17 +67,17 @@ exports[`footer block > matches HTML snapshot 1`] = `
           <p class="footer__social-label">Наши социальные сети:
           </p>
           <div class="footer__social-list">
-            <a class="footer__social-btn eb-icon-btn eb-icon-btn--solid" href="#" aria-label="Мы в VK">
+            <a class="footer__social-btn btn eb-icon-btn eb-icon-btn--solid" href="#" aria-label="Мы в VK">
               <svg class="icon icon-vk ">
                 <use xlink:href="img/svg/sprite.svg#vk"></use>
               </svg>
             </a>
-            <a class="footer__social-btn eb-icon-btn eb-icon-btn--solid" href="#" aria-label="Мы в Telegram">
+            <a class="footer__social-btn btn eb-icon-btn eb-icon-btn--solid" href="#" aria-label="Мы в Telegram">
               <svg class="icon icon-telegram ">
                 <use xlink:href="img/svg/sprite.svg#telegram"></use>
               </svg>
             </a>
-            <a class="footer__social-btn eb-icon-btn eb-icon-btn--solid" href="#" aria-label="Написать в WhatsApp">
+            <a class="footer__social-btn btn eb-icon-btn eb-icon-btn--solid" href="#" aria-label="Написать в WhatsApp">
               <svg class="icon icon-whatsapp ">
                 <use xlink:href="img/svg/sprite.svg#whatsapp"></use>
               </svg>

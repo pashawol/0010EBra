@@ -220,13 +220,13 @@
 				st.kill()
 			}
 		}
-		// initScene()
+		initScene()
 		ScrollTrigger.refresh()
 	})
 
 	if (document.readyState === 'loading') {
-		// document.addEventListener('DOMContentLoaded', initScene)
+		document.addEventListener('DOMContentLoaded', initScene)
 	} else {
-		// initScene()
+		initScene()
 	}
 })()

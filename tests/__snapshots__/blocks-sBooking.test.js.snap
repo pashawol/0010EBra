@@ -68,7 +68,7 @@ exports[`sBooking block > matches HTML snapshot 1`] = `
             </a></span>
           </label><span class="sBooking__consent-error" id="sBookingConsentError" role="alert">Нужно согласие на обработку данных</span>
         </div>
-        <button class="eb-btn eb-btn--primary sBooking__submit" type="submit"><span class="eb-btn__label">Записаться</span></button>
+        <button class="btn eb-btn eb-btn--primary sBooking__submit" type="submit"><span class="eb-btn__label">Записаться</span></button>
       </form>
     </div>
   </div>

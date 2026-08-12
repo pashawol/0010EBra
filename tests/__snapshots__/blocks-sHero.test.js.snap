@@ -17,9 +17,9 @@ exports[`sHero block > matches HTML snapshot 1`] = `
         <p class="sHero__text">Студия брафиттинга и нижнего белья. Здесь каждая женщина находит свой идеальный размер, форму, идеальный комфорт и уверенность.
         </p>
         <div class="sHero__buttons">
-          <button class="eb-btn eb-btn--primary" type="button"><span class="eb-btn__label">Запись на брафиттинг</span>
+          <button class="btn eb-btn eb-btn--primary" type="button"><span class="eb-btn__label">Запись на брафиттинг</span>
           </button>
-          <button class="eb-btn eb-btn--secondary" type="button"><span class="eb-btn__label">Онлайн-подбор</span>
+          <button class="btn eb-btn eb-btn--secondary" type="button"><span class="eb-btn__label">Онлайн-подбор</span>
           </button>
         </div>
       </div><span class="sHero__decor" aria-hidden="true">навсегда</span>

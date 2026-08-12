@@ -9,7 +9,7 @@ exports[`sBlog block > matches HTML snapshot 1`] = `
       <div class="eb-title sBlog__title">
         <h2>Блог<br>Esthetic<br>Bra</h2>
       </div>
-      <button class="eb-btn eb-btn--primary sBlog__cta" type="button"><span class="eb-btn__label">Все статьи</span>
+      <button class="btn eb-btn eb-btn--primary sBlog__cta" type="button"><span class="eb-btn__label">Все статьи</span>
       </button>
       <article class="eb-article-card sBlog__article sBlog__article--feat">
         <div class="eb-article-card__media"><img src="img/sBlog/vybor-belya.webp" alt="Женщина в голубом бюстгальтере примеряет белье перед зеркалом" loading="lazy"/>

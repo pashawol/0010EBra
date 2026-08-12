@@ -15,12 +15,12 @@ exports[`sReels block > matches HTML snapshot 1`] = `
         <div class="eb-slider-nav__dots swiper-pagination">
         </div>
         <div class="eb-slider-nav__arrows">
-          <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
+          <button class="btn eb-icon-btn eb-icon-btn--solid eb-slider-nav__prev swiper-button-prev" type="button" aria-label="Предыдущий слайд">
             <svg class="icon icon-arrow-right ">
               <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
             </svg>
           </button>
-          <button class="eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
+          <button class="btn eb-icon-btn eb-icon-btn--solid eb-slider-nav__next swiper-button-next" type="button" aria-label="Следующий слайд">
             <svg class="icon icon-arrow-right ">
               <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
             </svg>

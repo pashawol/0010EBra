@@ -12,7 +12,7 @@ exports[`sAudience block > matches HTML snapshot 1`] = `
       <div class="sAudience__card sAudience__card--small-breast"><img class="sAudience__card-img" src="img/sAudience/card-small-breast.webp" alt="Маленькая грудь"/><span class="sAudience__card-text">Маленькая<br>грудь</span>
       </div>
       <div class="sAudience__card sAudience__card--sensitive-skin"><img class="sAudience__card-img" src="img/sAudience/card-sensitive-skin.webp" alt="Чувствительная кожа" loading="lazy"/><span class="sAudience__card-text">Чувствительная<br>кожа</span>
-        <button class="eb-icon-btn eb-icon-btn--solid sAudience__card-arrow" type="button" aria-label="Подробнее">
+        <button class="btn eb-icon-btn eb-icon-btn--solid sAudience__card-arrow" type="button" aria-label="Подробнее">
           <svg class="icon icon-arrow-right ">
             <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
           </svg>
