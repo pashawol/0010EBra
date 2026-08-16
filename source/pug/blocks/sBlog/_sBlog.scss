@@ -9,8 +9,6 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: rem(32);
-		// Мобильный порядок карточек берём с мобильного макета (737:707):
-		// крупная статья → «Коллекция» → «Особый случай» → кнопка внизу.
 		grid-template-areas:
 			"title"
 			"feat"
@@ -27,10 +25,11 @@
 	&__cta {
 		grid-area: cta;
 		justify-self: start;
+		@include media-breakpoint-down(lg) {
+			width: 100%;
+		}
 	}
 
-	// Раскладка не завязана на DOM-порядок — модификатор карточки
-	// сам находит своё имя в grid-template-areas.
 	.sBlog__article--feat {
 		grid-area: feat;
 	}
@@ -43,9 +42,6 @@
 		grid-area: b;
 	}
 
-	// Четыре равные колонки: заголовок/кнопка = 1 колонка, крупная карточка —
-	// 3 колонки (соотношение 450:1340 из макета), обычные карточки — по 2
-	// колонки каждая (соотношение 890:890).
 	@include media-breakpoint-up(lg) {
 		&__grid {
 			grid-template-columns: repeat(4, 1fr);
@@ -64,11 +60,6 @@
 }
 // end .sBlog
 
-// ---------------------------------------------------------------------------
-// +ebArticleCard — локальная карточка статьи. Заявлена на вынос в eb-ui.scss
-// как общий `article` (669:3563): понадобится sFavorites/sBestSets-соседям
-// по каталогу, здесь — bespoke-копия под sBlog (см. docs/coordination/sBlog.md).
-// ---------------------------------------------------------------------------
 // start .eb-article-card
 .eb-article-card {
 	--card-image-ratio: 345 / 185;
@@ -104,7 +95,6 @@
 
 	&__title {
 		margin-bottom: rem(12);
-		// Семантика — h3 (после h2 секции), но кегль карточки меньше h3-шкалы.
 		font-size: var(--eb-h4);
 		line-height: 1.1;
 
@@ -116,7 +106,6 @@
 				color: var(--eb-accent);
 			}
 
-			// Кликабельная область — весь заголовок и текст под ним.
 			&::after {
 				content: "";
 				position: absolute;
@@ -132,7 +121,6 @@
 		color: var(--eb-text-muted);
 		font-size: var(--eb-body);
 		line-height: 1.4;
-		// Описание любой длины не должно разъезжать карточки по высоте.
 		display: -webkit-box;
 		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
@@ -165,8 +153,6 @@
 		}
 	}
 
-	// Крупная карточка — более широкое фото и другое соотношение сторон
-	// (810×460 из макета вместо 360×460 у обычных карточек).
 	&.sBlog__article--feat {
 		@include media-breakpoint-up(lg) {
 			.eb-article-card__media {

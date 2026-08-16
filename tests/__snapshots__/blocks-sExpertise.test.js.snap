@@ -7,9 +7,9 @@ exports[`sExpertise block > matches HTML snapshot 1`] = `
   <div class="sExpertise__media">
     <div class="sExpertise__slider sExpertise__slider--js swiper" data-swiper-options="{&quot;slidesPerView&quot;:1,&quot;loop&quot;:true,&quot;navigation&quot;:true,&quot;pagination&quot;:true}">
       <div class="swiper-wrapper">
-        <div class="sExpertise__slide swiper-slide"><img class="sExpertise__photo" src="img/sExpertise/models.webp" alt="Две модели в кружевном белье Esthetic Bra" loading="lazy"/>
+        <div class="sExpertise__slide swiper-slide"><img class="sExpertise__photo" src="img/sExpertise/models.webp" alt="" loading="lazy"/>
         </div>
-        <div class="sExpertise__slide swiper-slide"><img class="sExpertise__photo" src="img/sHero/hero-slide-1.webp" alt="Две модели в кружевном белье Esthetic Bra" loading="lazy"/>
+        <div class="sExpertise__slide swiper-slide"><img class="sExpertise__photo" src="img/sHero/hero-slide-1.webp" alt="" loading="lazy"/>
         </div>
       </div>
     </div>

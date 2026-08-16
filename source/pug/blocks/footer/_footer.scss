@@ -1,25 +1,15 @@
 // start .footer — node 508:96 (desktop 1920), 744:1165 (mobile 375)
-//
-// Тёмная тема на корне (.eb-theme--dark) — весь текст читает --eb-text/
-// --eb-text-muted и становится белым сам, руками белый нигде не задан.
-// Исключение — CTA-карточка (.footer__cta): она белая ВНУТРИ тёмной секции,
-// поэтому локально возвращает контекстным ролям светлые значения (только
-// существующими базовыми токенами, без новых записей в _root.scss).
 .footer {
 	margin-top: auto;
-	overflow: hidden; // full-bleed интро не должно давать горизонтальный скролл
+	overflow: hidden;
 	position: relative;
-	// -------------------------------------------------------------------
-	// Фото-подложка с надписью «идеального белья» + дуга-переход в бордовый.
-	// Высота — не жёсткая (никаких height:Npx): паддинги резервируют место
-	// под текст сверху и под дугу-переход снизу, дуга спозиционирована
-	// абсолютно и просто перекрывает низ фото своим собственным фоном.
-	// -------------------------------------------------------------------
+	z-index: 4;
+	padding-top: rem(48);
+	padding-bottom: rem(48);
+	background-color: var(--eb-burgundy);
+	padding: 0;
 	&__intro {
 		position: relative;
-		// Высота = ровно резерв под дугу-переход снизу (её собственная высота
-		// ниже, footer__transition-shape); подпись поверх — absolute, в высоту
-		// не считается, увеличивать паддинг под неё не нужно (см. ниже).
 		padding-bottom: rem(120);
 		overflow: hidden;
 	}
@@ -32,11 +22,6 @@
 		height: 100%;
 		object-fit: cover;
 	}
-
-	// Затемнение к низу бордовым — те же альфа-ступени, что в макете
-	// (15% → 75%); rgba() — функция, strict-value её не режет (см.
-	// docs/architecture.md), новый токен на альфу burgundy заводить не
-	// пришлось.
 
 	&::before {
 		content: "";
@@ -89,17 +74,7 @@
 		}
 	}
 
-	// -------------------------------------------------------------------
-	// Основное тело футера — сплошной бордовый (тема .eb-theme--dark на
-	// корне даёт этот цвет автоматически через --eb-text, сам фон всё же
-	// прописан явно токеном, т.к. это не текстовая роль, а заливка блока).
-	// -------------------------------------------------------------------
 	.container {
-		position: relative;
-		z-index: 4;
-		padding-top: rem(48);
-		padding-bottom: rem(48);
-		background-color: var(--eb-burgundy);
 	}
 
 	&__brand {
@@ -173,9 +148,6 @@
 		color: var(--eb-text-muted);
 	}
 
-	// CTA-карточка «Онлайн запись» — белая внутри тёмной секции: контекстные
-	// роли переопределены локально существующими базовыми токенами, новых
-	// свойств в _root.scss заводить не пришлось.
 	&__cta {
 		--eb-text: var(--eb-ink);
 		--eb-text-muted: var(--eb-ink-75);
@@ -202,6 +174,7 @@
 		display: flex;
 		flex: 1 1 0;
 		flex-direction: column;
+		align-items: flex-end;
 		gap: rem(10);
 		min-width: 0;
 		padding-top: rem(10);
@@ -210,6 +183,7 @@
 	&__cta-text {
 		display: flex;
 		flex-direction: column;
+		align-self: stretch;
 		gap: rem(5);
 	}
 
@@ -236,8 +210,6 @@
 		color: var(--eb-on-accent);
 		font-size: rem(20);
 
-		// Стрелка в макете смотрит на северо-восток — тот же ассет
-		// arrow-right, развёрнутый, отдельная иконка не нужна.
 		.icon {
 			transform: rotate(-45deg);
 		}
@@ -315,9 +287,6 @@
 		line-height: 1.3;
 	}
 
-	// Состояние ошибки — переключается footer.js через Constraint Validation
-	// API (checkValidity). CSS :invalid — подстраховка на случай, если
-	// блочный JS не подключится (см. заявку в COORDINATION про gulpfile.js).
 	&__subscribe-field--error &__subscribe-input,
 	&__subscribe-input:invalid:not(:placeholder-shown):not(:focus) {
 		border-color: var(--eb-error);
@@ -357,9 +326,6 @@
 		flex-wrap: wrap;
 		gap: rem(20) rem(15);
 
-		// Первые два меню — в ряд по половине ширины, третье («Для клиента»,
-		// самый длинный список) — во всю ширину под ними: повторяет мобильную
-		// раскладку макета (744:1345 + 744:1429) без отдельной обёртки в DOM.
 		> :nth-child(1),
 		> :nth-child(2) {
 			flex: 1 1 calc(50% - #{rem(8)});
@@ -395,9 +361,6 @@
 		}
 	}
 
-	// «Для клиента» — самый длинный список (6 пунктов): на мобильном сведён
-	// в 2 колонки, чтобы не растягивать футер по высоте (744:1447). На
-	// десктопе — назад в один список (544:479 в макете одноколоночный).
 	&__menu--split &__menu-links {
 		@include media-breakpoint-down(lg) {
 			display: grid;
@@ -406,11 +369,6 @@
 		}
 	}
 
-	// -------------------------------------------------------------------
-	// Нижняя плашка: копирайт / платёжные бейджи / юридические ссылки.
-	// Один и тот же DOM-порядок на всех ширинах, раскладка — только CSS
-	// (order + flex-basis), поэтому мобильная и десктопная сверстаны разом.
-	// -------------------------------------------------------------------
 	&__bottom-bar {
 		position: relative;
 		z-index: 4;
@@ -443,7 +401,7 @@
 	&__legal {
 		display: flex;
 		flex-direction: column;
-		order: 2;
+		order: 3;
 		flex: 0 0 auto;
 		gap: rem(10);
 	}
@@ -462,7 +420,7 @@
 
 	&__payments {
 		display: flex;
-		order: 3;
+		order: 2;
 		flex: 1 1 100%;
 		flex-wrap: wrap;
 		align-items: center;
@@ -470,21 +428,15 @@
 		gap: rem(10);
 	}
 
-	// Мобильные размеры бейджей — из мобильной спеки (744:1370): ~0.75 от
-	// десктопных (511:351), не просто уменьшенные десктопные пропорции на
-	// глаз — иначе 8 значков не помещаются в одну строку на 375px и
-	// переносятся на вторую (в макете — одна строка).
 	&__payment-icon {
 		flex-shrink: 0;
 		height: rem(18);
 		width: auto;
 		max-width: rem(37);
 		object-fit: contain;
+		filter: brightness(0) invert(1);
 	}
 
-	// -------------------------------------------------------------------
-	// Десктоп — снято с 508:96 / 507:15 (контейнер 1790 при gutter 65).
-	// -------------------------------------------------------------------
 	@include media-breakpoint-up(lg) {
 		&__intro {
 			padding-bottom: rem(200);
@@ -558,7 +510,7 @@
 			gap: rem(60);
 		}
 
-		&__subscribe-title {
+		&__subscribe {
 			max-width: rem(441);
 		}
 
@@ -581,6 +533,11 @@
 		&__bottom-bar-inner {
 			flex-wrap: nowrap;
 			align-items: center;
+			justify-content: space-between;
+		}
+
+		&__copyright {
+			flex: 0 0 auto;
 		}
 
 		&__legal {
@@ -601,3 +558,17 @@
 	}
 }
 // end .footer
+
+.footer-stack {
+	position: relative;
+	z-index: 4;
+	margin-top: auto;
+
+	.section-cap {
+		color: var(--eb-burgundy);
+	}
+
+	.footer {
+		margin-top: 0;
+	}
+}

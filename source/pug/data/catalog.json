@@ -1,0 +1,124 @@
+{
+	"catalog": {
+		"label": "Каталог",
+		"viewAllLabel": "Смотреть все",
+		"_note": "Единственный источник по каталогу: десктопный попап (607:2934 / 607:3054) и подэкраны мобильного меню (777:1466) читают отсюда, дублей в header.json / mobileMenu.json больше нет. Счётчики — из десктопного макета. Фото: реальные из Figma только у купальников и общей обложки, остальным — плейсхолдеры из ассетов других блоков, меняются здесь одной строкой.",
+		"image": {
+			"src": "img/catalog/cover.webp",
+			"alt": "Каталог Esthetic Bra"
+		},
+		"categories": [
+			{
+				"slug": "underwear",
+				"name": "Нижнее бельё",
+				"count": 654,
+				"href": "#",
+				"image": { "src": "img/sAudience/card-asymmetry.webp", "alt": "Нижнее бельё" },
+				"items": [
+					{ "name": "Бюстгальтеры", "href": "#" },
+					{ "name": "Трусы", "href": "#" },
+					{ "name": "Комплекты", "href": "#" },
+					{ "name": "Корректирующее бельё", "href": "#" }
+				]
+			},
+			{
+				"slug": "sport",
+				"name": "Спортивное бельё",
+				"count": 32,
+				"href": "#",
+				"image": { "src": "img/sAudience/card-sport.webp", "alt": "Спортивное бельё" },
+				"items": [
+					{ "name": "Топы для фитнеса", "href": "#" },
+					{ "name": "Бесшовное бельё", "href": "#" },
+					{ "name": "Спортивные трусы", "href": "#" }
+				]
+			},
+			{
+				"slug": "erotic",
+				"name": "Эротическое бельё",
+				"count": 12,
+				"href": "#",
+				"image": { "src": "img/sGifts/lingerie.webp", "alt": "Эротическое бельё" },
+				"items": [
+					{ "name": "Комплекты", "href": "#" },
+					{ "name": "Боди", "href": "#" },
+					{ "name": "Пеньюары", "href": "#" }
+				]
+			},
+			{
+				"slug": "swimwear",
+				"name": "Купальники",
+				"count": 876,
+				"href": "#",
+				"image": { "src": "img/catalog/swimwear.webp", "alt": "Купальники" },
+				"items": [
+					{ "name": "Купальник раздельный", "href": "#" },
+					{ "name": "Купальник слитный", "href": "#" },
+					{ "name": "Плавки", "href": "#" },
+					{ "name": "Танкини", "href": "#" }
+				]
+			},
+			{
+				"slug": "homewear",
+				"name": "Домашняя одежда",
+				"count": 546,
+				"href": "#",
+				"image": { "src": "img/mobileMenu/client-showroom.webp", "alt": "Домашняя одежда" },
+				"items": [
+					{ "name": "Халаты", "href": "#" },
+					{ "name": "Пижамы", "href": "#" },
+					{ "name": "Домашние комплекты", "href": "#" }
+				]
+			},
+			{
+				"slug": "sleepwear",
+				"name": "Одежда для сна",
+				"count": 45,
+				"href": "#",
+				"image": { "src": "img/sAudience/card-postpartum.webp", "alt": "Одежда для сна" },
+				"items": [
+					{ "name": "Ночные сорочки", "href": "#" },
+					{ "name": "Пижамы", "href": "#" },
+					{ "name": "Пеньюары", "href": "#" }
+				]
+			},
+			{
+				"slug": "beachwear",
+				"name": "Пляжная одежда",
+				"count": 36,
+				"href": "#",
+				"image": { "src": "img/catalog/swimwear.webp", "alt": "Пляжная одежда" },
+				"items": [
+					{ "name": "Парео", "href": "#" },
+					{ "name": "Туники", "href": "#" },
+					{ "name": "Пляжные платья", "href": "#" }
+				]
+			},
+			{
+				"slug": "accessories",
+				"name": "Аксессуары",
+				"count": 11,
+				"href": "#",
+				"image": { "src": "img/sGifts/lingerie.webp", "alt": "Аксессуары" },
+				"items": [
+					{ "name": "Чулки и колготки", "href": "#" },
+					{ "name": "Пояса", "href": "#" },
+					{ "name": "Вкладыши", "href": "#" }
+				]
+			},
+			{
+				"slug": "bust-type",
+				"name": "По виду груди",
+				"count": 943,
+				"href": "#",
+				"image": { "src": "img/sAudience/card-big-breast.webp", "alt": "Подбор по виду груди" },
+				"items": [
+					{ "name": "Для маленькой груди", "href": "#" },
+					{ "name": "Для большой груди", "href": "#" },
+					{ "name": "Push-up", "href": "#" },
+					{ "name": "Асимметрия", "href": "#" }
+				]
+			}
+		]
+	}
+}

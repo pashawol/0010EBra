@@ -1,0 +1,74 @@
+// start .mobileMenu — движение. Один файл на всю моторику блока, чтобы правки
+.mobileMenu {
+	--mobileMenu-dur: 0.28s;
+	--mobileMenu-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+	opacity: 0;
+	transition: opacity var(--mobileMenu-dur) var(--mobileMenu-ease);
+
+	&:not(.--open) {
+		pointer-events: none;
+	}
+
+	&.--open {
+		opacity: 1;
+	}
+
+	&__panel {
+		transform: translateY(rem(14));
+		transition: transform var(--mobileMenu-dur) var(--mobileMenu-ease);
+
+		.mobileMenu.--open & {
+			transform: none;
+		}
+	}
+
+	&__screen {
+		&.--anim-forward {
+			animation: mobileMenu-screen-forward var(--mobileMenu-dur) var(--mobileMenu-ease) both;
+		}
+
+		&.--anim-back {
+			animation: mobileMenu-screen-back var(--mobileMenu-dur) var(--mobileMenu-ease) both;
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		&__panel {
+			transform: translateX(rem(-24));
+		}
+	}
+}
+
+@keyframes mobileMenu-screen-forward {
+	from {
+		opacity: 0;
+		transform: translateX(rem(28));
+	}
+}
+
+@keyframes mobileMenu-screen-back {
+	from {
+		opacity: 0;
+		transform: translateX(rem(-28));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.mobileMenu {
+		transition: none;
+
+		&__panel {
+			transform: none;
+			transition: none;
+		}
+
+		&__screen {
+			&.--anim-forward,
+			&.--anim-back {
+				animation: none;
+			}
+		}
+	}
+}
+// end .mobileMenu (движение)

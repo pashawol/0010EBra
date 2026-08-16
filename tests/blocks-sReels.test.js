@@ -37,7 +37,7 @@ describe('sReels block', () => {
 		const poster = root.querySelector('.sReels__poster')
 		expect(poster).toBeTruthy()
 		expect(poster.getAttribute('loading')).toBe('lazy')
-		expect(poster.getAttribute('alt')).toBeTruthy()
+		expect(poster.getAttribute('alt')).toBe('')
 	})
 
 	it('every card is a Fancybox trigger pointing to a hidden inline video template (not the shared "modal" group)', () => {

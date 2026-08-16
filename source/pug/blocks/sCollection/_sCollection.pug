@@ -1,24 +1,5 @@
-//- Section «LULU Collection» — node 385:1497 (desktop 1920×1080, full-bleed),
-//- мобильный аналог 726:478 (внутри страницы 692:1129). Доп. спеки слайдера —
-//- 632:1975 (hover-кольцо точки) и 634:2078 (компонент буквально хранит оба
-//- реальных слайда: LULU Collection и Lizzy Wizzy) — оттуда взят второй слайд.
-//-
-//- В отличие от sExpertise/sHero заголовок+текст+CTA+хотспоты меняются
-//- ВМЕСТЕ со слайдом (они внутри каждой Figma-«Content», а не общий оверлей
-//- поверх слайдера) — поэтому контент слайда лежит ВНУТРИ .swiper-slide,
-//- а персистентны между слайдами только подпись «Новые поступления» и
-//- навигация (пагинация + стрелки), они вынесены отдельным оверлеем поверх
-//- .media, как в sExpertise (грабля с z-index Swiper — см. ниже в scss).
-//-
-//- Хотспоты — общий атом +ebHotspot (eb-ui.pug) не поддерживает миниатюру
-//- товара внутри карточки, поэтому здесь ЛОКАЛЬНОЕ расширение: свой
-//- +sCollectionHotspot переиспользует те же BEM-классы (eb-hotspot,
-//- eb-hotspot__dot, eb-hotspot__card…), не копирует их стили — новый
-//- элемент только один (eb-hotspot__card-thumb), стилизован точечно в
-//- _sCollection.scss под селектором .sCollection, глобальный eb-ui.scss не
-//- трогается. Заявка на параметризацию атома — docs/coordination/sCollection.md.
 mixin sCollectionHotspot(item)
-	+b.eb-hotspot(class="--" + item.corner style=`top:${item.top}%;left:${item.left}%`)
+	+b.eb-hotspot(class="--" + item.corner data-reveal style=`top:${item.top}%;left:${item.left}%`)
 		+e.BUTTON.dot(type="button" aria-label=item.title)
 		+e.A.card(href=item.href || '#')
 			+e.DIV.card-thumb
@@ -39,7 +20,7 @@ mixin sCollection(data)
 						+e.DIV.slide.swiper-slide
 							img.sCollection__photo(
 								src=slide.image
-								alt=slide.photoAlt
+								alt=""
 								fetchpriority=(i === 0 ? "high" : null)
 								loading=(i === 0 ? null : "lazy")
 							)
@@ -48,7 +29,7 @@ mixin sCollection(data)
 									+e.DIV.top
 										+e.SPAN.badge= slide.badge
 										+ebTitle(slide.title, 2).sCollection__title
-									+e.P.text= slide.text
+									+e.P.text.d-none.d-sm-block= slide.text
 									+ebBtn(slide.cta.text, 'secondary', null, slide.cta.href).sCollection__cta
 								if slide.hotspots && slide.hotspots.length
 									+e.DIV.hotspots

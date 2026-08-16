@@ -1,0 +1,263 @@
+// start .catalog — десктопный попап каталога (607:2934 level 1 / 607:3054 level 2).
+.catalog {
+	display: none;
+
+	&[hidden] {
+		display: none !important;
+	}
+}
+
+@include media-breakpoint-up(lg) {
+	.catalog {
+		--catalog-dur: 0.28s;
+		--catalog-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+		--catalog-gap: #{rem(60)};
+
+		position: fixed;
+		inset: 0;
+		z-index: 1050;
+		display: block;
+		opacity: 0;
+		transition: opacity var(--catalog-dur) var(--catalog-ease);
+
+		&:not(.--open) {
+			pointer-events: none;
+		}
+
+		&.--open {
+			opacity: 1;
+		}
+
+		&__backdrop {
+			position: absolute;
+			inset: 0;
+			z-index: 0;
+			background-color: var(--eb-scrim);
+			backdrop-filter: blur(rem(40));
+		}
+
+		&__panel {
+			position: absolute;
+			top: rem(20);
+			left: rem(20);
+			z-index: 1;
+			display: flex;
+			flex-direction: column;
+			gap: rem(60);
+			width: rem(680);
+			max-width: calc(100% - #{rem(40)});
+			height: calc(100% - #{rem(40)});
+			padding: rem(40);
+			overflow: hidden;
+			border-radius: rem(24);
+			background-color: var(--eb-white);
+			transform: translateX(rem(-24));
+			transition:
+				width var(--catalog-dur) var(--catalog-ease),
+				transform var(--catalog-dur) var(--catalog-ease);
+
+			.catalog.--open & {
+				transform: none;
+			}
+
+			.catalog.--drilled & {
+				width: rem(1080);
+			}
+		}
+
+		&__monogram {
+			position: absolute;
+			right: rem(-250);
+			bottom: rem(-120);
+			z-index: 0;
+			width: rem(500);
+			height: rem(500);
+			pointer-events: none;
+			transition: right var(--catalog-dur) var(--catalog-ease);
+
+			.catalog.--drilled & {
+				right: rem(-120);
+			}
+		}
+
+		&__head {
+			position: relative;
+			z-index: 1;
+			display: flex;
+			flex: 0 0 auto;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		&__title {
+			color: var(--eb-text-muted);
+			font-size: var(--eb-body);
+			line-height: 1.4;
+		}
+
+		&__close {
+			appearance: none;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: var(--eb-control-size);
+			height: var(--eb-control-size);
+			padding: 0;
+			border: 0;
+			border-radius: var(--eb-radius);
+			background-color: var(--eb-surface);
+			color: var(--eb-text);
+			font-size: rem(24);
+			cursor: pointer;
+
+			&:hover {
+				background-color: var(--eb-surface-hover);
+			}
+		}
+
+		&__body {
+			position: relative;
+			z-index: 1;
+			display: flex;
+			flex: 1 1 auto;
+			gap: var(--catalog-gap);
+			align-items: flex-start;
+			min-height: 0;
+		}
+
+		&__list {
+			display: flex;
+			flex: 0 0 rem(340);
+			flex-direction: column;
+			gap: rem(20);
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		&__cat {
+			position: relative;
+			display: flex;
+			align-items: flex-start;
+			gap: rem(5);
+			color: var(--eb-text);
+			text-decoration: none;
+			transition: color var(--catalog-dur) var(--catalog-ease);
+
+			.catalog.--drilled & {
+				color: var(--eb-text-faint);
+			}
+
+			&.--active {
+				color: var(--eb-text);
+			}
+
+			&.--active::after {
+				position: absolute;
+				top: rem(-20);
+				right: calc(-1 * var(--catalog-gap));
+				bottom: rem(-20);
+				width: var(--catalog-gap);
+				content: "";
+			}
+		}
+
+		&__cat-icon {
+			display: none;
+			margin-top: rem(2);
+			margin-right: rem(5);
+			font-size: rem(20);
+
+			.catalog__cat.--active & {
+				display: block;
+			}
+		}
+
+		&__cat-name {
+			font-family: $font-family-display;
+			font-size: var(--eb-subtitle-2);
+			line-height: 1.1;
+		}
+
+		&__cat-count {
+			color: var(--eb-text-faint);
+			font-size: rem(12);
+			line-height: 1.4;
+		}
+
+		&__subs {
+			display: none;
+			flex: 0 0 rem(340);
+
+			.catalog.--drilled & {
+				display: block;
+			}
+		}
+
+		&__sublist {
+			display: flex;
+			flex-direction: column;
+			gap: rem(10);
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			&[hidden] {
+				display: none !important;
+			}
+		}
+
+		&__sublink {
+			color: var(--eb-text);
+			font-size: var(--eb-body);
+			line-height: 1.4;
+			text-decoration: none;
+
+			&:hover {
+				color: var(--eb-text-faint);
+			}
+		}
+
+		&__media {
+			position: relative;
+			flex: 0 0 rem(200);
+			height: rem(200);
+			overflow: hidden;
+			border-radius: rem(24);
+			background-color: var(--eb-surface);
+		}
+
+		&__media-img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+
+			&[hidden] {
+				display: none !important;
+			}
+		}
+	}
+}
+
+.catalog-scroll-lock {
+	overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.catalog {
+		transition: none;
+
+		&__panel,
+		&__monogram,
+		&__cat {
+			transition: none;
+		}
+
+		&__panel {
+			transform: none;
+		}
+	}
+}
+// end .catalog

@@ -3,10 +3,10 @@
 exports[`sBooking block > matches HTML snapshot 1`] = `
 "
 <!-- start sBooking-->
-<section class="sBooking eb-theme eb-theme--dark section" id="sBooking">
+<section class="sBooking eb-theme eb-theme--dark section" id="sBooking" data-overlap="data-overlap">
   <div class="sBooking__media" aria-hidden="true">
     <picture>
-      <source media="(min-width: 992px)" srcset="img/sBooking/bg-desktop.webp"/><img class="sBooking__photo" src="img/sBooking/bg-mobile.webp" alt="" loading="lazy"/>
+      <source media="(min-width: 992px)" srcset="img/sBooking/bg-desktop.webp"/><img class="sBooking__photo" src="img/sBooking/bg-mobile.webp" alt="" loading="lazy" data-parallax="data-parallax"/>
     </picture>
   </div>
   <div class="sBooking__scrim" aria-hidden="true">
@@ -14,7 +14,7 @@ exports[`sBooking block > matches HTML snapshot 1`] = `
   <svg class="icon icon-eb-monogram  sBooking__decor" aria-hidden="true">
     <use xlink:href="img/svg/sprite.svg#eb-monogram"></use>
   </svg>
-  <div class="container sBooking__inner">
+  <div class="container sBooking__inner" data-reveal-from="bottom" data-reveal-stagger="0.12" data-reveal-group=".sBooking__title, .sBooking__title-tail, .sBooking__form-title, .sBooking__step, .sBooking__submit">
     <h2 class="sBooking__title"><span class="visually-hidden">Каждая женщина заслуживает идеального белья</span><span class="sBooking__title-main" aria-hidden="true">Каждая женщина<br>заслуживает...</span></h2><span class="sBooking__title-tail" aria-hidden="true">идеального<br>белья</span>
     <div class="sBooking__card eb-theme eb-theme--light">
       <svg class="icon icon-eb-monogram  sBooking__card-decor" aria-hidden="true">

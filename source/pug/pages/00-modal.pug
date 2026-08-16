@@ -7,6 +7,7 @@ extends ../layout/main.pug
 include ../blocks/header/_header.pug
 include ../blocks/top-nav/_top-nav.pug
 include ../blocks/mobileMenu/_mobileMenu.pug
+include ../blocks/catalog/_catalog.pug
 include ../blocks/sReels/_sReels.pug
 include ../blocks/sTestimonials/_sTestimonials.pug
 include ../blocks/sBooking/_sBooking.pug
@@ -20,6 +21,7 @@ block pagecontent
 	+header()
 		+top-nav()
 	+mobileMenu()
+	+catalog()
 
 	main.ui-kit
 		.container

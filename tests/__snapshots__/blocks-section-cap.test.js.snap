@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`section-cap block > matches HTML snapshot 1`] = `
+"<div class="section-cap" aria-hidden="true">
+    <svg class="section-cap__shape" viewBox="0 0 1920 400" preserveAspectRatio="none" focusable="false">
+      <path d="M960 0C960 220.914 1389.81 400 1920 400H0C530.193 400 960 220.914 960 0Z" fill="currentColor"></path>
+    </svg>
+  </div>"
+`;

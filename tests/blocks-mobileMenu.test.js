@@ -7,14 +7,18 @@ import { renderBlock } from './helpers/render-block.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const DATA_PATH = path.resolve(__dirname, '..', 'source/pug/data/mobileMenu.json')
+const CATALOG_PATH = path.resolve(__dirname, '..', 'source/pug/data/catalog.json')
 
 // Тот же паттерн, что sProcess/sHero: `data = data || mobileMenu`, а
 // render-block.js не мёржит source/pug/data/*.json сам — фикстура должна
 // подать ровно тот payload, что и gulp-data в реальной сборке.
 const { mobileMenu: fixtureData } = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'))
+const { catalog: catalogData } = JSON.parse(fs.readFileSync(CATALOG_PATH, 'utf8'))
 
 function render() {
-	return renderBlock('mobileMenu', { locals: { mobileMenu: fixtureData } })
+	return renderBlock('mobileMenu', {
+		locals: { mobileMenu: fixtureData, catalog: catalogData },
+	})
 }
 
 // ---------------------------------------------------------------------------
@@ -42,7 +46,7 @@ describe('mobileMenu block', () => {
 		const root = parse(html)
 		const screens = root.querySelectorAll('[data-menu-screen]')
 		// root + N категорий + client
-		expect(screens.length).toBe(1 + fixtureData.categories.length + 1)
+		expect(screens.length).toBe(1 + catalogData.categories.length + 1)
 
 		const rootScreen = root.querySelector('[data-menu-screen="root"]')
 		expect(rootScreen).toBeTruthy()
@@ -69,19 +73,25 @@ describe('mobileMenu block', () => {
 		const html = render()
 		const root = parse(html)
 		const triggers = root.querySelectorAll('.mobileMenu__catalog-trigger')
-		expect(triggers.length).toBe(fixtureData.categories.length)
+		expect(triggers.length).toBe(catalogData.categories.length)
 
-		fixtureData.categories.forEach((cat, i) => {
+		catalogData.categories.forEach((cat, i) => {
 			const trigger = triggers[i]
 			expect(trigger.getAttribute('data-menu-open')).toBe(`catalog-${cat.slug}`)
 			expect(trigger.getAttribute('aria-haspopup')).toBe('true')
 			expect(trigger.querySelector('.mobileMenu__catalog-name')?.text.trim()).toBe(cat.name)
-			expect(trigger.querySelector('.mobileMenu__catalog-count')?.text.trim()).toBe(cat.count)
+			expect(trigger.querySelector('.mobileMenu__catalog-count')?.text.trim()).toBe(
+				String(cat.count),
+			)
 
 			const screen = root.querySelector(`[data-menu-screen="catalog-${cat.slug}"]`)
 			expect(screen).toBeTruthy()
-			expect(screen.querySelectorAll('.mobileMenu__sublist-link').length).toBe(
-				cat.subcategories.length,
+			expect(screen.querySelectorAll('.mobileMenu__sublist-link').length).toBe(cat.items.length)
+			expect(screen.querySelector('.mobileMenu__banner-btn')?.text.trim()).toBe(
+				catalogData.viewAllLabel,
+			)
+			expect(screen.querySelector('.mobileMenu__banner-img')?.getAttribute('src')).toBe(
+				cat.image.src,
 			)
 			expect(screen.querySelector('.mobileMenu__back')).toBeTruthy()
 		})
@@ -150,6 +160,45 @@ describe('mobileMenu block', () => {
 		for (const trigger of openTriggers) {
 			expect(trigger.getAttribute('aria-expanded')).toBe('false')
 		}
+	})
+
+	it('each service card carries its tint modifier (gradient colour comes from data)', () => {
+		const html = render()
+		const root = parse(html)
+		const services = root.querySelectorAll('.mobileMenu__service')
+		fixtureData.services.forEach((service, i) => {
+			expect(service.tint).toBeTruthy()
+			expect(services[i].classNames).toContain(`--tint-${service.tint}`)
+		})
+	})
+
+	it('every screen head has the "Меню" title used by the desktop popup', () => {
+		const html = render()
+		const root = parse(html)
+		const rootScreen = root.querySelector('[data-menu-screen="root"]')
+		expect(rootScreen.querySelector('.mobileMenu__head-title')?.text.trim()).toBe('Меню')
+	})
+
+	it('client links are also rendered inline (desktop shows them expanded, not as a drill-down)', () => {
+		const html = render()
+		const root = parse(html)
+		const section = root.querySelector('.mobileMenu__client')
+		expect(section).toBeTruthy()
+		expect(section.querySelector('.mobileMenu__client-title')?.text.trim()).toBe(
+			fixtureData.client.label,
+		)
+		expect(
+			section.querySelectorAll('.mobileMenu__client-link').map((el) => el.text.trim()),
+		).toEqual(fixtureData.client.links)
+	})
+
+	it('the mobile "Для вас" entry is marked --client so the desktop can drop it', () => {
+		const html = render()
+		const root = parse(html)
+		const trigger = root
+			.querySelectorAll('.mobileMenu__link')
+			.find((el) => el.getAttribute('data-menu-open') === 'client')
+		expect(trigger.classNames).toContain('--client')
 	})
 
 	it('matches HTML snapshot', () => {

@@ -1,12 +1,9 @@
 /**
- * Мобильное меню, 3 экрана с drill-down (node 777:2 / 777:1466 / 777:1584).
  * Vanilla JS, без jQuery — логика по образцу `.catalog-modal` из 0041-asko
  * (`sourse/js/common.js` + `JSCCommon.js`), переписана без jQuery/классов-«--js».
- *
  * Контракт с внешним миром (шапка — чужая зона, см. docs/coordination/mobileMenu.md):
  * любой элемент с [data-mobile-menu-toggle] открывает/закрывает меню и получает
  * актуальный aria-expanded. Сам компонент ничего не знает о разметке шапки.
- *
  * Экраны переключаются атрибутом [hidden] — скрытый экран одновременно не
  * рендерится, недоступен axe и не ловит фокус/Tab, отдельный focus-trap на
  * подэкран не нужен (грабля «в DOM есть, но не видно» здесь неприменима:
@@ -16,9 +13,15 @@
 	var MENU_ID = 'mobileMenu'
 	var OPEN_SELECTOR = '[data-mobile-menu-toggle]'
 	var ROOT_SCREEN = 'root'
+	var OVERLAY_EVENT = 'eb:overlay-open'
+	var OPEN_CLASS = '--open'
+	var ANIM_FORWARD = '--anim-forward'
+	var ANIM_BACK = '--anim-back'
+	var MENU_ANIM_MS = 280
 
 	var menu = null
 	var lastFocused = null
+	var closeTimer = null
 	var scrollLockPadding = ''
 
 	function qsa(selector, ctx) {
@@ -61,10 +64,15 @@
 		document.body.style.paddingRight = scrollLockPadding
 	}
 
-	function showScreen(root, name) {
+	function showScreen(root, name, direction) {
 		qsa('[data-menu-screen]', root).forEach(function (screen) {
 			var isTarget = screen.getAttribute('data-menu-screen') === name
 			screen.hidden = !isTarget
+			screen.classList.remove(ANIM_FORWARD, ANIM_BACK)
+			if (isTarget && direction) {
+				void screen.offsetWidth
+				screen.classList.add(direction === 'back' ? ANIM_BACK : ANIM_FORWARD)
+			}
 		})
 		qsa('[data-menu-open]', root).forEach(function (trigger) {
 			trigger.setAttribute(
@@ -77,9 +85,16 @@
 	function openMenu(triggerEl) {
 		var root = getMenu()
 		if (!root) return
+		document.dispatchEvent(new CustomEvent(OVERLAY_EVENT, { detail: { id: MENU_ID } }))
+		if (closeTimer) {
+			window.clearTimeout(closeTimer)
+			closeTimer = null
+		}
 		lastFocused = triggerEl || document.activeElement
 		root.hidden = false
 		showScreen(root, ROOT_SCREEN)
+		void root.offsetWidth
+		root.classList.add(OPEN_CLASS)
 		lockScroll()
 		setTogglesExpanded(true)
 
@@ -89,9 +104,13 @@
 
 	function closeMenu() {
 		var root = getMenu()
-		if (!root || root.hidden) return
-		root.hidden = true
-		showScreen(root, ROOT_SCREEN)
+		if (!root || root.hidden || closeTimer) return
+		root.classList.remove(OPEN_CLASS)
+		closeTimer = window.setTimeout(function () {
+			root.hidden = true
+			showScreen(root, ROOT_SCREEN)
+			closeTimer = null
+		}, MENU_ANIM_MS)
 		unlockScroll()
 		setTogglesExpanded(false)
 
@@ -136,13 +155,6 @@
 	function onClick(event) {
 		var toggle = event.target.closest(OPEN_SELECTOR)
 		if (toggle) {
-			// Бургер на десктопе управляется header.js/#catalogModal (см.
-			// _top-nav.pug) — этот компонент там и так display:none, но не
-			// трогаем его состояние (aria-expanded/lastFocused), чтобы не
-			// путать источник правды между двумя попапами.
-			if (toggle.matches('.top-nav__burger') && window.matchMedia('(min-width: 992px)').matches) {
-				return
-			}
 			event.preventDefault()
 			toggleMenu(toggle)
 			return
@@ -160,7 +172,7 @@
 		var openTrigger = event.target.closest('[data-menu-open]')
 		if (openTrigger) {
 			event.preventDefault()
-			showScreen(root, openTrigger.getAttribute('data-menu-open'))
+			showScreen(root, openTrigger.getAttribute('data-menu-open'), 'forward')
 			var screen = root.querySelector(
 				'[data-menu-screen="' + openTrigger.getAttribute('data-menu-open') + '"]',
 			)
@@ -174,7 +186,7 @@
 
 		if (event.target.closest('[data-menu-back]')) {
 			event.preventDefault()
-			showScreen(root, ROOT_SCREEN)
+			showScreen(root, ROOT_SCREEN, 'back')
 		}
 	}
 
@@ -194,11 +206,16 @@
 	function onResize() {
 		var root = getMenu()
 		if (!root || root.hidden) return
-		if (window.matchMedia('(min-width: 992px)').matches) closeMenu()
+		if (window.matchMedia('(min-width: 992px)').matches) showScreen(root, ROOT_SCREEN)
+	}
+
+	function onOverlayOpen(event) {
+		if (event.detail && event.detail.id !== MENU_ID) closeMenu()
 	}
 
 	function init() {
 		if (!getMenu()) return
+		document.addEventListener(OVERLAY_EVENT, onOverlayOpen)
 		document.addEventListener('click', onClick)
 		document.addEventListener('keydown', onKeydown)
 		window.addEventListener('resize', onResize, { passive: true })

@@ -8,7 +8,7 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
   </div>
   <div class="mobileMenu__panel">
     <div class="mobileMenu__screen mobileMenu__screen--root" data-menu-screen="root">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>
@@ -39,56 +39,67 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
       </div>
       <div class="mobileMenu__body">
         <div class="mobileMenu__services"><span class="mobileMenu__services-title">Услуги</span>
-          <div class="mobileMenu__services-track"><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-showroom.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+          <div class="mobileMenu__services-track"><a class="mobileMenu__service --tint-burgundy" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-showroom.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
                 <svg class="icon icon-arrow-right ">
                   <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
-                </svg></span><span class="mobileMenu__service-label">Подбор белья в Самаре</span></a><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-online.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+                </svg></span><span class="mobileMenu__service-label">Подбор белья в Самаре</span></a><a class="mobileMenu__service --tint-blue" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-online.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
                 <svg class="icon icon-arrow-right ">
                   <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
-                </svg></span><span class="mobileMenu__service-label">Подбор белья онлайн</span></a><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-fitting.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+                </svg></span><span class="mobileMenu__service-label">Подбор белья онлайн</span></a><a class="mobileMenu__service --tint-gold" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-giftcard.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
                 <svg class="icon icon-arrow-right ">
                   <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
-                </svg></span><span class="mobileMenu__service-label">Индивидуальный брафиттинг</span></a><a class="mobileMenu__service" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-giftcard.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
+                </svg></span><span class="mobileMenu__service-label">Подарочный сертификат</span></a><a class="mobileMenu__service --tint-gray" href="#"><img class="mobileMenu__service-img" src="img/mobileMenu/service-fitting.webp" alt="" loading="lazy"/><span class="mobileMenu__service-arrow">
                 <svg class="icon icon-arrow-right ">
                   <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
-                </svg></span><span class="mobileMenu__service-label">Подарочные сертификаты</span></a>
+                </svg></span><span class="mobileMenu__service-label">О брафиттинге</span></a>
           </div>
         </div>
         <div class="mobileMenu__catalog"><span class="mobileMenu__catalog-title">Каталог</span>
           <ul class="mobileMenu__catalog-list">
             <li class="mobileMenu__catalog-item">
-              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-underwear"><span class="mobileMenu__catalog-name">Нижнее белье</span><span class="mobileMenu__catalog-count">654</span></button>
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-underwear"><span class="mobileMenu__catalog-name">Нижнее бельё</span><span class="mobileMenu__catalog-count">654</span></button>
             </li>
             <li class="mobileMenu__catalog-item">
-              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-sport"><span class="mobileMenu__catalog-name">Спортивное белье</span><span class="mobileMenu__catalog-count">32</span></button>
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-sport"><span class="mobileMenu__catalog-name">Спортивное бельё</span><span class="mobileMenu__catalog-count">32</span></button>
             </li>
             <li class="mobileMenu__catalog-item">
-              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-erotic"><span class="mobileMenu__catalog-name">Эротическое белье</span><span class="mobileMenu__catalog-count">12</span></button>
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-erotic"><span class="mobileMenu__catalog-name">Эротическое бельё</span><span class="mobileMenu__catalog-count">12</span></button>
             </li>
             <li class="mobileMenu__catalog-item">
-              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-swimwear"><span class="mobileMenu__catalog-name">Купальники</span><span class="mobileMenu__catalog-count">128</span></button>
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-swimwear"><span class="mobileMenu__catalog-name">Купальники</span><span class="mobileMenu__catalog-count">876</span></button>
             </li>
             <li class="mobileMenu__catalog-item">
-              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-homewear"><span class="mobileMenu__catalog-name">Домашняя одежда</span><span class="mobileMenu__catalog-count">24</span></button>
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-homewear"><span class="mobileMenu__catalog-name">Домашняя одежда</span><span class="mobileMenu__catalog-count">546</span></button>
             </li>
             <li class="mobileMenu__catalog-item">
-              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-sleepwear"><span class="mobileMenu__catalog-name">Одежда для сна</span><span class="mobileMenu__catalog-count">46</span></button>
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-sleepwear"><span class="mobileMenu__catalog-name">Одежда для сна</span><span class="mobileMenu__catalog-count">45</span></button>
             </li>
             <li class="mobileMenu__catalog-item">
-              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-beachwear"><span class="mobileMenu__catalog-name">Пляжная одежда</span><span class="mobileMenu__catalog-count">12</span></button>
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-beachwear"><span class="mobileMenu__catalog-name">Пляжная одежда</span><span class="mobileMenu__catalog-count">36</span></button>
             </li>
             <li class="mobileMenu__catalog-item">
-              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-accessories"><span class="mobileMenu__catalog-name">Аксессуары</span><span class="mobileMenu__catalog-count">56</span></button>
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-accessories"><span class="mobileMenu__catalog-name">Аксессуары</span><span class="mobileMenu__catalog-count">11</span></button>
             </li>
             <li class="mobileMenu__catalog-item">
-              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-bust-type"><span class="mobileMenu__catalog-name">По виду груди</span><span class="mobileMenu__catalog-count">562</span></button>
+              <button class="mobileMenu__catalog-trigger" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="catalog-bust-type"><span class="mobileMenu__catalog-name">По виду груди</span><span class="mobileMenu__catalog-count">943</span></button>
             </li>
+          </ul>
+        </div>
+        <div class="mobileMenu__client"><span class="mobileMenu__client-title">Для вас</span>
+          <ul class="mobileMenu__client-list">
+            <li><a class="mobileMenu__client-link" href="#">Как заказать</a></li>
+            <li><a class="mobileMenu__client-link" href="#">Оплата</a></li>
+            <li><a class="mobileMenu__client-link" href="#">Доставка</a></li>
+            <li><a class="mobileMenu__client-link" href="#">Возврат</a></li>
+            <li><a class="mobileMenu__client-link" href="#">Подарочные сертификаты</a></li>
+            <li><a class="mobileMenu__client-link" href="#">Вопрос/ответ</a></li>
+            <li><a class="mobileMenu__client-link" href="#">О брафиттинге</a></li>
           </ul>
         </div>
         <hr class="mobileMenu__divider"/>
         <div class="mobileMenu__links">
           <div class="mobileMenu__links-col">
-            <button class="mobileMenu__link" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="client">Для вас</button><a class="mobileMenu__link" href="#">Бренды</a><a class="mobileMenu__link" href="#">Спец предложения</a>
+            <button class="mobileMenu__link --client" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="client">Для вас</button><a class="mobileMenu__link" href="#">Бренды</a><a class="mobileMenu__link" href="#">Спец предложения</a>
           </div>
           <div class="mobileMenu__links-col"><a class="mobileMenu__link" href="#">Блог</a><a class="mobileMenu__link" href="#">Контакты</a>
           </div>
@@ -96,7 +107,7 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
       </div>
     </div>
     <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-underwear" hidden="hidden">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>
@@ -126,24 +137,24 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="mobileMenu__body">
-        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/sAudience/card-asymmetry.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
         </div>
         <div class="mobileMenu__breadcrumb">
           <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
             <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
-          </svg><span class="mobileMenu__breadcrumb-name">Нижнее белье</span><span class="mobileMenu__breadcrumb-count">654</span>
+          </svg><span class="mobileMenu__breadcrumb-name">Нижнее бельё</span><span class="mobileMenu__breadcrumb-count">654</span>
         </div>
         <ul class="mobileMenu__sublist">
           <li><a class="mobileMenu__sublist-link" href="#">Бюстгальтеры</a></li>
           <li><a class="mobileMenu__sublist-link" href="#">Трусы</a></li>
           <li><a class="mobileMenu__sublist-link" href="#">Комплекты</a></li>
-          <li><a class="mobileMenu__sublist-link" href="#">Корректирующее белье</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Корректирующее бельё</a></li>
         </ul>
       </div>
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
     </div>
     <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-sport" hidden="hidden">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>
@@ -173,22 +184,23 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="mobileMenu__body">
-        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/sAudience/card-sport.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
         </div>
         <div class="mobileMenu__breadcrumb">
           <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
             <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
-          </svg><span class="mobileMenu__breadcrumb-name">Спортивное белье</span><span class="mobileMenu__breadcrumb-count">32</span>
+          </svg><span class="mobileMenu__breadcrumb-name">Спортивное бельё</span><span class="mobileMenu__breadcrumb-count">32</span>
         </div>
         <ul class="mobileMenu__sublist">
           <li><a class="mobileMenu__sublist-link" href="#">Топы для фитнеса</a></li>
-          <li><a class="mobileMenu__sublist-link" href="#">Бесшовное белье</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Бесшовное бельё</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Спортивные трусы</a></li>
         </ul>
       </div>
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
     </div>
     <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-erotic" hidden="hidden">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>
@@ -218,22 +230,23 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="mobileMenu__body">
-        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/sGifts/lingerie.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
         </div>
         <div class="mobileMenu__breadcrumb">
           <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
             <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
-          </svg><span class="mobileMenu__breadcrumb-name">Эротическое белье</span><span class="mobileMenu__breadcrumb-count">12</span>
+          </svg><span class="mobileMenu__breadcrumb-name">Эротическое бельё</span><span class="mobileMenu__breadcrumb-count">12</span>
         </div>
         <ul class="mobileMenu__sublist">
           <li><a class="mobileMenu__sublist-link" href="#">Комплекты</a></li>
           <li><a class="mobileMenu__sublist-link" href="#">Боди</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Пеньюары</a></li>
         </ul>
       </div>
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
     </div>
     <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-swimwear" hidden="hidden">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>
@@ -263,12 +276,12 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="mobileMenu__body">
-        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/catalog/swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
         </div>
         <div class="mobileMenu__breadcrumb">
           <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
             <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
-          </svg><span class="mobileMenu__breadcrumb-name">Купальники</span><span class="mobileMenu__breadcrumb-count">128</span>
+          </svg><span class="mobileMenu__breadcrumb-name">Купальники</span><span class="mobileMenu__breadcrumb-count">876</span>
         </div>
         <ul class="mobileMenu__sublist">
           <li><a class="mobileMenu__sublist-link" href="#">Купальник раздельный</a></li>
@@ -280,7 +293,7 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
     </div>
     <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-homewear" hidden="hidden">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>
@@ -310,22 +323,23 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="mobileMenu__body">
-        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/client-showroom.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
         </div>
         <div class="mobileMenu__breadcrumb">
           <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
             <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
-          </svg><span class="mobileMenu__breadcrumb-name">Домашняя одежда</span><span class="mobileMenu__breadcrumb-count">24</span>
+          </svg><span class="mobileMenu__breadcrumb-name">Домашняя одежда</span><span class="mobileMenu__breadcrumb-count">546</span>
         </div>
         <ul class="mobileMenu__sublist">
           <li><a class="mobileMenu__sublist-link" href="#">Халаты</a></li>
-          <li><a class="mobileMenu__sublist-link" href="#">Пижамные комплекты</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Пижамы</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Домашние комплекты</a></li>
         </ul>
       </div>
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
     </div>
     <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-sleepwear" hidden="hidden">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>
@@ -355,22 +369,23 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="mobileMenu__body">
-        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/sAudience/card-postpartum.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
         </div>
         <div class="mobileMenu__breadcrumb">
           <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
             <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
-          </svg><span class="mobileMenu__breadcrumb-name">Одежда для сна</span><span class="mobileMenu__breadcrumb-count">46</span>
+          </svg><span class="mobileMenu__breadcrumb-name">Одежда для сна</span><span class="mobileMenu__breadcrumb-count">45</span>
         </div>
         <ul class="mobileMenu__sublist">
           <li><a class="mobileMenu__sublist-link" href="#">Ночные сорочки</a></li>
           <li><a class="mobileMenu__sublist-link" href="#">Пижамы</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Пеньюары</a></li>
         </ul>
       </div>
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
     </div>
     <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-beachwear" hidden="hidden">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>
@@ -400,22 +415,23 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="mobileMenu__body">
-        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/catalog/swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
         </div>
         <div class="mobileMenu__breadcrumb">
           <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
             <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
-          </svg><span class="mobileMenu__breadcrumb-name">Пляжная одежда</span><span class="mobileMenu__breadcrumb-count">12</span>
+          </svg><span class="mobileMenu__breadcrumb-name">Пляжная одежда</span><span class="mobileMenu__breadcrumb-count">36</span>
         </div>
         <ul class="mobileMenu__sublist">
           <li><a class="mobileMenu__sublist-link" href="#">Парео</a></li>
           <li><a class="mobileMenu__sublist-link" href="#">Туники</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Пляжные платья</a></li>
         </ul>
       </div>
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
     </div>
     <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-accessories" hidden="hidden">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>
@@ -445,22 +461,23 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="mobileMenu__body">
-        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/sGifts/lingerie.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
         </div>
         <div class="mobileMenu__breadcrumb">
           <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
             <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
-          </svg><span class="mobileMenu__breadcrumb-name">Аксессуары</span><span class="mobileMenu__breadcrumb-count">56</span>
+          </svg><span class="mobileMenu__breadcrumb-name">Аксессуары</span><span class="mobileMenu__breadcrumb-count">11</span>
         </div>
         <ul class="mobileMenu__sublist">
           <li><a class="mobileMenu__sublist-link" href="#">Чулки и колготки</a></li>
           <li><a class="mobileMenu__sublist-link" href="#">Пояса</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Вкладыши</a></li>
         </ul>
       </div>
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
     </div>
     <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="catalog-bust-type" hidden="hidden">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>
@@ -490,23 +507,24 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="mobileMenu__body">
-        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/mobileMenu/catalog-swimwear.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
+        <div class="mobileMenu__banner"><img class="mobileMenu__banner-img" src="img/sAudience/card-big-breast.webp" alt="" loading="lazy"/><a class="mobileMenu__banner-btn" href="#">Смотреть все</a>
         </div>
         <div class="mobileMenu__breadcrumb">
           <svg class="icon icon-corner-right-down  mobileMenu__breadcrumb-icon">
             <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
-          </svg><span class="mobileMenu__breadcrumb-name">По виду груди</span><span class="mobileMenu__breadcrumb-count">562</span>
+          </svg><span class="mobileMenu__breadcrumb-name">По виду груди</span><span class="mobileMenu__breadcrumb-count">943</span>
         </div>
         <ul class="mobileMenu__sublist">
           <li><a class="mobileMenu__sublist-link" href="#">Для маленькой груди</a></li>
           <li><a class="mobileMenu__sublist-link" href="#">Для большой груди</a></li>
           <li><a class="mobileMenu__sublist-link" href="#">Push-up</a></li>
+          <li><a class="mobileMenu__sublist-link" href="#">Асимметрия</a></li>
         </ul>
       </div>
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
     </div>
     <div class="mobileMenu__screen mobileMenu__screen--sub" data-menu-screen="client" hidden="hidden">
-      <div class="mobileMenu__head">
+      <div class="mobileMenu__head"><span class="mobileMenu__head-title">Меню</span>
         <button class="mobileMenu__head-close" type="button" aria-label="Закрыть меню" data-menu-close="data-menu-close">
           <svg class="icon icon-x ">
             <use xlink:href="img/svg/sprite.svg#x"></use>

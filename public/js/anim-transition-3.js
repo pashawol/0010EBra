@@ -64,35 +64,9 @@
 		)
 	}
 
-	function incomingQuiz(desktop) {
-		const targets = [
-			document.querySelector('#sQuiz .sQuiz__chat'),
-			document.querySelector('#sQuiz .sQuiz__panel'),
-		].filter(Boolean)
-		if (!targets.length) return
-
-		gsap.fromTo(
-			targets,
-			{ autoAlpha: 0, y: desktop ? 32 : 20 },
-			{
-				autoAlpha: 1,
-				y: 0,
-				duration: 0.8,
-				ease: 'power2.out',
-				stagger: 0.15,
-				scrollTrigger: {
-					trigger: '#sQuiz',
-					start: 'top 80%',
-					once: true,
-				},
-			},
-		)
-	}
-
 	function buildScene(desktop) {
 		const ctx = gsap.context(() => {
 			outgoingExpertise(desktop)
-			incomingQuiz(desktop)
 		})
 
 		return () => ctx.revert()

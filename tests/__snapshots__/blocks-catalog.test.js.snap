@@ -1,0 +1,121 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`catalog block > matches HTML snapshot 1`] = `
+"
+<!-- start catalog-->
+<div class="catalog" id="catalogModal" role="dialog" aria-modal="true" aria-label="Каталог" tabindex="-1" hidden="hidden">
+  <div class="catalog__backdrop" data-catalog-close="data-catalog-close">
+  </div>
+  <div class="catalog__panel"><img class="catalog__monogram" src="img/catalog/monogram.svg" alt="" aria-hidden="true"/>
+    <div class="catalog__head"><span class="catalog__title">Каталог</span>
+      <button class="catalog__close" type="button" aria-label="Закрыть каталог" data-catalog-close="data-catalog-close">
+        <svg class="icon icon-x ">
+          <use xlink:href="img/svg/sprite.svg#x"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="catalog__body">
+      <ul class="catalog__list">
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="underwear" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-underwear">
+            <svg class="icon icon-corner-right-down catalog__cat-icon">
+              <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+            </svg><span class="catalog__cat-name">Нижнее бельё</span><span class="catalog__cat-count">654</span></a></li>
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="sport" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-sport">
+            <svg class="icon icon-corner-right-down catalog__cat-icon">
+              <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+            </svg><span class="catalog__cat-name">Спортивное бельё</span><span class="catalog__cat-count">32</span></a></li>
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="erotic" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-erotic">
+            <svg class="icon icon-corner-right-down catalog__cat-icon">
+              <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+            </svg><span class="catalog__cat-name">Эротическое бельё</span><span class="catalog__cat-count">12</span></a></li>
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="swimwear" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-swimwear">
+            <svg class="icon icon-corner-right-down catalog__cat-icon">
+              <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+            </svg><span class="catalog__cat-name">Купальники</span><span class="catalog__cat-count">876</span></a></li>
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="homewear" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-homewear">
+            <svg class="icon icon-corner-right-down catalog__cat-icon">
+              <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+            </svg><span class="catalog__cat-name">Домашняя одежда</span><span class="catalog__cat-count">546</span></a></li>
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="sleepwear" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-sleepwear">
+            <svg class="icon icon-corner-right-down catalog__cat-icon">
+              <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+            </svg><span class="catalog__cat-name">Одежда для сна</span><span class="catalog__cat-count">45</span></a></li>
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="beachwear" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-beachwear">
+            <svg class="icon icon-corner-right-down catalog__cat-icon">
+              <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+            </svg><span class="catalog__cat-name">Пляжная одежда</span><span class="catalog__cat-count">36</span></a></li>
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="accessories" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-accessories">
+            <svg class="icon icon-corner-right-down catalog__cat-icon">
+              <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+            </svg><span class="catalog__cat-name">Аксессуары</span><span class="catalog__cat-count">11</span></a></li>
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="bust-type" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-bust-type">
+            <svg class="icon icon-corner-right-down catalog__cat-icon">
+              <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
+            </svg><span class="catalog__cat-name">По виду груди</span><span class="catalog__cat-count">943</span></a></li>
+      </ul>
+      <div class="catalog__subs">
+        <ul class="catalog__sublist" id="catalogSub-underwear" data-catalog-sub="underwear" hidden="hidden">
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Бюстгальтеры</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Трусы</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Комплекты</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Корректирующее бельё</a></li>
+        </ul>
+        <ul class="catalog__sublist" id="catalogSub-sport" data-catalog-sub="sport" hidden="hidden">
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Топы для фитнеса</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Бесшовное бельё</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Спортивные трусы</a></li>
+        </ul>
+        <ul class="catalog__sublist" id="catalogSub-erotic" data-catalog-sub="erotic" hidden="hidden">
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Комплекты</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Боди</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Пеньюары</a></li>
+        </ul>
+        <ul class="catalog__sublist" id="catalogSub-swimwear" data-catalog-sub="swimwear" hidden="hidden">
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Купальник раздельный</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Купальник слитный</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Плавки</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Танкини</a></li>
+        </ul>
+        <ul class="catalog__sublist" id="catalogSub-homewear" data-catalog-sub="homewear" hidden="hidden">
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Халаты</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Пижамы</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Домашние комплекты</a></li>
+        </ul>
+        <ul class="catalog__sublist" id="catalogSub-sleepwear" data-catalog-sub="sleepwear" hidden="hidden">
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Ночные сорочки</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Пижамы</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Пеньюары</a></li>
+        </ul>
+        <ul class="catalog__sublist" id="catalogSub-beachwear" data-catalog-sub="beachwear" hidden="hidden">
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Парео</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Туники</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Пляжные платья</a></li>
+        </ul>
+        <ul class="catalog__sublist" id="catalogSub-accessories" data-catalog-sub="accessories" hidden="hidden">
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Чулки и колготки</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Пояса</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Вкладыши</a></li>
+        </ul>
+        <ul class="catalog__sublist" id="catalogSub-bust-type" data-catalog-sub="bust-type" hidden="hidden">
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Для маленькой груди</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Для большой груди</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Push-up</a></li>
+          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Асимметрия</a></li>
+        </ul>
+      </div>
+      <div class="catalog__media"><img class="catalog__media-img --cover" src="img/catalog/cover.webp" alt="Каталог Esthetic Bra" loading="lazy"/><img class="catalog__media-img" src="img/sAudience/card-asymmetry.webp" alt="" data-catalog-img="underwear" loading="lazy" hidden="hidden"/><img class="catalog__media-img" src="img/sAudience/card-sport.webp" alt="" data-catalog-img="sport" loading="lazy" hidden="hidden"/><img class="catalog__media-img" src="img/sGifts/lingerie.webp" alt="" data-catalog-img="erotic" loading="lazy" hidden="hidden"/><img class="catalog__media-img" src="img/catalog/swimwear.webp" alt="" data-catalog-img="swimwear" loading="lazy" hidden="hidden"/><img class="catalog__media-img" src="img/mobileMenu/client-showroom.webp" alt="" data-catalog-img="homewear" loading="lazy" hidden="hidden"/><img class="catalog__media-img" src="img/sAudience/card-postpartum.webp" alt="" data-catalog-img="sleepwear" loading="lazy" hidden="hidden"/><img class="catalog__media-img" src="img/catalog/swimwear.webp" alt="" data-catalog-img="beachwear" loading="lazy" hidden="hidden"/><img class="catalog__media-img" src="img/sGifts/lingerie.webp" alt="" data-catalog-img="accessories" loading="lazy" hidden="hidden"/><img class="catalog__media-img" src="img/sAudience/card-big-breast.webp" alt="" data-catalog-img="bust-type" loading="lazy" hidden="hidden"/>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end catalog-->"
+`;

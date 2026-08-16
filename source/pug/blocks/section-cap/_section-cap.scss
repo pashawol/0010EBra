@@ -1,0 +1,25 @@
+// start .section-cap — куполообразная кромка секции (576:292).
+.section-cap {
+	color: var(--eb-white);
+
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	width: 100%;
+	height: var(--eb-cap-h);
+	pointer-events: none;
+
+
+
+	&__shape {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.section-cap--inflow {
+	position: static;
+	width: 100%;
+}
+// end .section-cap

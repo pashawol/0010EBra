@@ -46,7 +46,7 @@ describe('sFavorites block', () => {
 		expect(cards.length).toBe(4)
 	})
 
-	it('cards render photo (decodable src, lazy, alt), title and price in the data order', () => {
+	it('cards render photo (decodable src, lazy, empty alt), title and price in the data order', () => {
 		const root = parse(render())
 		const cards = root.querySelectorAll('.sFavorites__card')
 		sFavoritesData.sFavorites.products.forEach((product, i) => {
@@ -54,7 +54,7 @@ describe('sFavorites block', () => {
 			const img = card.querySelector('.eb-product-card__img')
 			expect(img?.getAttribute('src')).toBe(product.image)
 			expect(img?.getAttribute('loading')).toBe('lazy')
-			expect(img?.getAttribute('alt')).toBeTruthy()
+			expect(img?.getAttribute('alt')).toBe('')
 			expect(card.querySelector('.eb-product-card__title')?.text.trim()).toBe(product.title)
 			expect(card.querySelector('.eb-product-card__price-current')?.text.trim()).toBe(product.price)
 		})

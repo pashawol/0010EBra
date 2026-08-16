@@ -27,6 +27,14 @@
 	--eb-light-blue-50: #{$eb-light-blue-50};
 	--eb-error-15: #{$eb-error-15};
 
+	--eb-cap-h: clamp(#{rem(90)}, 20.83vw, #{rem(400)});
+
+	--eb-tint-burgundy: #{$eb-tint-burgundy};
+	--eb-tint-blue: #{$eb-tint-blue};
+	--eb-tint-gold: #{$eb-tint-gold};
+	--eb-tint-gray: #{$eb-tint-gray};
+	--eb-scrim: #{$eb-scrim};
+
 	// Контекстные роли. Секция переключает тему одним классом (.eb-theme--dark),
 	// блоки внутри читают только роли — поэтому один и тот же блок
 	// корректно выглядит и на светлом, и на тёмном фоне.

@@ -57,7 +57,7 @@ describe('sBlog block', () => {
 			const img = article.querySelector('.eb-article-card__media img')
 			expect(img?.getAttribute('src')).toBeTruthy()
 			expect(img?.getAttribute('loading')).toBe('lazy')
-			expect(img?.getAttribute('alt')).toBeTruthy()
+			expect(img?.getAttribute('alt')).toBe('')
 		}
 	})
 

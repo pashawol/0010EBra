@@ -10,7 +10,7 @@ exports[`sProcess block > matches HTML snapshot 1`] = `
     </div>
     <div class="sProcess__steps">
       <div class="sProcess__step">
-        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-1-measure.webp" alt="Измерение" loading="lazy"/>
+        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-1-measure.webp" alt="" loading="lazy"/>
         </div>
         <div class="sProcess__step-content"><span class="sProcess__step-num">01</span>
           <div class="sProcess__step-ruler" aria-hidden="true">
@@ -18,7 +18,7 @@ exports[`sProcess block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="sProcess__step">
-        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-2-fitting.webp" alt="Примерка" loading="lazy"/>
+        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-2-fitting.webp" alt="" loading="lazy"/>
         </div>
         <div class="sProcess__step-content"><span class="sProcess__step-num">02</span>
           <div class="sProcess__step-ruler" aria-hidden="true">
@@ -26,7 +26,7 @@ exports[`sProcess block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="sProcess__step">
-        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-3-selection.webp" alt="Подбор" loading="lazy"/>
+        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-3-selection.webp" alt="" loading="lazy"/>
         </div>
         <div class="sProcess__step-content"><span class="sProcess__step-num">03</span>
           <div class="sProcess__step-ruler" aria-hidden="true">
@@ -34,7 +34,7 @@ exports[`sProcess block > matches HTML snapshot 1`] = `
         </div>
       </div>
       <div class="sProcess__step">
-        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-4-recommend.webp" alt="Рекомендации" loading="lazy"/>
+        <div class="sProcess__step-media"><img class="sProcess__step-img" src="img/sProcess/step-4-recommend.webp" alt="" loading="lazy"/>
         </div>
         <div class="sProcess__step-content"><span class="sProcess__step-num">04</span>
           <div class="sProcess__step-ruler" aria-hidden="true">

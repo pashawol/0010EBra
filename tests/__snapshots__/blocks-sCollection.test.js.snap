@@ -7,7 +7,7 @@ exports[`sCollection block > matches HTML snapshot 1`] = `
   <div class="sCollection__media">
     <div class="sCollection__slider sCollection__slider--js swiper" data-swiper-options="{&quot;slidesPerView&quot;:1,&quot;loop&quot;:true,&quot;navigation&quot;:true,&quot;pagination&quot;:true}">
       <div class="swiper-wrapper">
-        <div class="sCollection__slide swiper-slide"><img class="sCollection__photo" src="img/sCollection/lulu.webp" alt="Три модели в белье коллекции LULU Collection в тёмно-бордовом интерьере с растениями" fetchpriority="high"/>
+        <div class="sCollection__slide swiper-slide"><img class="sCollection__photo" src="img/sCollection/lulu.webp" alt="" fetchpriority="high"/>
           <div class="container sCollection__slide-overlay">
             <div class="sCollection__content">
               <div class="sCollection__top"><span class="sCollection__badge">New</span>
@@ -15,13 +15,13 @@ exports[`sCollection block > matches HTML snapshot 1`] = `
                   <h2>LULU<br>Collection</h2>
                 </div>
               </div>
-              <p class="sCollection__text">Коллекция, вдохновлённая янтарём: элегантная, женственная и комфортная, с изысканным дизайном и идеальной посадкой.
+              <p class="sCollection__text d-none d-sm-block">Коллекция, вдохновлённая янтарём: элегантная, женственная и комфортная, с изысканным дизайном и идеальной посадкой.
               </p>
               <a class="btn eb-btn eb-btn--secondary sCollection__cta" href="#"><span class="eb-btn__label">К коллекции</span>
               </a>
             </div>
             <div class="sCollection__hotspots">
-              <div class="eb-hotspot eb-hotspot--tr" style="top:58.2%;left:35.1%">
+              <div class="eb-hotspot eb-hotspot--tr" data-reveal="data-reveal" style="top:58.2%;left:35.1%">
                 <button class="eb-hotspot__dot" type="button" aria-label="LULU Soft full cup">
                 </button>
                 <a class="eb-hotspot__card" href="#">
@@ -32,7 +32,7 @@ exports[`sCollection block > matches HTML snapshot 1`] = `
                   </svg>
                 </a>
               </div>
-              <div class="eb-hotspot eb-hotspot--bl" style="top:39.1%;left:72.8%">
+              <div class="eb-hotspot eb-hotspot--bl" data-reveal="data-reveal" style="top:39.1%;left:72.8%">
                 <button class="eb-hotspot__dot" type="button" aria-label="LULU Briefs high waste">
                 </button>
                 <a class="eb-hotspot__card" href="#">
@@ -46,7 +46,7 @@ exports[`sCollection block > matches HTML snapshot 1`] = `
             </div>
           </div>
         </div>
-        <div class="sCollection__slide swiper-slide"><img class="sCollection__photo" src="img/sCollection/lizzy.webp" alt="Две модели в белье коллекции Lizzy Wizzy в тёмно-бордовом интерьере с растениями" loading="lazy"/>
+        <div class="sCollection__slide swiper-slide"><img class="sCollection__photo" src="img/sCollection/lizzy.webp" alt="" loading="lazy"/>
           <div class="container sCollection__slide-overlay">
             <div class="sCollection__content">
               <div class="sCollection__top"><span class="sCollection__badge">New</span>
@@ -54,13 +54,13 @@ exports[`sCollection block > matches HTML snapshot 1`] = `
                   <h2>Lizzy Wizzy</h2>
                 </div>
               </div>
-              <p class="sCollection__text">Коллекция, вдохновлённая янтарём: элегантная, женственная и комфортная, с изысканным дизайном и идеальной посадкой.
+              <p class="sCollection__text d-none d-sm-block">Коллекция, вдохновлённая янтарём: элегантная, женственная и комфортная, с изысканным дизайном и идеальной посадкой.
               </p>
               <a class="btn eb-btn eb-btn--secondary sCollection__cta" href="#"><span class="eb-btn__label">К коллекции</span>
               </a>
             </div>
             <div class="sCollection__hotspots">
-              <div class="eb-hotspot eb-hotspot--tr" style="top:60.4%;left:25.9%">
+              <div class="eb-hotspot eb-hotspot--tr" data-reveal="data-reveal" style="top:60.4%;left:25.9%">
                 <button class="eb-hotspot__dot" type="button" aria-label="Unlined demi Bra">
                 </button>
                 <a class="eb-hotspot__card" href="#">
@@ -71,7 +71,7 @@ exports[`sCollection block > matches HTML snapshot 1`] = `
                   </svg>
                 </a>
               </div>
-              <div class="eb-hotspot eb-hotspot--bl" style="top:34.9%;left:61.9%">
+              <div class="eb-hotspot eb-hotspot--bl" data-reveal="data-reveal" style="top:34.9%;left:61.9%">
                 <button class="eb-hotspot__dot" type="button" aria-label="Unlined demi Bra">
                 </button>
                 <a class="eb-hotspot__card" href="#">

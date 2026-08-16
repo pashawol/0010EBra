@@ -1,0 +1,155 @@
+// start .mobileMenu — десктопный попап (539:13 / 539:81 / 539:82).
+@include media-breakpoint-up(lg) {
+	.mobileMenu {
+		background-color: transparent;
+
+		&__backdrop {
+			z-index: 0;
+			background-color: var(--eb-scrim);
+			backdrop-filter: blur(rem(40));
+		}
+
+		&__panel {
+			position: absolute;
+			top: rem(20);
+			left: rem(20);
+			z-index: 1;
+			width: rem(770);
+			max-width: calc(100% - #{rem(40)});
+			height: calc(100% - #{rem(40)});
+			padding: rem(40);
+			border-radius: rem(24);
+			background-color: var(--eb-white);
+		}
+
+		&__screen--sub {
+			display: none !important;
+		}
+
+		&__head {
+			padding: 0;
+		}
+
+		&__head-title {
+			display: block;
+			color: var(--eb-text-muted);
+			font-size: var(--eb-body);
+			line-height: 1.4;
+		}
+
+		&__head-close {
+			width: var(--eb-control-size);
+			height: var(--eb-control-size);
+			font-size: rem(24);
+		}
+
+		&__head-icons {
+			display: none;
+		}
+
+		&__body {
+			display: flex;
+			flex-direction: column;
+			gap: rem(60);
+			margin-top: rem(60);
+			padding-inline: 0;
+		}
+
+		&__services {
+			margin-top: 0;
+		}
+
+		&__services-title {
+			font-size: var(--eb-subtitle-2);
+		}
+
+		&__services-track {
+			gap: rem(10);
+			margin-inline: 0;
+			padding-inline: 0;
+			overflow: visible;
+		}
+
+		&__service {
+			flex: 1 1 0;
+			height: rem(200);
+			border-radius: rem(18);
+		}
+
+		&__service-arrow {
+			width: var(--eb-control-size);
+			height: var(--eb-control-size);
+			border-radius: var(--eb-radius);
+		}
+
+		&__service-label {
+			font-size: var(--eb-body);
+		}
+
+		&__catalog,
+		&__divider {
+			display: none;
+		}
+
+		&__client {
+			display: flex;
+			gap: rem(10);
+			color: var(--eb-text);
+		}
+
+		&__client-title {
+			flex: 0 0 rem(340);
+			font-family: $font-family-display;
+			font-size: var(--eb-subtitle-2);
+			line-height: 1.1;
+		}
+
+		&__client-list {
+			display: flex;
+			flex: 0 0 rem(340);
+			flex-direction: column;
+			gap: rem(10);
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		&__client-link {
+			color: var(--eb-text);
+			font-size: var(--eb-body);
+			line-height: 1.4;
+			text-decoration: none;
+
+			&:hover {
+				color: var(--eb-text-faint);
+			}
+		}
+
+		&__links {
+			flex-direction: column;
+			gap: rem(20);
+			margin-top: auto;
+			padding-bottom: 0;
+		}
+
+		&__links-col {
+			display: contents;
+		}
+
+		&__link {
+			color: var(--eb-text);
+			font-family: $font-family-display;
+			font-size: var(--eb-subtitle-2);
+			line-height: 1.1;
+
+			&:hover {
+				color: var(--eb-text-faint);
+			}
+
+			&.--client {
+				display: none;
+			}
+		}
+	}
+}
+// end .mobileMenu (десктоп)

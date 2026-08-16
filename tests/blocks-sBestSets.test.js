@@ -77,13 +77,13 @@ describe('sBestSets block', () => {
 		}
 	})
 
-	it('cards render photo (decodable src, lazy, alt), title and price', () => {
+	it('cards render photo (decodable src, lazy, empty alt), title and price', () => {
 		const root = parse(render())
 		const card = root.querySelector('.sBestSets__card')
 		const img = card.querySelector('.eb-product-card__img')
 		expect(img?.getAttribute('src')).toBeTruthy()
 		expect(img?.getAttribute('loading')).toBe('lazy')
-		expect(img?.getAttribute('alt')).toBeTruthy()
+		expect(img?.getAttribute('alt')).toBe('')
 		expect(card.querySelector('.eb-product-card__title')?.text.trim()).toBeTruthy()
 		expect(card.querySelector('.eb-product-card__price-current')?.text.trim()).toBeTruthy()
 	})

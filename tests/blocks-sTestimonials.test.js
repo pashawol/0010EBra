@@ -49,7 +49,7 @@ describe('sTestimonials block', () => {
 		const poster = root.querySelector('.sTestimonials__poster')
 		expect(poster).toBeTruthy()
 		expect(poster.getAttribute('loading')).toBe('lazy')
-		expect(poster.getAttribute('alt')).toBeTruthy()
+		expect(poster.getAttribute('alt')).toBe('')
 	})
 
 	it('every card is a Fancybox trigger pointing to the shared inline popup (not the "sReels"/"modal" groups)', () => {

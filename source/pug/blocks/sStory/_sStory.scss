@@ -1,34 +1,15 @@
 // start .sStory — node 218:361 (desktop), 710:2046 (mobile, в 692:1129)
-// Светлая тема (роли --eb-* дефолтные). Внешний Swiper листает ИСТОРИИ,
-// внутри каждого слайда — независимый drag-компаратор (story-compare.js).
 .sStory {
 	&__slide {
 		height: auto;
 	}
 
-	// Мобильный порядок (710:2046): бейдж/год → компаратор → имя → инфо →
-	// результат → пагинация. Flat-порядок в DOM специально совпадает с этим —
-	// на десктопе те же элементы просто раскладываются в CSS Grid (ниже),
-	// без необходимости дублировать разметку под каждый брейкпоинт.
 	&__grid {
 		display: flex;
 		flex-direction: column;
 		gap: rem(30 * 0.5);
 	}
 
-	// -------------------------------------------------------------------
-	// Компаратор до/после. Геометрия фиксированная, не % от секции — обе
-	// фотографии обязаны делить один и тот же бокс (грабля §3.1: object-fit:
-	// cover на разных фото без общей рамки рвёт совпадение "до"/"после").
-	//
-	// Классический приём padding-bottom, а не `aspect-ratio`: на практике
-	// высота, выведенная через `aspect-ratio`, не считается "явной" для
-	// растяжения абсолютно спозиционированных потомков (`.sStory__handle`
-	// с `top:0; height:100%`) на первом layout-проходе — ручка схлопывается
-	// в высоту своей кнопки (56px) вместо полной высоты бокса. Замер
-	// Playwright'ом это подтвердил численно (см. отчёт). padding-bottom
-	// даёт высоту, вычисленную из ширины ещё на первом проходе — без этой
-	// двусмысленности.
 	&__compare {
 		--split: 30%;
 
@@ -55,8 +36,6 @@
 			object-position: bottom;
 		}
 
-		// "После" рисуется поверх "До" и обрезается по границе ручки —
-		// именно clip-path двигает JS, а не ширину/позицию картинки.
 		&--after {
 			z-index: 1;
 			clip-path: inset(0 0 0 var(--split));
@@ -86,9 +65,6 @@
 		position: absolute;
 		z-index: 3;
 		top: 0;
-		// top+bottom:0 без явной height не растягивает translate-элемент
-		// стабильно во всех браузерах — задаём height:100% явно, а не
-		// полагаемся на растяжение по краям.
 		height: 100%;
 		left: var(--split);
 		width: rem(56);
@@ -108,38 +84,46 @@
 	&__handle-btn {
 		@include a-cent1(y);
 
+		position: absolute;
 		left: 50%;
 		translate: -50% -50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		// 56×56 — мобильное значение (710:2072), десктоп крупнее (218:361:
-		// 100×100) — см. override в lg+ ниже, а не общий размер на все ширины.
 		width: rem(56);
 		height: rem(56);
 		border: 0;
 		border-radius: 50%;
-		background-color: var(--eb-surface);
-		backdrop-filter: blur(var(--eb-blur));
-		color: var(--eb-text);
+		background-color: var(--eb-white-35);
+		color: var(--eb-ink);
 		cursor: ew-resize;
 		touch-action: none;
 
-		&:hover,
-		&:focus-visible {
-			background-color: var(--eb-surface-hover);
+		&::before {
+			content: "";
+			position: absolute;
+			z-index: 0;
+			inset: 10%;
+			border-radius: 50%;
+			background-color: var(--eb-white);
+			transition: background-color 0.25s ease;
+		}
+
+		.icon {
+			position: relative;
+			z-index: 1;
+		}
+
+		&:hover::before,
+		&:focus-visible::before {
+			background-color: var(--eb-light-blue);
 		}
 	}
 
 	&__handle-icon {
-		// 20px — мобильное значение (710:2075), десктоп крупнее (32px, см.
-		// override в lg+ ниже).
 		font-size: rem(20);
 	}
 
-	// -------------------------------------------------------------------
-	// Карточка истории
-	// -------------------------------------------------------------------
 	&__card {
 		display: flex;
 		flex-direction: column;
@@ -255,9 +239,6 @@
 		line-height: 1.4;
 	}
 
-	// Пагинация/стрелки лежат ОДИН раз вне .swiper-wrapper (см. пометку в
-	// _sStory.pug) — уже не ребёнок .sStory__grid, значит не элемент
-	// grid-areas карточки. На мобиле — просто следующий блок под слайдером.
 	&__nav {
 		margin-top: rem(15);
 	}
@@ -298,9 +279,6 @@
 			align-self: start;
 		}
 
-		// Ширина = правая колонка грида (rem(320), xl — rem(440)), прижато
-		// к правому краю — зрительно остаётся «под карточкой», как раньше
-		// в grid-area, но теперь снаружи .swiper-wrapper (см. выше).
 		&__nav {
 			width: rem(320);
 			@include media-breakpoint-up(lg) {
@@ -314,8 +292,6 @@
 			display: contents;
 		}
 
-		// 218:361 (desktop): ручка drag-compare крупнее мобильной — круг
-		// 100×100 (было 56 на всех ширинах), иконка 32px (было 20).
 		&__handle-btn {
 			width: rem(100);
 			height: rem(100);
@@ -326,8 +302,6 @@
 		}
 	}
 
-	// Значения макета (1790 контента при 1920 внешней ширины) — только на
-	// его ширине, как в остальных блоках (см. _root.scss).
 	@include media-breakpoint-up(xl) {
 		&__grid {
 			grid-template-columns: minmax(0, 1fr) rem(440);
@@ -338,4 +312,4 @@
 			width: rem(440);
 		}
 	}
-} // end .sStory
+}

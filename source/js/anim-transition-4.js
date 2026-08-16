@@ -26,17 +26,18 @@
  * стартовое состояние ставится из JS (без анимации — контент в разметке
  * виден полностью).
  */
-;(() => {
-	const PREFERS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)')
+(() => {
+	const PREFERS_REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-	if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return
-	gsap.registerPlugin(ScrollTrigger)
+	if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined")
+		return;
+	gsap.registerPlugin(ScrollTrigger);
 
-	const quizSection = document.getElementById('sQuiz')
-	const promoSection = document.getElementById('sPromo')
+	const quizSection = document.getElementById("sQuiz");
+	const promoSection = document.getElementById("sPromo");
 	// Ни одна из двух секций не отрендерена (например, dev-стенд отдельного
 	// блока) — сцене нечего анимировать, оставляем контент как есть.
-	if (!quizSection && !promoSection) return
+	if (!quizSection && !promoSection) return;
 
 	/**
 	 * Панель-аутро квиза («4 вопроса» + «Подобрать с ИИ») слегка гаснет по
@@ -45,96 +46,97 @@
 	 * никогда не прячет контент насовсем (autoAlpha не опускается ниже 0.35).
 	 */
 	function quizOutro() {
-		if (!quizSection) return
-		const panel = quizSection.querySelector('.sQuiz__panel')
-		if (!panel) return
+		if (!quizSection) return;
+		const panel = quizSection.querySelector(".sQuiz__panel");
+		if (!panel) return;
 
 		gsap.fromTo(
 			panel,
-			{ autoAlpha: 1, y: 0 },
+			{autoAlpha: 1, y: 0},
 			{
 				autoAlpha: 0.35,
 				y: -28,
-				ease: 'none',
+				ease: "none",
 				scrollTrigger: {
 					trigger: quizSection,
-					start: 'bottom 78%',
-					end: 'bottom 15%',
+					start: "bottom 78%",
+					end: "bottom 15%",
 					scrub: 0.4,
 				},
-			},
-		)
+			}
+		);
 	}
 
-	/**
-	 * Карточки sPromo появляются по одной: сначала верхняя full-width
-	 * («week»), затем — с небольшим сдвигом по времени — две нижние
-	 * («gift», «outlet»), как в порядке чтения раскадровки (шаги 3→4).
-	 */
 	function promoStagger() {
 		if (!promoSection) return
-		const cards = [
-			...promoSection.querySelectorAll('.sPromo__row--top .sPromo__card'),
-			...promoSection.querySelectorAll('.sPromo__row--bottom .sPromo__card'),
-		]
-		if (!cards.length) return
 
-		gsap.fromTo(
-			cards,
-			{ autoAlpha: 0, y: 56 },
-			{
-				autoAlpha: 1,
-				y: 0,
-				duration: 0.9,
-				ease: 'power2.out',
-				stagger: 0.18,
-				scrollTrigger: {
-					trigger: promoSection,
-					start: 'top 82%',
-					once: true,
+		const rows = [
+			promoSection.querySelector('.sPromo__row--top'),
+			promoSection.querySelector('.sPromo__row--bottom'),
+		].filter(Boolean)
+
+		for (const row of rows) {
+			const cards = row.querySelectorAll('.sPromo__card')
+			if (!cards.length) continue
+
+			gsap.fromTo(
+				cards,
+				{ y: 120 },
+				{
+					y: 0,
+					duration: 0.4,
+					ease: 'none',
+					stagger: 0.35,
+					scrollTrigger: {
+						trigger: row,
+						start: 'top bottom',
+						end: 'top top',
+						scrub: true,
+					},
 				},
-			},
-		)
+			)
+		}
 	}
 
 	function initScene() {
-		if (PREFERS_REDUCED.matches) return
+		if (PREFERS_REDUCED.matches) return;
 
-		const mm = gsap.matchMedia()
+		const mm = gsap.matchMedia();
 
 		// Мобильные: только появление карточек, без scrub-затухания панели —
 		// scrub-сцены на слабых устройствах дают рваный скролл (правило
 		// anim.js/PLAN §6), да и панель квиза на мобилке и так короткая.
-		mm.add('(max-width: 991px)', () => {
+		mm.add("(max-width: 991px)", () => {
 			const ctx = gsap.context(() => {
-				promoStagger()
-			})
-			return () => ctx.revert()
-		})
+				promoStagger();
+			});
+			return () => ctx.revert();
+		});
 
-		mm.add('(min-width: 992px)', () => {
+		mm.add("(min-width: 992px)", () => {
 			const ctx = gsap.context(() => {
-				quizOutro()
-				promoStagger()
-			})
-			return () => ctx.revert()
-		})
+				quizOutro();
+				promoStagger();
+			});
+			return () => ctx.revert();
+		});
 	}
 
 	// Смена prefers-reduced-motion на живой странице — пересоздаём сцену.
 	// Общий ScrollTrigger.refresh() после загрузки шрифтов/картинок делает
 	// anim.js (правило §6 плана), здесь достаточно не мешать этому вызову.
-	PREFERS_REDUCED.addEventListener('change', () => {
+	PREFERS_REDUCED.addEventListener("change", () => {
 		for (const st of ScrollTrigger.getAll()) {
-			if (st.vars.trigger === quizSection || st.vars.trigger === promoSection) st.kill()
+			if (st.vars.trigger === quizSection || st.vars.trigger === promoSection)
+				st.kill();
 		}
-		initScene()
-		ScrollTrigger.refresh()
-	})
+		initScene();
+		ScrollTrigger.refresh();
+	});
 
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initScene)
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", initScene);
 	} else {
-		initScene()
+		initScene();
 	}
-})()
+})();

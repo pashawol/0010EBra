@@ -14,8 +14,6 @@
 		margin-inline: auto;
 	}
 
-	// «Брафиттинг +» — тот же шрифт заголовков, но мелким кеглем: в макете это
-	// продолжение фразы, а не подпись, поэтому Vetrino, а не Inter.
 	&__eyebrow {
 		margin-bottom: 0;
 		font-family: $font-family-display;
@@ -37,8 +35,8 @@
 	}
 
 	@include media-breakpoint-up(lg) {
-		--sPT: #{rem(60)};
-		--sPB: #{rem(60)};
+		--sPT: #{rem(200)};
+		--sPB: #{rem(80)};
 
 		&__title {
 			margin-bottom: rem(32);

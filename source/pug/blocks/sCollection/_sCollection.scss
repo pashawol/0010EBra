@@ -1,25 +1,26 @@
-// start .sCollection — node 385:1497 (desktop 1920×1080, full-bleed), 726:478
-// (mobile). Тёмная бордовая тема (.eb-theme--dark). Full-bleed слайдер, где
-// заголовок/текст/CTA/хотспоты живут ВНУТРИ каждого слайда (в отличие от
-// sExpertise, где заголовок общий для всех слайдов) — см. комментарий в pug.
+// start .sCollection — node 385:1497 (desktop 1920×1080, full-bleed), 726:478 (mobile)
 .sCollection {
 	--sPT: 0;
 	--sPB: 0;
 
 	position: relative;
+	margin-inline: auto;
+	max-width: 1920px;
 	color: var(--eb-text);
 
-	// Full-bleed. Сброс ОБЯЗАТЕЛЬНО парный (грабля §3.1): секция — прямой
-	// потомок <main> (как sHero/sExpertise), не вложена в узкий .container,
-	// поэтому eb-bleed-reset() численно не нужен — на этом уровне вложенности
-	// eb-bleed() уже не сдвигает блок. Оставлен как защита на случай, если
-	// секцию когда-нибудь обернут в контейнер.
-	&__media {
-		@include eb-bleed();
+	@include media-breakpoint-up(lg) {
+		--sPT: 0;
+		--sPB: 0;
+	}
 
+	&__media {
 		position: relative;
 		aspect-ratio: 375 / 620;
 		overflow: hidden;
+
+		@include media-breakpoint-up(lg) {
+			aspect-ratio: 1920 / 1080;
+		}
 	}
 
 	&__slider,
@@ -29,7 +30,6 @@
 		height: 100%;
 	}
 
-	// Слайду — только flex-shrink, ширину/высоту считает Swiper (грабля §3.1).
 	.swiper-slide {
 		position: relative;
 		flex-shrink: 0;
@@ -47,8 +47,6 @@
 		object-fit: cover;
 	}
 
-	// Контент слайда (бейдж/заголовок/текст/CTA/хотспоты) — поверх фото,
-	// СВОЙ для каждого слайда, едет вместе с ним.
 	&__slide-overlay.container {
 		position: absolute;
 		inset: 0;
@@ -58,9 +56,11 @@
 		justify-content: flex-start;
 		height: 100%;
 		padding-block: rem(24);
-		// Пропускаем клики сквозь пустые зоны контейнера — интерактив включаем
-		// точечно на кнопке и хотспотах.
 		pointer-events: none;
+
+		@include media-breakpoint-up(lg) {
+			padding-block: rem(65);
+		}
 	}
 
 	&__content {
@@ -96,6 +96,10 @@
 		font-family: $font-family-display;
 		font-size: var(--eb-h2);
 		line-height: 1;
+
+		@include media-breakpoint-up(lg) {
+			font-size: var(--eb-h2);
+		}
 	}
 
 	&__text {
@@ -109,20 +113,17 @@
 		pointer-events: auto;
 	}
 
-	// Хотспоты только с lg — на мобильной ноде (726:478) их нет вовсе,
-	// решение макета, не пропуск (см. docs/coordination/sCollection.md).
 	&__hotspots {
 		display: none;
+
+		@include media-breakpoint-up(lg) {
+			display: block;
+		}
 	}
 
-	// Персистентный оверлей (не меняется между слайдами): подпись
-	// «Новые поступления» + пагинация/стрелки.
 	&__overlay {
 		position: absolute;
 		inset: 0;
-		// Swiper даёт своему корню `.swiper` z-index:1 в базовом CSS
-		// библиотеки — сосед с z-index:auto проигрывает стек, оверлей уезжает
-		// под фото (грабля §3.1 / найдено в sExpertise, см. её coordination.md).
 		z-index: 2;
 		height: 100%;
 		pointer-events: none;
@@ -136,44 +137,21 @@
 		justify-content: flex-end;
 		height: 100%;
 		padding-block: rem(24);
+
+		@include media-breakpoint-up(lg) {
+			padding-block: rem(65);
+		}
 	}
 
 	&__label {
 		display: none;
 		margin: 0;
-	}
 
-	&__nav {
-		width: 100%;
-		pointer-events: auto;
-	}
-
-	@include media-breakpoint-up(lg) {
-		--sPT: 0;
-		--sPB: 0;
-
-		&__media {
-			aspect-ratio: 1920 / 1080;
-		}
-
-		&__slide-overlay.container,
-		&__overlay-inner.container {
-			padding-block: rem(65);
-		}
-
-		&__title {
-			font-size: var(--eb-h2);
-		}
-
-		&__hotspots {
-			display: block;
-		}
-
-		&__label {
+		@include media-breakpoint-up(lg) {
 			display: block;
 			position: absolute;
-			top: 0;
-			right: 0;
+			top: rem(65);
+			right: var(--eb-gutter);
 			max-width: rem(300);
 			font-family: $font-family-display;
 			font-size: var(--eb-h4);
@@ -181,30 +159,21 @@
 			text-align: right;
 			pointer-events: none;
 		}
+	}
 
-		&__nav {
+	&__nav {
+		width: 100%;
+		pointer-events: auto;
+
+		@include media-breakpoint-up(lg) {
 			position: absolute;
-			right: 0;
-			bottom: 0;
-			left: auto;
-			// Слайдер-нав в этом инстансе — только пагинация+стрелки без общей
-			// ширины (пагинация слева на фото, стрелки справа) — атом
-			// +ebSliderNav по умолчанию flex space-between на 100% ширины,
-			// здесь оставляем как есть (совпадает визуально: буллеты у левого
-			// края контейнера, стрелки у правого — тот же контейнер).
-			width: 100%;
+			right: var(--eb-gutter);
+			bottom: rem(65);
+			left: var(--eb-gutter);
+			width: calc(100% - #{var(--eb-gutter)} * 2);
 		}
 	}
 
-	// -------------------------------------------------------------------
-	// Локальное расширение атома +ebHotspot (eb-ui.scss): своя миниатюра
-	// товара + позиционирование "точка на углу карточки" вместо базового
-	// "карточка сбоку от точки" — так в этом инстансе макета (395:1546,
-	// 395:1560, 634:2127, 634:2141: точка сидит на верхнем/нижнем углу
-	// карточки, а не отдельно сбоку). Стили СКОУПНЫ под .sCollection,
-	// eb-ui.scss не тронут. Заявка на параметризацию атома —
-	// docs/coordination/sCollection.md.
-	// -------------------------------------------------------------------
 	.eb-hotspot {
 		position: absolute;
 		z-index: 3;
@@ -220,7 +189,6 @@
 		position: relative;
 		top: auto;
 		left: auto;
-		max-width: rem(280);
 		transform: none;
 	}
 
@@ -240,14 +208,18 @@
 		}
 	}
 
-	// Точка на верхне-правом углу карточки
+	.eb-hotspot--bl {
+		.eb-hotspot__card {
+			top: rem(40);
+		}
+	}
+
 	.eb-hotspot--tr .eb-hotspot__dot {
 		top: 0;
 		left: 100%;
 		transform: translate(-50%, -50%);
 	}
 
-	// Точка на нижне-левом углу карточки
 	.eb-hotspot--bl .eb-hotspot__dot {
 		top: 100%;
 		left: 0;

@@ -1,15 +1,3 @@
-//- Section «Лучшие наборы белья» — node 384:633 (desktop), 692:1129 → 726:377
-//- (mobile). Заголовок + ряд табов-фильтров + 4 карточки товара.
-//-
-//- Карточка — общий +ebProductCard (source/pug/blocks/mixin-wrap/components/
-//- docs/coordination/products.md. Пока подключаем файл напрямую здесь.
-//- Второй потребитель того же компонента — sFavorites (428:10).
-//-
-//- Табы — стандартный WAI-ARIA tabs pattern: все 5 панелей (наборов карточек)
-//- лежат в DOM сразу (данные для них есть в source/pug/data/sBestSets.json),
-//- неактивные скрыты нативным `hidden` — это не «есть в DOM, не видно на
-//- скриншоте» (баг), а штатное поведение табов: `hidden` убирает панель и из
-//- accessibility-дерева тоже. Переключение (клик и клавиатура) — js/best-sets.js.
 
 mixin sBestSets(data)
 	- data = data || sBestSets

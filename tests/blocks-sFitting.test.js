@@ -89,7 +89,7 @@ describe('sFitting block', () => {
 		expect(html).not.toMatch(/<img[^>]+arrow/i)
 	})
 
-	it('renders the responsive photo with mobile src + desktop <source>, decodable + lazy + alt', () => {
+	it('renders the responsive photo with mobile src + desktop <source>, decodable + lazy + empty alt', () => {
 		const root = parse(render())
 		const picture = root.querySelector('.sFitting__photo-wrap picture')
 		expect(picture).toBeTruthy()
@@ -99,7 +99,7 @@ describe('sFitting block', () => {
 		const img = picture.querySelector('img.sFitting__photo')
 		expect(img?.getAttribute('src')).toBe(sFittingData.sFitting.photo.mobile)
 		expect(img?.getAttribute('loading')).toBe('lazy')
-		expect(img?.getAttribute('alt')).toBeTruthy()
+		expect(img?.getAttribute('alt')).toBe('')
 	})
 
 	it('renders the desktop-only mini info (Цвет/Размер) and the fact block exactly once each', () => {

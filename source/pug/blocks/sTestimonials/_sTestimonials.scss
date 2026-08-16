@@ -1,37 +1,14 @@
 // start .sTestimonials — node 495:336 (desktop), 739:766 (mobile, часть
-// 692:1129). Заголовок по центру → плейсхолдер стороннего модуля отзывов →
-// подпись «Видео отзывы» → слайдер вертикальных видео-карточек full-bleed
-// справа за край экрана.
 .sTestimonials {
 	--card-w: clamp(#{rem(220)}, 78vw, #{rem(295)});
-	// Пропорция карточки МЕНЯЕТСЯ по брейкпоинтам (не просто масштаб) — на
-	// мобилке 295×400 (0.7375), на десктопе 438×660 (0.6636), см. метаданные
-	// 739:766 и 495:336.
 	--card-ratio: 295 / 400;
 	--card-radius: #{rem(20)};
 
 	position: relative;
-	overflow: hidden; // сама секция не должна открывать горизонтальный скролл страницы
+	overflow: hidden;
 	background-color: var(--eb-light-blue-50);
 
 	&__title {
-		text-align: center;
-	}
-
-	// Плейсхолдер стороннего модуля отзывов — рамка-заготовка под встройку,
-	// НЕ свой модуль (см. PLAN §9 «Сторонний модуль с отзывами»). Пропорция
-	// из макета: мобилка 345×320 (почти квадрат), десктоп 1790×460 (широкий
-	// баннер) — это не масштаб одной и той же пропорции, дизайнер поменял её
-	// по брейкпоинту, поэтому aspect-ratio переключается явно, а не клампится.
-	&__placeholder {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-top: rem(32);
-		padding: rem(24);
-		aspect-ratio: 345 / 320;
-		border-radius: rem(24);
-		background-color: var(--eb-white);
 		text-align: center;
 	}
 
@@ -55,23 +32,17 @@
 	&__track {
 		position: relative;
 		margin-top: rem(24);
-		// Формально навешан (грабля §3.1) — секция уже прямой ребёнок <main>
-		// (полная ширина вьюпорта), эффект нулевой, но это защита на случай
-		// будущей вложенности, тот же приём, что в sReels/sExpertise.
 		@include eb-bleed();
 	}
 
 	&__slider {
-		// Дорожка скроллится ДО правого края экрана: паддинг слева повторяет
-		// боковой отступ контейнера, паддинга справа нет — последний слайд
-		// обрезается ровно по краю вьюпорта (Swiper сам это кропает).
 		padding-left: var(--eb-gutter);
 		padding-block: 0 rem(32);
 	}
 
 	&__slide {
 		position: relative;
-		flex-shrink: 0; // ширину даёт --card-w, а не flex-basis (грабля §3.1)
+		flex-shrink: 0;
 		width: var(--card-w);
 	}
 
@@ -102,12 +73,24 @@
 		position: absolute;
 		inset: 0;
 		z-index: 1;
-		background: linear-gradient(to bottom, rgba(44, 43, 43, 0) 50%, rgba(44, 43, 43, 0.5) 100%);
+		background: linear-gradient(
+			to bottom,
+			rgba(44, 43, 43, 0) 50%,
+			rgba(44, 43, 43, 0.5) 100%
+		);
+		backdrop-filter: blur(var(--eb-blur));
+		-webkit-mask-image: linear-gradient(
+			to bottom,
+			transparent 50%,
+			black 100%
+		);
+		mask-image: linear-gradient(
+			to bottom,
+			transparent 50%,
+			black 100%
+		);
 	}
 
-	// Swiper даёт своему корню z-index:1 в базовом css библиотеки — контент
-	// карточки поверх постера требует явного z-index (грабля §3.1/§6, "есть в
-	// DOM, но не видно на скриншоте").
 	&__play-icon,
 	&__card-text {
 		position: relative;
@@ -154,12 +137,6 @@
 		margin-top: rem(32);
 	}
 
-	@include media-breakpoint-up(md) {
-		&__placeholder {
-			margin-top: rem(40);
-		}
-	}
-
 	@include media-breakpoint-up(lg) {
 		--card-w: #{rem(360)};
 		--card-ratio: 438 / 660;
@@ -182,11 +159,6 @@
 	@include media-breakpoint-up(xl) {
 		--card-w: #{rem(438)};
 
-		&__placeholder {
-			aspect-ratio: 1790 / 460;
-			padding: rem(52) rem(24);
-		}
-
 		&__card {
 			padding: rem(20);
 		}
@@ -207,14 +179,8 @@
 			font-size: rem(18);
 		}
 	}
-} // end .sTestimonials
+}
 
-// ---------------------------------------------------------------------------
-// Попап видео-отзывов — node 682:238. Инлайн-контент для Fancybox 6, профиль
-// "video" (JSCCommon.js). Своя тема — тёмный полупрозрачный фон поверх
-// стандартного --fancybox-bg (см. _root.scss), т.к. --fancybox-container уже
-// затемняет страницу — здесь верстаем только внутренности диалога.
-// ---------------------------------------------------------------------------
 .sTestimonials-popup {
 	--card-w: #{rem(240)};
 	--card-ratio: 295 / 400;
@@ -226,11 +192,6 @@
 	gap: rem(24);
 	width: min(94vw, #{rem(1200)});
 	padding: rem(20);
-	// Fancybox 6 даёт inline-слайду белый фон по умолчанию (.f-html) — без
-	// собственного тёмного фона белый текст (--eb-white) становится невидимым
-	// поверх него (поймано только скриншотом: DOM/computed-style были в
-	// порядке — тот же класс бага, что z-index Swiper в §3.1/§6, просто через
-	// цвет, а не стек).
 	background-color: var(--eb-ink);
 	color: var(--eb-white);
 
@@ -264,17 +225,13 @@
 	&__track {
 		position: relative;
 
-		// Слайды разной высоты (featured 520×940 против превью 438×660) center
-		// на одной оси, как в макете (682:238: боковые карточки top:210/h:660,
-		// центр top:50%±470 — общий центр 540 у всех) — без явного center
-		// Swiper растянул бы короткие карточки по высоте самой длинной.
 		.swiper-wrapper {
 			align-items: center;
 		}
 	}
 
 	&__slide {
-		flex-shrink: 0; // грабля §3.1: только flex-shrink, не width/flex-basis на .swiper-slide
+		flex-shrink: 0;
 		width: var(--card-w);
 
 		&--featured {
@@ -304,8 +261,6 @@
 		border-radius: rem(20);
 	}
 
-	// Featured-карточка (682:397) — другая пропорция (520×940), не просто
-	// увеличенная копия превью-карточки.
 	&__slide--featured &__card {
 		aspect-ratio: 520 / 940;
 	}
@@ -319,7 +274,22 @@
 		position: absolute;
 		inset: 0;
 		z-index: 1;
-		background: linear-gradient(to bottom, rgba(44, 43, 43, 0) 50%, rgba(44, 43, 43, 0.5) 100%);
+		background: linear-gradient(
+			to bottom,
+			rgba(44, 43, 43, 0) 50%,
+			rgba(44, 43, 43, 0.5) 100%
+		);
+		backdrop-filter: blur(var(--eb-blur));
+		-webkit-mask-image: linear-gradient(
+			to bottom,
+			transparent 50%,
+			black 100%
+		);
+		mask-image: linear-gradient(
+			to bottom,
+			transparent 50%,
+			black 100%
+		);
 	}
 
 	&__play-icon,
@@ -379,27 +349,12 @@
 	}
 }
 
-// Штатный Toolbar Fancybox 6 (fullscreen/thumbs/close) и его отдельная
-// generic-кнопка закрытия (.is-close-button, рендерится Fancybox ДАЖЕ когда
-// Toolbar скрыт CSS — see: closeButton:'auto' проверяет isEnabled() плагина,
-// а не видимость DOM, поэтому прятать нужно оба узла отдельно) не нужны —
-// в макете собственный заголовок с крестиком (.sTestimonials-popup__head),
-// дублировать его набором дефолтных кнопок библиотеки не нужно (см.
-// docs/coordination/sTestimonials.md, там же — находка про двойную кнопку
-// закрытия, поймана только Tab-обходом, не скриншотом). Скоуп через :has() —
-// не глобальный сброс Fancybox, а точечное исключение только для контейнера,
-// в котором открыт именно этот попап (PLAN §3.1 разрешает :has(), браузерный
-// бюджет — Safari iOS 15.4+).
 .fancybox__container:has(.sTestimonials-popup) {
 	.f-carousel__toolbar,
 	.is-close-button {
 		display: none;
 	}
 
-	// .f-html (прямой обёртчик inline-контента) несёт белый фон по умолчанию —
-	// без переопределения вокруг тёмного .sTestimonials-popup виден белый
-	// кант (поймано скриншотом, не computed-style: у .sTestimonials-popup
-	// свой фон был корректным, лишний белый принадлежал родителю снаружи).
 	.f-html {
 		background-color: var(--eb-ink);
 	}

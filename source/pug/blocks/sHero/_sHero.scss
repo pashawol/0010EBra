@@ -1,15 +1,10 @@
 // start .sHero — node 161:134 (desktop 1920×1080). Мобильного кадра в макете
-// нет (692:1129 начинается сразу с «Кому помогает», 777:28 — пустой дубль
-// хедера) — адаптация ниже описана в docs/coordination/sHero.md.
-//
-// Секция уже верхнеуровневая (не внутри .container) — full-bleed для слайдера
-// не нужен, eb-bleed()/eb-bleed-reset() тут не при чём (грабля §3.1 проверена,
-// не применима к этой структуре).
 .sHero {
 	--sPT: 0;
 	--sPB: 0;
 
 	position: relative;
+	z-index: 0;
 	overflow: hidden;
 	background-color: var(--eb-burgundy);
 
@@ -33,18 +28,27 @@
 		}
 	}
 
-	// Слайду — только flex-shrink, ширину/высоту считает Swiper.
 	.swiper-slide {
 		position: relative;
 		flex-shrink: 0;
 		height: 100%;
 	}
 
-	// Статичный вариант (один слайд, см. _sHero.pug: multi === false) — та же
-	// позиция, без Swiper и .swiper-wrapper вокруг.
 	&__slide {
 		position: relative;
 		height: 100%;
+		@include media-breakpoint-down(lg) {
+			&::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					180deg,
+					rgba(90, 13, 48, 0.15) 50%,
+					rgba(90, 13, 48, 0.75) 100%
+				);
+			}
+		}
 	}
 
 	&__img {
@@ -55,8 +59,6 @@
 		object-fit: cover;
 	}
 
-	// Лёгкая затемняющая подложка снизу — читаемость текста на светлых
-	// участках фото. Токены, не литеральный цвет.
 	&__scrim {
 		position: absolute;
 		inset: 0;
@@ -76,13 +78,6 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: rem(24);
-		// БЕЗ max-width здесь: он дублировал &__text { max-width: rem(403) }
-		// (ниже, своя настройка параграфа) и заодно капал ВСЕХ детей, включая
-		// &__buttons — та выше уже сбрасывает max-width на себе, но раз сам
-		// &__content (родитель) был зажат в 420px, дочерний max-width:none
-		// это не перебивал: кнопки не могут быть шире контейнера, который их
-		// содержит. Замерено: buttonsW стопорился на 420px с viewport 480px,
-		// хотя реальный контейнер (viewport − 2×gutter) уже был 448–543px.
 		max-width: 100%;
 	}
 
@@ -92,15 +87,13 @@
 		font-family: $font-family-display;
 		font-size: var(--eb-h1);
 		line-height: 1;
+		width: 100%;
 	}
 
 	&__title-main {
 		display: block;
 	}
 
-	// «навсегда» — визуально унесено в другую точку композиции (см. брейкпоинт
-	// xl), но семантика фразы уже прочитана скринридером через .visually-hidden
-	// в &__title — здесь чистая декорация.
 	&__decor {
 		display: block;
 		margin-top: rem(16);
@@ -119,36 +112,16 @@
 		line-height: 1.4;
 	}
 
-	// Мобилка (683:1036, <576) — кнопки в столбец на всю ширину; sm+ — уже в
-	// строку (по просьбе Pavel, отдельного макета для 576–1199 нет); xl+
-	// (161:134) — точная десктопная композиция. .eb-btn — общий компонент
-	// (много блоков), растягиваем только здесь через дочерний селектор, не
-	// трогая сам класс.
 	&__buttons {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
-		// Без этого — мёртвый код: у &__content (родителя) align-items:
-		// flex-start, поэтому сам &__buttons сжимался по контенту (227px) и
-		// НЕ доходил до границ колонки — .eb-btn { width:100% } растягивал
-		// кнопку на 100% от этих же 227px, а не от реальной ширины контента.
-		// Замерено: buttonsW оставался 227.7px на всех вьюпортах 320–991,
-		// хотя contentW рос до 420px.
 		align-self: stretch;
-		// &__content зажат в rem(420) — это ширина ПАРАГРАФА (403px в макете),
-		// кнопки в макете к ней не привязаны. Без сброса buttonsW упирался в
-		// 420 уже с 480px viewport, хотя реальный контейнер (viewport −
-		// 2×gutter) на 500/550/575px шире — кнопки переставали доходить до
-		// края. Замерено: buttonsW==420 на 480–575, containerInnerW-32 —
-		// 448–543.
 		max-width: none;
 		gap: rem(5);
 
 		.eb-btn {
 			width: 100%;
-			// Мобилка (683:1036): 44px/radius 12 — меньше десктопного
-			// %eb-control (52px/14, см. xl+ ниже). Только здесь, не в
-			// общем .eb-btn — там 52px верный дефолт для всех остальных мест.
 			min-height: rem(44);
 			border-radius: rem(12);
 		}
@@ -173,36 +146,31 @@
 		margin-top: rem(8);
 	}
 
-	// Точная композиция макета (1920×1080) — только на его ширине и выше,
-	// иначе абсолютные координаты начинают спорить с более узким вьюпортом.
 	@include media-breakpoint-up(xl) {
 		&__stage {
 			display: block;
 			padding-block: 0;
 		}
 
-		// height:100% тут не резолвится в %-высоты детей: у &__stage только
-		// min-height (не height), поэтому containing block для абсолютных
-		// потомков вычисляем через inset:0 (реальный layout-box), а не через
-		// проценты — иначе top:18.7%/70.74%/32.78% считались от auto-высоты
-		// контента (~500px) вместо полных 1080, и всё съезжало к верху.
 		&__container {
 			position: absolute;
 			inset: 0;
-			padding-top: rem(202 * 0.5); // сохраняем пропорцию верхнего отступа хедера
+			padding-top: rem(
+				202 * 0.5
+			);
 		}
 
 		&__content {
 			position: absolute;
 			left: var(--eb-gutter);
-			top: 18.7%; // 202 / 1080
+			top: 18.7%;
 			gap: rem(16);
 		}
 
 		&__decor {
 			position: absolute;
 			right: var(--eb-gutter);
-			top: 70.74%; // 764 / 1080
+			top: 70.74%;
 			margin-top: 0;
 			font-size: var(--eb-h1);
 		}
@@ -210,7 +178,6 @@
 		&__buttons {
 			flex-direction: row;
 			align-items: center;
-			// 5px и на десктопе тоже (161:134: gap-[5px]) — не 8.
 			gap: rem(5);
 
 			.eb-btn {
@@ -223,16 +190,22 @@
 		&__hotspot {
 			position: absolute;
 			display: block;
-			left: 71.25%; // 1368 / 1920
-			top: 32.78%; // 354 / 1080
+			left: 71.25%;
+			top: 47.78%;
 			margin-top: 0;
+
+			.eb-hotspot__card {
+				top: rem(30);
+				left: rem(30);
+				transform: none;
+			}
 		}
 
 		&__nav {
 			position: absolute;
 			left: var(--eb-gutter);
 			right: var(--eb-gutter);
-			bottom: 6.1%; // (1080 - 1014) / 1080
+			bottom: 6.1%;
 			margin-top: 0;
 		}
 	}

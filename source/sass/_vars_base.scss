@@ -48,6 +48,13 @@ $eb-white-15:    rgba($eb-white, .15);
 $eb-light-blue-50: rgba($eb-light-blue, .5);
 $eb-error-15:    rgba($eb-error, .15);
 
+$eb-tint-burgundy: rgba($eb-burgundy, .75);
+$eb-tint-blue:   rgba(#77aae0, .75);
+$eb-tint-gold:   #d4aa70;
+$eb-tint-gray:   rgba(#afb8c9, .75);
+
+$eb-scrim:       rgba(#0e1530, .35);
+
 // Переопределения Bootstrap (объявлены до _vars.scss, где они стоят с !default).
 $primary:    $eb-burgundy;
 $danger:     $eb-error;
@@ -78,7 +85,6 @@ $grid-breakpoints: (
 	xxxl: $eb-layout-width
 );
 
-
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace ;
 
 $link-decoration: inherit;
@@ -93,7 +99,6 @@ $display-font-sizes: ( 1: 5rem) !default;
 $zindex-levels: (
   n1: -1, 
 ) ;
-
 
 $enable-caret:                true ;
 $enable-rounded:              true ;

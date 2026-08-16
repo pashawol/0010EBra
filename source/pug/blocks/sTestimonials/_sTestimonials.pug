@@ -1,40 +1,12 @@
-//- Section «Отзывы» — node 495:336 (desktop), 739:766 (mobile, часть 692:1129).
-//- Заголовок по центру → плейсхолдер стороннего модуля отзывов (аккуратная
-//- рамка-заготовка, пропорция 1790×460 из макета) → подпись «Видео отзывы» →
-//- слайдер вертикальных видео-карточек → попап просмотра (682:238, отдельный
-//- fancybox-профиль "video", уже забинжен в JSCCommon.js вместе с sReels —
-//- Fancybox.bind('[data-fancybox="sReels"], [data-fancybox="video"]', ...)).
-//-
-//- В отличие от sReels, все 4 карточки ведут в ОДИН общий попап-галерею
-//- (682:238), а не в свой мини-плеер каждая — так задумано в макете (попап
-//- содержит собственный ряд превью и стрелки для перелистывания между
-//- историями). Клик по любой карточке открывает попап с начала (без привязки
-//- к индексу карточки) — переключение стартового слайда под кликнутую
-//- карточку потребовало бы своего JS поверх Fancybox.bind(), что вне границ
-//- задачи («свой JS-инициализатор не пиши»), см. компромисс в coordination.
-//-
-//- Весь контент — реальный, не мок: имена/возраст/текст-проблема сняты прямо
-//- с карточек "Video (Preview)" в Figma (4 разных человека, не повтор
-//- одного). Видео нет (заказчик пришлёт ссылку позже, см. PLAN §1) —
-//- <video><source src="">-заглушка живёт прямо в попапе (единственном месте,
-//- где видео реально "проигрывается"), заказчику остаётся подставить src.
 mixin sTestimonials(data)
 	- data = data || sTestimonials
 	// start sTestimonials
-	//- data-swiper-scope: общий инициализатор ищет стрелки/буллеты ВНУТРИ
-	//- этой секции (см. sReels/sExpertise) — на странице несколько слайдеров.
 	+b.SECTION.sTestimonials.section#sTestimonials(data-swiper-scope)&attributes(attributes)
 		.container
 			+ebTitle(data.title, 2).sTestimonials__title
-			//- Плейсхолдер стороннего модуля отзывов — НЕ изобретаем свой модуль,
-			//- только рамка-заготовка с пропорцией макета (1790×460) под будущую
-			//- встройку виджета.
 			+e.DIV.placeholder
 				+e.P.placeholder-note= data.placeholderNote
 			+e.P.label= data.videoLabel
-		//- Дорожка вне .container — секция прямой ребёнок <main> (полная ширина
-		//- вьюпорта уже по умолчанию), eb-bleed() навешан формально как защита на
-		//- случай будущей вложенности (тот же приём, что в sReels/sExpertise).
 		+e.DIV.track
 			+e.DIV.slider.--js.swiper(
 				data-swiper-options=JSON.stringify({
@@ -57,7 +29,7 @@ mixin sTestimonials(data)
 								href="#"
 								aria-label=`Смотреть видео-отзыв: ${slide.person.name}, ${slide.quote}`
 							)
-								img.sTestimonials__poster(src=slide.poster alt=slide.posterAlt loading="lazy")
+								img.sTestimonials__poster(src=slide.poster alt="" loading="lazy")
 								+e.DIV.card-scrim
 								+icon('play').sTestimonials__play-icon
 								+e.DIV.card-text
@@ -70,20 +42,8 @@ mixin sTestimonials(data)
 	// end sTestimonials
 	+sTestimonialsPopup(data)
 
-//- Попап просмотра видео-отзывов — node 682:238. Общий Fancybox-профиль
-//- "video" (JSCCommon.js) уже настроен как inline-галерея (type: 'inline',
-//- l10n) — здесь верстаем только содержимое, без своего JS. Штатный Toolbar
-//- Fancybox (fullscreen/thumbs/close) скрыт scoped-стилем через :has() в
-//- _sTestimonials.scss — в макете свой заголовок с крестиком, дублировать
-//- его набором дефолтных кнопок библиотеки не нужно (см. заметку в scss и
-//- docs/coordination/sTestimonials.md).
 mixin sTestimonialsPopup(data)
 	div(id="sTestimonials-popup" style="display: none")
-		//- data-swiper-scope на корне попапа: общий initDataSwipers() ищет
-		//- .swiper-button-prev/next и .swiper-pagination ВНУТРИ этого скоупа —
-		//- без него он поднялся бы только до __track (родитель <div>) и не
-		//- нашёл бы стрелки/буллеты +ebSliderNav(), которые лежат СНАРУЖИ
-		//- __track как соседний элемент (см. грабля §3.1 п.4 в ТЗ).
 		+b.DIV.sTestimonials-popup(data-swiper-scope)
 			+e.DIV.head
 				+e.SPAN.title= data.popupTitle
@@ -103,21 +63,14 @@ mixin sTestimonialsPopup(data)
 					})
 				)
 					.swiper-wrapper
-						//- Первый слайд — увеличенная featured-карточка (682:397 в
-						//- макете, 520×940, без плашки имени — попап открывается уже
-						//- «воспроизводя» видео заявленной истории). Настоящий <video>
-						//- (не img) с пустым source — сюда заказчик подставит ссылку.
 						+e.DIV.slide.--featured.swiper-slide
 							+e.DIV.card
 								video.sTestimonials-popup__video(poster=data.popupPoster.src controls playsinline)
-									//- TODO(заказчик): подставить ссылку на видеофайл
 									source(src="" type="video/mp4")
-						//- Остальные — превью-карточки того же формата, что в слайдере
-						//- секции (438×660), для листания по галерее.
 						each slide, i in data.slides
 							+e.DIV.slide.swiper-slide
 								+e.DIV.card
-									img.sTestimonials-popup__poster(src=slide.poster alt=slide.posterAlt loading="lazy")
+									img.sTestimonials-popup__poster(src=slide.poster alt="" loading="lazy")
 									+e.DIV.card-scrim
 									+icon('play').sTestimonials-popup__play-icon
 									+e.DIV.card-text

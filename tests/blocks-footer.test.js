@@ -97,14 +97,14 @@ describe('footer block', () => {
 		expect(split.querySelectorAll('.footer__menu-link').length).toBe(6)
 	})
 
-	it('renders exactly 8 payment badges with alt text and explicit dimensions', () => {
+	it('renders exactly 8 payment badges with empty alt and explicit dimensions', () => {
 		const html = renderBlock('footer', { locals })
 		const root = parse(html)
 		const badges = root.querySelectorAll('.footer__payment-icon')
 		expect(badges.length).toBe(8)
 		for (const badge of badges) {
-			expect(badge.getAttribute('src')).toBeTruthy()
-			expect(badge.getAttribute('alt')).toBeTruthy()
+			expect(badge.getAttribute('src')).toMatch(/\.svg$/)
+			expect(badge.getAttribute('alt')).toBe('')
 			expect(badge.getAttribute('width')).toBeTruthy()
 			expect(badge.getAttribute('height')).toBeTruthy()
 			expect(badge.getAttribute('loading')).toBe('lazy')

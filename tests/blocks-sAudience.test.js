@@ -30,7 +30,7 @@ describe('sAudience block', () => {
 		expect(root.querySelector('.sAudience__title h2')).toBeTruthy()
 	})
 
-	it('each card has a decoded-alt image and a caption', () => {
+	it('each card has a decorative (empty-alt) image and a caption', () => {
 		const html = renderBlock('sAudience', { locals })
 		const root = parse(html)
 		const cards = root.querySelectorAll('.sAudience__card')
@@ -38,7 +38,7 @@ describe('sAudience block', () => {
 			const img = card.querySelector('.sAudience__card-img')
 			expect(img).toBeTruthy()
 			expect(img.getAttribute('src')).toMatch(/^img\/sAudience\//)
-			expect(img.getAttribute('alt')).toBeTruthy()
+			expect(img.getAttribute('alt')).toBe('')
 			expect(card.querySelector('.sAudience__card-text')).toBeTruthy()
 		}
 	})
@@ -53,13 +53,15 @@ describe('sAudience block', () => {
 		}
 	})
 
-	it('renders the round arrow button only on the sensitive-skin card', () => {
+	it('renders every card as one link with a decorative arrow inside', () => {
 		const html = renderBlock('sAudience', { locals })
 		const root = parse(html)
-		const arrows = root.querySelectorAll('.sAudience__card-arrow')
-		expect(arrows.length).toBe(1)
-		const parentCard = arrows[0].closest('.sAudience__card--sensitive-skin')
-		expect(parentCard).toBeTruthy()
+		const cards = root.querySelectorAll('.sAudience__card')
+		expect(cards.length).toBe(locals.sAudience.cards.length)
+		for (const card of cards) {
+			expect(card.tagName).toBe('A')
+			expect(card.querySelector('.sAudience__card-arrow')).toBeTruthy()
+		}
 	})
 
 	it('renders the widget with 3 avatars and a caption', () => {

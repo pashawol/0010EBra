@@ -34,14 +34,14 @@ describe('sProcess block', () => {
 		expect(steps.length).toBe(4)
 	})
 
-	it('each step has an image with alt text and lazy loading', () => {
+	it('each step has a decorative (empty-alt) image and lazy loading', () => {
 		const html = render()
 		const root = parse(html)
 		const imgs = root.querySelectorAll('.sProcess__step-img')
 		expect(imgs.length).toBe(4)
 		for (const img of imgs) {
 			expect(img.getAttribute('src')).toBeTruthy()
-			expect(img.getAttribute('alt')).toBeTruthy()
+			expect(img.getAttribute('alt')).toBe('')
 			expect(img.getAttribute('loading')).toBe('lazy')
 		}
 	})

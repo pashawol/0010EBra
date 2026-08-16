@@ -1,22 +1,16 @@
 // start .sAudience — node 313:404, мобильный вариант 692:1129 (710:1466)
-//
-// Бежевый фон карточек не заведён общим токеном (в UI-Kit нет отдельной
-// переменной под фото-мозаику) — локальная SCSS-переменная здесь, заявка
-// на общий токен --eb-beige — в docs/coordination/sAudience.md.
 $sAudience-beige: #f5e8d9;
 
 .sAudience {
 	--sPT: #{rem(40)};
 	--sPB: #{rem(40)};
 
+	margin-top: var(--eb-cap-h);
+
+	position: relative;
+	z-index: 1;
 	background-color: var(--eb-white);
 
-	// -------------------------------------------------------------------
-	// Мозаика: заголовок и 7 карточек — все элементы одной CSS Grid
-	// с явными grid-template-areas. Набор имён одинаковый на всех
-	// ширинах, меняется только сама карта областей + число колонок,
-	// поэтому разметка в pug общая для мобилки и десктопа.
-	// -------------------------------------------------------------------
 	&__grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
@@ -44,20 +38,34 @@ $sAudience-beige: #f5e8d9;
 		overflow: hidden;
 		border-radius: rem(20);
 		background-color: $sAudience-beige;
+		text-decoration: none;
 
-		// Затемняющий градиент под подпись — на ВСЕХ карточках одинаково,
-		// иначе подпись нечитаема на светлых участках фото (макет кладёт
-		// его только на часть карточек непоследовательно между брейкпоинтами).
 		&::after {
 			content: "";
 			position: absolute;
-			inset: 0;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 50%;
+			opacity: 0;
 			background: linear-gradient(
-				to bottom,
-				rgba($sAudience-beige, 0) 40%,
-				rgba($sAudience-beige, 0.75)
+				180deg,
+				rgba(245, 232, 217, 0) 50%,
+				rgba(245, 232, 217, 0.75) 100%
 			);
+			backdrop-filter: blur(20px);
+			-webkit-mask-image: linear-gradient(
+				to bottom,
+				transparent 0%,
+				black 80%,
+				black 100%
+			);
+			transition: opacity 0.25s ease;
 			pointer-events: none;
+		}
+
+		&:hover::after {
+			opacity: 1;
 		}
 
 		&--small-breast {
@@ -90,9 +98,12 @@ $sAudience-beige: #f5e8d9;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		// Лица/верх кадра — самая частая грабля object-fit:cover на разноформатных
-		// фото: якорим по верхней трети, а не center, чтобы не срезать лицо.
-		object-position: 50% 20%;
+		object-position: 45% 50%;
+		transition: transform 0.35s ease;
+	}
+
+	&__card:hover &__card-img {
+		transform: scale(1.42);
 	}
 
 	&__card-text {
@@ -100,17 +111,12 @@ $sAudience-beige: #f5e8d9;
 		z-index: 1;
 		flex: 1 1 0;
 		min-width: 0;
-		padding: rem(15);
 		color: var(--eb-ink);
 		font-family: $font-family-display;
 		font-size: var(--eb-subtitle-1);
 		line-height: 1.1;
 	}
 
-	// Кнопка-стрелка — видна только на десктопной раскладке карточки (в
-	// мобильном макете 692:1129/710:1466 её нет ни на одной карточке).
-	// Раньше стояла в правом верхнем углу (position:absolute) — по макету
-	// (313:409) она в одной строке с подписью, внизу, справа от текста.
 	&__card-arrow {
 		display: none;
 	}
@@ -128,14 +134,15 @@ $sAudience-beige: #f5e8d9;
 		flex-shrink: 0;
 
 		.sAudience__avatar:not(:first-child) {
-			margin-left: rem(-15);
+			margin-left: rem(-30);
 		}
 	}
 
 	&__avatar {
-		width: rem(44);
-		height: rem(44);
-		border: rem(2) solid var(--eb-white);
+		position: relative;
+		width: rem(64);
+		height: rem(64);
+		border: rem(4) solid var(--eb-white);
 		border-radius: 50%;
 		object-fit: cover;
 	}
@@ -145,11 +152,9 @@ $sAudience-beige: #f5e8d9;
 		max-width: rem(220);
 		padding-left: rem(20);
 		color: var(--eb-text-muted);
-		font-size: var(--eb-caption);
+		font-size: var(--eb-body);
 		line-height: 1.4;
 
-		// Тонкая вертикальная линия-разделитель перед подписью — вместо
-		// импорта одного SVG-отрезка из макета.
 		&::before {
 			content: "";
 			position: absolute;
@@ -175,7 +180,7 @@ $sAudience-beige: #f5e8d9;
 			grid-template-rows: rem(260) rem(260) rem(170) rem(260);
 			gap: rem(10);
 			grid-template-areas:
-				"title  .           big  asymmetry"
+				"title  title       big  asymmetry"
 				"small  sensitive   big  teens"
 				"small  sensitive   big  sport"
 				"widget afterbirth  .    sport";
@@ -191,10 +196,23 @@ $sAudience-beige: #f5e8d9;
 			z-index: 2;
 			flex-shrink: 0;
 			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: rem(52);
+			height: rem(52);
+			opacity: 0;
+			background-color: var(--eb-white);
+			border-radius: var(--eb-radius);
+			font-size: rem(20);
+			transition: opacity 0.25s ease;
 			.icon {
 				position: relative;
 				transform: rotate(-45deg);
 			}
+		}
+
+		&__card:hover &__card-arrow {
+			opacity: 1;
 		}
 
 		&__widget {
@@ -202,4 +220,4 @@ $sAudience-beige: #f5e8d9;
 			margin-top: 0;
 		}
 	}
-} // end .sAudience
+}

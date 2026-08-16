@@ -102,7 +102,11 @@ function initDataSwipers() {
 		}
 
 		if (options.pagination === true) {
-			options.pagination = { el: scope.querySelector('.swiper-pagination'), clickable: true }
+			options.pagination = {
+				el: scope.querySelector('.swiper-pagination'),
+				clickable: true,
+				dynamicBullets: true,
+			}
 		}
 
 		new Swiper(el, options)

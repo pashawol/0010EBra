@@ -1,5 +1,4 @@
 mixin ddGroup()
-	//-родителю елементов .dd-group-js
 	+b.dd-group.dd-group-js
 		if block
 			block
@@ -9,8 +8,6 @@ mixin ddGroup()
 			+ddGroupItem('вопрос3')
 
 mixin ddGroupItem(txt, activeClasses='')
-	//-хедеру и контенту => .dd-head-js, .dd-content-js
-	//-!!! они должни вкладиваться в 1 контейнер(+e.item) header стилизируеться от етого контейнера, внутри хедера втавлять что душе угодно
 	+e.item(class=activeClasses)
 		+e.head.dd-head-js=txt
 		+e.content.dd-content-js(class=activeClasses)

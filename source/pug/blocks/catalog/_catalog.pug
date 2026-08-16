@@ -1,0 +1,54 @@
+
+mixin catalog(data)
+	- data = data || catalog
+	// start catalog
+	+b.DIV.catalog#catalogModal(role="dialog" aria-modal="true" aria-label=data.label tabindex="-1" hidden)&attributes(attributes)
+		+e.DIV.backdrop(data-catalog-close)
+		+e.DIV.panel
+			img.catalog__monogram(src="img/catalog/monogram.svg" alt="" aria-hidden="true")
+
+			+e.DIV.head
+				+e.SPAN.title= data.label
+				button.catalog__close(type="button" aria-label="Закрыть каталог" data-catalog-close)
+					+icon('x')
+
+			+e.DIV.body
+				+e.UL.list
+					each cat in data.categories
+						li.catalog__item
+							a.catalog__cat(
+								href=cat.href || '#'
+								data-catalog-cat=cat.slug
+								aria-haspopup="true"
+								aria-expanded="false"
+								aria-controls=`catalogSub-${cat.slug}`
+							)
+								+icon('corner-right-down', 'catalog__cat-icon')
+								span.catalog__cat-name= cat.name
+								span.catalog__cat-count= cat.count
+
+				+e.DIV.subs
+					each cat in data.categories
+						ul.catalog__sublist(id=`catalogSub-${cat.slug}` data-catalog-sub=cat.slug hidden)
+							li.catalog__subitem
+								a.catalog__sublink(href=cat.href || '#')= data.viewAllLabel
+							each sub in cat.items
+								li.catalog__subitem
+									a.catalog__sublink(href=sub.href || '#')= sub.name
+
+				+e.DIV.media
+					img.catalog__media-img(
+						class="--cover"
+						src=data.image.src
+						alt=data.image.alt
+						loading="lazy"
+					)
+					each cat in data.categories
+						img.catalog__media-img(
+							src=cat.image.src
+							alt=""
+							data-catalog-img=cat.slug
+							loading="lazy"
+							hidden
+						)
+	// end catalog

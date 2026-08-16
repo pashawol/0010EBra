@@ -5,6 +5,8 @@ extends ../../layout/main.pug
 //- удалит при сдаче — сюда НЕ добавлять реальный контент страницы.
 include ../../blocks/header/_header.pug
 include ../../blocks/top-nav/_top-nav.pug
+include ../../blocks/mobileMenu/_mobileMenu.pug
+include ../../blocks/catalog/_catalog.pug
 
 //- Страница лежит в подпапке (public/dev/header.html) — относительные css/js
 //- из +allcss()/+allcjs() промахиваются на уровень без этого <base>.
@@ -22,6 +24,8 @@ block title
 block pagecontent
 	+header()
 		+top-nav()
+	+mobileMenu()
+	+catalog()
 
 	//- Инлайн style="" вместо <style>-блока: html-validate (element-permitted-content)
 	//- не пускает <style> внутрь <div>/<body> без атрибута scoped — это только
@@ -45,6 +49,3 @@ block pagecontent
 		.dev-stand__filler(style="min-height:100vh; padding-top:80px;")
 			.container
 				p Дальше идёт светлая секция — просто для скролла и проверки `.fixed`.
-
-block scripts
-	script(src="js/header.js")

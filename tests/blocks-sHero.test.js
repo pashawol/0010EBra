@@ -51,7 +51,7 @@ describe('sHero block', () => {
 		expect(firstImg).toBeTruthy()
 		expect(firstImg.getAttribute('fetchpriority')).toBe('high')
 		expect(firstImg.getAttribute('loading')).not.toBe('lazy')
-		expect(firstImg.getAttribute('alt')).toBeTruthy()
+		expect(firstImg.getAttribute('alt')).toBe('')
 	})
 
 	it('renders an actual Swiper with slider nav once there is more than one slide', () => {

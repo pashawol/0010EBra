@@ -1,39 +1,8 @@
-// ---------------------------------------------------------------------------
-// Атомы Esthetic Bra. Геометрия из UI-Kit (638:122), состояния из 641:631.
-// Ни одного литерального цвета — только токены (проверяется stylelint).
-// ---------------------------------------------------------------------------
 
-// Общая база кнопок: высота 52, радиус 14, Inter Medium 18.
-//
-// Строится НАД Bootstrap .btn (bootstrap/scss/buttons — уже часть сборки
-// custom-bootstrap.scss, .btn-класс добавлен в разметку в eb-ui.pug), а не
-// параллельно с ним: раньше .btn компилировался в CSS, но нигде в вёрстке не
-// использовался — чистый мёртвый вес. .btn даёт бесплатно display/cursor/
-// transition/disabled(opacity+pointer-events)/focus-visible; здесь только
-// переопределяются его CSS-переменные (--bs-btn-*) под токены макета — это и
-// есть штатный способ кастомизации Bootstrap, а не raw-свойства поверх.
-//
-// ВНИМАНИЕ: .btn живёт в ОТДЕЛЬНОЙ точке входа (custom-bootstrap.scss →
-// custom-bootstrap.min.css), эта же (eb-ui.scss) компилируется через
-// main.scss → main.min.css — @extend .btn через границу двух компиляций не
-// работает (Sass не видит чужой граф). Поэтому оверрайд идёт через
-// --bs-btn-* переменные (резолвятся в рантайме, кросс-файлово), а .btn как
-// класс подключается в DOM. custom-bootstrap.min.css грузится ПЕРВЫМ (см.
-// public/index.html <head>), main.min.css — вторым, поэтому одинаковая
-// специфичность (.btn vs .eb-btn, оба 0,1,0) решается порядком подключения:
-// последний побеждает без !important.
 %eb-control {
 	--bs-btn-padding-x: #{rem(15)};
-	// 0, не дефолтный Bootstrap-паддинг: высота строится через min-height
-	// (var(--eb-control-size)) + flex-центрирование, не через padding+
-	// line-height — так высота не плывёт от метрик шрифта браузера.
 	--bs-btn-padding-y: 0;
 	--bs-btn-font-family: #{$font-family-sans-serif};
-	// Фиксированные 18px (стиль «Button» в Figma), НЕ var(--eb-subtitle-2):
-	// тот флюидный (18/20/24 по брейкпоинтам) и на десктопе даёт 24px — текст
-	// «Запись на брафиттинг» переставал влезать в пилюлю в одну строку.
-	// У Subtitle 2 и Button шрифт совпадает только на мобилке (оба 18px) —
-	// отсюда и разъехалось незаметно для мобильного вида.
 	--bs-btn-font-size: #{rem(18)};
 	--bs-btn-font-weight: 500;
 	--bs-btn-line-height: 1;
@@ -41,15 +10,7 @@
 	--bs-btn-border-radius: var(--eb-radius);
 	--bs-btn-box-shadow: none;
 	--bs-btn-focus-box-shadow: none;
-	// Совпадает с прежним raw &:disabled{opacity:.35} — Bootstrap default .65.
 	--bs-btn-disabled-opacity: 0.35;
-	// Без этого — Swiper вешает нативный disabled="" на первую/последнюю
-	// стрелку слайдера (не наш класс .disabled — реальный HTML-атрибут),
-	// включается .btn:disabled из Bootstrap, а он сам переключает фон на
-	// --bs-btn-disabled-bg. Мы её нигде не задавали → резолвится в
-	// transparent (initial value браузера) — фон ПРОПАДАЛ целиком, а не
-	// просто гас через opacity, как было до рефакторинга на .btn. Наследуем
-	// от текущих --bs-btn-* — работает для ЛЮБОГО модификатора одинаково.
 	--bs-btn-disabled-bg: var(--bs-btn-bg);
 	--bs-btn-disabled-color: var(--bs-btn-color);
 	--bs-btn-disabled-border-color: var(--bs-btn-border-color);
@@ -69,8 +30,6 @@
 		font-size: rem(24);
 	}
 
-	// Заливка акцентом. На тёмной теме --eb-accent становится белым,
-	// а --eb-on-accent — тёмным: инверсия из макета получается сама.
 	&--primary {
 		--bs-btn-bg: var(--eb-accent);
 		--bs-btn-color: var(--eb-on-accent);
@@ -78,7 +37,6 @@
 		--bs-btn-hover-color: var(--eb-white);
 	}
 
-	// Полупрозрачная кнопка со блюром
 	&--secondary {
 		--bs-btn-bg: var(--eb-surface);
 		--bs-btn-color: var(--eb-text);
@@ -111,12 +69,6 @@
 	width: var(--eb-control-size);
 	height: var(--eb-control-size);
 
-	// Баг: .icon-{name} (source/sass/_sprite.scss) сам прописывает себе
-	// font-size под родной размер спрайта (24px в rem, ещё и растёт по RFS
-	// на широких вьюпортах) — этим перебивает унаследованный 20px и раздувает
-	// SVG (width/height: 1em) почти на всю кнопку. Замерено: 52×50px вместо
-	// 20px. .eb-icon-btn .icon (0,2,0) специфичнее .icon-{name} (0,1,0) —
-	// побеждает без !important и без правки самого спрайта.
 	.icon {
 		font-size: inherit;
 	}
@@ -142,11 +94,23 @@
 
 	&__dots {
 		position: static;
+		transform: none !important;
 		display: flex;
 		align-items: center;
 		gap: rem(8);
 		width: auto;
 		text-align: left;
+		.swiper-pagination-bullet {
+			flex-shrink: 0;
+			margin: 0;
+			background-color: var(--eb-text);
+			opacity: 0.35;
+
+			&-active {
+				background-color: var(--eb-text);
+				opacity: 1;
+			}
+		}
 	}
 
 	&__arrows {
@@ -154,7 +118,6 @@
 		gap: rem(8);
 	}
 
-	// Стрелка «назад» — та же иконка, развёрнутая: отдельный ассет не нужен
 	&__prev .icon {
 		transform: scaleX(-1);
 	}
@@ -168,12 +131,6 @@
 			display: none;
 		}
 
-		// Swiper (libs/swiper/modules/navigation.css) сам вешает на ЛЮБОЙ svg
-		// внутри .swiper-button-prev/-next жёсткий width/height: 100% (расчёт
-		// на кастомную иконку на всю кнопку) — раздувает нашу 20px-стрелку
-		// почти до размера кнопки (52px). ".eb-slider-nav .swiper-button-prev
-		// svg" специфичнее вендорского ".swiper-button-prev svg" (0,2,1 против
-		// 0,1,1) — побеждает без !important и без правки vendor-файла.
 		svg {
 			width: 1em;
 			height: 1em;
@@ -229,30 +186,23 @@
 	}
 }
 
-// ---------------------------------------------------------------------------
-// Хотспот. Карточка позиционируется от точки фиксированной геометрией,
-// не в процентах от секции — иначе съезжает при изменении высоты блока.
-// ---------------------------------------------------------------------------
 .eb-hotspot {
 	position: absolute;
 	z-index: 2;
+	text-decoration: none;
 
-	// Точная геометрия ассета Frame731 (395:1573), общего для sHero/sFitting
-	// и т.д.: диск с блюром r=23 (46px), кольцо-рамка r=31.5 (63px, stroke
-	// white 75% — раньше отсутствовало вовсе), точка в центре r=6 (12px).
-	// Раньше был один сплошной круг 24px без кольца и с непропорционально
-	// крупной точкой (10px, почти половина диаметра) — не совпадало с макетом.
 	&__dot {
-		position: relative;
+		position: absolute;
+		top: 0;
+		left: 0;
 		display: block;
 		width: rem(46);
-		height: rem(46);
-		padding: 0;
-		border: 0;
+		aspect-ratio: 1;
 		border-radius: 50%;
 		background-color: var(--eb-white-15);
 		backdrop-filter: blur(var(--eb-blur));
-		cursor: pointer;
+		border: none;
+		z-index: -1;
 
 		&::before {
 			content: "";
@@ -278,32 +228,28 @@
 
 	&__card {
 		position: absolute;
-		top: 50%;
-		left: calc(100% + #{rem(12)});
+		top: rem(28);
+		left: rem(28);
 		display: flex;
 		align-items: flex-start;
 		gap: rem(16);
 		width: max-content;
-		max-width: rem(220);
-		padding: rem(12) rem(16);
-		border-radius: var(--eb-radius);
+		padding: rem(15);
+		border-radius: rem(18);
 		background-color: var(--eb-white);
 		color: var(--eb-ink);
-		text-decoration: none;
-		transform: translateY(-50%);
+		white-space: nowrap;
+		z-index: 2;
 		transition: background-color 0.25s ease;
+	}
 
-		&:hover {
-			background-color: var(--eb-light-blue);
-			color: var(--eb-ink);
-		}
+	&:hover &__card {
+		background-color: var(--eb-light-blue);
+		color: var(--eb-ink);
 	}
 
 	&__card-title {
 		display: block;
-		// В макете подпись светло-серая (35%), но это контраст 2.05 при норме
-		// 4.5 — axe валит как serious. Берём 65%: визуально по-прежнему
-		// приглушённая, но читаемая. Осознанное отступление от макета.
 		color: var(--eb-ink-65);
 		font-size: var(--eb-caption);
 		line-height: 1.2;
@@ -311,26 +257,20 @@
 
 	&__card-text {
 		display: block;
-		font-size: var(--eb-subtitle-2);
+		font-size: rem(24);
 		line-height: 1.2;
 	}
 
-	// Диагональная стрелка «открыть» (161:144) — arrow-right повёрнут на -45deg
-	// (в спрайте нет отдельной иконки, тот же приём, что и в других местах
-	// проекта — mobileMenu__service-arrow, top-nav__link-icon). Раньше висела
-	// без поворота (указывала вправо) и мельче — не совпадало с макетом.
 	&__card-icon {
 		flex-shrink: 0;
 		font-size: rem(20);
 		transform: rotate(-45deg);
 	}
 
-	// На мобильном карточка не влезает справа — уводим под точку
-	@include media-breakpoint-down(md) {
+	@include media-breakpoint-down(lg) {
 		&__card {
 			top: calc(100% + #{rem(8)});
 			left: 0;
-			transform: none;
 		}
 	}
 }

@@ -58,7 +58,7 @@ describe('sCollection block', () => {
 		const photos = root.querySelectorAll('.sCollection__photo')
 		expect(photos.length).toBe(fixtureData.slides.length)
 		for (const photo of photos) {
-			expect(photo.getAttribute('alt')).toBeTruthy()
+			expect(photo.getAttribute('alt')).toBe('')
 		}
 		// First slide is the LCP image: no lazy-loading, fetchpriority=high.
 		expect(photos[0].getAttribute('fetchpriority')).toBe('high')

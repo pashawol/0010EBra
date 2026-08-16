@@ -60,7 +60,7 @@ describe('sExpertise block', () => {
 		const photo = root.querySelector('.sExpertise__photo')
 		expect(photo).toBeTruthy()
 		expect(photo.getAttribute('loading')).toBe('lazy')
-		expect(photo.getAttribute('alt')).toBeTruthy()
+		expect(photo.getAttribute('alt')).toBe('')
 	})
 
 	it('renders the slider nav with pagination and both arrows, no duplicated classes', () => {

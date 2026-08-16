@@ -6,14 +6,14 @@ exports[`sHero block > matches HTML snapshot 1`] = `
 <section class="sHero eb-theme eb-theme--dark section" id="sHero">
   <div class="sHero__stage">
     <div class="sHero__slider">
-      <div class="sHero__slide"><img class="sHero__img" src="img/sHero/hero-slide-1.webp" alt="Модели в белье Esthetic Bra на бордовом фоне" width="2400" height="1659" fetchpriority="high"/>
+      <div class="sHero__slide"><img class="sHero__img" src="img/sHero/hero-slide-1.webp" alt="" width="2400" height="1659" fetchpriority="high"/>
       </div>
     </div>
     <div class="sHero__scrim" aria-hidden="true">
     </div>
     <div class="container sHero__container">
       <div class="sHero__content">
-        <h1 class="sHero__title"><span class="visually-hidden">Влюбиться в себя... навсегда</span><span class="sHero__title-main" aria-hidden="true">Влюбиться<br>в себя...</span></h1>
+        <h1 class="sHero__title"><span class="sHero__title-main" aria-hidden="true">Влюбиться<br>в себя...</span><span class="d-lg-none d-block text-end">навсегда</span></h1>
         <p class="sHero__text">Студия брафиттинга и нижнего белья. Здесь каждая женщина находит свой идеальный размер, форму, идеальный комфорт и уверенность.
         </p>
         <div class="sHero__buttons">
@@ -22,16 +22,12 @@ exports[`sHero block > matches HTML snapshot 1`] = `
           <button class="btn eb-btn eb-btn--secondary" type="button"><span class="eb-btn__label">Онлайн-подбор</span>
           </button>
         </div>
-      </div><span class="sHero__decor" aria-hidden="true">навсегда</span>
-      <div class="eb-hotspot sHero__hotspot">
-        <button class="eb-hotspot__dot" type="button" aria-label="Коллекция">
-        </button>
-        <a class="eb-hotspot__card" href="#"><span class="eb-hotspot__card-body"><span class="eb-hotspot__card-title">Коллекция</span><span class="eb-hotspot__card-text">Asoka Mia Dot</span></span>
-          <svg class="icon icon-arrow-right  eb-hotspot__card-icon">
-            <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
-          </svg>
-        </a>
-      </div>
+      </div><span class="sHero__decor d-none d-lg-block" aria-hidden="true">навсегда</span>
+      <a class="eb-hotspot sHero__hotspot" href="#" data-reveal="data-reveal"><span class="eb-hotspot__dot"></span><span class="eb-hotspot__card"><span class="eb-hotspot__card-body"><span class="eb-hotspot__card-title">Коллекция</span><span class="eb-hotspot__card-text">Asoka Mia Dot</span></span>
+        <svg class="icon icon-arrow-right  eb-hotspot__card-icon">
+          <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+        </svg></span>
+      </a>
     </div>
   </div>
 </section>

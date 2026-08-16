@@ -5,7 +5,9 @@ extends ../layout/main.pug
 include ../blocks/header/_header.pug
 include ../blocks/top-nav/_top-nav.pug
 include ../blocks/mobileMenu/_mobileMenu.pug
+include ../blocks/catalog/_catalog.pug
 include ../blocks/sHero/_sHero.pug
+include ../blocks/section-cap/_section-cap.pug
 include ../blocks/sAudience/_sAudience.pug
 include ../blocks/sFitting/_sFitting.pug
 include ../blocks/sProcess/_sProcess.pug
@@ -41,10 +43,13 @@ block pagecontent
 	+header()
 		+top-nav()
 	+mobileMenu()
+	+catalog()
 
 	main
-		+sHero()
-		+sAudience()
+		.hero-stack
+			+sHero()
+			+sAudience()
+				+sectionCap()
 		+sFitting()
 		+sProcess()
 		+sTransformIntro()
@@ -62,4 +67,6 @@ block pagecontent
 		+sTestimonials()
 		+sBooking()
 
-	+footer()
+	.footer-stack
+		+sectionCap().--inflow
+		+footer()

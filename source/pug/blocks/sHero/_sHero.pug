@@ -1,17 +1,3 @@
-//- Section «Влюбиться в себя... навсегда», node 161:134 (desktop) / 683:1036
-//- (mobile — тот же статичный кадр, без своей слайдер-механики).
-//-
-//- Слайдер/пагинация/стрелки включаются, только если data.slides реально
-//- больше одного (data.multi ниже) — сейчас в sHero.json один слайд, и Swiper
-//- сам это видит: пагинации ставит .swiper-pagination-lock (display:none —
-//- штатно, не баг), а стрелки при этом остаются и с одним слайдом бессмысленны.
-//- Раз слайд один — рендерим статичную картинку без swiper-обвязки вовсе,
-//- когда слайдов станет больше одного, эта ветка сама переключится обратно.
-//-
-//- Заголовок семантически один h1 («Влюбиться в себя... навсегда»), читается
-//- скринридером одной строкой через .visually-hidden; видимые обрывки —
-//- декоративные aria-hidden куски, повторяющие композицию макета (слово
-//- «навсегда» унесено в правый нижний угол).
 mixin sHero(data)
 	- data = data || sHero
 	- var multi = data.slides && data.slides.length > 1
@@ -20,15 +6,12 @@ mixin sHero(data)
 		+e.DIV.stage
 			if multi
 				+e.DIV.slider.swiper(data-swiper-options=`{"loop":true,"effect":"fade","speed":600,"fadeEffect":{"crossFade":true},"pagination":{"el":"#sHero .swiper-pagination","clickable":true},"navigation":{"nextEl":"#sHero .swiper-button-next","prevEl":"#sHero .swiper-button-prev"}}`)
-					//- Plain класс, не +e: "swiper-wrapper" — служебное имя Swiper,
-					//- не BEM-элемент; +e его бы превратил в "sHero__swiper-wrapper"
-					//- и слайдер терял высоту (см. docs/coordination/sHero.md).
 					.swiper-wrapper
 						each slide, i in data.slides
 							+e.DIV.slide.swiper-slide
 								img.sHero__img(
 									src=`img/sHero/${slide.image}`
-									alt=slide.alt
+									alt=""
 									width="2400"
 									height="1659"
 									fetchpriority=(i === 0 ? "high" : null)
@@ -39,7 +22,7 @@ mixin sHero(data)
 					+e.DIV.slide
 						img.sHero__img(
 							src=`img/sHero/${data.slides[0].image}`
-							alt=data.slides[0].alt
+							alt=""
 							width="2400"
 							height="1659"
 							fetchpriority="high"
@@ -48,13 +31,13 @@ mixin sHero(data)
 			.container.sHero__container
 				+e.DIV.content
 					h1.sHero__title
-						span.visually-hidden!= data.titleAccessible
 						span.sHero__title-main(aria-hidden="true")!= data.titleMain
+						span.d-lg-none.d-block.text-end= data.titleTail
 					+e.P.text= data.text
 					+e.DIV.buttons
 						each btn in data.buttons
 							+ebBtn(btn.text, btn.mode)
-				span.sHero__decor(aria-hidden="true")= data.titleTail
+				span.sHero__decor(aria-hidden="true").d-none.d-lg-block= data.titleTail
 				+ebHotspot(data.hotspot.title, data.hotspot.text, data.hotspot.href).sHero__hotspot
 				if multi
 					+ebSliderNav().sHero__nav

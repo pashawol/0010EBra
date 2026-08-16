@@ -1,13 +1,4 @@
 // start .sGifts — node 483:1239 (desktop), 726:675 (mobile 692:1129)
-//
-// Карточка-баннер (.sGifts__card) — локальная копия компонента Banner,
-// используемого также в sPromo (см. заявку в docs/coordination/sGifts.md на
-// вынос в общий +ebBanner). Автономна: никакие общие файлы не тронуты.
-//
-// Грабля object-fit:cover на фикс-боксе — фото разного формата (портрет
-// сертификата 1024×1024, альбомное фото наборов) уместны, потому что box
-// у каждой карточки — тоже свой формат (rem-высоты сняты из макета), а не
-// один квадрат на всех; на скриншоте проверено, что кроп не режет сюжет.
 .sGifts {
 	background-color: var(--eb-white);
 
@@ -21,7 +12,6 @@
 		gap: rem(16);
 	}
 
-	// Общая база всех трёх колонок (десктоп задаёт поведение ниже).
 	&__col {
 		display: flex;
 		flex-direction: column;
@@ -34,7 +24,7 @@
 		align-items: flex-end;
 		overflow: hidden;
 		border-radius: var(--eb-radius);
-		aspect-ratio: 345 / 275; // формат мобильного баннера (726:675), rem-высоты — только на lg+
+		aspect-ratio: 345 / 275;
 
 		&-img {
 			position: absolute;
@@ -55,23 +45,20 @@
 			line-height: 1.1;
 		}
 
-		// Скрим для читаемости тёмной подписи на светлом фото — приближение
-		// токеном --eb-white-35 (в макете разовые rgba(255,255,255,.5) и
-		// rgba(245,232,217,.38), новых токенов заводить самому нельзя, заявка
-		// на отдельный beige-scrim токен — в docs/coordination/sGifts.md).
 		&--lingerie::after,
 		&--sets::after {
 			content: "";
 			position: absolute;
 			inset: 0;
 			z-index: 1;
-			background: linear-gradient(to bottom, transparent 50%, var(--eb-white-35) 100%);
+			background: linear-gradient(
+				to bottom,
+				transparent 50%,
+				var(--eb-white-35) 100%
+			);
 			pointer-events: none;
 		}
 
-		// Тёмная (бордовая) карточка сертификата — тема секции переключена
-		// классом .eb-theme--dark на самой карточке, подпись становится белой
-		// через контекстные роли, доп. правил цвета здесь не нужно.
 		&--cert {
 			.sGifts__card-caption {
 				color: var(--eb-text);
@@ -84,6 +71,11 @@
 		align-items: center;
 		gap: rem(15);
 		padding: rem(16) 0;
+		@include media-breakpoint-up(lg) {
+			margin-left: auto;
+		}
+		max-width: rem(460);
+		text-wrap: balance;
 	}
 
 	&__avatars {
@@ -91,8 +83,8 @@
 		flex-shrink: 0;
 
 		.sGifts__avatar {
-			width: rem(44);
-			height: rem(44);
+			width: rem(68);
+			aspect-ratio: 1;
 			margin-right: rem(-15);
 			border-radius: 50%;
 			object-fit: cover;
@@ -111,11 +103,9 @@
 		color: var(--eb-text-muted);
 		font-size: var(--eb-body);
 		line-height: 1.4;
+		margin-bottom: 0;
 	}
 
-	// Десктоп: 3 колонки как в макете (483:1239) — 590/590/590 при gap 10 = 1790.
-	// Геометрия карточек — фикс rem с макета, а не % от секции (см. грабля
-	// +ebHotspot): подписи короткие, высота секции не «гуляет» от переносов.
 	@include media-breakpoint-up(lg) {
 		&__grid {
 			flex-direction: row;
@@ -128,9 +118,6 @@
 			gap: 0;
 		}
 
-		// Колонка «Бельё»: заголовок сверху, баннер прижат к низу колонки —
-		// вместе с полной высотой соседней колонки (740) даёт те же 280px
-		// отступа сверху, что и в макете, без хардкода отступа.
 		&__col--start {
 			justify-content: space-between;
 
@@ -139,9 +126,6 @@
 			}
 		}
 
-		// Колонка «Наборы» + мини-карточка — прижаты к краям колонки, сама
-		// высота колонки берётся растяжением по строке (align-items: stretch
-		// по умолчанию), опорная высота ряда — карточка сертификата ниже.
 		&__col--split {
 			justify-content: space-between;
 		}
@@ -149,9 +133,6 @@
 		&__card {
 			aspect-ratio: auto;
 
-			// Опорная высота всего ряда (740 = 280 отступа сверху в колонке
-			// «Бельё» + 460 её баннера = 560 баннера «Наборы» + 105 отступа +
-			// 75 мини-карточки в третьей колонке).
 			&--cert {
 				height: #{rem(740)};
 			}

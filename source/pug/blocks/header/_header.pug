@@ -1,7 +1,3 @@
-//- Семантическая обёртка фикс-хедера (318:527 desktop / 777:28 mobile).
-//- Вся реальная разметка/позиционирование — в +top-nav() (fixed-бар +
-//- попап каталога), header остаётся тонким <header> без своего z-index/fixed:
-//- если сборка когда-нибудь обернёт top-nav иначе, семантика тега не потеряется.
 mixin header()
 	// start header
 	+b.HEADER.header#header&attributes(attributes)

@@ -1,9 +1,4 @@
-//- Section «Подарочные решения» — node 483:1239 (desktop), 726:675 (mobile 692:1129).
-//- 3 карточки-баннера (переиспользуют компонент Banner из sPromo, см. заявку в
-//- docs/coordination/sGifts.md) + мини-карточка с аватарками справа-внизу.
 
-//- Локальная копия компонента Banner (сертификат/наборы/бельё). Автономна,
-//- в общий +ebBanner выносит координатор после сверки со sPromo.
 mixin sGiftsBanner(card)
 	+e.DIV(class="card--" + card.mod)&attributes(attributes)
 		+img(card.image).sGifts__card-img

@@ -1,30 +1,7 @@
-//- Футер — node 508:96 (desktop 1920), 744:1165 (mobile 375). Тёмная
-//- (бордовая) тема секции — .eb-theme--dark на корне, весь текст берёт
-//- белый цвет через контекстные роли (--eb-text и т.д.), руками белый
-//- нигде не прописан.
-//-
-//- Фото-подложка вверху с надписью «идеального белья» и стрелочный переход
-//- (Vector transition, 508:94/744:1286) физически лежат ВНУТРИ figma-нода
-//- Footer (дочерние узлы 508:97 и 508:94), поэтому воспроизведены здесь, а
-//- не в sBooking — хотя визуально это плавное продолжение фото предыдущей
-//- секции. Сама форма записи на брафиттинг (508:105, «Записаться на
-//- брафиттинг») в макете там же перекрывает верх футера, но это узел
-//- sBooking (node 497:931, секция #17 плана) — в футере НЕ дублируется.
 mixin footer(data)
 	- data = data || footer
 	// start footer
 	+b.FOOTER.footer.section.eb-theme--dark&attributes(attributes)
-		.footer__intro
-			+img(data.intro.image).footer__intro-img
-			+e.P.intro-caption
-				span= data.intro.captionTop
-				span= data.intro.captionBottom
-			//- Переход фото → сплошной бордовый: точная дуга из макета (508:94),
-			//- inline-SVG вместо файла — source/img исключён из копирования
-			//- gulp-задачей images (только jpg/jpeg/png), заявка в COORDINATION.
-			+e.DIV.transition(aria-hidden="true")
-				svg.footer__transition-shape(viewBox="0 0 1920 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg")
-					path(d="M960 0C960 110.457 1389.81 200 1920 200H0C530.193 200 960 110.457 960 0Z")
 		.container
 			+e.DIV.brand
 				+icon('eb-monogram', 'footer__monogram')
@@ -53,20 +30,10 @@ mixin footer(data)
 				+e.DIV.subscribe-col
 					+e.DIV.subscribe
 						+ebTitle(data.subscribe.title, 4).footer__subscribe-title
-						//- type="submit" — нужен html-validate (wcag/h32: у формы обязан
-						//- быть submit-контрол). Реальной отправки всё равно не будет:
-						//- onsubmit="return false" гарантирует это инлайново, независимо
-						//- от того, подключится ли footer.js (см. заявку про
-						//- gulpfile.js:260 в COORDINATION — блочный JS сейчас не копируется
-						//- в public/js вообще).
 						form.footer__subscribe-form#footerSubscribeForm(novalidate onsubmit="return false")
 							+e.DIV.subscribe-field
 								label.visually-hidden(for="footerSubscribeEmail")= data.subscribe.placeholder
 								input#footerSubscribeEmail.footer__subscribe-input(type="email" name="email" placeholder=data.subscribe.placeholder required autocomplete="email" aria-describedby="footerSubscribeError")
-								//- .btn (Bootstrap) — .eb-btn строится поверх него, см. eb-ui.scss.
-								//- Модификатор — литеральный класс, не class="--secondary": это
-								//- НЕ +b/+e (bemto тут не участвует), рантайм-модификатор молча
-								//- не матчился ни с одним CSS-селектором (проверено рендером).
 								button.btn.eb-btn.eb-btn--secondary.footer__subscribe-btn#footerSubscribeSubmit(type="submit")
 									span.eb-btn__label= data.subscribe.button
 							+e.SPAN.subscribe-error#footerSubscribeError(role="alert")= data.subscribe.error
@@ -90,7 +57,7 @@ mixin footer(data)
 					+e.P.copyright= data.copyright
 					+e.DIV.payments
 						each pay in data.payments
-							+img(pay.file).footer__payment-icon(width=pay.w height=pay.h alt=pay.name)
+							+img(pay.file).footer__payment-icon(width=pay.w height=pay.h alt="")
 					+e.DIV.legal
 						each item in data.legal
 							+e.A.legal-link(href=item.href)= item.text

@@ -21,7 +21,7 @@
 					"colorHex": "#2C2B2B"
 				},
 				"productPhoto": {
-					"src": "img/sReels/product-1.webp",
+					"src": "img/sReels/product-photo-1.webp",
 					"alt": "Бюстгальтер Entwined Balcony крупным планом"
 				}
 			},
@@ -31,7 +31,19 @@
 				"quote": "Нестандартная форма груди",
 				"person": {
 					"name": "Александра",
-					"age": "46 года"
+					"age": "46 года",
+					"avatar": "img/sReels/avatar-1.webp",
+					"avatarAlt": "Александра, портрет"
+				},
+				"product": {
+					"label": "Бюстгальтер",
+					"title": "Wired Sports Bra",
+					"size": "70C",
+					"colorHex": "#2C2B2B"
+				},
+				"productPhoto": {
+					"src": "img/sReels/product-photo-1.webp",
+					"alt": "Бюстгальтер Wired Sports Bra крупным планом"
 				}
 			},
 			{
@@ -40,7 +52,19 @@
 				"quote": "Теперь ношу открытые вырезы без стеснения",
 				"person": {
 					"name": "Марина",
-					"age": "29 лет"
+					"age": "29 лет",
+					"avatar": "img/sReels/avatar-1.webp",
+					"avatarAlt": "Марина, портрет"
+				},
+				"product": {
+					"label": "Бюстгальтер",
+					"title": "Wired Sports Bra",
+					"size": "65E",
+					"colorHex": "#2C2B2B"
+				},
+				"productPhoto": {
+					"src": "img/sReels/product-photo-1.webp",
+					"alt": "Бюстгальтер Wired Sports Bra крупным планом"
 				}
 			},
 			{
@@ -49,7 +73,19 @@
 				"quote": "Наконец нашла размер, который сидит идеально",
 				"person": {
 					"name": "Ольга",
-					"age": "41 год"
+					"age": "41 год",
+					"avatar": "img/sReels/avatar-1.webp",
+					"avatarAlt": "Ольга, портрет"
+				},
+				"product": {
+					"label": "Бюстгальтер",
+					"title": "Entwined Balcony",
+					"size": "80D",
+					"colorHex": "#2C2B2B"
+				},
+				"productPhoto": {
+					"src": "img/sReels/product-photo-1.webp",
+					"alt": "Бюстгальтер Entwined Balcony крупным планом"
 				}
 			}
 		],

@@ -1,15 +1,7 @@
-//- Мобильное меню, 3 экрана — node 777:2 (уровень 1), 777:1466 («Каталог» уровень 2,
-//- шаблон на категорию), 777:1584 («Для вас» уровень 2). Drill-down без перезагрузки:
-//- все экраны существуют в DOM одновременно (грабля «в DOM есть, но не видно» решена
-//- через [hidden] — скрытые экраны реально исключены из a11y-дерева и таб-порядка,
-//- отдельный focus-trap для скрытых панелей не нужен), переключение — data-атрибутами
-//- в source/js/mobile-menu.js (vanilla, без jQuery — см. docs/coordination/mobileMenu.md).
-//-
-//- Открывает меню любой внешний элемент с [data-mobile-menu-toggle] (например бургер
-//- в шапке — это чужая зона, интеграция через заявку в coordination, не правкой header).
 
 mixin mobileMenuHead()
 	+e.DIV.head
+		+e.SPAN.head-title Меню
 		button.mobileMenu__head-close(type="button" aria-label="Закрыть меню" data-menu-close)
 			+icon('x')
 		+e.DIV.head-icons
@@ -22,15 +14,13 @@ mixin mobileMenuHead()
 			button.mobileMenu__head-icon(type="button" aria-label="Корзина")
 				+icon('shopping-cart')
 
-mixin mobileMenu(data)
+mixin mobileMenu(data, catalogData)
 	- data = data || mobileMenu
+	- catalogData = catalogData || catalog
 	// start mobileMenu
 	+b.DIV.mobileMenu#mobileMenu(role="dialog" aria-modal="true" aria-label="Меню" hidden)&attributes(attributes)
 		+e.DIV.backdrop(data-menu-close)
 		+e.DIV.panel
-			//- ---------------------------------------------------------------
-			//- Уровень 1 — 777:2
-			//- ---------------------------------------------------------------
 			+e.DIV.screen(class="--root" data-menu-screen="root")
 				+mobileMenuHead()
 				+e.DIV.body
@@ -38,54 +28,54 @@ mixin mobileMenu(data)
 						span.mobileMenu__services-title Услуги
 						+e.DIV.services-track
 							each service in data.services
-								a.mobileMenu__service(href=service.href || '#')
+								a.mobileMenu__service(href=service.href || '#' class=service.tint ? `--tint-${service.tint}` : null)
 									img.mobileMenu__service-img(src=service.img alt="" loading="lazy")
 									span.mobileMenu__service-arrow
 										+icon('arrow-right')
 									span.mobileMenu__service-label= service.label
 
 					+e.DIV.catalog
-						span.mobileMenu__catalog-title Каталог
+						span.mobileMenu__catalog-title= catalogData.label
 						+e.UL.catalog-list
-							each cat in data.categories
+							each cat in catalogData.categories
 								li.mobileMenu__catalog-item
 									button.mobileMenu__catalog-trigger(type="button" aria-haspopup="true" aria-expanded="false" data-menu-open=`catalog-${cat.slug}`)
 										span.mobileMenu__catalog-name= cat.name
 										span.mobileMenu__catalog-count= cat.count
 
+					+e.DIV.client
+						span.mobileMenu__client-title= data.client.label
+						+e.UL.client-list
+							each link in data.client.links
+								li: a.mobileMenu__client-link(href="#")= link
+
 					hr.mobileMenu__divider
 
 					+e.DIV.links
 						+e.DIV.links-col
-							button.mobileMenu__link(type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="client")= data.client.label
+							button.mobileMenu__link(class="--client" type="button" aria-haspopup="true" aria-expanded="false" data-menu-open="client")= data.client.label
 							each link in data.otherLinks.slice(0, 2)
 								a.mobileMenu__link(href=link.href || '#')= link.label
 						+e.DIV.links-col
 							each link in data.otherLinks.slice(2)
 								a.mobileMenu__link(href=link.href || '#')= link.label
 
-			//- ---------------------------------------------------------------
-			//- Уровень 2 «Каталог» — 777:1466, один шаблон на каждую категорию
-			//- ---------------------------------------------------------------
-			each cat in data.categories
+			each cat in catalogData.categories
 				+e.DIV.screen(class="--sub" data-menu-screen=`catalog-${cat.slug}` hidden)
 					+mobileMenuHead()
 					+e.DIV.body
 						+e.DIV.banner
-							img.mobileMenu__banner-img(src=cat.img alt="" loading="lazy")
-							a.mobileMenu__banner-btn(href="#") Смотреть все
+							img.mobileMenu__banner-img(src=cat.image.src alt="" loading="lazy")
+							a.mobileMenu__banner-btn(href=cat.href || '#')= catalogData.viewAllLabel
 						+e.DIV.breadcrumb
 							+icon('corner-right-down').mobileMenu__breadcrumb-icon
 							span.mobileMenu__breadcrumb-name= cat.name
 							span.mobileMenu__breadcrumb-count= cat.count
 						+e.UL.sublist
-							each sub in cat.subcategories
-								li: a.mobileMenu__sublist-link(href="#")= sub
+							each sub in cat.items
+								li: a.mobileMenu__sublist-link(href=sub.href || '#')= sub.name
 					button.mobileMenu__back(type="button" data-menu-back) Назад
 
-			//- ---------------------------------------------------------------
-			//- Уровень 2 «Для вас» — 777:1584
-			//- ---------------------------------------------------------------
 			+e.DIV.screen(class="--sub" data-menu-screen="client" hidden)
 				+mobileMenuHead()
 				+e.DIV.body

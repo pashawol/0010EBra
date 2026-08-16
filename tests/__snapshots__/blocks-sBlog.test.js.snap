@@ -12,7 +12,7 @@ exports[`sBlog block > matches HTML snapshot 1`] = `
       <button class="btn eb-btn eb-btn--primary sBlog__cta" type="button"><span class="eb-btn__label">Все статьи</span>
       </button>
       <article class="eb-article-card sBlog__article sBlog__article--feat">
-        <div class="eb-article-card__media"><img src="img/sBlog/vybor-belya.webp" alt="Женщина в голубом бюстгальтере примеряет белье перед зеркалом" loading="lazy"/>
+        <div class="eb-article-card__media"><img src="img/sBlog/vybor-belya.webp" alt="" loading="lazy"/>
         </div>
         <div class="eb-article-card__body">
           <h3 class="eb-article-card__title"><a href="#">Как выбрать женское нижнее белье: профессиональные советы по размеру, посадке и стилю</a>
@@ -24,7 +24,7 @@ exports[`sBlog block > matches HTML snapshot 1`] = `
         </div>
       </article>
       <article class="eb-article-card sBlog__article sBlog__article--a">
-        <div class="eb-article-card__media"><img src="img/sBlog/osobyy-sluchay.webp" alt="Невеста в свадебном платье держит букет цветов" loading="lazy"/>
+        <div class="eb-article-card__media"><img src="img/sBlog/osobyy-sluchay.webp" alt="" loading="lazy"/>
         </div>
         <div class="eb-article-card__body">
           <h3 class="eb-article-card__title"><a href="#">Женское белье для особых случаев: как выбрать комплект для свадьбы, свидания и фотосессии</a>
@@ -36,7 +36,7 @@ exports[`sBlog block > matches HTML snapshot 1`] = `
         </div>
       </article>
       <article class="eb-article-card sBlog__article sBlog__article--b">
-        <div class="eb-article-card__media"><img src="img/sBlog/kollekciya.webp" alt="Женщина в синем кружевном белье коллекции LULU" loading="lazy"/>
+        <div class="eb-article-card__media"><img src="img/sBlog/kollekciya.webp" alt="" loading="lazy"/>
         </div>
         <div class="eb-article-card__body">
           <h3 class="eb-article-card__title"><a href="#">Красивая и удобная женская бельевая коллекция: как найти идеальный комплект</a>

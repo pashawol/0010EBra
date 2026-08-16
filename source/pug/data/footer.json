@@ -137,49 +137,49 @@
 		"payments": [
 			{
 				"name": "mastercard",
-				"file": "img/footer/pay-mastercard.webp",
+				"file": "img/footer/pay-mastercard.svg",
 				"w": 33,
 				"h": 20
 			},
 			{
 				"name": "visa",
-				"file": "img/footer/pay-visa.webp",
+				"file": "img/footer/pay-visa.svg",
 				"w": 49,
 				"h": 16
 			},
 			{
 				"name": "sber",
-				"file": "img/footer/pay-sber.webp",
+				"file": "img/footer/pay-sber.svg",
 				"w": 24,
 				"h": 24
 			},
 			{
 				"name": "alfa",
-				"file": "img/footer/pay-alfa.webp",
+				"file": "img/footer/pay-alfa.svg",
 				"w": 24,
 				"h": 24
 			},
 			{
 				"name": "mir",
-				"file": "img/footer/pay-mir.webp",
+				"file": "img/footer/pay-mir.svg",
 				"w": 49,
 				"h": 24
 			},
 			{
 				"name": "yoomoney",
-				"file": "img/footer/pay-yoomoney.webp",
+				"file": "img/footer/pay-yoomoney.svg",
 				"w": 34,
 				"h": 24
 			},
 			{
 				"name": "halva",
-				"file": "img/footer/pay-halva.webp",
+				"file": "img/footer/pay-halva.svg",
 				"w": 24,
 				"h": 24
 			},
 			{
 				"name": "tbank",
-				"file": "img/footer/pay-tbank.webp",
+				"file": "img/footer/pay-tbank.svg",
 				"w": 24,
 				"h": 24
 			}
