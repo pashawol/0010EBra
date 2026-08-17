@@ -1,7 +1,7 @@
 ;(() => {
 	const SHIFT = 70
 	const DURATION = 1
-	const STAGGER = 0.25
+	const STAGGER = 60
 	const AXIS = {
 		bottom: { y: SHIFT },
 		top: { y: -SHIFT },
@@ -40,35 +40,42 @@
 
 	const offsetOf = (el) => AXIS[el.getAttribute('data-reveal')] || AXIS.bottom
 
-	const animate = (targets, trigger, start, end, stagger) => {
-		const offset = offsetOf(targets[0])
+	const animate = (el, lag) => {
 		gsap.fromTo(
-			targets,
-			{ autoAlpha: 0, ...offset },
+			el,
+			{ autoAlpha: 0, ...offsetOf(el) },
 			{
 				autoAlpha: 1,
 				x: 0,
 				y: 0,
 				duration: DURATION,
 				ease: 'power2.out',
-				stagger,
 				overwrite: 'auto',
 				scrollTrigger: {
-					trigger,
-					start,
-					end,
+					trigger: el,
+					start: `top bottom-=${lag}`,
+					end: 'top 80%',
 					scrub: 0.6,
+					invalidateOnRefresh: true,
 				},
 			},
 		)
 	}
 
-	for (const el of singles) animate([el], el, 'top bottom', 'top 55%', 0)
+	for (const el of singles) animate(el, 0)
 
 	for (const group of groups) {
 		const items = Array.from(group.querySelectorAll('[data-reveal-in-group]'))
 		if (!items.length) continue
-		const stagger = Number(group.getAttribute('data-reveal-stagger')) || STAGGER
-		animate(items, group, 'top bottom', 'top 45%', stagger)
+		const step = Number(group.getAttribute('data-reveal-stagger')) || STAGGER
+		let lag = 0
+		let prevTop = null
+		items.forEach((el, i) => {
+			const top = Math.round(el.getBoundingClientRect().top)
+			if (prevTop !== null && Math.abs(top - prevTop) > 20) lag = 0
+			else if (i > 0) lag += step
+			prevTop = top
+			animate(el, lag)
+		})
 	}
 })()

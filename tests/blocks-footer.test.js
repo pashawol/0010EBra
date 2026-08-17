@@ -25,12 +25,23 @@ describe('footer block', () => {
 		expect(el.classList.contains('eb-theme--dark')).toBe(true)
 	})
 
-	it('renders the monogram and the wordmark', () => {
+	it('renders the two-part logo with an accessible name', () => {
 		const html = renderBlock('footer', { locals })
 		const root = parse(html)
-		expect(root.querySelector('.footer__monogram')).toBeTruthy()
-		const wordmark = root.querySelector('.footer__wordmark')
-		expect(wordmark?.text.trim()).toBe(footerData.footer.brand)
+		const logo = root.querySelector('.footer__logo')
+		expect(logo).toBeTruthy()
+		expect(logo.querySelector('.eb-logo__mark svg')).toBeTruthy()
+		expect(logo.querySelector('.eb-logo__text svg')).toBeTruthy()
+		expect(logo.querySelector('.visually-hidden')?.text.trim()).toBe(footerData.footer.brand)
+	})
+
+	it('logo shapes inherit colour instead of carrying a baked-in fill', () => {
+		const html = renderBlock('footer', { locals })
+		const fills = [...html.matchAll(/<(?:path|ellipse|polygon)[^>]*fill="([^"]+)"/g)].map(
+			(m) => m[1],
+		)
+		expect(fills.length).toBeGreaterThan(10)
+		expect(new Set(fills)).toEqual(new Set(['currentColor']))
 	})
 
 	it('renders exactly 3 contact items with label + value', () => {

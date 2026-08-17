@@ -114,13 +114,17 @@ describe('sBooking block', () => {
 		expect(form.getAttribute('novalidate')).not.toBeNull()
 	})
 
-	it('renders exactly 2 decorative monogram icons (background + card corner)', () => {
+	it('renders exactly 2 decorative logo marks (background + card corner)', () => {
 		const html = renderBlock('sBooking', { locals })
 		const root = parse(html)
-		const icons = root.querySelectorAll('.icon-eb-monogram')
-		expect(icons.length).toBe(2)
-		expect(root.querySelector('.sBooking__decor')).toBeTruthy()
-		expect(root.querySelector('.sBooking__card-decor')).toBeTruthy()
+		const marks = root.querySelectorAll('.eb-logo-mark')
+		expect(marks.length).toBe(2)
+		const decor = root.querySelector('.sBooking__decor')
+		const cardDecor = root.querySelector('.sBooking__card-decor')
+		expect(decor?.tagName).toBe('SVG')
+		expect(cardDecor?.tagName).toBe('SVG')
+		expect(decor.getAttribute('aria-hidden')).toBe('true')
+		expect(decor.querySelector('path')?.getAttribute('fill')).toBe('currentColor')
 	})
 
 	it('matches HTML snapshot', () => {

@@ -4,8 +4,7 @@ mixin footer(data)
 	+b.FOOTER.footer.section.eb-theme--dark&attributes(attributes)
 		.container
 			+e.DIV.brand
-				+icon('eb-monogram', 'footer__monogram')
-				p.footer__wordmark(translate="no")= data.brand
+				+ebLogo(null, data.brand).footer__logo
 			+e.DIV.top
 				+e.DIV.contacts
 					+ebTitle(data.contacts.title, 4).footer__contacts-title

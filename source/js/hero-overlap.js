@@ -4,13 +4,15 @@
 	const hero = document.querySelector('.hero-stack .sHero')
 	const heroCap = document.querySelector('.hero-stack .section-cap')
 	const heroOverlap = heroCap?.closest('.section, section')
-	if (hero && heroOverlap) pairs.push({ pinned: hero, overlap: heroOverlap })
+	if (hero && heroOverlap) pairs.push({ pinned: hero, overlap: heroOverlap, delay: '0' })
 
 	for (const pinned of document.querySelectorAll('[data-overlap]')) {
+		const raw = pinned.getAttribute('data-overlap')
+		const delay = raw && raw !== 'data-overlap' ? raw : '0'
 		const overlap = pinned.nextElementSibling?.querySelector?.('.section-cap')
 			? pinned.nextElementSibling
 			: findCapOwnerAfter(pinned)
-		if (overlap) pairs.push({ pinned, overlap })
+		if (overlap) pairs.push({ pinned, overlap, delay })
 	}
 
 	function findCapOwnerAfter(el) {
@@ -30,10 +32,10 @@
 	if (!gsap || !ScrollTrigger) return
 	gsap.registerPlugin(ScrollTrigger)
 
-	for (const { pinned, overlap } of pairs) {
+	for (const { pinned, overlap, delay } of pairs) {
 		ScrollTrigger.create({
 			trigger: pinned,
-			start: 'bottom bottom',
+			start: `bottom bottom-=${delay}`,
 			endTrigger: overlap,
 			end: 'top top',
 			pin: pinned,

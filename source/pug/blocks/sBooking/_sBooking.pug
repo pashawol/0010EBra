@@ -7,14 +7,14 @@ mixin sBooking(data)
 				source(media="(min-width: 992px)" srcset=data.photo.desktop)
 				img.sBooking__photo(src=data.photo.mobile alt="" loading="lazy" data-parallax)
 		+e.DIV.scrim(aria-hidden="true")
-		+icon('eb-monogram').sBooking__decor(aria-hidden="true")
-		.container.sBooking__inner(data-reveal-from="bottom" data-reveal-stagger="0.12" data-reveal-group=".sBooking__title, .sBooking__title-tail, .sBooking__form-title, .sBooking__step, .sBooking__submit")
+		+ebLogoMark().sBooking__decor
+		.container.sBooking__inner(data-reveal-from="bottom" data-reveal-stagger="70" data-reveal-group=".sBooking__title, .sBooking__title-tail, .sBooking__form-title, .sBooking__step, .sBooking__submit")
 			h2.sBooking__title
 				span.visually-hidden= data.titleAccessible
 				span.sBooking__title-main(aria-hidden="true")!= data.titleMain
 			span.sBooking__title-tail(aria-hidden="true")!= data.titleTail
 			+e.DIV.card.eb-theme--light
-				+icon('eb-monogram').sBooking__card-decor(aria-hidden="true")
+				+ebLogoMark().sBooking__card-decor
 				form.sBooking__form#sBookingForm(novalidate onsubmit="return false" data-booking-form)
 					p.sBooking__form-title= data.form.title
 

@@ -63,8 +63,8 @@
 		if (!footer) return
 		const brand = footer.querySelector('.footer__brand')
 		if (!brand) return
-		const monogram = brand.querySelector('.footer__monogram')
-		const wordmark = brand.querySelector('.footer__wordmark')
+		const monogram = brand.querySelector('.eb-logo__mark')
+		const wordmark = brand.querySelector('.eb-logo__text')
 
 		const tl = gsap.timeline({
 			scrollTrigger: {

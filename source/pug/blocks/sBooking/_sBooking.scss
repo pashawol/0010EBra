@@ -58,7 +58,7 @@
 		width: rem(420);
 		height: auto;
 		color: var(--eb-white-15);
-		translate: -50% -46%;
+		translate: -50% -28%;
 		pointer-events: none;
 	}
 
@@ -72,7 +72,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: rem(32);
-		min-height: rem(1080);
+		min-height: rem(1260);
 		padding-block: rem(48);
 
 		@include media-breakpoint-up(lg) {

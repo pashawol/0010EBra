@@ -1,0 +1,20 @@
+.eb-logo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: inherit;
+	text-decoration: none;
+
+	&__mark,
+	&__text {
+		display: block;
+		color: inherit;
+		line-height: 0;
+
+		svg {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+	}
+}

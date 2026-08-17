@@ -29,7 +29,7 @@ describe('reveal', () => {
 	it('is driven by scroll progress and rewinds when scrolled back', () => {
 		const js = read('source/js/reveal.js')
 		expect(js).toMatch(/scrub: 0\.6/)
-		expect(js).toMatch(/start,\n\t\t\t\t\tend,/)
+		expect(js).toMatch(/end: 'top 80%'/)
 		expect(js).toMatch(/autoAlpha: 0/)
 		expect(js).toMatch(/autoAlpha: 1/)
 		expect(js).not.toMatch(/toggleActions/)
@@ -55,12 +55,18 @@ describe('reveal', () => {
 		expect(js).toMatch(/if \(!gsap \|\| !ScrollTrigger\) return/)
 	})
 
-	it('groups get one trigger and a native gsap stagger', () => {
+	it('every element gets its own trigger so nothing animates off-screen', () => {
 		const js = read('source/js/reveal.js')
+		expect(js).toMatch(/trigger: el,/)
+		expect(js).toMatch(/start: `top bottom-=\$\{lag\}`/)
 		expect(js).toMatch(/data-reveal-group/)
 		expect(js).toMatch(/data-reveal-stagger/)
 		expect(js).toMatch(/:not\(\[data-reveal-in-group\]\)/)
-		expect(js).toMatch(/stagger,/)
+	})
+
+	it('the stagger only applies to items sharing a row, not stacked ones', () => {
+		const js = read('source/js/reveal.js')
+		expect(js).toMatch(/Math\.abs\(top - prevTop\) > 20\) lag = 0/)
 	})
 
 	it('picks up the by-convention targets that anim.js used to handle', () => {

@@ -861,7 +861,8 @@ iframe {
 }
 .footer {
   margin-top: auto;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   position: relative;
   z-index: 4;
   padding-top: 3rem;
@@ -925,16 +926,24 @@ iframe {
   fill: var(--eb-burgundy);
 }
 .footer__brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-bottom: 2rem;
+  padding-top: 4.375rem;
 }
-.footer__monogram {
-  width: 3.875rem;
-  height: auto;
-  margin-bottom: 0.5rem;
+.footer__logo {
+  --footer-mark: 3.875rem;
+  display: block;
+  width: 100%;
   color: var(--eb-text);
+}
+.footer__logo .eb-logo__mark {
+  position: absolute;
+  top: calc(-1 * var(--footer-mark) / 2);
+  left: 50%;
+  width: var(--footer-mark);
+  margin-left: calc(-1 * var(--footer-mark) / 2);
+}
+.footer__logo .eb-logo__text {
+  width: 100%;
 }
 .footer__wordmark {
   margin: 0;
@@ -1385,6 +1394,24 @@ input::-webkit-inner-spin-button {
 
 .breadcrumb-item {
   width: auto;
+}
+
+.eb-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+.eb-logo__mark, .eb-logo__text {
+  display: block;
+  color: inherit;
+  line-height: 0;
+}
+.eb-logo__mark svg, .eb-logo__text svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .eb-product-card {
@@ -2547,7 +2574,7 @@ a {
   width: 26.25rem;
   height: auto;
   color: var(--eb-white-15);
-  translate: -50% -46%;
+  translate: -50% -28%;
   pointer-events: none;
 }
 .sBooking .container {
@@ -2559,7 +2586,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  min-height: 67.5rem;
+  min-height: 78.75rem;
   padding-block: 3rem;
 }
 .sBooking__title {
@@ -4861,19 +4888,30 @@ a {
   white-space: nowrap;
 }
 .top-nav__logo {
+  --top-nav-mark-h: 1.875rem;
   position: absolute;
   inset-inline-start: 50%;
   top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
   transform: translate(-50%, -50%);
-  color: inherit;
-  font-family: "Vetrino", "VetrinoFallback", Georgia, "Times New Roman", serif;
-  font-size: var(--eb-subtitle-1);
-  line-height: 1;
-  text-decoration: none;
-  white-space: nowrap;
 }
-.top-nav__logo svg [fill] {
-  fill: currentColor !important;
+.top-nav__logo .eb-logo__mark {
+  height: var(--top-nav-mark-h);
+  overflow: hidden;
+}
+.top-nav__logo .eb-logo__mark svg {
+  width: auto;
+  height: 100%;
+}
+.top-nav__logo .eb-logo__text {
+  height: 1.25rem;
+}
+.top-nav__logo .eb-logo__text svg {
+  width: auto;
+  height: 100%;
 }
 .top-nav__actions {
   display: flex;
@@ -5200,8 +5238,11 @@ a {
   .footer__brand {
     margin-bottom: 3.75rem;
   }
-  .footer__monogram {
-    width: 6.5625rem;
+  .footer__brand {
+    padding-top: 0;
+  }
+  .footer__logo {
+    --footer-mark: 6.5625rem;
   }
   .footer__top {
     flex-direction: row;

@@ -55,7 +55,7 @@ describe('section-cap block', () => {
 	it('the pin is configured to overlap and to survive a height change', () => {
 		const js = read('source/js/hero-overlap.js')
 		expect(js).toMatch(/pinSpacing:\s*false/)
-		expect(js).toMatch(/start:\s*'bottom bottom'/)
+		expect(js).toContain('start: `bottom bottom-=${delay}`')
 		expect(js).toMatch(/invalidateOnRefresh:\s*true/)
 		expect(js).toMatch(/ResizeObserver/)
 		expect(js).toMatch(/ScrollTrigger\.refresh\(\)/)

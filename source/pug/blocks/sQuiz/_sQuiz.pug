@@ -6,7 +6,7 @@ mixin sQuiz(data)
 			picture
 				source(media="(min-width: 992px)" srcset="img/sQuiz/bg-desktop.webp")
 				img.sQuiz__bg-photo(src="img/sQuiz/bg-mobile.webp" alt="" loading="lazy")
-		.container(data-reveal-from="bottom" data-reveal-stagger="0.12" data-reveal-group=".sQuiz__eyebrow, .sQuiz__title, .sQuiz__row-label, .sQuiz__avatar, .sQuiz__bubble, .sQuiz__hint, .sQuiz__cta")
+		.container(data-reveal-from="bottom" data-reveal-stagger="70" data-reveal-group=".sQuiz__eyebrow, .sQuiz__title, .sQuiz__row-label, .sQuiz__avatar, .sQuiz__bubble, .sQuiz__hint, .sQuiz__cta")
 			+e.DIV.header
 				+e.P.eyebrow= data.eyebrow
 				+ebTitle(data.title).sQuiz__title.text-center

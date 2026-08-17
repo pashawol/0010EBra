@@ -1,7 +1,8 @@
 // start .footer — node 508:96 (desktop 1920), 744:1165 (mobile 375)
 .footer {
 	margin-top: auto;
-	overflow: hidden;
+	overflow-x: clip;
+	overflow-y: visible;
 	position: relative;
 	z-index: 4;
 	padding-top: rem(48);
@@ -78,17 +79,28 @@
 	}
 
 	&__brand {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
 		margin-bottom: rem(32);
+		padding-top: rem(70);
 	}
 
-	&__monogram {
-		width: rem(62);
-		height: auto;
-		margin-bottom: rem(8);
+	&__logo {
+		--footer-mark: #{rem(62)};
+
+		display: block;
+		width: 100%;
 		color: var(--eb-text);
+
+		.eb-logo__mark {
+			position: absolute;
+			top: calc(-1 * var(--footer-mark) / 2);
+			left: 50%;
+			width: var(--footer-mark);
+			margin-left: calc(-1 * var(--footer-mark) / 2);
+		}
+
+		.eb-logo__text {
+			width: 100%;
+		}
 	}
 
 	&__wordmark {
@@ -459,8 +471,12 @@
 			margin-bottom: rem(60);
 		}
 
-		&__monogram {
-			width: rem(105);
+		&__brand {
+			padding-top: 0;
+		}
+
+		&__logo {
+			--footer-mark: #{rem(105)};
 		}
 
 		&__top {
