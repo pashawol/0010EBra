@@ -55,17 +55,6 @@ class JSCCommon {
 				IFRAME_ERROR: 'Ошибка загрузки iframe',
 			},
 		})
-		// Видео-карточки (рилсы, видео-отзывы) — отдельный профиль.
-		// Нельзя переиспользовать профиль 'modal': там отключены свайп и
-		// перетаскивание и висит свой click-handler под инлайновые попапы,
-		// а видео нужен обычный галерейный режим с листанием.
-		Fancybox.bind('[data-fancybox="sReels"], [data-fancybox="video"]', {
-			type: 'inline',
-			autoFocus: false,
-			placeFocusBack: false,
-			l10n: { CLOSE: 'Закрыть', NEXT: 'Вперед', PREV: 'Назад' },
-		})
-
 		document.querySelectorAll('.modal-close-js').forEach((el) => {
 			el.addEventListener('click', (event) => {
 				event.preventDefault()

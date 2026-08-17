@@ -2,14 +2,15 @@
 .section-cap {
 	color: var(--eb-white);
 
+	--eb-cap-bleed: 2px;
+	--eb-cap-overlap: 1px;
+
 	position: absolute;
-	bottom: 100%;
-	left: 0;
-	width: 100%;
+	bottom: calc(100% - var(--eb-cap-overlap));
+	left: calc(-1 * var(--eb-cap-bleed));
+	width: calc(100% + var(--eb-cap-bleed) * 2);
 	height: var(--eb-cap-h);
 	pointer-events: none;
-
-
 
 	&__shape {
 		display: block;
@@ -20,6 +21,8 @@
 
 .section-cap--inflow {
 	position: static;
-	width: 100%;
+	width: calc(100% + var(--eb-cap-bleed) * 2);
+	margin-inline: calc(-1 * var(--eb-cap-bleed));
+	margin-bottom: calc(-1 * var(--eb-cap-overlap));
 }
 // end .section-cap

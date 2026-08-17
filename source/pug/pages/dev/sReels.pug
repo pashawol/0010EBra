@@ -21,26 +21,3 @@ block title
 block pagecontent
 	main
 		+sReels()
-
-block scripts
-	script.
-		// ---------------------------------------------------------------
-		// DEV-ONLY: локальный Fancybox.bind для группы "sReels".
-		//
-		// JSCCommon.js уже вызывает Fancybox.bind() для группы "modal"
-		// (см. modalCall()), и намеренно НЕ для "sReels" — если бы карточки
-		// использовали data-fancybox="modal", их клики попали бы под общий
-		// document-click-обработчик modalCall(), который делает
-		// document.querySelector(element.dataset.src) без try/catch и мог бы
-		// упасть, если бы data-src указывал не на точный id-селектор (риск
-		// подтверждён, не гипотеза — см. docs/coordination/sReels.md).
-		// Поэтому карточки несут отдельную группу "sReels", и для боевой
-		// страницы координатору нужно добавить свой Fancybox.bind — этот
-		// инлайн-скрипт здесь только чтобы проверить механику на dev-стенде.
-		document.addEventListener('DOMContentLoaded', function () {
-			if (typeof Fancybox === 'undefined') return
-			Fancybox.bind('[data-fancybox="sReels"]', {
-				groupAll: false,
-				dragToClose: false,
-			})
-		})

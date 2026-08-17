@@ -21,11 +21,3 @@ block title
 block pagecontent
 	main
 		+sTestimonials()
-
-//- Свой block scripts не нужен: common.js грузится через +alljs() и на
-//- DOMContentLoaded сам вызывает JSCCommon.init() → modalCall(), которая уже
-//- биндит Fancybox для '[data-fancybox="sReels"], [data-fancybox="video"]'
-//- (см. JSCCommon.js) — ровно тот профиль, что использует триггер карточки
-//- ниже. Дублировать Fancybox.bind() инлайн-скриптом здесь нельзя: второй
-//- bind() на тот же селектор навешивает второй click-обработчик и открывает
-//- попап дважды.

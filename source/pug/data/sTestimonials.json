@@ -9,31 +9,43 @@
 				"poster": "img/sTestimonials/poster-1.webp",
 				"posterAlt": "Александра, 46 лет — кадр видео-отзыва",
 				"quote": "Нестандартная форма груди",
-				"person": { "name": "Александра", "age": "46 года" }
+				"person": {
+					"name": "Александра",
+					"age": "46 года"
+				},
+				"video": "video/testimonial-1.mp4"
 			},
 			{
 				"poster": "img/sTestimonials/poster-2.webp",
 				"posterAlt": "Анна — кадр видео-отзыва",
 				"quote": "После беременности",
-				"person": { "name": "Анна", "age": "29 лет" }
+				"person": {
+					"name": "Анна",
+					"age": "29 лет"
+				},
+				"video": "video/testimonial-2.mp4"
 			},
 			{
 				"poster": "img/sTestimonials/poster-3.webp",
 				"posterAlt": "Марина в кафе — кадр видео-отзыва",
 				"quote": "Асимметрия груди",
-				"person": { "name": "Марина", "age": "27 лет" }
+				"person": {
+					"name": "Марина",
+					"age": "27 лет"
+				},
+				"video": "video/testimonial-3.mp4"
 			},
 			{
 				"poster": "img/sTestimonials/poster-4.webp",
 				"posterAlt": "Николь — кадр видео-отзыва",
 				"quote": "Сложно подобрать размер",
-				"person": { "name": "Николь", "age": "31 год" }
+				"person": {
+					"name": "Николь",
+					"age": "31 год"
+				},
+				"video": "video/testimonial-4.mp4"
 			}
 		],
-		"popupPoster": {
-			"src": "img/sTestimonials/popup-poster.webp",
-			"alt": "Александра, крупный план — видео-отзыв"
-		},
-		"_note": "Все 4 слайда и попап — реальный контент из макета sTestimonials (495:336 / 682:238), не мок: имена, возраст и текст-проблема сняты с карточек 'Video (Preview)' в Figma, фото экспортированы через download_assets. Видеофайлов заказчик не предоставил (см. PLAN §1) — src у <source> пустой, см. docs/coordination/sTestimonials.md."
+		"_note": "Слайды и попап — реальный контент из макета (495:336 / 682:238): имена, возраст и цитаты сняты с карточек 'Video (Preview)' в Figma, фото экспортированы через download_assets. Видеофайлов заказчик не предоставил — в video/ лежат плейсхолдеры testimonial-1..4.mp4, собранные из постеров; заменить на реальные ролики с теми же именами."
 	}
 }

@@ -84,7 +84,7 @@
 			@include media-breakpoint-up(lg) {
 				width: rem(24);
 				height: rem(24);
-				color: #fff;
+				color: var(--eb-white);
 			}
 		}
 

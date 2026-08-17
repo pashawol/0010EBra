@@ -52,20 +52,16 @@ describe('sTestimonials block', () => {
 		expect(poster.getAttribute('alt')).toBe('')
 	})
 
-	it('every card is a Fancybox trigger pointing to the shared inline popup (not the "sReels"/"modal" groups)', () => {
+	it('every card opens the shared video popup and passes its index', () => {
 		const root = parse(render())
 		const cards = root.querySelectorAll('.sTestimonials__card')
 		expect(cards.length).toBeGreaterThanOrEqual(1)
-		for (const card of cards) {
-			expect(card.getAttribute('data-fancybox')).toBe('video')
-			expect(card.getAttribute('data-fancybox')).not.toBe('modal')
-			expect(card.getAttribute('data-fancybox')).not.toBe('sReels')
-			expect(card.getAttribute('data-src')).toBe('#sTestimonials-popup')
-		}
-		// Popup target actually exists exactly once and holds the hidden template.
-		const popups = root.querySelectorAll('#sTestimonials-popup')
-		expect(popups.length).toBe(1)
-		expect(popups[0].getAttribute('style')).toContain('display: none')
+		cards.forEach((card, i) => {
+			expect(card.getAttribute('data-video-modal')).toBe('sTestimonialsModal')
+			expect(card.getAttribute('data-video-index')).toBe(String(i))
+		})
+		expect(root.querySelectorAll('#sTestimonialsModal').length).toBe(1)
+		expect(root.querySelector('#sTestimonials-popup')).toBeFalsy()
 	})
 
 	it('every card carries a name/age/quote text block and a visible play affordance', () => {
@@ -94,52 +90,54 @@ describe('sTestimonials block', () => {
 	})
 
 	describe('video review popup (node 682:238)', () => {
-		it('has its own swiper scope, a title and an accessible close trigger', () => {
+		it('reuses the shared video-modal component with a title and a close trigger', () => {
 			const root = parse(render())
-			const popup = root.querySelector('.sTestimonials-popup')
+			const popup = root.querySelector('#sTestimonialsModal')
 			expect(popup).toBeTruthy()
-			expect(popup.hasAttribute('data-swiper-scope')).toBe(true)
-			expect(popup.querySelector('.sTestimonials-popup__title')?.text.trim()).toBe('Видео отзывы')
-			const close = popup.querySelector('.sTestimonials-popup__close')
+			expect(popup.classList.contains('video-modal')).toBe(true)
+			expect(popup.querySelector('.video-modal__title')?.text.trim()).toBeTruthy()
+			const close = popup.querySelector('.video-modal__close')
 			expect(close).toBeTruthy()
 			expect(close.hasAttribute('data-fancybox-close')).toBe(true)
 			expect(close.getAttribute('aria-label')?.trim()).toBeTruthy()
 		})
 
-		it('renders a featured slide with a real, empty-src <video> ready for the client link', () => {
+		it('holds one native video player per card, indexed to match the triggers', () => {
 			const root = parse(render())
-			const featured = root.querySelector('.sTestimonials-popup__slide--featured')
-			expect(featured).toBeTruthy()
-			const video = featured.querySelector('video.sTestimonials-popup__video')
-			expect(video).toBeTruthy()
-			expect(video.getAttribute('poster')).toBeTruthy()
-			const source = video.querySelector('source')
-			expect(source).toBeTruthy()
-			expect(source.getAttribute('src')).toBe('')
-			expect(source.getAttribute('type')).toBe('video/mp4')
+			const popup = root.querySelector('#sTestimonialsModal')
+			const videos = popup.querySelectorAll('.video-modal__video')
+			expect(videos.length).toBe(root.querySelectorAll('.sTestimonials__card').length)
+			videos.forEach((v, i) => {
+				expect(v.tagName).toBe('VIDEO')
+				expect(v.getAttribute('controls')).not.toBeUndefined()
+				expect(v.getAttribute('playsinline')).not.toBeUndefined()
+				expect(v.getAttribute('src')).toMatch(/^video\//)
+				expect(v.getAttribute('poster')).toBeTruthy()
+				expect(v.getAttribute('data-video-index')).toBe(String(i))
+			})
 		})
 
-		it('renders the other stories as preview cards for gallery navigation', () => {
+		it('reuses the shared slider navigation instead of custom buttons', () => {
 			const root = parse(render())
-			const previews = root.querySelectorAll(
-				'.sTestimonials-popup__slide:not(.sTestimonials-popup__slide--featured)',
+			const popup = root.querySelector('#sTestimonialsModal')
+			expect(popup.querySelector('.eb-slider-nav__prev')).toBeTruthy()
+			expect(popup.querySelector('.eb-slider-nav__next')).toBeTruthy()
+			expect(root.querySelector('.sTestimonials-popup__nav')).toBeFalsy()
+		})
+	})
+
+	it('modal slide N carries the same poster and its own video as card N', () => {
+		const root = parse(render())
+		const cards = root.querySelectorAll('.sTestimonials__card')
+		const videos = root.querySelectorAll('#sTestimonialsModal .video-modal__video')
+		expect(videos.length).toBe(cards.length)
+		cards.forEach((c, i) => {
+			expect(videos[i].getAttribute('poster')).toBe(
+				c.querySelector('.sTestimonials__poster').getAttribute('src'),
 			)
-			expect(previews.length).toBeGreaterThanOrEqual(1)
-			for (const slide of previews) {
-				expect(slide.querySelector('.sTestimonials-popup__poster')).toBeTruthy()
-				expect(
-					slide.querySelector('.sTestimonials-popup__card-person-name')?.text.trim(),
-				).toBeTruthy()
-			}
 		})
-
-		it('has its own slider nav (arrows) for gallery navigation', () => {
-			const root = parse(render())
-			const nav = root.querySelector('.sTestimonials-popup__nav')
-			expect(nav).toBeTruthy()
-			expect(nav.querySelector('.swiper-button-prev')).toBeTruthy()
-			expect(nav.querySelector('.swiper-button-next')).toBeTruthy()
-		})
+		const sources = [...videos].map((v) => v.getAttribute('src'))
+		expect(new Set(sources).size).toBe(sources.length)
 	})
 
 	it('has no duplicated classes on any element (bemto raw-modifier-string pitfall)', () => {

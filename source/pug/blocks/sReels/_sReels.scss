@@ -3,7 +3,7 @@
 	--reel-card-w: #{rem(320)};
 	--reel-gap: #{rem(16)};
 	.eb-icon-btn--solid {
-		--bs-btn-bg: #fff;
+		--bs-btn-bg: var(--eb-white);
 	}
 
 	position: relative;
@@ -358,18 +358,6 @@
 		}
 	}
 
-	&__video-modal {
-		max-width: rem(360);
-		margin-inline: auto;
-
-		video {
-			display: block;
-			width: 100%;
-			height: auto;
-			border-radius: var(--eb-radius);
-		}
-	}
-
 	&__overlay {
 		padding-block: rem(32) 0;
 	}
@@ -433,10 +421,6 @@
 				"nav     track";
 			align-content: center;
 			row-gap: rem(20);
-		}
-		&__slider {
-			// margin-right: 0;
-			// margin-left: auto;
 		}
 		// column-gap: rem(100);
 		min-height: rem(760);
@@ -613,4 +597,8 @@
 			height: min(5.42vw, #{rem(32)});
 		}
 	}
-} // end .sReels
+}
+
+// Попап-галерея видео-отзывов (682:238). Фон — затемнение с размытием,
+// активное видео крупнее соседних, слайдер тот же Swiper.
+// end .sReels

@@ -23,7 +23,8 @@
 				"productPhoto": {
 					"src": "img/sReels/product-photo-1.webp",
 					"alt": "Бюстгальтер Entwined Balcony крупным планом"
-				}
+				},
+				"video": "video/reel-1.mp4"
 			},
 			{
 				"poster": "img/sReels/poster-2.webp",
@@ -44,7 +45,8 @@
 				"productPhoto": {
 					"src": "img/sReels/product-photo-1.webp",
 					"alt": "Бюстгальтер Wired Sports Bra крупным планом"
-				}
+				},
+				"video": "video/reel-2.mp4"
 			},
 			{
 				"poster": "img/sReels/poster-3.webp",
@@ -65,7 +67,8 @@
 				"productPhoto": {
 					"src": "img/sReels/product-photo-1.webp",
 					"alt": "Бюстгальтер Wired Sports Bra крупным планом"
-				}
+				},
+				"video": "video/reel-3.mp4"
 			},
 			{
 				"poster": "img/sReels/poster-4.webp",
@@ -86,9 +89,11 @@
 				"productPhoto": {
 					"src": "img/sReels/product-photo-1.webp",
 					"alt": "Бюстгальтер Entwined Balcony крупным планом"
-				}
+				},
+				"video": "video/reel-4.mp4"
 			}
 		],
-		"_slidesNote": "Реальных видеофайлов заказчик не предоставил (см. PLAN §1). Разметка каждого слайда несёт data-fancybox + data-src на скрытый inline-шаблон с <video><source src=\"\">, чтобы заказчику осталось подставить ссылку — см. docs/coordination/sReels.md. Цитаты и имена слайдов 3–4 — временный мок-контент (как и в sExpertise), заменить на реальные истории при получении."
+		"_slidesNote": "Видеофайлов заказчик не предоставил — в video/ лежат плейсхолдеры reel-1..4.mp4, собранные из постеров; заменить на реальные ролики с теми же именами. Цитаты и имена слайдов 3–4 — временный мок-контент, заменить на реальные истории.",
+		"modalTitle": "Видео отзывы"
 	}
 }

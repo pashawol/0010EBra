@@ -1,0 +1,19 @@
+mixin videoModal(id, title, slides)
+	+b.DIV.video-modal(id=id)&attributes(attributes)
+		+e.DIV.head
+			+e.SPAN.title= title
+			+ebIconBtn('x', 'Закрыть').video-modal__close(data-fancybox-close)
+		+e.DIV.slider.swiper
+			.swiper-wrapper
+				each slide, i in slides
+					+e.DIV.slide.swiper-slide
+						video.video-modal__video(
+							draggable="false"
+							src=slide.video
+							poster=slide.poster
+							controls
+							playsinline
+							preload="none"
+							data-video-index=i
+						)
+		+ebSliderNav().video-modal__nav

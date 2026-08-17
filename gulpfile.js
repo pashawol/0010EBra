@@ -18,6 +18,8 @@ const paths = {
 	jsWatch: 'source/js/**/*.js',
 	fontsSource: 'source/fonts/**/*.{woff2,woff,ttf}',
 	fontsDest: 'public/fonts',
+	videoSource: 'source/video/**/*.{mp4,webm}',
+	videoDest: 'public/video',
 	imgSource: 'source/img/**/*.{jpg,jpeg,png}',
 	imgVectorSource: 'source/img/**/*.{svg,gif}',
 	imgDest: 'public/img',
@@ -283,6 +285,10 @@ class BuildTasks {
 		return src(paths.fontsSource, { encoding: false }).pipe(dest(paths.fontsDest))
 	}
 
+	static copyVideo() {
+		return src(paths.videoSource, { encoding: false, allowEmpty: true }).pipe(dest(paths.videoDest))
+	}
+
 	static buildSvgSprite() {
 		return src(paths.svgSource)
 			.pipe(
@@ -393,6 +399,7 @@ class BuildTasks {
 		)
 		watch(paths.jsWatch, watchOptions, BuildTasks.copyScripts)
 		watch(paths.imgSource, watchOptions, BuildTasks.images)
+		watch(paths.videoSource, watchOptions, BuildTasks.copyVideo)
 	}
 }
 
@@ -413,10 +420,12 @@ export const images = BuildTasks.images
 export const validate = BuildTasks.validateHtml
 
 export const fonts = BuildTasks.copyFonts
+export const video = BuildTasks.copyVideo
 
 export const build = series(
 	BuildTasks.copyScripts,
 	BuildTasks.copyFonts,
+	BuildTasks.copyVideo,
 	libs,
 	styles,
 	sprite,
@@ -429,6 +438,7 @@ export const build = series(
 export const dev = series(
 	BuildTasks.copyScripts,
 	BuildTasks.copyFonts,
+	BuildTasks.copyVideo,
 	BuildTasks.ensureVendorLibs,
 	styles,
 	sprite,

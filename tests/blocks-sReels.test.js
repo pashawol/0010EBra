@@ -40,19 +40,40 @@ describe('sReels block', () => {
 		expect(poster.getAttribute('alt')).toBe('')
 	})
 
-	it('every card is a Fancybox trigger pointing to a hidden inline video template (not the shared "modal" group)', () => {
+	it('every card opens the shared video popup and passes its index', () => {
 		const root = parse(render())
 		const cards = root.querySelectorAll('.sReels__card')
 		expect(cards.length).toBeGreaterThanOrEqual(1)
-		for (const card of cards) {
-			expect(card.getAttribute('data-fancybox')).toBe('sReels')
-			expect(card.getAttribute('data-fancybox')).not.toBe('modal')
-			const src = card.getAttribute('data-src')
-			expect(src).toMatch(/^#sReels-video-\d+$/)
-			const modal = root.querySelector(src)
-			expect(modal).toBeTruthy()
-			expect(modal.querySelector('video')).toBeTruthy()
+		cards.forEach((card, i) => {
+			expect(card.getAttribute('data-video-modal')).toBe('sReelsModal')
+			expect(card.getAttribute('data-video-index')).toBe(String(i))
+		})
+	})
+
+	it('the popup holds one native video player per slide, muted until opened', () => {
+		const root = parse(render())
+		const modal = root.querySelector('#sReelsModal')
+		expect(modal).toBeTruthy()
+		expect(modal.classList.contains('video-modal')).toBe(true)
+		const videos = modal.querySelectorAll('.video-modal__video')
+		expect(videos.length).toBe(root.querySelectorAll('.sReels__card').length)
+		for (const v of videos) {
+			expect(v.tagName).toBe('VIDEO')
+			expect(v.getAttribute('controls')).not.toBeUndefined()
+			expect(v.getAttribute('playsinline')).not.toBeUndefined()
+			expect(v.getAttribute('src')).toMatch(/^video\//)
+			expect(v.getAttribute('poster')).toBeTruthy()
 		}
+	})
+
+	it('the popup reuses the shared slider navigation instead of custom buttons', () => {
+		const root = parse(render())
+		const modal = root.querySelector('#sReelsModal')
+		expect(modal.querySelector('.eb-slider-nav')).toBeTruthy()
+		expect(modal.querySelector('.eb-slider-nav__prev')).toBeTruthy()
+		expect(modal.querySelector('.eb-slider-nav__next')).toBeTruthy()
+		expect(modal.querySelector('.sReels__modal-prev')).toBeFalsy()
+		expect(modal.querySelector('[data-fancybox-close]')).toBeTruthy()
 	})
 
 	it('has an accessible label describing the story on every card', () => {
@@ -81,6 +102,20 @@ describe('sReels block', () => {
 		expect(nav?.querySelector('.swiper-pagination')).toBeTruthy()
 		expect(root.querySelector('.swiper-button-prev')).toBeTruthy()
 		expect(root.querySelector('.swiper-button-next')).toBeTruthy()
+	})
+
+	it('modal slide N carries the same poster and its own video as card N', () => {
+		const root = parse(render())
+		const cards = root.querySelectorAll('.sReels__card')
+		const videos = root.querySelectorAll('#sReelsModal .video-modal__video')
+		expect(videos.length).toBe(cards.length)
+		cards.forEach((c, i) => {
+			expect(videos[i].getAttribute('poster')).toBe(
+				c.querySelector('.sReels__poster').getAttribute('src'),
+			)
+		})
+		const sources = [...videos].map((v) => v.getAttribute('src'))
+		expect(new Set(sources).size).toBe(sources.length)
 	})
 
 	it('has no duplicated classes on any element (bemto raw-modifier-string pitfall)', () => {

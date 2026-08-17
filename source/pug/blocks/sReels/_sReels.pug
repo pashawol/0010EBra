@@ -35,8 +35,8 @@ mixin sReels(data)
 							each slide, i in data.slides
 								+e.DIV.slide.swiper-slide
 									+e.A.card(
-										data-fancybox="sReels"
-										data-src=`#sReels-video-${i}`
+										data-video-modal="sReelsModal"
+										data-video-index=i
 										href="#"
 										aria-label=`Смотреть видео: ${slide.person ? slide.person.name + ', ' : ''}${slide.quote}`
 									)
@@ -66,9 +66,6 @@ mixin sReels(data)
 									if slide.productPhoto
 										+e.DIV.product-photo
 											img(src=slide.productPhoto.src alt="" loading="lazy")
-									div(id=`sReels-video-${i}` style="display: none")
-										.sReels__video-modal
-											video(poster=slide.poster controls playsinline)
-												source(src="" type="video/mp4")
 				+ebSliderNav().sReels__nav
-	// end sReels
+
+		+videoModal('sReelsModal', data.modalTitle || 'Видео отзывы', data.slides)

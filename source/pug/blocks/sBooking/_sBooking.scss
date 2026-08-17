@@ -50,6 +50,35 @@
 		pointer-events: none;
 	}
 
+	@include media-breakpoint-down(lg) {
+		background-color: var(--eb-burgundy);
+
+		&__inner {
+			min-height: rem(1070);
+		}
+
+		&__media {
+			bottom: auto;
+			height: rem(620);
+		}
+
+		&__photo {
+			--sBooking-parallax-overflow: 6%;
+		}
+
+		&__scrim {
+			background: linear-gradient(
+				to bottom,
+				rgba($eb-burgundy, 0.1) 0,
+				rgba($eb-burgundy, 0.55) rem(430),
+				$eb-burgundy rem(620)
+			);
+			backdrop-filter: none;
+			-webkit-mask-image: none;
+			mask-image: none;
+		}
+	}
+
 	&__decor {
 		position: absolute;
 		z-index: 1;

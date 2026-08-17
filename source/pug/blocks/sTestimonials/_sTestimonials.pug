@@ -24,8 +24,8 @@ mixin sTestimonials(data)
 					each slide, i in data.slides
 						+e.DIV.slide.swiper-slide
 							+e.A.card(
-								data-fancybox="video"
-								data-src="#sTestimonials-popup"
+								data-video-modal="sTestimonialsModal"
+								data-video-index=i
 								href="#"
 								aria-label=`Смотреть видео-отзыв: ${slide.person.name}, ${slide.quote}`
 							)
@@ -43,39 +43,5 @@ mixin sTestimonials(data)
 	+sTestimonialsPopup(data)
 
 mixin sTestimonialsPopup(data)
-	div(id="sTestimonials-popup" style="display: none")
-		+b.DIV.sTestimonials-popup(data-swiper-scope)
-			+e.DIV.head
-				+e.SPAN.title= data.popupTitle
-				button.sTestimonials-popup__close(type="button" data-fancybox-close aria-label="Закрыть")
-					+icon('x')
-			+e.DIV.track
-				+e.DIV.slider.--js.swiper(
-					data-swiper-options=JSON.stringify({
-						slidesPerView: 'auto',
-						centeredSlides: true,
-						spaceBetween: 16,
-						watchOverflow: true,
-						navigation: true,
-						breakpoints: {
-							992: { spaceBetween: 32 }
-						}
-					})
-				)
-					.swiper-wrapper
-						+e.DIV.slide.--featured.swiper-slide
-							+e.DIV.card
-								video.sTestimonials-popup__video(poster=data.popupPoster.src controls playsinline)
-									source(src="" type="video/mp4")
-						each slide, i in data.slides
-							+e.DIV.slide.swiper-slide
-								+e.DIV.card
-									img.sTestimonials-popup__poster(src=slide.poster alt="" loading="lazy")
-									+e.DIV.card-scrim
-									+icon('play').sTestimonials-popup__play-icon
-									+e.DIV.card-text
-										+e.DIV.card-person
-											+e.SPAN.card-person-name= slide.person.name
-											+e.SPAN.card-person-age= slide.person.age
-										+e.P.card-quote= slide.quote
-				+ebSliderNav().sTestimonials-popup__nav
+	+videoModal('sTestimonialsModal', data.popupTitle, data.slides)
+	// end sTestimonials
