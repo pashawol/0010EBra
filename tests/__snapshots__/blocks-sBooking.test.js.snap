@@ -6,7 +6,7 @@ exports[`sBooking block > matches HTML snapshot 1`] = `
 <section class="sBooking eb-theme eb-theme--dark section" id="sBooking" data-overlap="data-overlap">
   <div class="sBooking__media" aria-hidden="true">
     <picture>
-      <source media="(min-width: 992px)" srcset="img/sBooking/bg-desktop.webp"/><img class="sBooking__photo" src="img/sBooking/bg-mobile.webp" alt="" loading="lazy" data-parallax="data-parallax"/>
+      <source media="(min-width: 992px)" srcset="img/sBooking/bg-desktop.webp"/><img class="sBooking__photo" src="img/sBooking/bg-mobile.webp" alt="" loading="lazy" data-parallax="data-parallax" data-parallax-end="bottom bottom"/>
     </picture>
   </div>
   <div class="sBooking__scrim" aria-hidden="true">

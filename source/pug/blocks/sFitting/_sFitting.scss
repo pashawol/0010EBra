@@ -3,9 +3,9 @@
 	position: relative;
 	margin-inline: auto;
 	background-color: var(--eb-beige);
-	max-width: 1920px;
+	// max-width: 1920px;
 	color: var(--eb-text);
-
+	z-index: 3;
 	&__bg {
 		display: none;
 	}

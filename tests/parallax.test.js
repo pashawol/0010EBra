@@ -42,6 +42,18 @@ describe('parallax', () => {
 		expect(js).toMatch(/ease:\s*'none'/)
 	})
 
+	it('travel never runs past the slack, so the box edge stays covered', () => {
+		const js = read('source/js/parallax.js')
+		expect(js).toMatch(/const slack = \(imgH - boxH\) \/ 2/)
+		expect(js).toMatch(/Math\.min\(Math\.max\(raw, 0\), 1\)/)
+	})
+
+	it('the scrub range is overridable per block and defaults to the full transit', () => {
+		const js = read('source/js/parallax.js')
+		expect(js).toMatch(/img\.dataset\.parallaxStart \|\| ['"]top bottom['"]/)
+		expect(js).toMatch(/img\.dataset\.parallaxEnd \|\| ['"]bottom top['"]/)
+	})
+
 	it('respects prefers-reduced-motion and survives a missing GSAP', () => {
 		const js = read('source/js/parallax.js')
 		expect(js).toMatch(/prefers-reduced-motion: reduce/)

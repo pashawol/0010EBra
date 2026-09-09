@@ -113,7 +113,7 @@
 	@include media-breakpoint-up(xl) {
 		--eb-gutter: #{rem($eb-gutter-desktop)};
 		--eb-h1: #{rem(124)};
-		--eb-h2: #{rem(76)};
+		--eb-h2: min(calc(#{rem(55)} + 0.6vw), #{rem(76)});
 		--eb-h3: #{rem(54)};
 		--eb-h4: #{rem(36)};
 		--eb-subtitle-1: #{rem(24)};

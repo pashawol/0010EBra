@@ -1727,6 +1727,7 @@ input::-webkit-inner-spin-button {
   color: var(--eb-ink);
   white-space: nowrap;
   z-index: 2;
+  transform: translateX(var(--hs-fit-shift, 0px));
   transition: background-color 0.25s ease;
 }
 .eb-hotspot:hover .eb-hotspot__card {
@@ -2533,8 +2534,11 @@ a {
 .sBooking {
   --sPT: 0;
   --sPB: 0;
+  --sBooking-parallax-zoom: 1.18;
+  --sBooking-photo-ratio: 2556 / 1664;
   position: relative;
   overflow: hidden;
+  background-color: var(--eb-burgundy);
   color: var(--eb-text);
 }
 .sBooking__media {
@@ -2544,13 +2548,12 @@ a {
   overflow: hidden;
 }
 .sBooking__photo {
-  --sBooking-parallax-overflow: 12%;
   position: absolute;
-  top: calc(-1 * var(--sBooking-parallax-overflow));
+  top: calc(-50% * (var(--sBooking-parallax-zoom) - 1));
   left: 0;
   display: block;
   width: 100%;
-  height: calc(100% + var(--sBooking-parallax-overflow) * 2);
+  height: calc(100% * var(--sBooking-parallax-zoom));
   -o-object-fit: cover;
      object-fit: cover;
   will-change: transform;
@@ -3142,8 +3145,8 @@ a {
   position: relative;
   margin-inline: auto;
   background-color: var(--eb-beige);
-  max-width: 1920px;
   color: var(--eb-text);
+  z-index: 3;
 }
 .sFitting__bg {
   display: none;
@@ -3599,6 +3602,8 @@ a {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
 }
 .sPromo__card-badge {
   position: absolute;
@@ -3671,9 +3676,6 @@ a {
 }
 .sPromo__card--week .sPromo__card-title-value {
   font-size: var(--eb-h1);
-}
-.sPromo__card--week .sPromo__card-text {
-  max-width: 26.25rem;
 }
 .sPromo__card--gift::after {
   content: "";
@@ -4580,15 +4582,14 @@ a {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 17.5rem;
-  color: var(--eb-light-blue);
   transform: translate(-50%, -50%);
   pointer-events: none;
+  width: 100%;
+  text-align: center;
 }
 .sTransformIntro__watermark .icon {
-  width: 100%;
-  height: auto;
-  font-size: inherit;
+  color: var(--eb-light-blue);
+  font-size: clamp(300px, 20vw, 550px);
 }
 .sTransformIntro__title {
   position: relative;
@@ -4602,7 +4603,7 @@ a {
   z-index: 1;
 }
 .sTransformIntro__tag--a {
-  top: 1.875rem;
+  top: 0rem;
   left: 44%;
 }
 .sTransformIntro__tag--b {
@@ -4610,7 +4611,7 @@ a {
   left: 18.9%;
 }
 .sTransformIntro__tag--c {
-  top: 12.1875rem;
+  top: 14.0625rem;
   left: 42.9%;
 }
 .menu {
@@ -5541,6 +5542,13 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
   .sBooking__inner {
     padding-block: 0;
   }
+  .sBooking__media {
+    bottom: auto;
+    height: auto;
+    aspect-ratio: var(--sBooking-photo-ratio);
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  }
   .sBooking__decor {
     width: 91.5625rem;
   }
@@ -5556,7 +5564,7 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
   .sBooking__title-tail {
     position: absolute;
     right: var(--eb-gutter);
-    bottom: 13.875rem;
+    bottom: 10%;
     width: 36.875rem;
     font-size: var(--eb-h2);
   }
@@ -5580,7 +5588,7 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     width: 20.875rem;
   }
   .sBooking__form {
-    gap: 3.75rem;
+    gap: min(3.75rem, 3vh);
   }
   .sBooking__form-title {
     font-size: 2.25rem;
@@ -6111,12 +6119,8 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
   }
   .sTransformIntro__inner {
     display: block;
-    height: 18.75rem;
-    min-height: 18.75rem;
+    min-height: clamp(300px, 20vw, 550px);
     padding-block: 3.75rem;
-  }
-  .sTransformIntro__watermark {
-    width: 26.25rem;
   }
   .sTransformIntro__title {
     position: relative;
@@ -6129,7 +6133,7 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     position: absolute;
   }
   .sTransformIntro__tag--a {
-    top: 4%;
+    top: 0%;
     left: 27.5%;
   }
   .sTransformIntro__tag--b {
@@ -6138,7 +6142,7 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
   }
   .sTransformIntro__tag--c {
     top: auto;
-    bottom: 3%;
+    bottom: 0%;
     left: 35%;
   }
   .menu {
@@ -6239,7 +6243,7 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
   :root {
     --eb-gutter: 4.0625rem;
     --eb-h1: 7.75rem;
-    --eb-h2: 4.75rem;
+    --eb-h2: min(calc(3.4375rem + 0.6vw), 4.75rem);
     --eb-h3: 3.375rem;
     --eb-h4: 2.25rem;
     --eb-subtitle-1: 1.5rem;
@@ -6375,7 +6379,8 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     width: 100%;
   }
   .sBooking {
-    background-color: var(--eb-burgundy);
+    --sBooking-parallax-zoom: 1.12;
+    --sBooking-photo-ratio: 1400 / 1140;
   }
   .sBooking__inner {
     min-height: 66.875rem;
@@ -6383,9 +6388,6 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
   .sBooking__media {
     bottom: auto;
     height: 38.75rem;
-  }
-  .sBooking__photo {
-    --sBooking-parallax-overflow: 6%;
   }
   .sBooking__scrim {
     background: linear-gradient(to bottom, rgba(90, 13, 48, 0.1) 0, rgba(90, 13, 48, 0.55) 26.875rem, #5a0d30 38.75rem);

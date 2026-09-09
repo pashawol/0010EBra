@@ -117,6 +117,11 @@ describe('sFitting block', () => {
 		}
 	})
 
+	it('opts the photo frame into the viewport clamp for hotspot cards', () => {
+		const root = parse(render())
+		expect(root.querySelector('.sFitting__photo-frame[data-hotspot-fit]')).toBeTruthy()
+	})
+
 	it('has no literal hex colors in its stylesheet', () => {
 		const scss = fs.readFileSync(
 			path.resolve(__dirname, '..', 'source/pug/blocks/sFitting/_sFitting.scss'),

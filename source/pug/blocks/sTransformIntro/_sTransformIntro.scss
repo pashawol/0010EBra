@@ -15,15 +15,14 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		width: rem(280);
-		color: var(--eb-light-blue);
 		transform: translate(-50%, -50%);
 		pointer-events: none;
-
+		width: 100%;
+		text-align: center;
 		.icon {
-			width: 100%;
-			height: auto;
-			font-size: inherit;
+			color: var(--eb-light-blue);
+			// color: #000;
+			font-size: clamp(300px, 20vw, 550px);
 		}
 	}
 
@@ -41,7 +40,7 @@
 	}
 
 	&__tag--a {
-		top: rem(30);
+		top: rem(0);
 		left: 44%;
 	}
 
@@ -51,7 +50,7 @@
 	}
 
 	&__tag--c {
-		top: rem(195);
+		top: rem(225);
 		left: 42.9%;
 	}
 
@@ -61,13 +60,8 @@
 
 		&__inner {
 			display: block;
-			height: rem(300);
-			min-height: rem(300);
+			min-height: clamp(300px, 20vw, 550px);
 			padding-block: rem(60);
-		}
-
-		&__watermark {
-			width: rem(420);
 		}
 
 		&__title {
@@ -83,7 +77,7 @@
 		}
 
 		&__tag--a {
-			top: 4%;
+			top: 0%;
 			left: 27.5%;
 		}
 
@@ -94,7 +88,7 @@
 
 		&__tag--c {
 			top: auto;
-			bottom: 3%;
+			bottom: 0%;
 			left: 35%;
 		}
 	}

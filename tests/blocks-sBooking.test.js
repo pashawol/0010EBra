@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+import fs from 'node:fs'
 import { parse } from 'node-html-parser'
 import { renderBlock } from './helpers/render-block.js'
 import sBookingData from '../source/pug/data/sBooking.json' with { type: 'json' }
@@ -125,6 +126,25 @@ describe('sBooking block', () => {
 		expect(cardDecor?.tagName).toBe('SVG')
 		expect(decor.getAttribute('aria-hidden')).toBe('true')
 		expect(decor.querySelector('path')?.getAttribute('fill')).toBe('currentColor')
+	})
+
+	it('the desktop photo band keeps the source ratio, so cover crops only by the zoom', () => {
+		const scss = fs.readFileSync(
+			new URL('../source/pug/blocks/sBooking/_sBooking.scss', import.meta.url),
+			'utf8',
+		)
+		expect(scss).toMatch(/--sBooking-photo-ratio:\s*2556 \/ 1664/)
+		expect(scss).toMatch(/--sBooking-parallax-zoom:\s*1\.\d+/)
+		expect(scss).toMatch(/aspect-ratio: var\(--sBooking-photo-ratio\)/)
+		expect(scss).toMatch(/height: calc\(100% \* var\(--sBooking-parallax-zoom\)\)/)
+		expect(scss).toMatch(/top: calc\(-50% \* \(var\(--sBooking-parallax-zoom\) - 1\)\)/)
+	})
+
+	it('the parallax finishes while the photo is still on screen', () => {
+		const root = parse(renderBlock('sBooking', { locals }))
+		expect(root.querySelector('.sBooking__photo')?.getAttribute('data-parallax-end')).toBe(
+			'bottom bottom',
+		)
 	})
 
 	it('matches HTML snapshot', () => {

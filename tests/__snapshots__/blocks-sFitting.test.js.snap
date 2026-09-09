@@ -22,7 +22,7 @@ exports[`sFitting block > matches HTML snapshot 1`] = `
           <div class="sFitting__meta-item"><span class="sFitting__meta-label">Размер:</span><span class="sFitting__meta-value">65E</span>
           </div>
         </div>
-        <div class="sFitting__photo-frame">
+        <div class="sFitting__photo-frame" data-hotspot-fit="data-hotspot-fit">
           <picture>
             <source media="(min-width: 992px)" srcset="img/sFitting/model-desktop.webp"/><img class="sFitting__photo" src="img/sFitting/model-mobile.webp" alt="" loading="lazy"/>
           </picture>

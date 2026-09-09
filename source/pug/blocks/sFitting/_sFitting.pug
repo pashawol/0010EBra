@@ -17,7 +17,7 @@ mixin sFitting(data)
 								+e.SPAN.meta-label= info.label
 								+e.SPAN.meta-value= info.value
 
-					+e.DIV.photo-frame
+					+e.DIV.photo-frame(data-hotspot-fit)
 						picture
 							source(media="(min-width: 992px)" srcset=data.photo.desktop)
 							img.sFitting__photo(src=data.photo.mobile alt="" loading="lazy")

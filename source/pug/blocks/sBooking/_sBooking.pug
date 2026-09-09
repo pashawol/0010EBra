@@ -5,7 +5,7 @@ mixin sBooking(data)
 		+e.DIV.media(aria-hidden="true")
 			picture
 				source(media="(min-width: 992px)" srcset=data.photo.desktop)
-				img.sBooking__photo(src=data.photo.mobile alt="" loading="lazy" data-parallax)
+				img.sBooking__photo(src=data.photo.mobile alt="" loading="lazy" data-parallax data-parallax-end="bottom bottom")
 		+e.DIV.scrim(aria-hidden="true")
 		+ebLogoMark().sBooking__decor
 		.container.sBooking__inner(data-reveal-from="bottom" data-reveal-stagger="70" data-reveal-group=".sBooking__title, .sBooking__title-tail, .sBooking__form-title, .sBooking__step, .sBooking__submit")

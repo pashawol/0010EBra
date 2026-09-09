@@ -22,11 +22,18 @@
 		const box = boxOf(img)
 		if (!box) continue
 
+		const amount = () => {
+			const raw = Number.parseFloat(getComputedStyle(img).getPropertyValue('--parallax-amount'))
+			if (!Number.isFinite(raw)) return 1
+			return Math.min(Math.max(raw, 0), 1)
+		}
+
 		const range = () => {
 			const boxH = box.getBoundingClientRect().height
 			const imgH = img.getBoundingClientRect().height
 			if (!imgH || imgH <= boxH) return 0
-			return ((imgH - boxH) / 2 / imgH) * 100
+			const slack = (imgH - boxH) / 2
+			return ((slack * amount()) / imgH) * 100
 		}
 
 		gsap.fromTo(
@@ -37,8 +44,8 @@
 				ease: 'none',
 				scrollTrigger: {
 					trigger: box,
-					start: 'top bottom',
-					end: 'bottom top',
+					start: img.dataset.parallaxStart || 'top bottom',
+					end: img.dataset.parallaxEnd || 'bottom top',
 					scrub: 0.6,
 					invalidateOnRefresh: true,
 				},

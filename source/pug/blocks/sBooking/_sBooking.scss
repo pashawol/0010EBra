@@ -3,8 +3,12 @@
 	--sPT: 0;
 	--sPB: 0;
 
+	--sBooking-parallax-zoom: 1.18;
+	--sBooking-photo-ratio: 2556 / 1664;
+
 	position: relative;
 	overflow: hidden;
+	background-color: var(--eb-burgundy);
 	color: var(--eb-text);
 
 	&__media {
@@ -15,14 +19,12 @@
 	}
 
 	&__photo {
-		--sBooking-parallax-overflow: 12%;
-
 		position: absolute;
-		top: calc(-1 * var(--sBooking-parallax-overflow));
+		top: calc(-50% * (var(--sBooking-parallax-zoom) - 1));
 		left: 0;
 		display: block;
 		width: 100%;
-		height: calc(100% + var(--sBooking-parallax-overflow) * 2);
+		height: calc(100% * var(--sBooking-parallax-zoom));
 		object-fit: cover;
 		will-change: transform;
 	}
@@ -37,21 +39,14 @@
 			rgba($eb-burgundy, 0.75) 100%
 		);
 		backdrop-filter: blur(rem(40));
-		-webkit-mask-image: linear-gradient(
-			to bottom,
-			transparent 50%,
-			black 100%
-		);
-		mask-image: linear-gradient(
-			to bottom,
-			transparent 50%,
-			black 100%
-		);
+		-webkit-mask-image: linear-gradient(to bottom, transparent 50%, black 100%);
+		mask-image: linear-gradient(to bottom, transparent 50%, black 100%);
 		pointer-events: none;
 	}
 
 	@include media-breakpoint-down(lg) {
-		background-color: var(--eb-burgundy);
+		--sBooking-parallax-zoom: 1.12;
+		--sBooking-photo-ratio: 1400 / 1140;
 
 		&__inner {
 			min-height: rem(1070);
@@ -60,10 +55,6 @@
 		&__media {
 			bottom: auto;
 			height: rem(620);
-		}
-
-		&__photo {
-			--sBooking-parallax-overflow: 6%;
 		}
 
 		&__scrim {
@@ -242,7 +233,10 @@
 		font-size: rem(14);
 		line-height: 1;
 		pointer-events: none;
-		transition: top 0.15s ease, font-size 0.15s ease, color 0.15s ease;
+		transition:
+			top 0.15s ease,
+			font-size 0.15s ease,
+			color 0.15s ease;
 	}
 
 	&__field-input:focus ~ &__field-label,
@@ -315,7 +309,9 @@
 		text-align: center;
 		white-space: nowrap;
 		cursor: pointer;
-		transition: background-color 0.2s ease, color 0.2s ease;
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease;
 
 		&--wide {
 			width: 100%;
@@ -434,6 +430,18 @@
 	}
 
 	@include media-breakpoint-up(lg) {
+		&__media {
+			bottom: auto;
+			height: auto;
+			aspect-ratio: var(--sBooking-photo-ratio);
+			-webkit-mask-image: linear-gradient(
+				to bottom,
+				black 70%,
+				transparent 100%
+			);
+			mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+		}
+
 		&__decor {
 			width: rem(1465);
 		}
@@ -452,7 +460,7 @@
 		&__title-tail {
 			position: absolute;
 			right: var(--eb-gutter);
-			bottom: rem(222);
+			bottom: 10%;
 			width: rem(590);
 			font-size: var(--eb-h2);
 		}
@@ -475,7 +483,7 @@
 		}
 
 		&__form {
-			gap: rem(60);
+			gap: min(#{rem(60)}, 3vh);
 		}
 
 		&__form-title {
