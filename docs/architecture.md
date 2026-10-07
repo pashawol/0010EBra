@@ -100,6 +100,33 @@ mixin sHero(data)
 168 px хода за 937 px прокрутки (18% разницы со скоростью страницы) вместо 105 px за 1900 px (5%,
 глазом не видно).
 
+### Попап каталога: категории без подкатегорий
+
+Данные — `source/pug/data/catalog.json`. Категория с пустым `items` рендерится без
+`data-catalog-has-subs`, без `aria-controls` и без своего `.catalog__sublist`.
+
+| Класс на `#catalogModal` | Ставит `source/js/catalog.js` | Что даёт |
+| --- | --- | --- |
+| `--picked` | при наведении/фокусе на любую категорию | остальные пункты бледнеют, активный тёмный со стрелкой, меняется картинка |
+| `--drilled` | только для категории с `data-catalog-has-subs` | панель расширяется, появляется колонка подкатегорий |
+
+### Ховеры карточек
+
+| Что | Где | Контракт |
+| --- | --- | --- |
+| Смена фото товара | `eb-product-card.pug/.scss` | поле `hoverImage` в данных товара → второй `<img class="eb-product-card__img--hover">`; без поля карточка прежняя; смена только под `@media (hover: hover)` |
+| Стрелка на баннере/статье | `+ebHoverArrow` в `eb-ui.pug/.scss` | появляется по ховеру родителя с `data-hoverable` (sGifts, sPromo, sBlog) |
+| Видео-превью | `_sTestimonials.scss` | по ховеру бордовый градиент снизу и кнопка «Play» по центру |
+
+Вторые фото товаров в `sBestSets.json` / `sFavorites.json` — заглушки из соседних товаров
+того же набора, до прихода реальных кадров.
+
+### Вертикальный ритм секций
+
+Отступ между секциями на десктопе (`xl`+) — токены `--eb-sec-gap` и `--eb-sec-half` в
+`source/sass/_root.scss`: 200 px на ширине макета 1920, 150 px на 1440. Мобильные значения
+заданы в блоках отдельно.
+
 ## Токены и запрет хардкода
 
 Stylelint с `stylelint-declaration-strict-value` **падает** на литеральном значении в `color|*-color|background|fill|stroke` внутри `source/pug/blocks/**/*.scss`, `source/sass/_base.scss`, `_select2.scss`.

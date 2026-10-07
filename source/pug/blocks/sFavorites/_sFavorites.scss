@@ -22,4 +22,14 @@
 			gap: rem(10);
 		}
 	}
-} // end .sFavorites
+
+	@include media-breakpoint-up(xl) {
+		--sPT: var(--eb-sec-gap);
+		--sPB: var(--eb-sec-half);
+
+		.eb-title {
+			margin-bottom: rem(60);
+		}
+	}
+}
+// end .sFavorites

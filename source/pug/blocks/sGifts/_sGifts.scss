@@ -33,6 +33,13 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			transition: transform 0.6s ease;
+		}
+
+		@media (hover: hover) {
+			&:hover .sGifts__card-img {
+				transform: scale(1.08);
+			}
 		}
 
 		&-caption {
@@ -153,6 +160,11 @@
 		&__widget {
 			padding: 0;
 		}
+	}
+
+	@include media-breakpoint-up(xl) {
+		--sPT: var(--eb-sec-half);
+		--sPB: var(--eb-sec-half);
 	}
 }
 // end .sGifts

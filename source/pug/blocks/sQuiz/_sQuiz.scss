@@ -273,4 +273,26 @@
 			font-size: var(--eb-subtitle-2);
 		}
 	}
+
+	@include media-breakpoint-up(xl) {
+		--sPT: var(--eb-sec-gap);
+		--sPB: var(--eb-sec-gap);
+
+		&__header {
+			margin-bottom: rem(60);
+		}
+
+		&__eyebrow {
+			margin-bottom: rem(26);
+		}
+
+		&__chat {
+			gap: rem(20);
+			margin-bottom: rem(60);
+		}
+
+		&__row-label {
+			margin-bottom: rem(20);
+		}
+	}
 }

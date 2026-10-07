@@ -47,5 +47,22 @@
 			font-size: var(--eb-body);
 		}
 	}
+
+	@include media-breakpoint-up(xl) {
+		--sPT: var(--eb-sec-gap);
+		--sPB: var(--eb-sec-half);
+
+		&__eyebrow {
+			margin-bottom: rem(26);
+		}
+
+		&__title {
+			margin-bottom: rem(40);
+		}
+
+		&__text {
+			margin-bottom: rem(40);
+		}
+	}
 }
 // end .sSale

@@ -97,10 +97,12 @@
 		margin: 0;
 
 		@include media-breakpoint-up(lg) {
-			@include a-cent1(xy);
-
+			position: absolute;
+			inset: 0;
 			width: max-content;
 			max-width: rem(600);
+			height: fit-content;
+			margin: auto;
 		}
 	}
 

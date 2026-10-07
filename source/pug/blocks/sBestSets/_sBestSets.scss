@@ -68,4 +68,17 @@
 			gap: rem(10);
 		}
 	}
+
+	@include media-breakpoint-up(xl) {
+		--sPT: var(--eb-sec-half);
+		--sPB: var(--eb-sec-gap);
+
+		.eb-title {
+			margin-bottom: rem(60);
+		}
+
+		&__tabs {
+			margin-bottom: rem(40);
+		}
+	}
 }

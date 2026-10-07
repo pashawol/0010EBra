@@ -74,3 +74,14 @@ describe('sBlog block', () => {
 		expect(html).toMatchSnapshot()
 	})
 })
+
+describe('sBlog hover arrow', () => {
+	it('every article card carries a hover arrow inside its media', () => {
+		const root = parse(renderBlock('sBlog', { locals }))
+		const cards = root.querySelectorAll('.eb-article-card')
+		expect(cards.length).toBeGreaterThan(0)
+		for (const card of cards) {
+			expect(card.querySelectorAll('.eb-article-card__media .eb-hover-arrow').length).toBe(1)
+		}
+	})
+})

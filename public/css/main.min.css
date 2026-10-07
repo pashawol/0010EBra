@@ -1434,6 +1434,13 @@ input::-webkit-inner-spin-button {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.eb-product-card__img--hover {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
 .eb-product-card__badge {
   position: absolute;
   top: 0.625rem;
@@ -1748,6 +1755,36 @@ input::-webkit-inner-spin-button {
 .eb-hotspot__card-icon {
   flex-shrink: 0;
   font-size: 1.25rem;
+  transform: rotate(-45deg);
+}
+
+.eb-hover-arrow {
+  position: absolute;
+  z-index: 3;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--eb-radius);
+  background-color: var(--eb-white);
+  color: var(--eb-ink);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(1.5rem);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+}
+.eb-hover-arrow--end {
+  right: 2.5rem;
+  bottom: 2.5rem;
+  left: auto;
+}
+.eb-hover-arrow__icon {
+  width: 1.25rem;
+  height: 1.25rem;
   transform: rotate(-45deg);
 }
 
@@ -2471,6 +2508,7 @@ a {
   text-decoration: none;
 }
 .eb-article-card__media {
+  position: relative;
   flex-shrink: 0;
   overflow: hidden;
   border-radius: var(--eb-radius);
@@ -2482,6 +2520,7 @@ a {
   aspect-ratio: var(--card-image-ratio);
   -o-object-fit: cover;
      object-fit: cover;
+  transition: transform 0.6s ease;
 }
 .eb-article-card__body {
   display: flex;
@@ -3286,6 +3325,7 @@ a {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  transition: transform 0.6s ease;
 }
 .sGifts__card-caption {
   position: relative;
@@ -3604,6 +3644,7 @@ a {
      object-fit: cover;
   -o-object-position: top;
      object-position: top;
+  transition: transform 0.6s ease;
 }
 .sPromo__card-badge {
   position: absolute;
@@ -4176,9 +4217,8 @@ a {
   height: 100%;
   overflow: hidden;
   border-radius: 0.25rem;
-  -o-object-fit: contain;
-     object-fit: contain;
-  background-color: var(--eb-white);
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .sReels__overlay {
   padding-block: 2rem 0;
@@ -4519,6 +4559,58 @@ a {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.sTestimonials__card-play {
+  position: absolute;
+  z-index: 2;
+  top: calc(50% + 1.875rem);
+  left: 50%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease, top 0.3s ease, visibility 0s linear 0.3s;
+}
+.sTestimonials__play-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6.25rem;
+  height: 6.25rem;
+  border: 1px solid var(--eb-white-35);
+  border-radius: 50%;
+}
+.sTestimonials__play-ring::before {
+  content: "";
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: var(--eb-burgundy);
+}
+.sTestimonials__play-btn-icon {
+  position: absolute;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--eb-white);
+  transform: translateX(2px);
+}
+.sTestimonials__play-label {
+  color: var(--eb-white);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: var(--eb-caption);
+}
+.sTestimonials__card-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, color-mix(in srgb, var(--eb-burgundy) 75%, transparent) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 .sTestimonials__card-scrim {
   position: absolute;
@@ -4795,7 +4887,6 @@ a {
 }
 .top-nav__action:hover {
   background-color: var(--eb-surface);
-  color: var(--eb-accent);
 }
 .top-nav__action:not([data-action=cart]) {
   display: none;
@@ -5145,10 +5236,10 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     text-decoration: none;
     transition: color var(--catalog-dur) var(--catalog-ease);
   }
-  .catalog.--drilled .catalog__cat {
+  .catalog.--picked .catalog__cat {
     color: var(--eb-text-faint);
   }
-  .catalog__cat.--active {
+  .catalog .catalog__cat.--active {
     color: var(--eb-text);
   }
   .catalog__cat.--active::after {
@@ -5403,9 +5494,16 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     overflow: visible;
   }
   .mobileMenu__service {
-    flex: 1 1 0;
+    flex: 0 0 calc((100% - 1.875rem) / 4);
     height: 12.5rem;
     border-radius: 1.125rem;
+    isolation: isolate;
+  }
+  .mobileMenu__service::before {
+    border-radius: inherit;
+  }
+  .mobileMenu__service-img {
+    border-radius: inherit;
   }
   .mobileMenu__service-arrow {
     width: var(--eb-control-size);
@@ -5695,14 +5793,13 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
   }
   .sExpertise__title {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    bottom: auto;
-    right: auto;
-    translate: -50% -50%;
+    inset: 0;
     width: -moz-max-content;
     width: max-content;
     max-width: 37.5rem;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: auto;
   }
   .sExpertise__fact {
     display: block;
@@ -6176,6 +6273,9 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     -webkit-backdrop-filter: none;
             backdrop-filter: none;
   }
+  .top-nav__burger:hover, .top-nav__action:hover {
+    background-color: var(--eb-white-15);
+  }
   .top-nav__start, .top-nav__actions {
     padding: 0.3125rem;
     gap: 0.3125rem;
@@ -6189,7 +6289,8 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     color: var(--eb-ink);
   }
   .top-nav__catalog-btn:hover {
-    background-color: var(--eb-surface-hover);
+    background-color: var(--eb-burgundy);
+    color: var(--eb-white);
   }
   .top-nav.fixed {
     top: 0.625rem;
@@ -6214,8 +6315,12 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     color: var(--eb-on-accent);
   }
   .top-nav.fixed .top-nav__catalog-btn:hover {
-    background-color: var(--eb-burgundy);
-    color: var(--eb-white);
+    background-color: color-mix(in srgb, var(--eb-burgundy) 92%, var(--eb-white));
+    color: var(--eb-on-accent);
+  }
+  .top-nav.fixed .top-nav__burger:hover,
+  .top-nav.fixed .top-nav__action:hover {
+    background-color: var(--eb-surface);
   }
   .video-modal__head {
     top: 2.5rem;
@@ -6250,6 +6355,40 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     --eb-subtitle-2: 1.5rem;
     --eb-body: 1.125rem;
     --eb-caption: 1rem;
+    --eb-sec-gap: clamp(6.25rem, 10.42vw, 12.5rem);
+    --eb-sec-half: calc(var(--eb-sec-gap) / 2);
+  }
+  .sAudience {
+    --sPB: var(--eb-sec-gap);
+  }
+  .sBestSets {
+    --sPT: var(--eb-sec-half);
+    --sPB: var(--eb-sec-gap);
+  }
+  .sBestSets .eb-title {
+    margin-bottom: 3.75rem;
+  }
+  .sBestSets__tabs {
+    margin-bottom: 2.5rem;
+  }
+  .sBlog {
+    --sPT: var(--eb-sec-half);
+    --sPB: var(--eb-sec-gap);
+  }
+  .sFavorites {
+    --sPT: var(--eb-sec-gap);
+    --sPB: var(--eb-sec-half);
+  }
+  .sFavorites .eb-title {
+    margin-bottom: 3.75rem;
+  }
+  .sFitting {
+    --sPT: 4.375rem;
+    --sPB: 4.375rem;
+  }
+  .sGifts {
+    --sPT: var(--eb-sec-half);
+    --sPB: var(--eb-sec-half);
   }
   .sHero__stage {
     display: block;
@@ -6305,6 +6444,45 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
   .sProcess__steps {
     gap: 0.625rem;
   }
+  .sProcess {
+    --sPT: var(--eb-sec-gap);
+    --sPB: var(--eb-sec-half);
+  }
+  .sProcess__steps {
+    margin-top: 1.25rem;
+  }
+  .sProcess__step-content {
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .sProcess__step-ruler {
+    height: 3.75rem;
+  }
+  .sProcess__step-ruler::before {
+    bottom: 1.25rem;
+    height: 1.25rem;
+  }
+  .sPromo {
+    --sPT: var(--eb-sec-half);
+    --sPB: var(--eb-sec-half);
+  }
+  .sQuiz {
+    --sPT: var(--eb-sec-gap);
+    --sPB: var(--eb-sec-gap);
+  }
+  .sQuiz__header {
+    margin-bottom: 3.75rem;
+  }
+  .sQuiz__eyebrow {
+    margin-bottom: 1.625rem;
+  }
+  .sQuiz__chat {
+    gap: 1.25rem;
+    margin-bottom: 3.75rem;
+  }
+  .sQuiz__row-label {
+    margin-bottom: 1.25rem;
+  }
   .sReels {
     --reel-card-w: 36.875rem;
   }
@@ -6336,6 +6514,29 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     width: min(5.42vw, 2rem);
     height: min(5.42vw, 2rem);
   }
+  .sReels {
+    --sPT: var(--eb-sec-gap);
+    --sPB: calc(var(--eb-sec-gap) * 1.28);
+  }
+  .sReels__grid {
+    grid-template-rows: 1fr auto;
+  }
+  .sReels__overlay {
+    align-self: start;
+  }
+  .sSale {
+    --sPT: var(--eb-sec-gap);
+    --sPB: var(--eb-sec-half);
+  }
+  .sSale__eyebrow {
+    margin-bottom: 1.625rem;
+  }
+  .sSale__title {
+    margin-bottom: 2.5rem;
+  }
+  .sSale__text {
+    margin-bottom: 2.5rem;
+  }
   .sStory__grid {
     grid-template-columns: minmax(0, 1fr) 27.5rem;
     -moz-column-gap: 10rem;
@@ -6343,6 +6544,23 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
   }
   .sStory__nav {
     width: 27.5rem;
+  }
+  .sStory {
+    --sPT: var(--eb-sec-half);
+    --sPB: var(--eb-sec-gap);
+  }
+  .sStory__grid {
+    row-gap: 2.5rem;
+  }
+  .sStory__name {
+    gap: 1.25rem;
+  }
+  .sStory__info {
+    gap: 0.625rem;
+  }
+  .sStory__result {
+    gap: 2.5rem;
+    margin-top: 2.5rem;
   }
   .sTestimonials {
     --card-w: 27.375rem;
@@ -6361,6 +6579,26 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
   }
   .sTestimonials__card-quote {
     font-size: 1.125rem;
+  }
+  .sTestimonials {
+    --sPT: var(--eb-sec-gap);
+    --sPB: calc(var(--eb-sec-gap) * 1.29);
+  }
+  .sTransformIntro {
+    --sPT: var(--eb-sec-half);
+    --sPB: var(--eb-sec-half);
+  }
+  .sTransformIntro__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: clamp(300px, 25.05vw, 30.0625rem);
+  }
+  .sTransformIntro__title {
+    padding-top: 0;
+  }
+  .sTransformIntro__watermark .icon {
+    font-size: clamp(300px, 23.44vw, 28.125rem);
   }
 }
 
@@ -6510,6 +6748,45 @@ dialog.fancybox__dialog:has(.fancybox--video)::backdrop {
     background-color: var(--bs-primary);
     border-radius: 16px;
     border: 0px solid transparent;
+  }
+  .eb-product-card:hover .eb-product-card__img--hover {
+    opacity: 1;
+  }
+  .eb-hover-arrow {
+    display: flex;
+  }
+  [data-hoverable]:hover .eb-hover-arrow {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+  .eb-article-card:hover .eb-article-card__media img {
+    transform: scale(1.05);
+  }
+  .eb-article-card:hover .eb-article-card__title a {
+    color: var(--eb-accent);
+  }
+  .sGifts__card:hover .sGifts__card-img {
+    transform: scale(1.08);
+  }
+  .sPromo__card:hover .sPromo__card-img {
+    transform: scale(1.08);
+  }
+  .sTestimonials__card-play {
+    display: flex;
+  }
+  .sTestimonials__card:hover .sTestimonials__poster {
+    transform: scale(1.1);
+  }
+  .sTestimonials__card:hover .sTestimonials__card-scrim::after {
+    opacity: 1;
+  }
+  .sTestimonials__card:hover .sTestimonials__card-play {
+    top: 50%;
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
   }
 }
 

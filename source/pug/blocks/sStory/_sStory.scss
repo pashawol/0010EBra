@@ -312,4 +312,26 @@
 			width: rem(440);
 		}
 	}
+
+	@include media-breakpoint-up(xl) {
+		--sPT: var(--eb-sec-half);
+		--sPB: var(--eb-sec-gap);
+
+		&__grid {
+			row-gap: rem(40);
+		}
+
+		&__name {
+			gap: rem(20);
+		}
+
+		&__info {
+			gap: rem(10);
+		}
+
+		&__result {
+			gap: rem(40);
+			margin-top: rem(40);
+		}
+	}
 }

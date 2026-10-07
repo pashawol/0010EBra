@@ -88,11 +88,7 @@
 				"count": 36,
 				"href": "#",
 				"image": { "src": "img/catalog/swimwear.webp", "alt": "Пляжная одежда" },
-				"items": [
-					{ "name": "Парео", "href": "#" },
-					{ "name": "Туники", "href": "#" },
-					{ "name": "Пляжные платья", "href": "#" }
-				]
+				"items": []
 			},
 			{
 				"slug": "accessories",
@@ -100,11 +96,7 @@
 				"count": 11,
 				"href": "#",
 				"image": { "src": "img/sGifts/lingerie.webp", "alt": "Аксессуары" },
-				"items": [
-					{ "name": "Чулки и колготки", "href": "#" },
-					{ "name": "Пояса", "href": "#" },
-					{ "name": "Вкладыши", "href": "#" }
-				]
+				"items": []
 			},
 			{
 				"slug": "bust-type",

@@ -1,7 +1,8 @@
 mixin ebArticleCard(article, mod)
-	+b.ARTICLE.eb-article-card(class="sBlog__article--" + mod)
+	+b.ARTICLE.eb-article-card(class="sBlog__article--" + mod data-hoverable)
 		+e.DIV.media
 			img(src=article.image alt="" loading="lazy")
+			+ebHoverArrow()
 		+e.DIV.body
 			+e.H3.title
 				a(href=article.href)= article.title

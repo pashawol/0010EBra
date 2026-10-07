@@ -275,3 +275,51 @@
 		}
 	}
 }
+
+// start .eb-hover-arrow
+.eb-hover-arrow {
+	position: absolute;
+	z-index: 3;
+	bottom: rem(20);
+	left: rem(20);
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: rem(52);
+	height: rem(52);
+	border-radius: var(--eb-radius);
+	background-color: var(--eb-white);
+	color: var(--eb-ink);
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transform: translateY(rem(24));
+	transition:
+		opacity 0.3s ease,
+		transform 0.3s ease,
+		visibility 0s linear 0.3s;
+
+	&--end {
+		right: rem(40);
+		bottom: rem(40);
+		left: auto;
+	}
+
+	&__icon {
+		width: rem(20);
+		height: rem(20);
+		transform: rotate(-45deg);
+	}
+
+	@media (hover: hover) {
+		display: flex;
+
+		[data-hoverable]:hover & {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+			transition-delay: 0s;
+		}
+	}
+}
+// end .eb-hover-arrow

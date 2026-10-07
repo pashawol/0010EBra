@@ -5,6 +5,7 @@
 	const CAT_SELECTOR = '.catalog__cat'
 	const OPEN_CLASS = '--open'
 	const DRILLED_CLASS = '--drilled'
+	const PICKED_CLASS = '--picked'
 	const ACTIVE_CLASS = '--active'
 	const ANIM_MS = 280
 	const HOVER_CLOSE_MS = 260
@@ -56,7 +57,9 @@
 
 	function activate(slug) {
 		cancelHoverTimer()
-		modal.classList.add(DRILLED_CLASS)
+		const target = qsa(CAT_SELECTOR).find((cat) => cat.getAttribute('data-catalog-cat') === slug)
+		modal.classList.toggle(DRILLED_CLASS, !!target && target.hasAttribute('data-catalog-has-subs'))
+		modal.classList.toggle(PICKED_CLASS, !!target)
 
 		for (const cat of qsa(CAT_SELECTOR)) {
 			const isActive = cat.getAttribute('data-catalog-cat') === slug
@@ -75,6 +78,7 @@
 	function deactivate() {
 		cancelHoverTimer()
 		modal.classList.remove(DRILLED_CLASS)
+		modal.classList.remove(PICKED_CLASS)
 
 		for (const cat of qsa(CAT_SELECTOR)) {
 			cat.classList.remove(ACTIVE_CLASS)
@@ -158,7 +162,7 @@
 		}
 
 		const cat = event.target.closest(CAT_SELECTOR)
-		if (cat && !cat.classList.contains(ACTIVE_CLASS)) {
+		if (cat?.hasAttribute('data-catalog-has-subs') && !cat.classList.contains(ACTIVE_CLASS)) {
 			event.preventDefault()
 			activate(cat.getAttribute('data-catalog-cat'))
 		}

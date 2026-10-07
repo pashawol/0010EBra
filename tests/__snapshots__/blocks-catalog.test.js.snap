@@ -16,39 +16,39 @@ exports[`catalog block > matches HTML snapshot 1`] = `
     </div>
     <div class="catalog__body">
       <ul class="catalog__list">
-        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="underwear" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-underwear">
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="underwear" aria-expanded="false" aria-haspopup="true" aria-controls="catalogSub-underwear" data-catalog-has-subs="">
             <svg class="icon icon-corner-right-down catalog__cat-icon">
               <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
             </svg><span class="catalog__cat-name">Нижнее бельё</span><span class="catalog__cat-count">654</span></a></li>
-        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="sport" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-sport">
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="sport" aria-expanded="false" aria-haspopup="true" aria-controls="catalogSub-sport" data-catalog-has-subs="">
             <svg class="icon icon-corner-right-down catalog__cat-icon">
               <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
             </svg><span class="catalog__cat-name">Спортивное бельё</span><span class="catalog__cat-count">32</span></a></li>
-        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="erotic" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-erotic">
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="erotic" aria-expanded="false" aria-haspopup="true" aria-controls="catalogSub-erotic" data-catalog-has-subs="">
             <svg class="icon icon-corner-right-down catalog__cat-icon">
               <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
             </svg><span class="catalog__cat-name">Эротическое бельё</span><span class="catalog__cat-count">12</span></a></li>
-        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="swimwear" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-swimwear">
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="swimwear" aria-expanded="false" aria-haspopup="true" aria-controls="catalogSub-swimwear" data-catalog-has-subs="">
             <svg class="icon icon-corner-right-down catalog__cat-icon">
               <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
             </svg><span class="catalog__cat-name">Купальники</span><span class="catalog__cat-count">876</span></a></li>
-        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="homewear" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-homewear">
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="homewear" aria-expanded="false" aria-haspopup="true" aria-controls="catalogSub-homewear" data-catalog-has-subs="">
             <svg class="icon icon-corner-right-down catalog__cat-icon">
               <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
             </svg><span class="catalog__cat-name">Домашняя одежда</span><span class="catalog__cat-count">546</span></a></li>
-        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="sleepwear" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-sleepwear">
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="sleepwear" aria-expanded="false" aria-haspopup="true" aria-controls="catalogSub-sleepwear" data-catalog-has-subs="">
             <svg class="icon icon-corner-right-down catalog__cat-icon">
               <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
             </svg><span class="catalog__cat-name">Одежда для сна</span><span class="catalog__cat-count">45</span></a></li>
-        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="beachwear" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-beachwear">
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="beachwear" aria-expanded="false">
             <svg class="icon icon-corner-right-down catalog__cat-icon">
               <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
             </svg><span class="catalog__cat-name">Пляжная одежда</span><span class="catalog__cat-count">36</span></a></li>
-        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="accessories" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-accessories">
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="accessories" aria-expanded="false">
             <svg class="icon icon-corner-right-down catalog__cat-icon">
               <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
             </svg><span class="catalog__cat-name">Аксессуары</span><span class="catalog__cat-count">11</span></a></li>
-        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="bust-type" aria-haspopup="true" aria-expanded="false" aria-controls="catalogSub-bust-type">
+        <li class="catalog__item"><a class="catalog__cat" href="#" data-catalog-cat="bust-type" aria-expanded="false" aria-haspopup="true" aria-controls="catalogSub-bust-type" data-catalog-has-subs="">
             <svg class="icon icon-corner-right-down catalog__cat-icon">
               <use xlink:href="img/svg/sprite.svg#corner-right-down"></use>
             </svg><span class="catalog__cat-name">По виду груди</span><span class="catalog__cat-count">943</span></a></li>
@@ -91,18 +91,6 @@ exports[`catalog block > matches HTML snapshot 1`] = `
           <li class="catalog__subitem"><a class="catalog__sublink" href="#">Ночные сорочки</a></li>
           <li class="catalog__subitem"><a class="catalog__sublink" href="#">Пижамы</a></li>
           <li class="catalog__subitem"><a class="catalog__sublink" href="#">Пеньюары</a></li>
-        </ul>
-        <ul class="catalog__sublist" id="catalogSub-beachwear" data-catalog-sub="beachwear" hidden="hidden">
-          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
-          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Парео</a></li>
-          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Туники</a></li>
-          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Пляжные платья</a></li>
-        </ul>
-        <ul class="catalog__sublist" id="catalogSub-accessories" data-catalog-sub="accessories" hidden="hidden">
-          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>
-          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Чулки и колготки</a></li>
-          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Пояса</a></li>
-          <li class="catalog__subitem"><a class="catalog__sublink" href="#">Вкладыши</a></li>
         </ul>
         <ul class="catalog__sublist" id="catalogSub-bust-type" data-catalog-sub="bust-type" hidden="hidden">
           <li class="catalog__subitem"><a class="catalog__sublink" href="#">Смотреть все</a></li>

@@ -92,5 +92,25 @@
 			left: 35%;
 		}
 	}
+
+	@include media-breakpoint-up(xl) {
+		--sPT: var(--eb-sec-half);
+		--sPB: var(--eb-sec-half);
+
+		&__inner {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			min-height: clamp(300px, 25.05vw, #{rem(481)});
+		}
+
+		&__title {
+			padding-top: 0;
+		}
+
+		&__watermark .icon {
+			font-size: clamp(300px, 23.44vw, #{rem(450)});
+		}
+	}
 }
 // end .sTransformIntro

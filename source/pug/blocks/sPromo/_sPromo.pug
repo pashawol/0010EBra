@@ -21,7 +21,7 @@ mixin sPromoBadge(badge)
 		+e.SPAN.card-badge-label= badge.text
 
 mixin sPromoBanner(card)
-	+e.DIV(class="card--" + card.mod)&attributes(attributes)
+	+e.DIV(class="card--" + card.mod data-hoverable)&attributes(attributes)
 		+img(card.image).sPromo__card-img
 		if !card.badgeInBody
 			+sPromoBadge(card.badge)
@@ -33,6 +33,7 @@ mixin sPromoBanner(card)
 			+e.P.card-text= card.text
 			if card.badgeInBody
 				+sPromoBadge(card.badge)
+		+ebHoverArrow(true)
 
 mixin sPromo(data)
 	- data = data || sPromo

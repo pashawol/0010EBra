@@ -144,11 +144,11 @@
 			text-decoration: none;
 			transition: color var(--catalog-dur) var(--catalog-ease);
 
-			.catalog.--drilled & {
+			.catalog.--picked & {
 				color: var(--eb-text-faint);
 			}
 
-			&.--active {
+			.catalog &.--active {
 				color: var(--eb-text);
 			}
 

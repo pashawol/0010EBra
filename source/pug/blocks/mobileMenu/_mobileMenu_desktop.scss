@@ -71,9 +71,18 @@
 		}
 
 		&__service {
-			flex: 1 1 0;
+			flex: 0 0 calc((100% - #{rem(30)}) / 4);
 			height: rem(200);
 			border-radius: rem(18);
+			isolation: isolate;
+
+			&::before {
+				border-radius: inherit;
+			}
+		}
+
+		&__service-img {
+			border-radius: inherit;
 		}
 
 		&__service-arrow {

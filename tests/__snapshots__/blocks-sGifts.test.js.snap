@@ -10,15 +10,24 @@ exports[`sGifts block > matches HTML snapshot 1`] = `
         <div class="eb-title sGifts__title">
           <h2>Подарочные<br>решения</h2>
         </div>
-        <div class="sGifts__card sGifts__card--lingerie"><img class="sGifts__card-img" src="img/sGifts/lingerie.webp" alt="" loading="lazy"/><span class="sGifts__card-caption">Белье для особого<br>случая</span>
+        <div class="sGifts__card sGifts__card--lingerie" data-hoverable="data-hoverable"><img class="sGifts__card-img" src="img/sGifts/lingerie.webp" alt="" loading="lazy"/><span class="sGifts__card-caption">Белье для особого<br>случая</span><span class="eb-hover-arrow eb-hover-arrow--end" aria-hidden="true">
+          <svg class="icon icon-arrow-right  eb-hover-arrow__icon">
+            <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+          </svg></span>
         </div>
       </div>
       <div class="sGifts__col sGifts__col--full">
-        <div class="sGifts__card sGifts__card--cert eb-theme eb-theme--dark"><img class="sGifts__card-img" src="img/sGifts/cert.webp" alt="" loading="lazy"/><span class="sGifts__card-caption">Подарочный<br>сертификат</span>
+        <div class="sGifts__card sGifts__card--cert eb-theme eb-theme--dark" data-hoverable="data-hoverable"><img class="sGifts__card-img" src="img/sGifts/cert.webp" alt="" loading="lazy"/><span class="sGifts__card-caption">Подарочный<br>сертификат</span><span class="eb-hover-arrow eb-hover-arrow--end" aria-hidden="true">
+          <svg class="icon icon-arrow-right  eb-hover-arrow__icon">
+            <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+          </svg></span>
         </div>
       </div>
       <div class="sGifts__col sGifts__col--split">
-        <div class="sGifts__card sGifts__card--sets"><img class="sGifts__card-img" src="img/sGifts/sets.webp" alt="" loading="lazy"/><span class="sGifts__card-caption">Наборы</span>
+        <div class="sGifts__card sGifts__card--sets" data-hoverable="data-hoverable"><img class="sGifts__card-img" src="img/sGifts/sets.webp" alt="" loading="lazy"/><span class="sGifts__card-caption">Наборы</span><span class="eb-hover-arrow eb-hover-arrow--end" aria-hidden="true">
+          <svg class="icon icon-arrow-right  eb-hover-arrow__icon">
+            <use xlink:href="img/svg/sprite.svg#arrow-right"></use>
+          </svg></span>
         </div>
         <div class="sGifts__widget">
           <div class="sGifts__avatars"><img class="sGifts__avatar" src="img/sGifts/avatar-1.webp" alt="" loading="lazy"/><img class="sGifts__avatar" src="img/sGifts/avatar-2.webp" alt="" loading="lazy"/><img class="sGifts__avatar" src="img/sGifts/avatar-3.webp" alt="" loading="lazy"/>

@@ -3,6 +3,8 @@ mixin ebProductCard(product)
 	+b.ARTICLE.eb-product-card&attributes(attributes)
 		+e.DIV.media
 			img.eb-product-card__img(src=product.image alt="" loading="lazy")
+			if product.hoverImage
+				img.eb-product-card__img.eb-product-card__img--hover(src=product.hoverImage alt="" loading="lazy" aria-hidden="true")
 			if product.badge
 				+e.SPAN.badge(class=product.badge.type === 'new' ? 'is-new' : 'is-sale')= product.badge.text
 			if product.swatch

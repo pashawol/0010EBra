@@ -72,3 +72,7 @@ mixin ebHotspot(title, text, href)
 					if title
 						+e.SPAN.card-title= title
 					+e.SPAN.card-text= text
+
+mixin ebHoverArrow(end)
+	+b.SPAN.eb-hover-arrow(aria-hidden="true" class=end ? "--end" : "")&attributes(attributes)
+		+icon('arrow-right').eb-hover-arrow__icon

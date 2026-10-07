@@ -1,8 +1,9 @@
 
 mixin sGiftsBanner(card)
-	+e.DIV(class="card--" + card.mod)&attributes(attributes)
+	+e.DIV(class="card--" + card.mod data-hoverable)&attributes(attributes)
 		+img(card.image).sGifts__card-img
 		+e.SPAN.card-caption!= card.caption
+		+ebHoverArrow(true)
 
 mixin sGifts(data)
 	- data = data || sGifts

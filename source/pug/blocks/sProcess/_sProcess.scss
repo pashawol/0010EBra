@@ -187,5 +187,28 @@
 			gap: rem(10);
 		}
 	}
+
+	@include media-breakpoint-up(xl) {
+		--sPT: var(--eb-sec-gap);
+		--sPB: var(--eb-sec-half);
+
+		&__steps {
+			margin-top: rem(20);
+		}
+
+		&__step-content {
+			gap: rem(20);
+			margin-top: rem(40);
+		}
+
+		&__step-ruler {
+			height: rem(60);
+
+			&::before {
+				bottom: rem(20);
+				height: rem(20);
+			}
+		}
+	}
 }
 // end .sProcess

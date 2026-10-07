@@ -158,3 +158,15 @@ describe('sTestimonials block', () => {
 		expect(scss).not.toMatch(/#[0-9a-fA-F]{3,8}\b/)
 	})
 })
+
+describe('sTestimonials video preview hover', () => {
+	it('every card carries a play button with a Play label', () => {
+		const root = parse(render())
+		const cards = root.querySelectorAll('.sTestimonials__card')
+		expect(cards.length).toBeGreaterThan(0)
+		for (const card of cards) {
+			const label = card.querySelector('.sTestimonials__play-label')
+			expect(label.text).toBe('Play')
+		}
+	})
+})

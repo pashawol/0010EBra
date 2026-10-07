@@ -260,4 +260,9 @@
 			}
 		}
 	}
+
+	@include media-breakpoint-up(xl) {
+		--sPT: #{rem(70)};
+		--sPB: #{rem(70)};
+	}
 }

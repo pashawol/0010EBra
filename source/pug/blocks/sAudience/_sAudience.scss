@@ -220,4 +220,8 @@ $sAudience-beige: #f5e8d9;
 			margin-top: 0;
 		}
 	}
+
+	@include media-breakpoint-up(xl) {
+		--sPB: var(--eb-sec-gap);
+	}
 }

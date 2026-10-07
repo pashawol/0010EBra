@@ -14,6 +14,7 @@
 			"big-bust": [
 				{
 					"image": "img/sBestSets/linda.webp",
+					"hoverImage": "img/sBestSets/sophia.webp",
 					"imageAlt": "Бюстгальтер Linda big soft",
 					"badge": { "type": "new", "text": "New" },
 					"swatch": { "color": "#2C2B2B", "count": 6 },
@@ -22,6 +23,7 @@
 				},
 				{
 					"image": "img/sBestSets/sophia.webp",
+					"hoverImage": "img/sBestSets/linda.webp",
 					"imageAlt": "Sophia Full Cup Bra",
 					"badge": { "type": "sale", "text": "-16%" },
 					"swatch": { "color": "#2C2B2B", "count": 8 },
@@ -31,6 +33,7 @@
 				},
 				{
 					"image": "img/sBestSets/maribel.webp",
+					"hoverImage": "img/sBestSets/fullcup.webp",
 					"imageAlt": "Maribel big soft",
 					"swatch": { "color": "#F5E8D9", "count": 4 },
 					"title": "Maribel big soft",
@@ -38,6 +41,7 @@
 				},
 				{
 					"image": "img/sBestSets/fullcup.webp",
+					"hoverImage": "img/sBestSets/maribel.webp",
 					"imageAlt": "Full Cup Side Support Bra",
 					"badge": { "type": "new", "text": "New" },
 					"swatch": { "color": "#2C2B2B", "count": 2 },
@@ -48,6 +52,7 @@
 			"invisible": [
 				{
 					"image": "img/sBestSets/maribel.webp",
+					"hoverImage": "img/sBestSets/fullcup.webp",
 					"imageAlt": "Maribel big soft",
 					"swatch": { "color": "#F5E8D9", "count": 4 },
 					"title": "Maribel big soft",
@@ -55,6 +60,7 @@
 				},
 				{
 					"image": "img/sBestSets/fullcup.webp",
+					"hoverImage": "img/sBestSets/maribel.webp",
 					"imageAlt": "Full Cup Side Support Bra",
 					"badge": { "type": "new", "text": "New" },
 					"swatch": { "color": "#2C2B2B", "count": 2 },
@@ -63,6 +69,7 @@
 				},
 				{
 					"image": "img/sBestSets/linda.webp",
+					"hoverImage": "img/sBestSets/sophia.webp",
 					"imageAlt": "Бюстгальтер Linda big soft",
 					"badge": { "type": "new", "text": "New" },
 					"swatch": { "color": "#2C2B2B", "count": 6 },
@@ -71,6 +78,7 @@
 				},
 				{
 					"image": "img/sBestSets/sophia.webp",
+					"hoverImage": "img/sBestSets/linda.webp",
 					"imageAlt": "Sophia Full Cup Bra",
 					"badge": { "type": "sale", "text": "-16%" },
 					"swatch": { "color": "#2C2B2B", "count": 8 },
@@ -82,6 +90,7 @@
 			"no-wire": [
 				{
 					"image": "img/sBestSets/sophia.webp",
+					"hoverImage": "img/sBestSets/linda.webp",
 					"imageAlt": "Sophia Full Cup Bra",
 					"badge": { "type": "sale", "text": "-16%" },
 					"swatch": { "color": "#2C2B2B", "count": 8 },
@@ -91,6 +100,7 @@
 				},
 				{
 					"image": "img/sBestSets/linda.webp",
+					"hoverImage": "img/sBestSets/sophia.webp",
 					"imageAlt": "Бюстгальтер Linda big soft",
 					"badge": { "type": "new", "text": "New" },
 					"swatch": { "color": "#2C2B2B", "count": 6 },
@@ -99,6 +109,7 @@
 				},
 				{
 					"image": "img/sBestSets/fullcup.webp",
+					"hoverImage": "img/sBestSets/maribel.webp",
 					"imageAlt": "Full Cup Side Support Bra",
 					"badge": { "type": "new", "text": "New" },
 					"swatch": { "color": "#2C2B2B", "count": 2 },
@@ -107,6 +118,7 @@
 				},
 				{
 					"image": "img/sBestSets/maribel.webp",
+					"hoverImage": "img/sBestSets/fullcup.webp",
 					"imageAlt": "Maribel big soft",
 					"swatch": { "color": "#F5E8D9", "count": 4 },
 					"title": "Maribel big soft",
@@ -116,6 +128,7 @@
 			"sport": [
 				{
 					"image": "img/sBestSets/fullcup.webp",
+					"hoverImage": "img/sBestSets/maribel.webp",
 					"imageAlt": "Full Cup Side Support Bra",
 					"badge": { "type": "new", "text": "New" },
 					"swatch": { "color": "#2C2B2B", "count": 2 },
@@ -124,6 +137,7 @@
 				},
 				{
 					"image": "img/sBestSets/maribel.webp",
+					"hoverImage": "img/sBestSets/fullcup.webp",
 					"imageAlt": "Maribel big soft",
 					"swatch": { "color": "#F5E8D9", "count": 4 },
 					"title": "Maribel big soft",
@@ -131,6 +145,7 @@
 				},
 				{
 					"image": "img/sBestSets/sophia.webp",
+					"hoverImage": "img/sBestSets/linda.webp",
 					"imageAlt": "Sophia Full Cup Bra",
 					"badge": { "type": "sale", "text": "-16%" },
 					"swatch": { "color": "#2C2B2B", "count": 8 },
@@ -140,6 +155,7 @@
 				},
 				{
 					"image": "img/sBestSets/linda.webp",
+					"hoverImage": "img/sBestSets/sophia.webp",
 					"imageAlt": "Бюстгальтер Linda big soft",
 					"badge": { "type": "new", "text": "New" },
 					"swatch": { "color": "#2C2B2B", "count": 6 },
@@ -150,6 +166,7 @@
 			"home": [
 				{
 					"image": "img/sBestSets/linda.webp",
+					"hoverImage": "img/sBestSets/sophia.webp",
 					"imageAlt": "Бюстгальтер Linda big soft",
 					"badge": { "type": "new", "text": "New" },
 					"swatch": { "color": "#2C2B2B", "count": 6 },
@@ -158,6 +175,7 @@
 				},
 				{
 					"image": "img/sBestSets/maribel.webp",
+					"hoverImage": "img/sBestSets/fullcup.webp",
 					"imageAlt": "Maribel big soft",
 					"swatch": { "color": "#F5E8D9", "count": 4 },
 					"title": "Maribel big soft",
@@ -165,6 +183,7 @@
 				},
 				{
 					"image": "img/sBestSets/fullcup.webp",
+					"hoverImage": "img/sBestSets/maribel.webp",
 					"imageAlt": "Full Cup Side Support Bra",
 					"badge": { "type": "new", "text": "New" },
 					"swatch": { "color": "#2C2B2B", "count": 2 },
@@ -173,6 +192,7 @@
 				},
 				{
 					"image": "img/sBestSets/sophia.webp",
+					"hoverImage": "img/sBestSets/linda.webp",
 					"imageAlt": "Sophia Full Cup Bra",
 					"badge": { "type": "sale", "text": "-16%" },
 					"swatch": { "color": "#2C2B2B", "count": 8 },

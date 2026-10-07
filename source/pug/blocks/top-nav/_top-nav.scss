@@ -142,7 +142,6 @@
 
 		&:hover {
 			background-color: var(--eb-surface);
-			color: var(--eb-accent);
 		}
 	}
 
@@ -175,6 +174,11 @@
 			backdrop-filter: none;
 		}
 
+		&__burger:hover,
+		&__action:hover {
+			background-color: var(--eb-white-15);
+		}
+
 		&__start,
 		&__actions {
 			padding: rem(5);
@@ -189,7 +193,8 @@
 			color: var(--eb-ink);
 
 			&:hover {
-				background-color: var(--eb-surface-hover);
+				background-color: var(--eb-burgundy);
+				color: var(--eb-white);
 			}
 		}
 
@@ -217,9 +222,14 @@
 				color: var(--eb-on-accent);
 
 				&:hover {
-					background-color: var(--eb-burgundy);
-					color: var(--eb-white);
+					background-color: color-mix(in srgb, var(--eb-burgundy) 92%, var(--eb-white));
+					color: var(--eb-on-accent);
 				}
+			}
+
+			.top-nav__burger:hover,
+			.top-nav__action:hover {
+				background-color: var(--eb-surface);
 			}
 		}
 	}

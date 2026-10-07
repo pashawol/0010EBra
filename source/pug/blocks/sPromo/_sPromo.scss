@@ -54,6 +54,13 @@
 			height: 100%;
 			object-fit: cover;
 			object-position: top;
+			transition: transform 0.6s ease;
+		}
+
+		@media (hover: hover) {
+			&:hover .sPromo__card-img {
+				transform: scale(1.08);
+			}
 		}
 
 		&-badge {
@@ -225,6 +232,11 @@
 			margin-top: auto;
 			color: var(--eb-ink);
 		}
+	}
+
+	@include media-breakpoint-up(xl) {
+		--sPT: var(--eb-sec-half);
+		--sPB: var(--eb-sec-half);
 	}
 }
 // end .sPromo

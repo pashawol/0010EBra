@@ -60,3 +60,14 @@ describe('sGifts block', () => {
 		expect(html).toMatchSnapshot()
 	})
 })
+
+describe('sGifts hover arrow', () => {
+	it('every banner card carries a hover arrow', () => {
+		const root = parse(renderBlock('sGifts', { locals }))
+		const cards = root.querySelectorAll('.sGifts__card')
+		expect(cards.length).toBe(3)
+		for (const card of cards) {
+			expect(card.querySelectorAll('.eb-hover-arrow').length).toBe(1)
+		}
+	})
+})

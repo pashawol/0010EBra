@@ -4,6 +4,7 @@
 		"products": [
 			{
 				"image": "img/sFavorites/fullcup.webp",
+				"hoverImage": "img/sFavorites/maribel.webp",
 				"imageAlt": "Full Cup Side Support Bra",
 				"badge": { "type": "new", "text": "New" },
 				"swatch": { "color": "#2C2B2B" },
@@ -12,6 +13,7 @@
 			},
 			{
 				"image": "img/sFavorites/maribel.webp",
+				"hoverImage": "img/sFavorites/fullcup.webp",
 				"imageAlt": "Maribel big soft",
 				"swatch": { "color": "#F5E8D9", "count": 3 },
 				"title": "Maribel big soft",
@@ -19,6 +21,7 @@
 			},
 			{
 				"image": "img/sFavorites/sophia.webp",
+				"hoverImage": "img/sFavorites/linda.webp",
 				"imageAlt": "Sophia Full Cup Bra",
 				"badge": { "type": "sale", "text": "-16%" },
 				"swatch": { "color": "#F5E8D9", "count": 2 },
@@ -28,6 +31,7 @@
 			},
 			{
 				"image": "img/sFavorites/linda.webp",
+				"hoverImage": "img/sFavorites/sophia.webp",
 				"imageAlt": "Бюстгальтер Linda big soft",
 				"badge": { "type": "new", "text": "New" },
 				"swatch": { "color": "#2C2B2B", "count": 4 },

@@ -353,8 +353,7 @@
 			height: 100%;
 			overflow: hidden;
 			border-radius: rem(4);
-			object-fit: contain;
-			background-color: var(--eb-white);
+			object-fit: cover;
 		}
 	}
 
@@ -595,6 +594,17 @@
 		&__play-icon {
 			width: min(5.42vw, #{rem(32)});
 			height: min(5.42vw, #{rem(32)});
+		}
+
+		--sPT: var(--eb-sec-gap);
+		--sPB: calc(var(--eb-sec-gap) * 1.28);
+
+		&__grid {
+			grid-template-rows: 1fr auto;
+		}
+
+		&__overlay {
+			align-self: start;
 		}
 	}
 }

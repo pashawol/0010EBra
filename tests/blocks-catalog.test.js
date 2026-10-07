@@ -10,6 +10,9 @@ const DATA_PATH = path.resolve(__dirname, '..', 'source/pug/data/catalog.json')
 
 const { catalog: fixtureData } = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'))
 
+const withSubs = fixtureData.categories.filter((cat) => cat.items.length)
+const withoutSubs = fixtureData.categories.filter((cat) => !cat.items.length)
+
 const render = () => renderBlock('catalog', { locals: { catalog: fixtureData } })
 
 describe('catalog block', () => {
@@ -40,7 +43,7 @@ describe('catalog block', () => {
 	it('nothing is pre-opened: level 2 exists in DOM but every sublist starts hidden', () => {
 		const root = parse(render())
 		const subs = root.querySelectorAll('[data-catalog-sub]')
-		expect(subs.length).toBe(fixtureData.categories.length)
+		expect(subs.length).toBe(withSubs.length)
 		for (const sub of subs) expect(sub.getAttribute('hidden')).not.toBeUndefined()
 		for (const cat of root.querySelectorAll('.catalog__cat')) {
 			expect(cat.getAttribute('aria-expanded')).toBe('false')
@@ -50,7 +53,7 @@ describe('catalog block', () => {
 
 	it('every sublist starts with "Смотреть все" and then the category items', () => {
 		const root = parse(render())
-		for (const cat of fixtureData.categories) {
+		for (const cat of withSubs) {
 			const sub = root.querySelector(`[data-catalog-sub="${cat.slug}"]`)
 			const links = sub.querySelectorAll('.catalog__sublink').map((el) => el.text.trim())
 			expect(links).toEqual([fixtureData.viewAllLabel, ...cat.items.map((i) => i.name)])
@@ -59,10 +62,24 @@ describe('catalog block', () => {
 
 	it('each category row is wired to its own sublist through aria-controls', () => {
 		const root = parse(render())
-		for (const cat of root.querySelectorAll('.catalog__cat')) {
-			const slug = cat.getAttribute('data-catalog-cat')
-			expect(cat.getAttribute('aria-controls')).toBe(`catalogSub-${slug}`)
-			expect(root.querySelector(`#catalogSub-${slug}`)).toBeTruthy()
+		for (const item of withSubs) {
+			const cat = root.querySelector(`[data-catalog-cat="${item.slug}"]`)
+			expect(cat.getAttribute('aria-controls')).toBe(`catalogSub-${item.slug}`)
+			expect(cat.getAttribute('data-catalog-has-subs')).not.toBeUndefined()
+			expect(root.querySelector(`#catalogSub-${item.slug}`)).toBeTruthy()
+		}
+	})
+
+	it('categories without items render no sublist, aria-controls or has-subs marker', () => {
+		const root = parse(render())
+		expect(withoutSubs.length).toBeGreaterThanOrEqual(2)
+		for (const item of withoutSubs) {
+			const cat = root.querySelector(`[data-catalog-cat="${item.slug}"]`)
+			expect(cat.getAttribute('aria-controls')).toBeUndefined()
+			expect(cat.getAttribute('aria-haspopup')).toBeUndefined()
+			expect(cat.getAttribute('data-catalog-has-subs')).toBeUndefined()
+			expect(root.querySelector(`#catalogSub-${item.slug}`)).toBeNull()
+			expect(root.querySelector(`[data-catalog-img="${item.slug}"]`)).toBeTruthy()
 		}
 	})
 

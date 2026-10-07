@@ -120,6 +120,8 @@
 		--eb-subtitle-2: #{rem(24)};
 		--eb-body: #{rem(18)};
 		--eb-caption: #{rem(16)};
+		--eb-sec-gap: clamp(#{rem(100)}, 10.42vw, #{rem(200)});
+		--eb-sec-half: calc(var(--eb-sec-gap) / 2);
 	}
 }
 

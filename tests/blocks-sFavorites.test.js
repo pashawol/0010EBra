@@ -99,3 +99,22 @@ describe('sFavorites block', () => {
 		expect(scss).not.toMatch(/#[0-9a-fA-F]{3,8}\b/)
 	})
 })
+
+describe('sFavorites product card hover image', () => {
+	it('renders a second img only for products with hoverImage', () => {
+		const withHover = parse(render()).querySelectorAll('.eb-product-card')
+		expect(withHover.length).toBeGreaterThan(0)
+		for (const card of withHover) {
+			expect(card.querySelectorAll('img').length).toBe(2)
+			const hover = card.querySelector('.eb-product-card__img--hover')
+			expect(hover.getAttribute('src')).toMatch(/\.webp$/)
+		}
+		const data = structuredClone(sFavoritesData.sFavorites)
+		data.products.forEach((p) => delete p.hoverImage)
+		const plain = parse(renderBlock('sFavorites', { locals: { sFavorites: data } }))
+		for (const card of plain.querySelectorAll('.eb-product-card')) {
+			expect(card.querySelectorAll('img').length).toBe(1)
+			expect(card.querySelector('.eb-product-card__img--hover')).toBeNull()
+		}
+	})
+})

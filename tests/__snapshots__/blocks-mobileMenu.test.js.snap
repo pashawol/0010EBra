@@ -423,9 +423,6 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
           </svg><span class="mobileMenu__breadcrumb-name">Пляжная одежда</span><span class="mobileMenu__breadcrumb-count">36</span>
         </div>
         <ul class="mobileMenu__sublist">
-          <li><a class="mobileMenu__sublist-link" href="#">Парео</a></li>
-          <li><a class="mobileMenu__sublist-link" href="#">Туники</a></li>
-          <li><a class="mobileMenu__sublist-link" href="#">Пляжные платья</a></li>
         </ul>
       </div>
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>
@@ -469,9 +466,6 @@ exports[`mobileMenu block > matches HTML snapshot 1`] = `
           </svg><span class="mobileMenu__breadcrumb-name">Аксессуары</span><span class="mobileMenu__breadcrumb-count">11</span>
         </div>
         <ul class="mobileMenu__sublist">
-          <li><a class="mobileMenu__sublist-link" href="#">Чулки и колготки</a></li>
-          <li><a class="mobileMenu__sublist-link" href="#">Пояса</a></li>
-          <li><a class="mobileMenu__sublist-link" href="#">Вкладыши</a></li>
         </ul>
       </div>
       <button class="mobileMenu__back" type="button" data-menu-back="data-menu-back">Назад</button>

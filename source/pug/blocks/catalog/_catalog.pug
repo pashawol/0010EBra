@@ -19,16 +19,17 @@ mixin catalog(data)
 							a.catalog__cat(
 								href=cat.href || '#'
 								data-catalog-cat=cat.slug
-								aria-haspopup="true"
 								aria-expanded="false"
-								aria-controls=`catalogSub-${cat.slug}`
+								aria-haspopup=cat.items.length ? 'true' : null
+								aria-controls=cat.items.length ? `catalogSub-${cat.slug}` : null
+								data-catalog-has-subs=cat.items.length ? '' : null
 							)
 								+icon('corner-right-down', 'catalog__cat-icon')
 								span.catalog__cat-name= cat.name
 								span.catalog__cat-count= cat.count
 
 				+e.DIV.subs
-					each cat in data.categories
+					each cat in data.categories.filter((c) => c.items.length)
 						ul.catalog__sublist(id=`catalogSub-${cat.slug}` data-catalog-sub=cat.slug hidden)
 							li.catalog__subitem
 								a.catalog__sublink(href=cat.href || '#')= data.viewAllLabel

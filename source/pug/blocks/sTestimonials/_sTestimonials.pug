@@ -31,6 +31,10 @@ mixin sTestimonials(data)
 							)
 								img.sTestimonials__poster(src=slide.poster alt="" loading="lazy")
 								+e.DIV.card-scrim
+								+e.SPAN.card-play(aria-hidden="true")
+									+e.SPAN.play-ring
+										+icon('play').sTestimonials__play-btn-icon
+									+e.SPAN.play-label Play
 								+icon('play').sTestimonials__play-icon
 								+e.DIV.card-text
 									+e.DIV.card-person
